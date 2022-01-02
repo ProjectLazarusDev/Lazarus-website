@@ -28,7 +28,7 @@ const unityContext = new UnityContext({
 const Home: React.FC = () =>
 {
     //react hooks
-    const [isUnityMounted, setIsUnityMounted] = React.useState<boolean>(true);
+    //const [isUnityMounted, setIsUnityMounted] = React.useState<boolean>(true);
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
 
@@ -46,14 +46,14 @@ const Home: React.FC = () =>
     }
     // Event invoked when the user clicks the button, the unity container will be
     // mounted or unmounted depending on the current mounting state.
-    function handleOnClickUnMountUnity()
-    {
-        if (isLoaded === true)
-        {
-            setIsLoaded(false);
-        }
-        setIsUnityMounted(isUnityMounted === false);
-    }
+    //function handleOnClickUnMountUnity()
+    //{
+        //if (isLoaded === true)
+        //{
+         //   setIsLoaded(false);
+       // }
+       // setIsUnityMounted(isUnityMounted === false);
+    //}
 
 
     // When the component is mounted, we'll register some event listener.
