@@ -8,12 +8,8 @@
 /*****************************************************************************/
 
 import React from 'react';
-import Typography from '@mui/material/Typography';
-import { Grid } from "@mui/material";
-import Card from '@mui/material/Card';
 
 import '../Theme/Theme';
-import { themeLight } from '../Theme/Theme';
 import Unity, { UnityContext } from "react-unity-webgl";
 import './Home.css'
 
