@@ -29,20 +29,20 @@ const Home: React.FC = () =>
 {
     //react hooks
     //const [isUnityMounted, setIsUnityMounted] = React.useState<boolean>(true);
-    const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
-    const [progression, setProgression] = React.useState<number>(0);
+    //const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
+    //const [progression, setProgression] = React.useState<number>(0);
 
     // Built-in event invoked when the Unity app's progress has changed.
     function handleOnUnityProgress(progression: number)
     {
-        setProgression(progression);
+       // setProgression(progression);
     }
 
     // Built-in event invoked when the Unity app is loaded.
     function handleOnUnityLoaded()
     {
 
-        setIsLoaded(true);
+       // setIsLoaded(true);
     }
     // Event invoked when the user clicks the button, the unity container will be
     // mounted or unmounted depending on the current mounting state.
