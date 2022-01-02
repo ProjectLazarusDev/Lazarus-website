@@ -96,8 +96,8 @@ const Home: React.FC = () =>
 
                     <Unity className="unityWindow"
                         unityContext={unityContext}
-                        matchWebGLToCanvasSize={true}
-                        style={{ visibility: isLoaded ? "visible" : "hidden",
+                       
+                        style={{ 
                          borderRadius: '20px', width: "90vw", height: "400px", }}
                     />
 
