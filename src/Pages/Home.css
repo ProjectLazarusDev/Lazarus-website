@@ -1,15 +1,4 @@
-.wrapper {
-   
-  }
-  
-  .unity-container {
-  
-  }
-  
-  .loading-overlay {
-  
-  }
-  
+ 
   .progress-bar {
       position: absolute;
     width: 300px;
@@ -23,8 +12,4 @@
     height: 10px;
     background-color: rgb(190, 190, 190);
     transition: width 0.5s ease;
-  }
-  
-  .unityWindow {
-   
   }
