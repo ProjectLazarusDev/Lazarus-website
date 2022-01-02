@@ -9,22 +9,47 @@
 
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import { Grid } from "@mui/material";
-import { Button } from '@mui/material';
 import Card from '@mui/material/Card';
-import { ThemeProvider } from '@mui/material/styles';
 import { Box } from '@mui/system';
 import '../Theme/Theme';
-import { themeLight } from '../Theme/Theme';
+import Unity, { UnityContext } from "react-unity-webgl";
 
-export default class Home extends React.Component
-{
-    render()
-    {
+const unityContext = new UnityContext({
+    loaderUrl: "devbuild/devbuild.loader.js",
+    dataUrl: "devbuild/devbuild.data",
+    frameworkUrl: "devbuild/devbuild.framework.js",
+    codeUrl: "devbuild/devbuild.wasm",
+  });
+
+
+
+const Home: React.FC = () => {
+    
+
+        
+
         return (
             <>
+            
                 <Card style={{ zIndex: -2, width: '100vw', height: '100vh', position: "absolute", borderRadius: '0px', background: 'linear-gradient(to right bottom, #87A9FF, #6079BC)' }}></Card>
+                <Grid
+                                container
+                                spacing={0}
+                                direction="column"
+                                alignItems="center"
+                                justifyContent="center"
+                                style={{ height: '60vh' }}
+                            >
+                                          <Unity
+      unityContext={unityContext}
+      matchWebGLToCanvasSize={true}
+    
+      style={{width: "400px", height: "400px", }}
+    />
+                                    </Grid>
+         
+          
                             <Grid
                                 container
                                 spacing={0}
@@ -33,6 +58,7 @@ export default class Home extends React.Component
                                 justifyContent="center"
                                 style={{ height: '60vh' }}
                             >
+                                                       
                                 < Box
                                     component="img"
                                     sx={{
@@ -42,8 +68,10 @@ export default class Home extends React.Component
                                     }}
                                     alt="The house from the offer."
                                     src="logo.png"
-                                />
-
+                                >
+                                   
+                                    </Box>
+                                
 
                                 <Typography align="center" variant="body1" component="h1"
                                     gutterBottom fontFamily='jost' fontWeight='light' color='white'>
@@ -55,4 +83,4 @@ export default class Home extends React.Component
             </>
         );
     }
-}
+export default Home;
