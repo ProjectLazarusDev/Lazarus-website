@@ -85,22 +85,11 @@ const Home: React.FC = () =>
                     justifyContent="center"
                     style={{ height: '100vh' }}
                 >
-                    {isLoaded === false && (
-                        <div className="progress-bar">
-                            <div
-                                className="progress-bar-fill"
-                                style={{  width: progression * 100 + "%" }}
-                            />
-                        </div>
-                    )}
-
-                    <Unity className="unityWindow"
+                    <Unity 
                         unityContext={unityContext}
-                       
                         style={{ 
                          borderRadius: '20px', width: "400px", height: "400px" }}
                     />
-
 
                 </Grid>
             </Card>
