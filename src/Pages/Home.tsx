@@ -88,7 +88,7 @@ const Home: React.FC = () =>
                     <Unity 
                         unityContext={unityContext}
                         style={{ 
-                         borderRadius: '20px', width: "400px", height: "400px" }}
+                         borderRadius: '20px', width: "300px", height: "300px" }}
                     />
 
                 </Grid>
