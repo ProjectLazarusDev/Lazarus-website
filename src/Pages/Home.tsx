@@ -24,9 +24,13 @@ const unityContext = new UnityContext({
 });
 
 
-
 const Home: React.FC = () =>
 {
+    //react hooks
+    const [isUnityMounted, setIsUnityMounted] = React.useState<boolean>(true);
+    const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
+    const [progression, setProgression] =React. useState<number>(0);
+
     return (
         <>
             <Card style={{
@@ -42,7 +46,8 @@ const Home: React.FC = () =>
                     justifyContent="center"
                     style={{ height: '100vh' }}
                 >
-                    <Unity
+                    
+                    <Unity  className="unityWindow"
                         unityContext={unityContext}
                         matchWebGLToCanvasSize={true}
                         style={{ borderRadius: '20px', width: "90vw", height: "400px", }}
