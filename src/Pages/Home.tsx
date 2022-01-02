@@ -98,7 +98,7 @@ const Home: React.FC = () =>
                         unityContext={unityContext}
                        
                         style={{ 
-                         borderRadius: '20px', width: "90vw", height: "400px", }}
+                         borderRadius: '20px', width: "400px", height: "400px" }}
                     />
 
 
