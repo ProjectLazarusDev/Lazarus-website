@@ -44,14 +44,14 @@
   <script>
     document.addEventListener('wheel', onScroll, false);
     document.addEventListener('mousemove', onMouse, false);
-    //document.addEventListener('touchstart', onTouchStart, false);
-    //document.addEventListener('touchmove', onTouchMove, false);
+    document.addEventListener('touchstart', onTouchStart, false);
+    document.addEventListener('touchmove', onTouchMove, false);
 
     var content = document.getElementsByClassName("unityWindow");
     function onMouse() { content[0].style['pointer-events'] = 'none'; }
     function onScroll() { content[0].style['pointer-events'] = 'none'; }
-    //function onTouchStart() { content[0].style['pointer-events'] = 'none'; }
-    //function onTouchMove() { content[0].style['pointer-events'] = 'none'; }
+    function onTouchStart() { content[0].style['pointer-events'] = 'none'; }
+    function onTouchMove() { content[0].style['pointer-events'] = 'none'; }
 
   </script>
   <!--
