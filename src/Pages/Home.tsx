@@ -17,6 +17,8 @@ import { themeLight } from '../Theme/Theme';
 import Unity, { UnityContext } from "react-unity-webgl";
 import './Home.css'
 
+import BlockChain from '../Components/BlockChain';
+
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
     dataUrl: "devbuild/devbuild.data",
@@ -122,7 +124,7 @@ const Home: React.FC = () =>
                         Engine Generated Collection with a collection of 10,000 bobots.
                         Keep hyping,keep vibing.
                     </Typography>
-
+                    <BlockChain></BlockChain>
                 </Grid>
             </ThemeProvider>
         </>
