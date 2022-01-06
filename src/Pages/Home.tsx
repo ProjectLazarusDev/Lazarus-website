@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import { Grid } from "@mui/material";
 import Card from '@mui/material/Card';
 import { ThemeProvider } from '@mui/material/styles';
+import { Button } from '@mui/material';
 import '../Theme/Theme';
 import { themeLight } from '../Theme/Theme';
 import Unity, { UnityContext } from "react-unity-webgl";
@@ -32,6 +33,7 @@ const Home: React.FC = () =>
     //react hooks
     //const [isUnityMounted, setIsUnityMounted] = React.useState<boolean>(true);
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
+    const [isFullscreen, setFullscreen] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
 
     // Built-in event invoked when the Unity app's progress has changed.
@@ -46,17 +48,12 @@ const Home: React.FC = () =>
 
         setIsLoaded(true);
     }
-    // Event invoked when the user clicks the button, the unity container will be
-    // mounted or unmounted depending on the current mounting state.
-    //function handleOnClickUnMountUnity()
-    //{
-        //if (isLoaded === true)
-        //{
-         //   setIsLoaded(false);
-       // }
-       // setIsUnityMounted(isUnityMounted === false);
-    //}
 
+    //toggle full-screen control
+    function ToggleFullScreen(toggle:boolean)
+    {
+        unityContext.setFullscreen(toggle);
+    }
 
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
@@ -68,8 +65,17 @@ const Home: React.FC = () =>
         {
             unityContext.removeAllEventListeners();
         };
-    }, []);
 
+
+        unityContext.on("GameOver", function (userName, score) 
+        {
+           //setIsGameOver(true);
+            
+        });
+
+
+
+    }, []);
 
 
     return (
@@ -102,8 +108,11 @@ const Home: React.FC = () =>
                         style={{ 
                          borderRadius: '20px', width: "80vw", height: "400px" }}
                     />
-
-
+                    {/*Full-screen button*/}
+                    <Button onClick={()=>{ ToggleFullScreen(!isFullscreen)}} >
+                        Toggle fullScreen
+                    </Button>
+                    
                 </Grid>
             </Card>
             <ThemeProvider theme={themeLight}>
