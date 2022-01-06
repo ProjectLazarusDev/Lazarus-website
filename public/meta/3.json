@@ -1,49 +1,49 @@
 {
-    "image_data": "image_data",
-    "external_url": "external_url",
-    "animation_url": "external_url",
-    "description": "external_url",
-    "name": "external_url",
+    "image_data": "https://bobots.io/meta/image_3.png",
+    "external_url": "https://bobots.io/",
+    "animation_url": "https://bobots.io/meta/video_3.mp4",
+    "description": "Welcome to the bobot family",
+    "name": "Bobot #0003",
     "attributes": [
         {
             "trait_type": "Head",
-            "value": "value"
+            "value": "Head 1"
         },
         {
             "trait_type": "Hat",
-            "value": "value"
+            "value": "Moon Traffic Cone"
         },
         {
             "trait_type": "LCD",
-            "value": "value"
+            "value": "Haooy"
         },
         {
             "trait_type": "LCD Colour",
-            "value": "value"
+            "value": ""
         },
         {
             "trait_type": "Arm",
-            "value": "value"
+            "value": "Arm 1"
         },
         {
             "trait_type": "Body",
-            "value": "value"
+            "value": "Body 2"
         },
         {
             "trait_type": "Leg",
-            "value": "value"
+            "value": "Leg 1"
         },
         {
             "trait_type": "Color Primary",
-            "value": "value"
+            "value": "Indigo"
         },
         {
             "trait_type": "Color Secondary",
-            "value": "value"
+            "value": "Turquioise"
         },
         {
             "trait_type": "Background Colour",
-            "value": "value"
+            "value": "Purple"
         }
     ]
 }
