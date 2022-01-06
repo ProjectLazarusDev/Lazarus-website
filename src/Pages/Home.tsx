@@ -17,8 +17,10 @@ import '../Theme/Theme';
 import { themeLight } from '../Theme/Theme';
 import Unity, { UnityContext } from "react-unity-webgl";
 import './Home.css'
-
+import './Page.css'
+import Header from '../Components/Header';
 import BlockChain from '../Components/BlockChain';
+import Lore from  '../Pages/Lore';
 
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
@@ -55,6 +57,16 @@ const Home: React.FC = () =>
         unityContext.setFullscreen(toggle);
     }
 
+
+    //send data from react to unity
+    function spawnStuff()
+    {
+        //                GameObject name   function name   parameter
+        unityContext.send("GameController", "SpawnEnemies", 100);
+    }
+
+
+
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
@@ -66,7 +78,7 @@ const Home: React.FC = () =>
             unityContext.removeAllEventListeners();
         };
 
-
+        //code to receive from unity
         unityContext.on("GameOver", function (userName, score) 
         {
            //setIsGameOver(true);
@@ -80,6 +92,8 @@ const Home: React.FC = () =>
 
     return (
         <>
+        <div className ="pageGlobal">
+        <Header></Header>
             <Card style={{
                 zIndex: -2, width: '100vw', height: '100%',
                 borderRadius: '0px',
@@ -135,7 +149,10 @@ const Home: React.FC = () =>
                     </Typography>
                     <BlockChain></BlockChain>
                 </Grid>
+
+                <Lore></Lore>
             </ThemeProvider>
+            </div>
         </>
     );
 }
