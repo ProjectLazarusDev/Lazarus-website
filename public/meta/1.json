@@ -1,0 +1,49 @@
+{
+    "image_data": "image_data",
+    "external_url": "external_url",
+    "animation_url": "external_url",
+    "description": "external_url",
+    "name": "external_url",
+    "attributes": [
+        {
+            "trait_type": "Head",
+            "value": "value"
+        },
+        {
+            "trait_type": "Hat",
+            "value": "value"
+        },
+        {
+            "trait_type": "LCD",
+            "value": "value"
+        },
+        {
+            "trait_type": "LCD Colour",
+            "value": "value"
+        },
+        {
+            "trait_type": "Arm",
+            "value": "value"
+        },
+        {
+            "trait_type": "Body",
+            "value": "value"
+        },
+        {
+            "trait_type": "Leg",
+            "value": "value"
+        },
+        {
+            "trait_type": "Color Primary",
+            "value": "value"
+        },
+        {
+            "trait_type": "Color Secondary",
+            "value": "value"
+        },
+        {
+            "trait_type": "Background Colour",
+            "value": "value"
+        }
+    ]
+}
