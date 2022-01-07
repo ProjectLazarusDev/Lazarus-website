@@ -26,7 +26,7 @@ const Lore: React.FC = () =>
                
             >
                 <Grid container item direction="row" >
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12}md={6}>
                         <Card style={{
                             zIndex: -2,
                             borderRadius: '0px',
@@ -63,7 +63,7 @@ const Lore: React.FC = () =>
                             </Grid>
                         </Card>
                     </Grid>
-                    <Grid xs={12} sm={6}>
+                    <Grid xs={12} md={6}>
                     <div className='PageVidWrap'>
                         <div className="PageVid">
                             <CardMedia
@@ -72,6 +72,7 @@ const Lore: React.FC = () =>
                                 image={"video_2.mp4"}
                                 autoPlay
                                 loop
+                                style={{height: '100vh' }}
                                
                             />
                             </div>
