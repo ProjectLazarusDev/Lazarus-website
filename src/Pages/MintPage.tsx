@@ -22,6 +22,7 @@ import Header from '../Components/Header';
 import BlockChain from '../Components/BlockChain';
 import Lore from  '../Pages/Lore';
 import BuildingNft from './BuildingNft';
+
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
     dataUrl: "devbuild/devbuild.data",
@@ -30,7 +31,7 @@ const unityContext = new UnityContext({
 });
 
 
-const Home: React.FC = () =>
+const MintPage: React.FC = () =>
 {
     //react hooks
     //const [isUnityMounted, setIsUnityMounted] = React.useState<boolean>(true);
@@ -123,38 +124,15 @@ const Home: React.FC = () =>
                          borderRadius: '20px', width: "80vw", height: "400px" }}
                     />
                     {/*Full-screen button*/}
-                    <Button onClick={()=>{ ToggleFullScreen(!isFullscreen)}} >
-                        Toggle fullScreen
-                    </Button>
-                    
+
+                    <Typography>
+                        Minting 
+                    </Typography>
                 </Grid>
             </Card>
-            <ThemeProvider theme={themeLight}>
-                <Grid
-                    container
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justifyContent="center"
-                    style={{ height: '100vh' }}
-                >
-                    <Typography align="center" variant="h1" component="h1"
-                        gutterBottom fontFamily='Varela Round' fontWeight='bold' color='black'>
-                        BOBOTS.
-                    </Typography>
-                    <Typography style={{ width: '400px' }} align="center" variant="body1" component="h1"
-                        gutterBottom fontFamily='Varela Round' fontWeight='light' color='black'>
-                        Engine Generated Collection with a collection of 10,000 bobots.
-                        Keep hyping,keep vibing.
-                    </Typography>
-                    <BlockChain></BlockChain>
-                </Grid>
-
-                <Lore></Lore>
-               
-            </ThemeProvider>
+           
             </div>
         </>
     );
 }
-export default Home;
+export default MintPage;
