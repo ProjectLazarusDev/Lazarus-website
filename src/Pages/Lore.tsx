@@ -30,7 +30,7 @@ const Lore: React.FC = () =>
                         <Card style={{
                             zIndex: -2,
                             borderRadius: '0px',
-                            background: 'linear-gradient(to right bottom, #12121200, #050505FF)',
+                            background: 'linear-gradient(to right bottom, #121212FF, #050505FF)',
                           
                             alignItems: ' center',
                             justifyContent: ' center'

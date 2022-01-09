@@ -16,35 +16,39 @@ const BuildingNft: React.FC = () =>
 {
     return (
         <>
-            <Grid
+             <Grid
                 container
                 spacing={3}
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-                height="100vh"
+               
             >
-                <Grid item direction="row"  >
-                    <Grid item sm={12} lg={6} >
-                        <div className='PageVidWrap'>
-                            <div className="PageVid">
-                                <CardMedia
-                                    component='video'
-                                    muted={true}
-                                    image={"video_1.mp4"}
-                                    autoPlay
-                                    loop
-                                />
+                <Grid container item direction="row" >
+                <Grid xs={12} md={6}>
+                    <div className='PageVidWrap'>
+                        <div className="PageVid">
+                            <CardMedia
+                                component='video'
+                                muted={true}
+                                image={"video_1.mp4"}
+                                autoPlay
+                                loop
+                                style={{height: '100vh' }}
+                               
+                            />
                             </div>
                         </div>
 
                     </Grid>
-                    <Grid item sm={12} lg={6} >
+                    <Grid item xs={12}md={6}>
                         <Card style={{
                             zIndex: -2,
                             borderRadius: '0px',
-                            background: 'linear-gradient(to right bottom, #121212, #050505)',
-
+                            background: 'linear-gradient(to right bottom, #121212FF, #050505FF)',
+                          
+                            alignItems: ' center',
+                            justifyContent: ' center'
                         }}>
                             <Grid container
                                 spacing={0}
@@ -54,15 +58,18 @@ const BuildingNft: React.FC = () =>
                                 style={{ height: '100vh' }} >
 
                                 <Slide in={true} direction='up' timeout={2000}>
-
                                     <div className='PageContainer'>
-                                        <Grid item sm={12} lg={6}>
-                                            <Typography align="center" color={'white'} variant='h5'>Building an NFT.</Typography>
-                                            <Typography align="center" color={'white'} variant='subtitle1'>
-                                                Beautiful design for managing tasks, ability to add and delete tasks. Drag and Drop feature to move
-                                                the task across different stage in the Kanban board.
-                                            </Typography>
-                                        </Grid>
+
+                                        <Card style={{
+                                            backgroundColor: 'salmon', borderRadius: '100px', padding: '20px', alignItems: ' center',
+                                            justifyContent: ' center'
+                                        }}>
+                                            <Typography fontFamily='Varela Round' align="center" color={'black'} variant='h3' fontWeight='bold'>TO THE MOON</Typography>
+                                        </Card>
+                                        <Typography align="center" color={'white'} variant='subtitle1'>
+                                            Beautiful design for managing tasks, ability to add and delete tasks. Drag and Drop feature to move
+                                            the task across different stage in the Kanban board.
+                                        </Typography>
 
                                     </div>
                                 </Slide>
@@ -71,8 +78,10 @@ const BuildingNft: React.FC = () =>
                             </Grid>
                         </Card>
                     </Grid>
+                   
                 </Grid>
             </Grid>
+
 
         </>
     );
