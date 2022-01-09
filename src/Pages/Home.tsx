@@ -20,12 +20,11 @@ import './Home.css'
 import './Page.css'
 import { CardMedia } from "@mui/material";
 import Header from '../Components/Header';
-import BlockChain from '../Components/BlockChain';
 import Lore from '../Pages/Lore';
 import BuildingNft from './BuildingNft';
-import SeasonsPage from '../Pages/SeasonsPage';
+
+import FAQ from '../Components/FAQ'
 import TeamsPage from '../Pages/TeamsPage';
-import { width } from '@mui/system';
 
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
@@ -37,9 +36,9 @@ const unityContext = new UnityContext({
 const Home: React.FC = () =>
 {
     //react hooks
-    //const [isUnityMounted, setIsUnityMounted] = React.useState<boolean>(true);
+
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
-    const [isFullscreen, setFullscreen] = React.useState<boolean>(false);
+    var isFullscreen=false;
     const [progression, setProgression] = React.useState<number>(0);
 
     // Built-in event invoked when the Unity app's progress has changed.
@@ -60,17 +59,6 @@ const Home: React.FC = () =>
     {
         unityContext.setFullscreen(toggle);
     }
-
-
-    //send data from react to unity
-    function spawnStuff()
-    {
-        //                GameObject name   function name   parameter
-        unityContext.send("GameController", "SpawnEnemies", 100);
-    }
-
-
-
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
@@ -81,15 +69,6 @@ const Home: React.FC = () =>
         {
             unityContext.removeAllEventListeners();
         };
-
-        //code to receive from unity
-        unityContext.on("GameOver", function (userName, score) 
-        {
-            //setIsGameOver(true);
-
-        });
-
-
 
     }, []);
 
@@ -135,7 +114,7 @@ const Home: React.FC = () =>
                     </Grid>
                 </Card>
                 <ThemeProvider theme={themeLight}>
-                    <Card  style={{borderRadius:'0'}} >
+                    <Card style={{ borderRadius: '0' }} >
                         <div className="pagePosWrap">
                             <CardMedia
                                 component='video'
@@ -168,9 +147,11 @@ const Home: React.FC = () =>
                             </div>
                         </div>
                     </Card>
+
                     <Lore></Lore>
                     <BuildingNft></BuildingNft>
                     <TeamsPage></TeamsPage>
+                    <FAQ></FAQ>
                 </ThemeProvider>
             </div>
         </>

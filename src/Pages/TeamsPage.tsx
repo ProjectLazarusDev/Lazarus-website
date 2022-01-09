@@ -9,16 +9,12 @@
 import React from "react"
 
 import Card from '@mui/material/Card';
-import { Box, Grid, Slide } from "@mui/material";
+import {Grid} from "@mui/material";
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 const TeamsPage: React.FC = () =>
 {
-
-
-
-
     return (
         <>
             <Card style={{
@@ -26,21 +22,101 @@ const TeamsPage: React.FC = () =>
                 borderRadius: '0px',
                 background: 'linear-gradient(to right bottom, #121212, #050505)'
             }}>
-                <Grid
-                    container
+                <Grid xs
+                 style={{minHeight:'100vh'}}
+                    container 
                     spacing={0}
-                    direction="column"
+                    direction="row"
                     alignItems="center"
                     justifyContent="center"
-                    style={{ height: '100vh' }}
                 >
-                    <Stack direction="row" spacing={2}>
-                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                        <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                        <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                    </Stack>
+                        <Grid 
+                            direction="column"
+                            alignItems="center"
+                            justifyContent="center"
+                         
+                        >
+                            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '200px', height: '200px' }} />
+                            <Typography align="center" paddingTop={'30px'} variant="body1" component="h1"
+                                gutterBottom fontFamily='Varela Round' fontWeight='bold' color='white'>
+                                Edmund
+                            </Typography>
+                            <Typography align="center" variant="body1" component="h1"
+                                gutterBottom fontFamily='Varela Round' fontWeight="" color='white'>
+                               Artist
+                            </Typography>
+                        </Grid>
 
+                        <Grid
+                          
+                            direction="column"
+                            alignItems="center"
+                            justifyContent="center"
+                           
+                        >
+                            <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '200px', height: '200px' }} />
+                            <Typography align="center" paddingTop={'30px'}variant="body1" component="h1"
+                                gutterBottom fontFamily='Varela Round' fontWeight='bold' color='white'>
+                                Edmund
+                            </Typography>
+                            <Typography  align="center" variant="body1" component="h1"
+                                gutterBottom fontFamily='Varela Round' fontWeight="" color='white'>
+                               Artist
+                            </Typography>
+                        </Grid>
+                  
+                        <Grid
+                           
+                           direction="column"
+                           alignItems="center"
+                           justifyContent="center"
+                          
+                       >
+                           <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '200px', height: '200px' }} />
+                           <Typography align="center" paddingTop={'30px'}variant="body1" component="h1"
+                               gutterBottom fontFamily='Varela Round' fontWeight='bold' color='white'>
+                               Edmund
+                           </Typography>
+                           <Typography  align="center" variant="body1" component="h1"
+                               gutterBottom fontFamily='Varela Round' fontWeight="" color='white'>
+                              Artist
+                           </Typography>
+                       </Grid>
+                       <Grid
+                           
+                           direction="column"
+                           alignItems="center"
+                           justifyContent="center"
+                          
+                       >
+                           <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{margin:'30px' ,width: '200px', height: '200px' }} />
+                           <Typography align="center" paddingTop={'30px'}variant="body1" component="h1"
+                               gutterBottom fontFamily='Varela Round' fontWeight='bold' color='white'>
+                               Edmund
+                           </Typography>
+                           <Typography  align="center" variant="body1" component="h1"
+                               gutterBottom fontFamily='Varela Round' fontWeight="" color='white'>
+                              Artist
+                           </Typography>
+                       </Grid>
+                       <Grid
+                           
+                           direction="column"
+                           alignItems="center"
+                           justifyContent="center"
+                       >
+                           <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '200px', height: '200px' }} />
+                           <Typography align="center" paddingTop={'30px'}variant="body1" component="h1"
+                               gutterBottom fontFamily='Varela Round' fontWeight='bold' color='white'>
+                               Edmund
+                           </Typography>
+                           <Typography  align="center" variant="body1" component="h1"
+                               gutterBottom fontFamily='Varela Round' fontWeight="" color='white'>
+                              Artist
+                           </Typography>
+                       </Grid>
                 </Grid>
+                
             </Card>
 
 

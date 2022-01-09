@@ -9,7 +9,7 @@
 import React from "react"
 
 import Card from '@mui/material/Card';
-import {  Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import Typography from '@mui/material/Typography';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -17,10 +17,8 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
-const SeasonsPage: React.FC = () =>
+const FAQ: React.FC = () =>
 {
-
-
     const [expanded, setExpanded] = React.useState<string | false>(false);
 
     const handleChange =
@@ -126,4 +124,5 @@ const SeasonsPage: React.FC = () =>
         </>
     );
 }
-export default SeasonsPage;
+
+export default FAQ;

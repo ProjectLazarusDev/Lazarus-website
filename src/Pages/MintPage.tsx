@@ -11,17 +11,11 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import { Grid } from "@mui/material";
 import Card from '@mui/material/Card';
-import { ThemeProvider } from '@mui/material/styles';
-import { Button } from '@mui/material';
 import '../Theme/Theme';
-import { themeLight } from '../Theme/Theme';
 import Unity, { UnityContext } from "react-unity-webgl";
 import './Home.css'
 import './Page.css'
 import Header from '../Components/Header';
-import BlockChain from '../Components/BlockChain';
-import Lore from  '../Pages/Lore';
-import BuildingNft from './BuildingNft';
 
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
@@ -36,7 +30,6 @@ const MintPage: React.FC = () =>
     //react hooks
     //const [isUnityMounted, setIsUnityMounted] = React.useState<boolean>(true);
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
-    const [isFullscreen, setFullscreen] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
 
     // Built-in event invoked when the Unity app's progress has changed.
@@ -52,22 +45,6 @@ const MintPage: React.FC = () =>
         setIsLoaded(true);
     }
 
-    //toggle full-screen control
-    function ToggleFullScreen(toggle:boolean)
-    {
-        unityContext.setFullscreen(toggle);
-    }
-
-
-    //send data from react to unity
-    function spawnStuff()
-    {
-        //                GameObject name   function name   parameter
-        unityContext.send("GameController", "SpawnEnemies", 100);
-    }
-
-
-
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
@@ -78,16 +55,7 @@ const MintPage: React.FC = () =>
         {
             unityContext.removeAllEventListeners();
         };
-
-        //code to receive from unity
-        unityContext.on("GameOver", function (userName, score) 
-        {
-           //setIsGameOver(true);
-            
-        });
-
-
-
+        
     }, []);
 
 

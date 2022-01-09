@@ -10,7 +10,7 @@ import React from "react"
 
 import Card from '@mui/material/Card';
 import { CardMedia } from "@mui/material";
-import { Box, Grid, Slide } from "@mui/material";
+import { Grid, Slide } from "@mui/material";
 import Typography from '@mui/material/Typography';
 const BuildingNft: React.FC = () =>
 {
