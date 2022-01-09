@@ -9,7 +9,7 @@
 import React from "react"
 
 import Card from '@mui/material/Card';
-import { Box, Grid, Slide } from "@mui/material";
+import { Grid, Slide } from "@mui/material";
 import Typography from '@mui/material/Typography';
 import { CardMedia } from "@mui/material";
 

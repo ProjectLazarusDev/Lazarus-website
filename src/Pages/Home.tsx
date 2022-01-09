@@ -20,11 +20,11 @@ import './Home.css'
 import './Page.css'
 import { CardMedia } from "@mui/material";
 import Header from '../Components/Header';
-import Lore from '../Pages/Lore';
-import BuildingNft from './BuildingNft';
+import Lore from '../Components/Lore';
+import BuildingNft from '../Components/BuildingNft';
 
 import FAQ from '../Components/FAQ'
-import TeamsPage from '../Pages/TeamsPage';
+import TeamsPage from '../Components/Teams';
 
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",

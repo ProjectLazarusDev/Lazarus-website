@@ -17,7 +17,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
-const SeasonsPage: React.FC = () =>
+const Seasons: React.FC = () =>
 {
 
 
@@ -126,4 +126,4 @@ const SeasonsPage: React.FC = () =>
         </>
     );
 }
-export default SeasonsPage;
+export default Seasons;

@@ -13,7 +13,7 @@ import {Grid} from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
-const TeamsPage: React.FC = () =>
+const Teams: React.FC = () =>
 {
     return (
         <>
@@ -123,4 +123,4 @@ const TeamsPage: React.FC = () =>
         </>
     );
 }
-export default TeamsPage;
+export default Teams;
