@@ -24,7 +24,8 @@ import Lore from '../Components/Lore';
 import BuildingNft from '../Components/BuildingNft';
 
 import FAQ from '../Components/FAQ'
-import TeamsPage from '../Components/Teams';
+import Teams from '../Components/Teams';
+import Seasons from '../Components/Seasons';
 
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
@@ -103,7 +104,7 @@ const Home: React.FC = () =>
                             unityContext={unityContext}
 
                             style={{
-                                borderRadius: '20px', width: "80vw", height: "400px"
+                                borderRadius: '20px', width: "100vw", height: "100vh"
                             }}
                         />
                         {/*Full-screen button*/}
@@ -150,7 +151,8 @@ const Home: React.FC = () =>
 
                     <Lore></Lore>
                     <BuildingNft></BuildingNft>
-                    <TeamsPage></TeamsPage>
+                    <Seasons></Seasons>
+                    <Teams></Teams>
                     <FAQ></FAQ>
                 </ThemeProvider>
             </div>
