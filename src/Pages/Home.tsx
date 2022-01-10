@@ -39,7 +39,7 @@ const Home: React.FC = () =>
     //react hooks
 
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
-    var isFullscreen=false;
+    var isFullscreen = false;
     const [progression, setProgression] = React.useState<number>(0);
 
     // Built-in event invoked when the Unity app's progress has changed.
@@ -135,16 +135,21 @@ const Home: React.FC = () =>
                                 }} />
                             </div>
                             <div className="pagePos">
-
-                                <Typography align="center" variant="h1" component="h1"
-                                    gutterBottom fontFamily='Varela Round' fontWeight='bold' color='white'>
-                                    BOBOTS.
-                                </Typography>
-                                <Typography align="center" variant="body1" component="h1"
-                                    gutterBottom fontFamily='Varela Round' fontWeight='light' color='white'>
-                                    Engine Generated Collection with a collection of 10,000 bobots.
-                                    Keep hyping,keep vibing.
-                                </Typography>
+                                <div className="pagePosWidth">
+                                    <Typography align="center" variant="h1" component="h1"
+                                        gutterBottom fontFamily='Varela Round'  style={{color:'teal'}} fontSize={40} fontWeight='bold'>
+                                        Bobots rolling in.
+                                    </Typography>
+                                    <Typography align="center" variant="body1" component="h1"
+                                        gutterBottom fontFamily='Varela Round' fontWeight='light' color='white'>
+                                        Bobots. is an Engine Generated Collection with a collection of 4,040 bobots.
+                                        Each bobots is generated and designed for a real-time multiplayer experience.
+                                    </Typography>
+                                    <Typography align="center" variant="body1" component="h1"
+                                        gutterBottom fontFamily='Varela Round' fontWeight='light' color='white'>
+                                        Keep hyping,keep vibing.
+                                    </Typography>
+                                </div>
                             </div>
                         </div>
                     </Card>

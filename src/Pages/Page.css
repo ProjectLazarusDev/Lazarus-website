@@ -1,11 +1,9 @@
 .PageContainer {
-
     padding: 25px;
     display: flex;
-    width: 75%;
+    width: 70%;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+   
 }
 
 .PageVidWrap {
@@ -14,7 +12,10 @@
     object-fit: contain;
     overflow: hidden;
 }
-
+.pagePosWidth {
+    margin-left: 20%;
+    margin-right: 20%;
+}
 .pagePos {
     position: absolute;
 
@@ -22,6 +23,7 @@
     bottom: 0;
     left: 0;
     right: 0;
+
     align-items: center;
     justify-content: center;
     display: block;
@@ -58,5 +60,6 @@
 }
 
 .pageGlobal {
+    background-color: #000000;
     overflow: hidden;
 }

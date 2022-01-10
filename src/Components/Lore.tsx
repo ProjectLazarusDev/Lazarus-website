@@ -23,15 +23,16 @@ const Lore: React.FC = () =>
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-               
+
             >
                 <Grid container item direction="row" >
-                    <Grid item xs={12}md={6}>
+                    <Grid item xs={12} md={6}>
                         <Card style={{
                             zIndex: -2,
-                            borderRadius: '0px',
-                            background: 'linear-gradient(to right bottom, #121212FF, #050505FF)',
-                          
+                            margin:'10px',
+                            borderRadius: '20px',
+                            background: 'linear-gradient(to right bottom, #000a14FF,#001d3bFF)',
+
                             alignItems: ' center',
                             justifyContent: ' center'
                         }}>
@@ -44,18 +45,43 @@ const Lore: React.FC = () =>
 
                                 <Slide in={true} direction='up' timeout={2000}>
                                     <div className='PageContainer'>
-
+                                    <Typography paddingTop={'25px'} fontFamily='Source Sans Pro' letterSpacing={'10px'} align="center" color={'#00a6ffFF'} fontWeight='bold' variant='subtitle1' fontSize='0.75rem'>
+                                            - BOBOTS SEASON 1 -
+                                        </Typography>
                                         <Card style={{
-                                            backgroundColor: 'salmon', borderRadius: '100px', padding: '20px', alignItems: ' center',
+                                            background: 'linear-gradient(to right bottom, #00a6ff44,#00324d00)', borderRadius: '200px', padding: '10px', alignItems: ' center',
                                             justifyContent: ' center'
                                         }}>
-                                            <Typography fontFamily='Varela Round' align="center" color={'black'} variant='h3' fontWeight='bold'>TO THE MOON</Typography>
+                                            <Typography fontFamily='Source Sans Pro' align="center" color={'#00a6ffFF'} variant='h3' fontStyle={'italic'} fontSize='2.5rem' fontWeight='900'>THE BLAST OFF</Typography>
                                         </Card>
-                                        <Typography align="center" color={'white'} variant='subtitle1'>
-                                            Beautiful design for managing tasks, ability to add and delete tasks. Drag and Drop feature to move
-                                            the task across different stage in the Kanban board.
+                                        <Typography paddingTop={'25px'} fontFamily='Source Sans Pro' align="left" color={'white'} fontWeight='light' variant='subtitle1' fontSize='0.9rem'>
+                                            <b>In the year 4040,</b> Robots have dominantly replace humans. Cute robots are then stationed on the moon. Together, the bobots rule the moon colony. -Write more here....
                                         </Typography>
 
+                                        <Grid xs
+                                            paddingTop={'30px'}
+                                            container
+                                            spacing={6}
+                                            direction="row"
+                                            alignItems="center"
+                                            justifyContent="center" >
+                                            <Grid item >
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='1.8rem' fontWeight='900'>4040</Typography>
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='0.8rem' fontWeight='light'>Avatars</Typography>
+                                            </Grid>
+                                            <Grid item   
+                                            >
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='1.8rem' fontWeight='900'>100+</Typography>
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='0.8rem' fontWeight='light'>Unique traits</Typography>
+                                            </Grid>
+                                            <Grid item
+
+                                               
+                                            >
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='1.8rem' fontWeight='900'>11</Typography>
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='0.8rem' fontWeight='light'>Properties</Typography>
+                                            </Grid>
+                                        </Grid>
                                     </div>
                                 </Slide>
 
@@ -64,17 +90,17 @@ const Lore: React.FC = () =>
                         </Card>
                     </Grid>
                     <Grid xs={12} md={6}>
-                    <div className='PageVidWrap'>
-                        <div className="PageVid">
-                            <CardMedia
-                                component='video'
-                                muted={true}
-                                image={"video_2.mp4"}
-                                autoPlay
-                                loop
-                                style={{height: '100vh' }}
-                               
-                            />
+                        <div className='PageVidWrap'>
+                            <div className="PageVid">
+                                <CardMedia
+                                    component='video'
+                                    muted={true}
+                                    image={"video_2.mp4"}
+                                    autoPlay
+                                    loop
+                                    style={{ height: '100vh' }}
+
+                                />
                             </div>
                         </div>
 
