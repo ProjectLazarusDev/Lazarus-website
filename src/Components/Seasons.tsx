@@ -17,7 +17,7 @@ import Box from '@mui/material/Box';
 import SwipeableViews from 'react-swipeable-views';
 import { useTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
-import { width } from "@mui/system";
+
 interface TabPanelProps
 {
   children?: React.ReactNode;

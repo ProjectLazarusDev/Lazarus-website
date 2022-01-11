@@ -13,59 +13,22 @@ import Typography from '@mui/material/Typography';
 import { Grid } from "@mui/material";
 import Card from '@mui/material/Card';
 import '../Theme/Theme';
-import Unity, { UnityContext } from "react-unity-webgl";
 import './Home.css'
 import './Page.css'
 import Header from '../Components/Header';
 import { TextField } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { Button } from '@mui/material';
-const unityContext = new UnityContext({
-    loaderUrl: "devbuild/devbuild.loader.js",
-    dataUrl: "devbuild/devbuild.data",
-    frameworkUrl: "devbuild/devbuild.framework.js",
-    codeUrl: "devbuild/devbuild.wasm",
-});
+
 
 
 const MintPage: React.FC = () =>
 {
-    //react hooks
-    //const [isUnityMounted, setIsUnityMounted] = React.useState<boolean>(true);
-    const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
-    const [progression, setProgression] = React.useState<number>(0);
-
-    // Built-in event invoked when the Unity app's progress has changed.
-    function handleOnUnityProgress(progression: number)
-    {
-        setProgression(progression);
-    }
-
-    // Built-in event invoked when the Unity app is loaded.
-    function handleOnUnityLoaded()
-    {
-
-        setIsLoaded(true);
-    }
-
-    // When the component is mounted, we'll register some event listener.
-    React.useEffect(() =>
-    {
-        unityContext.on("progress", handleOnUnityProgress);
-        unityContext.on("loaded", handleOnUnityLoaded);
-
-        return function ()
-        {
-            unityContext.removeAllEventListeners();
-        };
-        
-    }, []);
 
     function MintNumber()
     {
 
     }
-
 
     return (
         <>
