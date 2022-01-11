@@ -14,7 +14,7 @@ import Card from '@mui/material/Card';
 import { ThemeProvider } from '@mui/material/styles';
 import { Button } from '@mui/material';
 import '../Theme/Theme';
-import { themeLight } from '../Theme/Theme';
+import { themeDark } from '../Theme/Theme';
 import Unity, { UnityContext } from "react-unity-webgl";
 import './Home.css'
 import './Page.css'
@@ -73,7 +73,6 @@ const Home: React.FC = () =>
 
     }, []);
 
-
     return (
         <>
             <div className="pageGlobal">
@@ -114,7 +113,7 @@ const Home: React.FC = () =>
 
                     </Grid>
                 </Card>
-                <ThemeProvider theme={themeLight}>
+                <ThemeProvider theme={themeDark}>
                     <Card style={{ borderRadius: '0' }} >
                         <div className="pagePosWrap">
                             <CardMedia
@@ -136,19 +135,43 @@ const Home: React.FC = () =>
                             </div>
                             <div className="pagePos">
                                 <div className="pagePosWidth">
-                                    <Typography align="center" variant="h1" component="h1"
-                                        gutterBottom fontFamily='Varela Round'  style={{color:'teal'}} fontSize={40} fontWeight='bold'>
-                                        Bobots rolling in.
-                                    </Typography>
-                                    <Typography align="center" variant="body1" component="h1"
-                                        gutterBottom fontFamily='Varela Round' fontWeight='light' color='white'>
-                                        Bobots. is an Engine Generated Collection with a collection of 4,040 bobots.
-                                        Each bobots is generated and designed for a real-time multiplayer experience.
-                                    </Typography>
-                                    <Typography align="center" variant="body1" component="h1"
-                                        gutterBottom fontFamily='Varela Round' fontWeight='light' color='white'>
-                                        Keep hyping,keep vibing.
-                                    </Typography>
+                                <Typography paddingTop={'25px'} fontFamily='Source Sans Pro' letterSpacing={'10px'} align="center" color={'#FFFFFFFF'} fontWeight='bold' variant='subtitle1' fontSize='0.75rem'>
+                                            - BOBOTS SEASON 1 -
+                                        </Typography>
+                                        <Card style={{
+                                            background: 'linear-gradient(to right bottom, #FFFFFF44,#FFFFFF00)', borderRadius: '200px', padding: '10px', alignItems: ' center',
+                                            justifyContent: ' center'
+                                        }}>
+                                            <Typography fontFamily='Source Sans Pro' align="center" color={'#FFFFFFFF'} variant='h3' fontStyle={'italic'} fontSize='2.5rem' fontWeight='900'>THE BLAST OFF</Typography>
+                                        </Card>
+                                        <Typography paddingTop={'25px'} fontFamily='Source Sans Pro' align="left" color={'white'} fontWeight='light' variant='subtitle1' fontSize='0.9rem'>
+                                            <b>In the year 4040,</b> Robots have dominantly replace humans. Cute robots are then stationed on the moon. Together, the bobots rule the moon colony. -Write more here....
+                                        </Typography>
+
+                                        <Grid xs
+                                            paddingTop={'30px'}
+                                            container
+                                            spacing={6}
+                                            direction="row"
+                                            alignItems="center"
+                                            justifyContent="center" >
+                                            <Grid item >
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='1.8rem' fontWeight='900'>4040</Typography>
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='0.8rem' fontWeight='light'>Avatars</Typography>
+                                            </Grid>
+                                            <Grid item   
+                                            >
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='1.8rem' fontWeight='900'>100+</Typography>
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='0.8rem' fontWeight='light'>Unique traits</Typography>
+                                            </Grid>
+                                            <Grid item
+
+                                               
+                                            >
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='1.8rem' fontWeight='900'>11</Typography>
+                                                <Typography fontFamily='Source Sans Pro' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='0.8rem' fontWeight='light'>Properties</Typography>
+                                            </Grid>
+                                        </Grid>
                                 </div>
                             </div>
                         </div>

@@ -8,15 +8,17 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { FaDiscord, FaTwitter } from "react-icons/fa";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
+import { Button } from "@mui/material";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
 
-const Header : React.FC = () =>
+const Header: React.FC = () =>
 {
-    
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
@@ -24,20 +26,24 @@ const Header : React.FC = () =>
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
+  {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
+  const handleMobileMenuClose = () =>
+  {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
+  const handleMenuClose = () =>
+  {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
+  {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
@@ -81,11 +87,15 @@ const Header : React.FC = () =>
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+       
       <MenuItem>
+      
+        
+       
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
+
+          <MailIcon />
+
         </IconButton>
         <p>Messages</p>
       </MenuItem>
@@ -115,61 +125,63 @@ const Header : React.FC = () =>
       </MenuItem>
     </Menu>
   );
-    return(
+  return (
     <>
-     <Box sx={{ flexGrow: 1 }}>
-      <AppBar  position="fixed" style={{boxShadow:'none' , backgroundColor:'transparent'}} >
-        <Toolbar>
-         
-        
-         
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-             
-                <MailIcon />
-             
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              
-                <NotificationsIcon />
-             
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </Box>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="fixed" style={{ boxShadow: 'none', backgroundColor: 'transparent' }} >
+          <Toolbar>
+
+
+
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Button  variant="contained" onClick={() => { handleMobileMenuClose() }} style={{marginRight:'30px'}} >
+            MINTING
+          </Button>
+              <IconButton size='medium' aria-label="show 4 new mails" color="inherit">
+                <FaDiscord />
+
+              </IconButton>
+              <IconButton
+               size='medium' 
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+
+                <FaTwitter />
+
+              </IconButton>
+              <IconButton
+                size='medium' 
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </Box>
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+        {renderMenu}
+      </Box>
     </>
-    );
+  );
 
 }
 

@@ -7,8 +7,10 @@
 }
 
 .PageVidWrap {
+    margin:10px;
+    border-radius: 20px;
     background: linear-gradient(0.4turn, #000000, #000000);
-
+  
     object-fit: contain;
     overflow: hidden;
 }
@@ -18,7 +20,7 @@
 }
 .pagePos {
     position: absolute;
-
+  
     top: 35%;
     bottom: 0;
     left: 0;
@@ -51,8 +53,8 @@
 }
 
 .PageVid {
-
-    transform: scale(1.5);
+  
+   
     display: block;
 
     object-fit: cover;

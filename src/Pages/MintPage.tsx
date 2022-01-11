@@ -8,6 +8,7 @@
 /*****************************************************************************/
 
 import React from 'react';
+import { themeDark } from '../Theme/Theme';
 import Typography from '@mui/material/Typography';
 import { Grid } from "@mui/material";
 import Card from '@mui/material/Card';
@@ -16,7 +17,9 @@ import Unity, { UnityContext } from "react-unity-webgl";
 import './Home.css'
 import './Page.css'
 import Header from '../Components/Header';
-
+import { TextField } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import { Button } from '@mui/material';
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
     dataUrl: "devbuild/devbuild.data",
@@ -58,11 +61,17 @@ const MintPage: React.FC = () =>
         
     }, []);
 
+    function MintNumber()
+    {
+
+    }
+
 
     return (
         <>
         <div className ="pageGlobal">
         <Header></Header>
+        <ThemeProvider theme={themeDark}>
             <Card style={{
                 zIndex: -2, width: '100vw', height: '100%',
                 borderRadius: '0px',
@@ -76,29 +85,19 @@ const MintPage: React.FC = () =>
                     justifyContent="center"
                     style={{ height: '100vh' }}
                 >
-                    {isLoaded === false && (
-                        <div className="progress-bar">
-                            <div
-                                className="progress-bar-fill"
-                                style={{  width: progression * 100 + "%" }}
-                            />
-                        </div>
-                    )}
-
-                    <Unity className="unityWindow"
-                        unityContext={unityContext}
-                       
-                        style={{ 
-                         borderRadius: '20px', width: "80vw", height: "400px" }}
-                    />
+                      <Typography>
+                        Select how much you want to mint
+                    </Typography>
+                   <TextField defaultValue={'0'} inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
                     {/*Full-screen button*/}
 
-                    <Typography>
-                        Minting 
-                    </Typography>
+                  
+                    <Button style={{ marginTop:'30px'}} variant='contained' onClick={() => { MintNumber() }} >
+                          Mint!
+                        </Button>
                 </Grid>
             </Card>
-           
+            </ThemeProvider >
             </div>
         </>
     );

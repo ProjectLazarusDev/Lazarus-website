@@ -93,12 +93,13 @@ const Lore: React.FC = () =>
                         <div className='PageVidWrap'>
                             <div className="PageVid">
                                 <CardMedia
+                                
                                     component='video'
                                     muted={true}
                                     image={"video_2.mp4"}
                                     autoPlay
                                     loop
-                                    style={{ height: '100vh' }}
+                                    style={{  height: '100vh' }}
 
                                 />
                             </div>

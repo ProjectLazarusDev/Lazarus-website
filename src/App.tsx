@@ -22,7 +22,7 @@ const App: React.FC = () =>
       <Router>
         <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/Minting' exact component={MintPage} />
+          <Route path='/MintPage' exact component={MintPage} />
         </Switch>
       </Router>
     </div>
