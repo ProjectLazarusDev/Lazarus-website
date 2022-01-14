@@ -29,27 +29,28 @@ const Lore: React.FC = () =>
                     <Grid item xs={12} md={6}>
                         <Card style={{
                             zIndex: -2,
-                            margin:'10px',
-                            borderRadius: '20px',
+                         
+                            height:'100%',
                             background: 'linear-gradient(to right bottom, #000a14FF,#001d3bFF)',
-
+                            borderRadius: '0px',
                             alignItems: ' center',
                             justifyContent: ' center'
                         }}>
                             <Grid container
                                 spacing={0}
+                                height='100%'
                                 direction="column"
                                 alignItems="center"
                                 justifyContent="center"
-                                style={{ height: '100vh' }} >
+                                style={{ }} >
 
                                 <Slide in={true} direction='up' timeout={2000}>
                                     <div className='PageContainer'>
                                     <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="left" lineHeight={0} color={'#00a6ff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
-                                            DISCOVERING...
+                                            DISCOVERING
                                         </Typography>
                                       
-                                            <Typography fontFamily='Dongle' align="left" letterSpacing={'10px'}  color={'#00a6ffFF'} variant='h3'lineHeight={'5rem'} fontStyle={'italic'} fontSize= '4.5rem' fontWeight='900'>THE BOBOTS.</Typography>
+                                        <Typography fontFamily='Dongle' align="left"   color={'#00a6ffFF'} variant='h3'lineHeight={'5rem'}  fontSize= '5.5rem' fontWeight='900'>THE BOBOTS.</Typography>
                                        
                                         <Typography paddingTop={'25px'} fontFamily='Dongle' align="left" color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.25rem'>
                                             <b>In the year 4040,</b> Robots have dominantly replace humans. Cute robots are then stationed on the moon. Together, the bobots rule the moon colony. -Write more here....
@@ -71,10 +72,7 @@ const Lore: React.FC = () =>
                                                 <Typography fontFamily='Dongle' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='2.8rem' fontWeight='900'>100+</Typography>
                                                 <Typography fontFamily='Dongle' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='1rem' fontWeight='light'>Unique traits</Typography>
                                             </Grid>
-                                            <Grid item
-
-                                               
-                                            >
+                                            <Grid item>
                                                 <Typography fontFamily='Dongle' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='2.8rem' fontWeight='900'>11</Typography>
                                                 <Typography fontFamily='Dongle' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='1rem' fontWeight='light'>Properties</Typography>
                                             </Grid>
@@ -96,7 +94,7 @@ const Lore: React.FC = () =>
                                     image={"video_2.mp4"}
                                     autoPlay
                                     loop
-                                    style={{  height: '100vh' }}
+                                 style={{display:'flex',height:'inherit'}}
 
                                 />
                             </div>
