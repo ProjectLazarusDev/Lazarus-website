@@ -13,7 +13,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import { Button } from "@mui/material";
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
+
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
@@ -43,15 +43,9 @@ const Header: React.FC = () =>
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
-  {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+  
 
-  const goToMintingPage=()=>
-  {
-
-  }
+  
   const history = useHistory();
 
   function handleHome()
