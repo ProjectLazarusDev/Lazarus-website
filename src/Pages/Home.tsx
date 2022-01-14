@@ -37,7 +37,7 @@ const unityContext = new UnityContext({
 const Home: React.FC = () =>
 {
     //react hooks
-    const [isUnityMounted, setIsUnityMounted] = React.useState<boolean>(true);
+ 
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     var isFullscreen = false;
     const [progression, setProgression] = React.useState<number>(0);
@@ -54,12 +54,7 @@ const Home: React.FC = () =>
 
         setIsLoaded(true);
     }
-    function handleOnClickUnMountUnity() {
-        if (isLoaded === true) {
-          setIsLoaded(false);
-        }
-        setIsUnityMounted(isUnityMounted === false);
-      }
+   
     //toggle full-screen control
     function ToggleFullScreen(toggle: boolean)
     {

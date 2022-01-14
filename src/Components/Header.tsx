@@ -13,7 +13,6 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import { Button } from "@mui/material";
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
