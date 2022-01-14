@@ -18,10 +18,14 @@ const Teams: React.FC = () =>
     return (
         <>
             <Card style={{
-                zIndex: -2, width: '100vw', height: '100%',
-                borderRadius: '0px',
-                background: 'linear-gradient(to right bottom, #121212, #050505)'
-            }}>
+      zIndex: -2,
+
+      height: '100%',
+      background: 'linear-gradient(to right bottom, #000a14FF,#001d3bFF)',
+      borderRadius: '0px',
+      alignItems: ' center',
+      justifyContent: ' center'
+  }}>
                 <Grid xs
                  style={{minHeight:'100vh'}}
                     container 
@@ -36,7 +40,7 @@ const Teams: React.FC = () =>
                             justifyContent="center"
                          
                         >
-                            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '200px', height: '200px' }} />
+                            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '125px', height: '125px' }} />
                             <Typography align="center" paddingTop={'30px'} variant="body1" component="h1"
                                 gutterBottom fontFamily='Varela Round' fontWeight='bold' color='white'>
                                 Edmund
@@ -54,7 +58,7 @@ const Teams: React.FC = () =>
                             justifyContent="center"
                            
                         >
-                            <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '200px', height: '200px' }} />
+                            <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '125px', height: '125px' }} />
                             <Typography align="center" paddingTop={'30px'}variant="body1" component="h1"
                                 gutterBottom fontFamily='Varela Round' fontWeight='bold' color='white'>
                                 Edmund
@@ -72,7 +76,7 @@ const Teams: React.FC = () =>
                            justifyContent="center"
                           
                        >
-                           <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '200px', height: '200px' }} />
+                           <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '125px', height: '125px' }} />
                            <Typography align="center" paddingTop={'30px'}variant="body1" component="h1"
                                gutterBottom fontFamily='Varela Round' fontWeight='bold' color='white'>
                                Edmund
@@ -89,7 +93,7 @@ const Teams: React.FC = () =>
                            justifyContent="center"
                           
                        >
-                           <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{margin:'30px' ,width: '200px', height: '200px' }} />
+                           <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{margin:'30px' ,width: '125px', height: '125px' }} />
                            <Typography align="center" paddingTop={'30px'}variant="body1" component="h1"
                                gutterBottom fontFamily='Varela Round' fontWeight='bold' color='white'>
                                Edmund
@@ -105,7 +109,7 @@ const Teams: React.FC = () =>
                            alignItems="center"
                            justifyContent="center"
                        >
-                           <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '200px', height: '200px' }} />
+                           <Avatar  alt="Remy Sharp" src="/static/images/avatar/1.jpg" style={{ margin:'30px' ,width: '125px', height: '125px' }} />
                            <Typography align="center" paddingTop={'30px'}variant="body1" component="h1"
                                gutterBottom fontFamily='Varela Round' fontWeight='bold' color='white'>
                                Edmund

@@ -8,13 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { FaDiscord, FaTwitter,FaHome } from "react-icons/fa";
+import { FaDiscord, FaTwitter ,FaHome} from "react-icons/fa";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import { Button } from "@mui/material";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Header: React.FC = () =>
 {
@@ -42,14 +43,14 @@ const Header: React.FC = () =>
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
-  {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+  
 
-  const goToMintingPage=()=>
-  {
+  
+  const history = useHistory();
 
+  function handleHome()
+  {
+    history.push("/MintPage");
   }
 
   const menuId = 'primary-search-account-menu';
@@ -139,11 +140,11 @@ const Header: React.FC = () =>
 
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Link to="/MintPage">
-            <Button  variant="contained" onClick={() => { handleMobileMenuClose() }} style={{marginRight:'30px'}} >
+            
+            <Button onClick={ handleHome }   variant="contained" style={{fontFamily:'Dongle', letterSpacing:'1px' , fontSize:'1.5rem',backgroundColor:'#ffffff11',marginRight:'30px'}} >
             MINT PAGE
           </Button>
-          </Link>
+          
               <IconButton size='medium' aria-label="show 4 new mails" color="inherit">
                 <FaDiscord />
 
@@ -157,7 +158,7 @@ const Header: React.FC = () =>
                 <FaTwitter />
 
               </IconButton>
-             <Link to='/' color="white">
+             
               <IconButton
                 size='medium' 
                 edge="end"
@@ -167,9 +168,11 @@ const Header: React.FC = () =>
                 onClick={handleProfileMenuOpen}
                 color="inherit"
               >
+                <Link to='/'  >
                  <FaHome />
+                 </Link>
               </IconButton>
-              </Link>
+             
             </Box>
             
           </Toolbar>

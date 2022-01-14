@@ -74,12 +74,16 @@ const Seasons: React.FC = () =>
 
   return (
     <Card style={{
-      zIndex: -2, width: '100vw', height: '100%',
+      zIndex: -2,
+
+      height: '100%',
+      background: 'linear-gradient(to right bottom, #000a14FF,#001d3bFF)',
       borderRadius: '0px',
-      background: 'linear-gradient(to right bottom, #121212, #050505)'
-    }}>
+      alignItems: ' center',
+      justifyContent: ' center'
+  }}>
       <Grid xs
-        style={{ minHeight: '100vh' }}
+        style={{ minHeight: '150vh' }}
         container
         spacing={0}
         direction="row"
@@ -92,11 +96,11 @@ const Seasons: React.FC = () =>
           justifyContent="center"
 
         >
-           <Typography paddingTop={'25px'} fontFamily='Source Sans Pro' letterSpacing={'10px'} align="center" color={'#00a6ff55'} fontWeight='bold' variant='subtitle1' fontSize='0.75rem'>
+           <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={0} color={'#00a6ff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
                                             - WHAT AWAITS IN THE FUTURE? -
                                         </Typography>
                                        
-                                            <Typography fontFamily='Source Sans Pro' align="center" color={'#00a6ffFF'} variant='h3' fontStyle={'italic'} fontSize='2.5rem' fontWeight='900'>FREQUENTLY ASKED QUESTIONS</Typography>
+                                        <Typography fontFamily='Dongle' align="left"   color={'#00a6ffFF'} variant='h3'lineHeight={'5rem'}  fontSize= '5.5rem' fontWeight='900'>SEASONAL ROADMAP</Typography>
                                        
                                       
           <Box sx={{ justifyContent:'center',alignItems:'center',bgcolor: '#00a6ff00' }}>
@@ -114,9 +118,9 @@ const Seasons: React.FC = () =>
                 variant="fullWidth"
                 aria-label="full width tabs example"
               >
-                <Tab style={{fontFamily:'Source Sans Pro'}} label="Season 1" {...a11yProps(0)} />
-                <Tab style={{fontFamily:'Source Sans Pro'}} label="Season 2" {...a11yProps(1)} />
-                <Tab style={{fontFamily:'Source Sans Pro'}} label="Season 3" {...a11yProps(2)} />
+                <Tab style={{fontFamily:'Dongle', fontSize:'1.5rem'}} label="Season 1" {...a11yProps(0)} />
+                <Tab style={{fontFamily:'Dongle', fontSize:'1.5rem'}} label="Season 2" {...a11yProps(1)} />
+                <Tab style={{fontFamily:'Dongle', fontSize:'1.5rem'}} label="Season 3" {...a11yProps(2)} />
               </Tabs>
             </AppBar>
             <SwipeableViews
@@ -125,12 +129,15 @@ const Seasons: React.FC = () =>
               onChangeIndex={handleChangeIndex}
             >
               <TabPanel value={value} index={0} dir={theme.direction}>
-              <Typography fontFamily='Source Sans Pro' align="center" color={'#ffffffFF'} variant='h3'
-               fontStyle={'italic'} fontSize='1.5rem' fontWeight='900'>THE BLAST OFF</Typography>
+              <Typography fontFamily='Dongle' align="center" color={'#ffffffFF'} variant='h3'
+               fontStyle={'italic'} fontSize='2.5rem' fontWeight='900'>THE BLAST OFF</Typography>
 
-<Typography maxWidth='500px' paddingTop={'25px'} fontFamily='Source Sans Pro' align="left" color={'white'} fontWeight='light' variant='subtitle1' fontSize='0.9rem'> <b>In the year 4040,</b> Robots have dominantly replace humans.
+<Typography maxWidth='500px' paddingTop={'25px'} fontFamily='Dongle' align="left" color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.25rem'> <b>In the year 4040,</b> Robots have dominantly replace humans.
                Cute robots are then stationed on the moon. Together, the bobots rule the moon colony.
-                -Write more here....</Typography>
+                <li>one</li>
+                <li>two</li>
+                <li>three</li>
+                </Typography>
 
               </TabPanel>
               <TabPanel value={value} index={1} dir={theme.direction}>
