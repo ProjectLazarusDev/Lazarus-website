@@ -37,7 +37,7 @@ const unityContext = new UnityContext({
 const Home: React.FC = () =>
 {
     //react hooks
- 
+
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     var isFullscreen = false;
     const [progression, setProgression] = React.useState<number>(0);
@@ -54,7 +54,7 @@ const Home: React.FC = () =>
 
         setIsLoaded(true);
     }
-   
+
     //toggle full-screen control
     function ToggleFullScreen(toggle: boolean)
     {
@@ -63,14 +63,14 @@ const Home: React.FC = () =>
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
-       
+
         unityContext.on("progress", handleOnUnityProgress);
         unityContext.on("loaded", handleOnUnityLoaded);
-        unityContext.on("quitted", function () {});
-        
+        unityContext.on("quitted", function () { });
+
         return function ()
         {
-           // handleOnClickUnMountUnity();
+            // handleOnClickUnMountUnity();
             unityContext.removeAllEventListeners();
         };
 
@@ -78,7 +78,7 @@ const Home: React.FC = () =>
 
     return (
         <>
-        
+
             <div className="pageGlobal">
                 <Header></Header>
                 <Card style={{
@@ -105,8 +105,8 @@ const Home: React.FC = () =>
 
                         <Unity className="unityWindow"
                             unityContext={unityContext}
-                            
-                           
+
+
                             style={{
                                 borderRadius: '20px', width: "100vw", height: "100vh"
                             }}
@@ -140,18 +140,9 @@ const Home: React.FC = () =>
                             </div>
                             <div className="pagePos">
                                 <div className="pagePosWidth">
-                                <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'}  lineHeight={'2rem'} align="center" paddingBottom={'2rem'} color={'#FFFFFFF99'} fontWeight='bold' variant='subtitle1' fontSize='1rem'>
-                                            BOBOTS SEASON 1
-                                        </Typography>
-                                      
-                                            <Typography fontFamily='Dongle' align="center" color={'#FFFFFFFF'}  lineHeight={'3rem'} letterSpacing={'20px'} variant='h3'  fontSize='1.5rem'fontWeight='900'>- THE -</Typography>
-                                            <Typography fontFamily='Dongle' align="center" color={'#FFFFFFFF'}  lineHeight={'5rem'} letterSpacing={'20px'} variant='h3'  fontSize='6.5rem' fontWeight='900'>BLASTOFF</Typography>
-                                       <Typography  fontFamily='Dongle' align="center" lineHeight={'2rem'} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.25rem' paddingTop='30px' >
-                                            <b>In the year 4040,</b> Robots have dominantly replace humans. Cute robots are then stationed on the moon. Together, the bobots rule the moon colony.
-                                           
-                                        </Typography>
-
-                                       
+                                    <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} lineHeight={'2rem'} align="center" paddingBottom={'2rem'} color={'#FFFFFFF99'} fontWeight='bold' variant='subtitle1' fontSize='1rem'>
+                                        BOBOTS SEASON 1
+                                    </Typography>
                                 </div>
                             </div>
                         </div>

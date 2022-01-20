@@ -22,7 +22,6 @@ const BuildingNft: React.FC = () =>
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-
             >
                 <Grid container item direction="row" >
                 <Grid xs={12} md={6}>
@@ -58,7 +57,7 @@ const BuildingNft: React.FC = () =>
                                 direction="column"
                                 alignItems="center"
                                 justifyContent="center"
-                                style={{}} >
+                               >
 
                                 <Slide in={true} direction='up' timeout={2000}>
                                     <div className='PageContainer'>
@@ -69,7 +68,9 @@ const BuildingNft: React.FC = () =>
                                         <Typography fontFamily='Dongle' align="left" color={'#00a6ffFF'} variant='h3' lineHeight={'5rem'} fontSize='5.5rem' fontWeight='900'>THE BOBOTS.</Typography>
 
                                         <Typography paddingTop={'25px'} fontFamily='Dongle' align="left" color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.25rem'>
-                                            <b>In the year 4040,</b> Robots have dominantly replace humans. Cute robots are then stationed on the moon. Together, the bobots rule the moon colony. -Write more here....
+                                        <b>In the year 4040,</b> 
+                                            Robots have dominantly replace humans with cute robots being stationed on the moon.
+                                             Together, 4040 bobots rule the moon colony. These bobots lives on the ethereum network using the ERC-721 blockchain.
                                         </Typography>
 
                                         <Grid xs
