@@ -40,6 +40,7 @@ const Home: React.FC = () =>
 
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     var isFullscreen = false;
+
     const [progression, setProgression] = React.useState<number>(0);
 
     // Built-in event invoked when the Unity app's progress has changed.
@@ -53,6 +54,7 @@ const Home: React.FC = () =>
     {
 
         setIsLoaded(true);
+        unityContext.setFullscreen(true);
     }
 
     //toggle full-screen control
@@ -60,6 +62,8 @@ const Home: React.FC = () =>
     {
         unityContext.setFullscreen(toggle);
     }
+
+
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
@@ -111,10 +115,15 @@ const Home: React.FC = () =>
                                 borderRadius: '20px', width: "100vw", height: "100vh"
                             }}
                         />
+                        <div className="pagePos">
+                        <div className="pagePosAlign">
+                                <Button  style={{color:'white', height :'40px',fontFamily:'Dongle', letterSpacing:'1px' , fontSize:'1.5rem',backgroundColor:'#000000ff',width:'300px'}} onClick={() => { ToggleFullScreen(!isFullscreen) }} >
+                                   Click to focus game
+                                </Button>
+                                </div>
+                        </div>
                         {/*Full-screen button*/}
-                        <Button onClick={() => { ToggleFullScreen(!isFullscreen) }} >
-                            Toggle fullScreen
-                        </Button>
+
 
                     </Grid>
                 </Card>
@@ -124,7 +133,7 @@ const Home: React.FC = () =>
                             <CardMedia
                                 component='video'
                                 muted={true}
-                                image={"title.mp4"}
+                                image={"title2.mp4"}
                                 autoPlay
                                 loop
                                 style={{}} />
@@ -132,7 +141,7 @@ const Home: React.FC = () =>
                                 <Card style={{
                                     zIndex: 2,
                                     borderRadius: '0px',
-                                    background: 'linear-gradient(to right bottom, #05050555, #000000FF)',
+                                    background: 'linear-gradient(to right bottom, #05050500, #00000055)',
                                     width: '100vw', height: '120vh',
                                     alignItems: ' center',
                                     justifyContent: ' center'

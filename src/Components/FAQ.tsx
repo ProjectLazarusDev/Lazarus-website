@@ -15,7 +15,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import '../Pages/Page.css'
 
 const FAQ: React.FC = () =>
 {
@@ -48,69 +48,97 @@ const FAQ: React.FC = () =>
                 >
                     <div>
                         <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={0} color={'#00a6ff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
-                            -SOMETHING IN YOUR MIND? -
+                            -SOMETHING ON YOUR MIND? -
                         </Typography>
 
                         <Typography fontFamily='Dongle' align="center" color={'#00a6ffFF'} variant='h3' lineHeight={'5rem'} fontSize='5.5rem' fontWeight='900'>FREQUENTLY ASKED QUESTIONS</Typography>
 
-                        <Typography fontFamily={'Dongle'} sx={{ width: '33%' }}>
-                            General
-                        </Typography>
-                        <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+
+                        <div className="PageAcc">
+                            <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1bh-content"
+                                    id="panel1bh-header"
+                                >
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', }}>
+                                        What is an NFT?
+                                    </Typography>
+
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography>
+                                        Non-fungible Tokens(NFTs) are items that are physically stored in a blockchain.
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
+
+                            <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel2bh-content"
+                                    id="panel2bh-header"
+                                >
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem'}}>
+                                        What are bobots about?
+                                    </Typography>
+
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight :'light' }}>
+                                        Bobots is an nft experience project with an initial launch of 4040 avatars an a web-based game designed
+                                        as a social hub for other avatars holders to interact with each other.We will be slowly expanding our primary utility,the web based game,throughout
+                                        the seasons and improve the product with the community.
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
+
+
+                            <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1bh-content"
-                                id="panel1bh-header"
+                                aria-controls="panel3bh-content"
+                                id="panel3bh-header"
                             >
-                                <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', width: '33%' }}>
-                                    What is bobots?
+                                <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>
+                                    What is the web-based game all about?
                                 </Typography>
 
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Typography>
-                                    Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-                                    Aliquam eget maximus est, id dignissim quam.
+                                <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight :'light' }}>
+                                   The bobots web-based game app is an game / app designed for the community to interact with each other.
+                                   This web based application is built in parallel with the avatars themselves and will be released on our website during the launch of season 1.
+                                   You can already see the demo of the application on the top of the homepage!
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
-                        <Typography fontFamily={'Dongle'} sx={{ width: '33%' }}>
-                            About NFT
-                        </Typography>
-                        <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+
+
+
+                      
+
+                        <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel2bh-content"
-                                id="panel2bh-header"
+                                aria-controls="panel4bh-content"
+                                id="panel4bh-header"
                             >
-                                <Typography sx={{ width: '33%' }}>What you want?</Typography>
+                               <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>Are there white-listing and giveaways?</Typography>
 
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Typography>
-                                    Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus,
-                                    varius pulvinar diam eros in elit. Pellentesque convallis laoreet
-                                    laoreet.
+                                <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight :'light'}}>
+                                   Yes! We have set aside avatars for whitelist presales and giveaways. Engage with the community,invite your mates and
+                                   interact with us as we do frequent giveaways!
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
-                        <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel2bh-content"
-                                id="panel2bh-header"
-                            >
-                                <Typography sx={{ width: '33%' }}>You Okay?</Typography>
 
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus,
-                                    varius pulvinar diam eros in elit. Pellentesque convallis laoreet
-                                    laoreet.
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
+
+
+
+                        </div>
                     </div>
 
 

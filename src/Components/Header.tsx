@@ -140,7 +140,7 @@ const Header: React.FC = () =>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             
-            <Button onClick={ handleHome }   variant="contained" style={{fontFamily:'Dongle', letterSpacing:'1px' , fontSize:'1.5rem',backgroundColor:'#ffffff11',marginRight:'30px'}} >
+            <Button onClick={ handleHome }   variant="contained" style={{ height :'40px',fontFamily:'Dongle', letterSpacing:'1px' , fontSize:'1.5rem',backgroundColor:'#000000ff',marginRight:'30px'}} >
             MINT PAGE
           </Button>
           

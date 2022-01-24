@@ -5,17 +5,27 @@
     flex-direction: column;
 
 }
-
+.PageAcc
+{
+    display: fixed;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    overflow: hidden;
+    margin-left: 20%;
+    margin-right: 20%;
+}
 .lines{
+    display:flex;
     position: absolute;
     background-size:50px 50px;
     height : 100%;
-    width : 50%;
+    width : 100%;
     background-image: 
-    linear-gradient(0deg, transparent 9%, 
-            rgba(0, 217, 255, 0.1) 10%, rgba(0, 217, 255, .1) 0.1%, transparent 0.1%, transparent 0.2%),
-    linear-gradient(90deg, transparent 9%, 
-            rgba(0, 217, 255, .1) 10%, rgba(0, 217, 255, .1) 0.1%, transparent 0.1%, transparent 0.2%);
+    linear-gradient(0deg, transparent 0%, 
+            rgba(0, 217, 255, 0.04) 10%, rgba(0, 217, 255, .001) 10.1%, transparent 5.1%, transparent 5.2%),
+    linear-gradient(90deg, transparent 0%, 
+            rgba(0, 217, 255, .04) 10%, rgba(0, 217, 255, .001) 10.1%, transparent 5.1%, transparent 5.2%);
 }
 
 
@@ -23,11 +33,11 @@
    
     animation: glow 1s ease-in-out infinite alternate;
     text-shadow:
-    0 0 7px #00a6ff66,
-    0 0 10px #00a6ff66,
-    0 0 21px #00a6ff66,
-    0 0 42px #00a6ff66,
-    0 0 82px #00a6ff66;
+    0 0 7px #ffffff66,
+    0 0 10px #ffffff66,
+    0 0 21px #ffffff66,
+    0 0 42px #ffffff66,
+    0 0 82px #ffffff66;
     
   }
 
@@ -49,6 +59,12 @@
 .pagePosWidth {
     margin-left: 30%;
     margin-right: 30%;
+}
+.pagePosAlign {
+    width:100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 .pagePos {
     position: absolute;
