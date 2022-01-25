@@ -115,7 +115,7 @@ const Lore: React.FC = () =>
 
                                     component='video'
                                     muted={true}
-                                    image={"video_2.mp4"}
+                                    image={"bobots_montage.mp4"}
                                     autoPlay
                                     loop
                                     style={{ display: 'flex', height: 'inherit' }}

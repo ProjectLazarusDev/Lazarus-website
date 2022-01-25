@@ -37,24 +37,28 @@ const Teams: React.FC = () =>
                         direction="column"
                         alignItems="center"
                         justifyContent="center"
-                        margin = "10px"
+                        margin="10px"
                     >
                         <Card style={{
                             zIndex: -2,
 
                             height: '100%',
                             background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
-                            borderRadius: '20px',
+                            borderRadius: '0px',
                             alignItems: ' center',
                             justifyContent: ' center',
 
                         }}>
                             <CardMedia
-                                style={{ display: 'fixed', width: '100%', height: '250px', borderRadius: '0px' }}
-                                component="img"
-                                image="meta/image_5.png"
-                                alt="green iguana"
+
+                                component='video'
+                                muted={true}
+                                image={"meta/video_13.mp4"}
+                                autoPlay
+                                loop
+                                style={{ display: 'fixed', width: 'inherit', height: '250px', borderRadius: '0px' }}
                             />
+
 
                             <Card style={{
                                 zIndex: -2,
@@ -86,22 +90,25 @@ const Teams: React.FC = () =>
                         direction="column"
                         alignItems="center"
                         justifyContent="center"
-                        margin = "10px"
+                        margin="10px"
                     >
                         <Card style={{
                             zIndex: -2,
                             height: '100%',
                             background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
-                            borderRadius: '20px',
+                            borderRadius: '0px',
                             alignItems: ' center',
-                            justifyContent: ' center'}}>
+                            justifyContent: ' center'
+                        }}>
                             <CardMedia
-                                style={{ display: 'fixed', width: '100%', height: '250px', borderRadius: '0px' }}
-                                component="img"
-                                image="meta/image_6.png"
-                                alt="green iguana"
-                            />
 
+                                component='video'
+                                muted={true}
+                                image={"meta/video_6.mp4"}
+                                autoPlay
+                                loop
+                                style={{ display: 'fixed', width: 'inherit', height: '250px', borderRadius: '0px' }}
+                            />
                             <Card style={{
                                 zIndex: -2,
                                 background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
@@ -131,20 +138,24 @@ const Teams: React.FC = () =>
                         direction="column"
                         alignItems="center"
                         justifyContent="center"
-                        margin = "10px"
+                        margin="10px"
                     >
                         <Card style={{
                             zIndex: -2,
                             height: '100%',
                             background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
-                            borderRadius: '20px',
+                            borderRadius: '0px',
                             alignItems: ' center',
-                            justifyContent: ' center'}}>
+                            justifyContent: ' center'
+                        }}>
                             <CardMedia
-                                style={{ display: 'fixed', width: '100%', height: '250px', borderRadius: '0px' }}
-                                component="img"
-                                image="meta/image_7.png"
-                                alt="green iguana"
+
+                                component='video'
+                                muted={true}
+                                image={"meta/video_7.mp4"}
+                                autoPlay
+                                loop
+                                style={{ display: 'fixed', width: 'inherit', height: '250px', borderRadius: '0px' }}
                             />
 
                             <Card style={{
@@ -176,7 +187,7 @@ const Teams: React.FC = () =>
                         direction="column"
                         alignItems="center"
                         justifyContent="center"
-                        margin = "10px"
+                        margin="10px"
                     >
 
 
@@ -185,16 +196,19 @@ const Teams: React.FC = () =>
 
                             height: '100%',
                             background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
-                            borderRadius: '20px',
+                            borderRadius: '0px',
                             alignItems: ' center',
                             justifyContent: ' center',
 
                         }}>
                             <CardMedia
-                                style={{ display: 'fixed', width: '100%', height: '250px', borderRadius: '0px' }}
-                                component="img"
-                                image="meta/image_8.png"
-                                alt="green iguana"
+
+                                component='video'
+                                muted={true}
+                                image={"meta/video_8.mp4"}
+                                autoPlay
+                                loop
+                                style={{ display: 'fixed', width: 'inherit', height: '250px', borderRadius: '0px' }}
                             />
 
                             <Card style={{
@@ -208,7 +222,7 @@ const Teams: React.FC = () =>
                             }}>
                                 <Typography align="center" fontSize='2.0rem' lineHeight='1.5rem' variant="body1" component="h1"
                                     gutterBottom fontFamily='Dongle' letterSpacing={'0.5rem'} fontWeight='bold' color='white'>
-                                   ELSTON
+                                    ELSTON
                                 </Typography>
                                 <Typography align="center" variant="body1" component="h1"
                                     gutterBottom fontFamily='Dongle' letterSpacing={'0.2rem'} color={'#00a6ff66'} fontWeight="" >
@@ -226,7 +240,7 @@ const Teams: React.FC = () =>
                         direction="column"
                         alignItems="center"
                         justifyContent="center"
-                        margin = "10px"
+                        margin="10px"
                     >
 
 
@@ -234,18 +248,20 @@ const Teams: React.FC = () =>
                             zIndex: -2,
                             height: '100%',
                             background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
-                            borderRadius: '20px',
+                            borderRadius: '0px',
                             alignItems: ' center',
                             justifyContent: ' center',
 
                         }}>
                             <CardMedia
-                                style={{ display: 'fixed', width: '100%', height: '250px', borderRadius: '0px' }}
-                                component="img"
-                                image="meta/image_9.png"
-                                alt="green iguana"
-                            />
 
+                                component='video'
+                                muted={true}
+                                image={"meta/video_9.mp4"}
+                                autoPlay
+                                loop
+                                style={{ display: 'fixed', width: 'inherit', height: '250px', borderRadius: '0px' }}
+                            />
                             <Card style={{
                                 zIndex: -2,
                                 background: 'linear-gradient(to right bottom, #4444441f,#00000000)',

@@ -48,7 +48,7 @@ const BuildingNft: React.FC = () =>
 
                                     component='video'
                                     muted={true}
-                                    image={"video_2.mp4"}
+                                    image={"meta/video_13.mp4"}
                                     autoPlay
                                     loop
                                     style={{ display: 'flex', height: 'inherit' }}
