@@ -7,7 +7,7 @@
     "attributes": [
         {
             "trait_type": "Head",
-            "value": "Head 1"
+            "value": "Head 3"
         },
         {
             "trait_type": "Hat",
@@ -15,7 +15,7 @@
         },
         {
             "trait_type": "LCD",
-            "value": "Haooy"
+            "value": "Happy Normal"
         },
         {
             "trait_type": "LCD Colour",

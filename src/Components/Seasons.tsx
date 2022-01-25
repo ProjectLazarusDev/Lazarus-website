@@ -77,7 +77,7 @@ const Seasons: React.FC = () =>
       zIndex: -2,
 
       height: '100%',
-      background: 'linear-gradient(to right bottom, #000a14FF,#001d3bFF)',
+      background: 'linear-gradient(to right bottom, #ffffff1f,#ffffff00)',
       borderRadius: '0px',
       alignItems: ' center',
       justifyContent: ' center'
@@ -96,15 +96,15 @@ const Seasons: React.FC = () =>
           justifyContent="center"
 
         >
-          <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={0} color={'#00a6ff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
+          <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={0} color={'#ffffff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
             - WHAT AWAITS IN THE FUTURE? -
           </Typography>
-
-          <Typography fontFamily='Dongle' align="left" color={'#00a6ffFF'} variant='h3' lineHeight={'5rem'} fontSize='5.5rem' fontWeight='900'>SEASONAL ROADMAP</Typography>
-
+          <div className="glow">
+          <Typography fontFamily='Dongle' align="left" color={'#ffffffFF'} variant='h3' lineHeight={'5rem'} fontSize='5.5rem' fontWeight='900'>SEASONAL ROADMAP</Typography>
+          </div>
 
           <Box sx={{ justifyContent: 'center', alignItems: 'center', bgcolor: '#00a6ff00' }}>
-            <AppBar position='static' style={{ marginTop: '30px', borderRadius: '100px', background: 'linear-gradient(to right bottom, #00a6ff44,#00324d00)' }} >
+            <AppBar position='static' style={{ marginTop: '30px', borderRadius: '100px',background: 'linear-gradient(to right bottom, #ffffff1f,#ffffff00)' }} >
               <Tabs
                 value={value}
                 onChange={handleChange}

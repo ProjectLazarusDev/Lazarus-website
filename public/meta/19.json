@@ -1,0 +1,49 @@
+{
+    "image_data": "https://bobots.io/meta/image_19.png",
+    "external_url": "https://bobots.io/",
+    "animation_url": "https://bobots.io/meta/video_19.mp4",
+    "description": "Welcome to the bobot family",
+    "name": "Bobot #0019",
+    "attributes": [
+        {
+            "trait_type": "Head",
+            "value": "Head 2"
+        },
+        {
+            "trait_type": "Hat",
+            "value": "Moon Traffic Cone"
+        },
+        {
+            "trait_type": "LCD",
+            "value": "Angry Normal"
+        },
+        {
+            "trait_type": "LCD Colour",
+            "value": "Sussy Red"
+        },
+        {
+            "trait_type": "Arm",
+            "value": "Arm 3"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Body 1"
+        },
+        {
+            "trait_type": "Leg",
+            "value": "Leg 1"
+        },
+        {
+            "trait_type": "Color Primary",
+            "value": "Greene"
+        },
+        {
+            "trait_type": "Color Secondary",
+            "value": "Yellow Fellow"
+        },
+        {
+            "trait_type": "Background Colour",
+            "value": "Orange Slices"
+        }
+    ]
+}

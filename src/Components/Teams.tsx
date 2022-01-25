@@ -19,9 +19,8 @@ const Teams: React.FC = () =>
         <>
             <Card style={{
                 zIndex: -2,
-
                 height: '100%',
-                background: 'linear-gradient(to right bottom, #000a14FF,#001d3bFF)',
+                background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                 borderRadius: '0px',
                 alignItems: ' center',
                 justifyContent: ' center'
@@ -33,7 +32,6 @@ const Teams: React.FC = () =>
                     direction="row"
                     alignItems="center"
                     justifyContent="center"
-                   
                 >
                     <Grid
                         direction="column"
@@ -41,13 +39,11 @@ const Teams: React.FC = () =>
                         justifyContent="center"
                         margin = "10px"
                     >
-
-
                         <Card style={{
                             zIndex: -2,
 
                             height: '100%',
-                            background: 'linear-gradient(to right bottom, #000a1400,#000a1400)',
+                            background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                             borderRadius: '20px',
                             alignItems: ' center',
                             justifyContent: ' center',
@@ -62,8 +58,7 @@ const Teams: React.FC = () =>
 
                             <Card style={{
                                 zIndex: -2,
-
-                                background: 'linear-gradient(to right bottom, #000a14FF,#000a1400)',
+                                background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                                 borderRadius: '0px',
                                 alignItems: ' center',
                                 justifyContent: ' center',
@@ -93,18 +88,13 @@ const Teams: React.FC = () =>
                         justifyContent="center"
                         margin = "10px"
                     >
-
-
                         <Card style={{
                             zIndex: -2,
-
                             height: '100%',
-                            background: 'linear-gradient(to right bottom, #000a1400,#000a1400)',
+                            background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                             borderRadius: '20px',
                             alignItems: ' center',
-                            justifyContent: ' center',
-
-                        }}>
+                            justifyContent: ' center'}}>
                             <CardMedia
                                 style={{ display: 'fixed', width: '100%', height: '250px', borderRadius: '0px' }}
                                 component="img"
@@ -114,8 +104,7 @@ const Teams: React.FC = () =>
 
                             <Card style={{
                                 zIndex: -2,
-
-                                background: 'linear-gradient(to right bottom, #000a14FF,#000a1400)',
+                                background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                                 borderRadius: '0px',
                                 alignItems: ' center',
                                 justifyContent: ' center',
@@ -144,18 +133,13 @@ const Teams: React.FC = () =>
                         justifyContent="center"
                         margin = "10px"
                     >
-
-
                         <Card style={{
                             zIndex: -2,
-
                             height: '100%',
-                            background: 'linear-gradient(to right bottom, #000a1400,#000a1400)',
+                            background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                             borderRadius: '20px',
                             alignItems: ' center',
-                            justifyContent: ' center',
-
-                        }}>
+                            justifyContent: ' center'}}>
                             <CardMedia
                                 style={{ display: 'fixed', width: '100%', height: '250px', borderRadius: '0px' }}
                                 component="img"
@@ -165,8 +149,7 @@ const Teams: React.FC = () =>
 
                             <Card style={{
                                 zIndex: -2,
-
-                                background: 'linear-gradient(to right bottom, #000a14FF,#000a1400)',
+                                background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                                 borderRadius: '0px',
                                 alignItems: ' center',
                                 justifyContent: ' center',
@@ -175,7 +158,7 @@ const Teams: React.FC = () =>
                             }}>
                                 <Typography align="center" fontSize='2.0rem' lineHeight='1.5rem' variant="body1" component="h1"
                                     gutterBottom fontFamily='Dongle' letterSpacing={'0.5rem'} fontWeight='bold' color='white'>
-                                    FARZANNA
+                                    FARZAANA
                                 </Typography>
                                 <Typography align="center" variant="body1" component="h1"
                                     gutterBottom fontFamily='Dongle' letterSpacing={'0.2rem'} color={'#00a6ff66'} fontWeight="" >
@@ -201,7 +184,7 @@ const Teams: React.FC = () =>
                             zIndex: -2,
 
                             height: '100%',
-                            background: 'linear-gradient(to right bottom, #000a1400,#000a1400)',
+                            background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                             borderRadius: '20px',
                             alignItems: ' center',
                             justifyContent: ' center',
@@ -216,8 +199,7 @@ const Teams: React.FC = () =>
 
                             <Card style={{
                                 zIndex: -2,
-
-                                background: 'linear-gradient(to right bottom, #000a14FF,#000a1400)',
+                                background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                                 borderRadius: '0px',
                                 alignItems: ' center',
                                 justifyContent: ' center',
@@ -250,9 +232,8 @@ const Teams: React.FC = () =>
 
                         <Card style={{
                             zIndex: -2,
-
                             height: '100%',
-                            background: 'linear-gradient(to right bottom, #000a1400,#000a1400)',
+                            background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                             borderRadius: '20px',
                             alignItems: ' center',
                             justifyContent: ' center',
@@ -267,8 +248,7 @@ const Teams: React.FC = () =>
 
                             <Card style={{
                                 zIndex: -2,
-
-                                background: 'linear-gradient(to right bottom, #000a14FF,#000a1400)',
+                                background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                                 borderRadius: '0px',
                                 alignItems: ' center',
                                 justifyContent: ' center',

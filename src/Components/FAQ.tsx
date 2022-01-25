@@ -33,7 +33,7 @@ const FAQ: React.FC = () =>
                 zIndex: -2,
 
                 height: '100%',
-                background: 'linear-gradient(to right bottom, #000a14FF,#001d3bFF)',
+                background: 'linear-gradient(to right bottom, #ffffff1f,#ffffff00)',
                 borderRadius: '0px',
                 alignItems: ' center',
                 justifyContent: ' center'
@@ -47,12 +47,12 @@ const FAQ: React.FC = () =>
                     style={{ height: '100vh' }}
                 >
                     <div>
-                        <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={0} color={'#00a6ff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
+                        <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={0} color={'#ffffff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
                             -SOMETHING ON YOUR MIND? -
                         </Typography>
-
-                        <Typography fontFamily='Dongle' align="center" color={'#00a6ffFF'} variant='h3' lineHeight={'5rem'} fontSize='5.5rem' fontWeight='900'>FREQUENTLY ASKED QUESTIONS</Typography>
-
+                        <div className="glow">
+                            <Typography fontFamily='Dongle' align="center" color={'#ffffffFF'} variant='h3' lineHeight={'5rem'} fontSize='5.5rem' fontWeight='900'>FREQUENTLY ASKED QUESTIONS</Typography>
+                        </div>
 
                         <div className="PageAcc">
                             <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -79,13 +79,13 @@ const FAQ: React.FC = () =>
                                     aria-controls="panel2bh-content"
                                     id="panel2bh-header"
                                 >
-                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem'}}>
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>
                                         What are bobots about?
                                     </Typography>
 
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight :'light' }}>
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
                                         Bobots is an nft experience project with an initial launch of 4040 avatars an a web-based game designed
                                         as a social hub for other avatars holders to interact with each other.We will be slowly expanding our primary utility,the web based game,throughout
                                         the seasons and improve the product with the community.
@@ -95,45 +95,45 @@ const FAQ: React.FC = () =>
 
 
                             <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel3bh-content"
-                                id="panel3bh-header"
-                            >
-                                <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>
-                                    What is the web-based game all about?
-                                </Typography>
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel3bh-content"
+                                    id="panel3bh-header"
+                                >
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>
+                                        What is the web-based game all about?
+                                    </Typography>
 
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight :'light' }}>
-                                   The bobots web-based game app is an game / app designed for the community to interact with each other.
-                                   This web based application is built in parallel with the avatars themselves and will be released on our website during the launch of season 1.
-                                   You can already see the demo of the application on the top of the homepage!
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
+                                        The bobots web-based game app is an game / app designed for the community to interact with each other.
+                                        This web based application is built in parallel with the avatars themselves and will be released on our website during the launch of season 1.
+                                        You can already see the demo of the application on the top of the homepage!
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
 
 
 
-                      
 
-                        <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel4bh-content"
-                                id="panel4bh-header"
-                            >
-                               <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>Are there white-listing and giveaways?</Typography>
 
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight :'light'}}>
-                                   Yes! We have set aside avatars for whitelist presales and giveaways. Engage with the community,invite your mates and
-                                   interact with us as we do frequent giveaways!
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
+                            <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel4bh-content"
+                                    id="panel4bh-header"
+                                >
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>Are there white-listing and giveaways?</Typography>
+
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
+                                        Yes! We have set aside avatars for whitelist presales and giveaways. Engage with the community,invite your mates and
+                                        interact with us as we do frequent giveaways!
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
 
 
 

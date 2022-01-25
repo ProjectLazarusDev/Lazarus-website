@@ -1,0 +1,49 @@
+{
+    "image_data": "https://bobots.io/meta/image_27.png",
+    "external_url": "https://bobots.io/",
+    "animation_url": "https://bobots.io/meta/video_27.mp4",
+    "description": "Welcome to the bobot family",
+    "name": "Bobot #0027",
+    "attributes": [
+        {
+            "trait_type": "Head",
+            "value": "Head 1"
+        },
+        {
+            "trait_type": "Hat",
+            "value": "Deers"
+        },
+        {
+            "trait_type": "LCD",
+            "value": "Cat Normal"
+        },
+        {
+            "trait_type": "LCD Colour",
+            "value": "Bright Pink"
+        },
+        {
+            "trait_type": "Arm",
+            "value": "Arm 1"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Body 2"
+        },
+        {
+            "trait_type": "Leg",
+            "value": "Leg 1"
+        },
+        {
+            "trait_type": "Color Primary",
+            "value": "Sussy Red"
+        },
+        {
+            "trait_type": "Color Secondary",
+            "value": "Yellow Fellow"
+        },
+        {
+            "trait_type": "Background Colour",
+            "value": "Sussy Red"
+        }
+    ]
+}

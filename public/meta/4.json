@@ -7,15 +7,15 @@
     "attributes": [
         {
             "trait_type": "Head",
-            "value": "Head 1"
+            "value": "Head 3"
         },
         {
             "trait_type": "Hat",
-            "value": "Moon Traffic Cone"
+            "value": "Antaennas"
         },
         {
             "trait_type": "LCD",
-            "value": "Haooy"
+            "value": "Happy Normal"
         },
         {
             "trait_type": "LCD Colour",
@@ -23,7 +23,7 @@
         },
         {
             "trait_type": "Arm",
-            "value": "Arm 2"
+            "value": "Arm 3"
         },
         {
             "trait_type": "Body",

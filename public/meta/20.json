@@ -1,0 +1,49 @@
+{
+    "image_data": "https://bobots.io/meta/image_20.png",
+    "external_url": "https://bobots.io/",
+    "animation_url": "https://bobots.io/meta/video_20.mp4",
+    "description": "Welcome to the bobot family",
+    "name": "Bobot #0020",
+    "attributes": [
+        {
+            "trait_type": "Head",
+            "value": "Head 2"
+        },
+        {
+            "trait_type": "Hat",
+            "value": "Whos Cat?"
+        },
+        {
+            "trait_type": "LCD",
+            "value": "Angry Vector"
+        },
+        {
+            "trait_type": "LCD Colour",
+            "value": "Cyan"
+        },
+        {
+            "trait_type": "Arm",
+            "value": "Arm 3"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Body 1"
+        },
+        {
+            "trait_type": "Leg",
+            "value": "Leg 1"
+        },
+        {
+            "trait_type": "Color Primary",
+            "value": "Bright Pink"
+        },
+        {
+            "trait_type": "Color Secondary",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Background Colour",
+            "value": "Orange Slices"
+        }
+    ]
+}
