@@ -106,21 +106,21 @@ const Home: React.FC = () =>
                                 />
                             </div>
                         )}
-
-                        <Unity className="unityWindow"
-                            unityContext={unityContext}
-
-
-                            style={{
-                                borderRadius: '20px', width: "100vw", height: "100vh"
-                            }}
-                        />
+                        <div className="pageUnity">
+                            <Unity className="unityWindow"
+                                unityContext={unityContext}
+                                style={{
+                                   
+                                    borderRadius: '20px', width: "100vw", height: "100vh"
+                                }}
+                            />
+                        </div>
                         <div className="pagePos">
-                        <div className="pagePosAlign">
-                                <Button  style={{color:'white', height :'40px',fontFamily:'Dongle', letterSpacing:'1px' , fontSize:'1.5rem',backgroundColor:'#000000ff',width:'300px'}} onClick={() => { ToggleFullScreen(!isFullscreen) }} >
-                                   Click to focus game
+                            <div className="pagePosAlign">
+                                <Button style={{ color: 'white', height: '40px', fontFamily: 'Dongle', letterSpacing: '1px', fontSize: '1.5rem', backgroundColor: '#000000ff', width: '300px' }} onClick={() => { ToggleFullScreen(!isFullscreen) }} >
+                                    Click to focus game
                                 </Button>
-                                </div>
+                            </div>
                         </div>
                         {/*Full-screen button*/}
 

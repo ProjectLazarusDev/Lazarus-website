@@ -27,7 +27,10 @@
     linear-gradient(90deg, transparent 0%, 
             rgba(0, 217, 255, .04) 10%, rgba(0, 217, 255, .001) 10.1%, transparent 5.1%, transparent 5.2%);
 }
-
+.pageUnity
+{
+    position:fixed;
+}
 
 .glow {
    
