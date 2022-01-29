@@ -19,12 +19,14 @@ const App: React.FC = () =>
 {
   return (
     <div className='main'>
+      
       <Router>
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/MintPage' exact component={MintPage} />
         </Switch>
       </Router>
+    
     </div>
   );
 }

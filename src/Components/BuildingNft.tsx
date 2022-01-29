@@ -40,15 +40,15 @@ const BuildingNft: React.FC = () =>
                 justifyContent="center"
             >
                 <Grid container item direction="row" >
-                    <Grid xs={12} md={6} height={'100%'}  >
+                    <Grid xs={12} md={6} height={'100vh'} style={{boxShadow:'none'}}  >
                     </Grid>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={6}style={{boxShadow:'none'}} >
 
                         <Card style={{
                             zIndex: -2,
-
+                            boxShadow:'none' ,
                             height: '100%',
-                            background: 'linear-gradient(to right bottom, #ffffff1f,#ffffff00)',
+                            background: 'linear-gradient(to right bottom, #ffffff00,#ffffff00)',
                             borderRadius: '0px',
                             alignItems: ' center',
                             justifyContent: ' center'
@@ -66,41 +66,19 @@ const BuildingNft: React.FC = () =>
                                 <Slide in={true} direction='up' timeout={2000}>
                                     <div className='PageContainer'>
                                         
-                                        <Typography paddingBottom={'25px'} paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align={(width < 960) ? "center" : "right"} lineHeight={0} color='#fcba0366' fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
-                                            .//DISCOVERING
+                                        <Typography paddingBottom={'25px'} paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align={(width < 960) ? "center" : "right"} lineHeight={0} color='#00000066' fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
+                                            .//PREPARE FOR LAUNCH
                                         </Typography>
-                                        <div className="glow">
-                                            <Typography fontFamily='Dongle' align={width < 960 ? "center" : "right"} color={'#ffffffFF'} variant='h3' lineHeight={'2.5rem'} fontSize='5.5rem' fontWeight='900'>THE BOBOTS.</Typography>
+                                        <div className="glowBlack">
+                                            <Typography fontFamily='Dongle' align={width < 960 ? "center" : "right"} color={'#000000ff'} variant='h3' lineHeight={'2.5rem'} fontSize='7.5rem' fontWeight='900'>TO THE MOON</Typography>
                                         </div>
-                                        <div className="glowWhite">
-                                            <Typography paddingTop={'25px'} fontFamily='Dongle' align={width < 960 ? "center" : "right"} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.25rem'>
-                                                <b>In the year 4040,</b>
-                                                Robots have dominantly replace humans with cute robots being stationed on the moon.
-                                                Together, 4040 bobots rule the moon colony.These bobots lives on the ethereum network using the  <b>ERC-721 blockchain.</b>
+                                        <div className="glowBlack">
+                                            <Typography paddingTop={'25px'} fontFamily='Dongle' align={width < 960 ? "center" : "right"} color={'black'} fontWeight='light' variant='subtitle1' fontSize='1.6rem'>
+                                                Explore the moon base in our interactive web based game application! 
+                                                Here take part in an evergrowing game experience as we update the game with more content with community.
                                             </Typography>
 
-                                            <Grid xs
-                                                width={'100%'}
-                                                paddingTop={'75px'}
-                                                container
-                                                spacing={3}
-                                                direction="row"
-                                                alignItems="center"
-                                                justifyContent="center" >
-                                                <Grid item >
-                                                    <Typography fontFamily='Dongle' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='2.8rem' fontWeight='900'>4040</Typography>
-                                                    <Typography fontFamily='Dongle' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='1rem' fontWeight='light'>Avatars</Typography>
-                                                </Grid>
-                                                <Grid item
-                                                >
-                                                    <Typography fontFamily='Dongle' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='2.8rem' fontWeight='900'>100+</Typography>
-                                                    <Typography fontFamily='Dongle' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='1rem' fontWeight='light'>Unique traits</Typography>
-                                                </Grid>
-                                                <Grid item>
-                                                    <Typography fontFamily='Dongle' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='2.8rem' fontWeight='900'>11</Typography>
-                                                    <Typography fontFamily='Dongle' align={'center'} color={'white'} variant='h3' fontStyle={'italic'} fontSize='1rem' fontWeight='light'>Properties</Typography>
-                                                </Grid>
-                                            </Grid>
+                                            
                                         </div>
                                     </div>
                                 </Slide>

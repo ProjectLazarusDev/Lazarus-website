@@ -12,7 +12,6 @@ import Typography from '@mui/material/Typography';
 import { Grid } from "@mui/material";
 import Card from '@mui/material/Card';
 import { ThemeProvider } from '@mui/material/styles';
-import { Button } from '@mui/material';
 import '../Theme/Theme';
 import { themeDark } from '../Theme/Theme';
 import Unity, { UnityContext } from "react-unity-webgl";
@@ -22,10 +21,11 @@ import { CardMedia } from "@mui/material";
 import Header from '../Components/Header';
 import Lore from '../Components/Lore';
 import BuildingNft from '../Components/BuildingNft';
-
 import FAQ from '../Components/FAQ'
 import Teams from '../Components/Teams';
 import Seasons from '../Components/Seasons';
+import 'motion-pointer/dist/index.css';
+import 'motion-pointer/dist/index.js';
 
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
@@ -37,21 +37,19 @@ const unityContext = new UnityContext({
 const Home: React.FC = () =>
 {
     //react hooks
-    var isFullscreen = false;
 
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
     const [ scrollValue, setScrollValue] = React.useState<number>(0.0);
-
+  
     React.useEffect(() => {
-        const scrollFun = () => {
-         
       
+        const scrollFun = () => {
+        
+            console.log(document.body.getBoundingClientRect().top);
             setScrollValue((-document.body.getBoundingClientRect().top)/document.body.getBoundingClientRect().height);
-            //console.log(scrollValue);
             unityContext.send("MainMenuControl", "SetScrollBarValue", scrollValue);
         }
-        
         window.addEventListener("scroll", scrollFun);
       
         return () => {
@@ -75,11 +73,22 @@ const Home: React.FC = () =>
     }
 
     //toggle full-screen control
-    function ToggleFullScreen(toggle: boolean)
-    {
-        unityContext.setFullscreen(toggle);
-    }
+    //function ToggleFullScreen(toggle: boolean)
+    //{
+    //    unityContext.setFullscreen(toggle);
+    //}
 
+    function RenderFullScreenButton()
+    {
+        //<Button style={{ color: 'white', height: '40px', fontFamily: 'Dongle', letterSpacing: '1px', fontSize: '1.5rem', backgroundColor: '#000000ff', width: '300px' }} onClick={() => { ToggleFullScreen(!isFullscreen) }} >
+        //                            Click to focus game
+        //                        </Button>
+        return(
+        <>
+         
+        </>
+        );
+    }
 
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
@@ -98,11 +107,12 @@ const Home: React.FC = () =>
 
     return (
         <>
-
             <div className="pageGlobal">
+           
                 <Header></Header>
                 <Card style={{
-                    zIndex: -2, width: '100vw', height: '100%',
+                   boxShadow:'none',
+                    zIndex: -2, width: '100vw', height: '90vh',
                     borderRadius: '0px',
                     background: 'linear-gradient(to right bottom, #12121200, #05050500)'
                 }}>
@@ -112,7 +122,7 @@ const Home: React.FC = () =>
                         direction="column"
                         alignItems="center"
                         justifyContent="center"
-                        style={{ height: '100vh' }}
+                        style={{ borderRadius: '0px', height: '100vh', boxShadow:'none' }}
                     >
                         {isLoaded === false && (
                             <div className="progress-bar">
@@ -126,16 +136,14 @@ const Home: React.FC = () =>
                             <Unity className="unityWindow"
                                 unityContext={unityContext}
                                 style={{
-                                
-                                    borderRadius: '20px', width: "100vw", height: "100vh"
+                                    borderRadius: '0px', width: "100vw", height: "101vh"
                                 }}
                             />
                         </div>
                         <div className="pagePos">
                             <div className="pagePosAlign">
-                                <Button style={{ color: 'white', height: '40px', fontFamily: 'Dongle', letterSpacing: '1px', fontSize: '1.5rem', backgroundColor: '#000000ff', width: '300px' }} onClick={() => { ToggleFullScreen(!isFullscreen) }} >
-                                    Click to focus game
-                                </Button>
+                                {RenderFullScreenButton()}
+                               
                             </div>
                         </div>
                         {/*Full-screen button*/}
@@ -151,7 +159,17 @@ const Home: React.FC = () =>
                     <Seasons></Seasons>
                     <Teams></Teams>
                     <FAQ></FAQ>
-                    <Card style={{ borderRadius: '0' }} >
+                    
+                </ThemeProvider>
+            </div>
+        </>
+    );
+}
+export default Home;
+
+
+/*
+<Card style={{ borderRadius: '0' }} >
                         <div className="pagePosWrap">
                             <CardMedia
                                 component='video'
@@ -178,10 +196,5 @@ const Home: React.FC = () =>
                                 </div>
                             </div>
                         </div>
-                    </Card>*
-                </ThemeProvider>
-            </div>
-        </>
-    );
-}
-export default Home;
+                    </Card>
+*/

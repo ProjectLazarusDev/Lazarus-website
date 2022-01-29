@@ -39,14 +39,14 @@ const Lore: React.FC = () =>
                 justifyContent="center"
 
             >
-                <Grid container item direction="row" >
-                    <Grid item xs={12} md={6}>
+                <Grid container item direction="row" style={{boxShadow:'none'}} >
+                    <Grid item xs={12} md={6}style={{boxShadow:'none'}} >
 
                         <Card style={{
                             zIndex: -2,
-
+                            boxShadow:'none',
                             height: '100%',
-                            background: 'linear-gradient(to right bottom, #ffffff00,#ffffff00)',
+                            background: 'linear-gradient(to right bottom, #00000000,#00000000)',
                             borderRadius: '0px',
                             alignItems: ' center',
                             justifyContent: ' center'
@@ -68,10 +68,10 @@ const Lore: React.FC = () =>
                                             .//DISCOVERING
                                         </Typography>
                                         <div className="glow">
-                                            <Typography fontFamily='Dongle' align={width < 960 ? "center" : "left"} color={'#ffffffFF'} variant='h3' lineHeight={'2.5rem'} fontSize='5.5rem' fontWeight='900'>THE BOBOTS.</Typography>
+                                            <Typography fontFamily='Dongle' align={width < 960 ? "center" : "left"} color={'#ffffffFF'} variant='h3' lineHeight={'2.5rem'} fontSize='7.5rem' fontWeight='900'>THE BOBOTS.</Typography>
                                         </div>
                                         <div className="glowWhite">
-                                            <Typography paddingTop={'25px'} fontFamily='Dongle' align={width < 960 ? "center" : "left"} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.25rem'>
+                                            <Typography paddingTop={'25px'} fontFamily='Dongle' align={width < 960 ? "center" : "left"} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.6rem'>
                                                 <b>In the year 4040,</b>
                                                 Robots have dominantly replace humans with cute robots being stationed on the moon.
                                                 Together, 4040 bobots rule the moon colony.These bobots lives on the ethereum network using the  <b>ERC-721 blockchain.</b>
@@ -107,7 +107,7 @@ const Lore: React.FC = () =>
                             </Grid>
                         </Card>
                     </Grid>
-                    <Grid xs={12} md={6} height={'100vh'}>
+                    <Grid xs={12} md={6} height={'100vh'}style={{boxShadow:'0px'}}>
                        
 
                     </Grid>

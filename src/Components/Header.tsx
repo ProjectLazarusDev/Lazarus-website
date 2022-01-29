@@ -8,12 +8,12 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { FaDiscord, FaTwitter ,FaHome} from "react-icons/fa";
+import { FaDiscord, FaTwitter, FaHome } from "react-icons/fa";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import { Button } from "@mui/material";
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Link } from "react-router-dom";
+
 import { useHistory } from "react-router-dom";
 
 const Header: React.FC = () =>
@@ -42,9 +42,9 @@ const Header: React.FC = () =>
     handleMobileMenuClose();
   };
 
-  
 
-  
+
+
   const history = useHistory();
 
   function handleHome()
@@ -91,11 +91,11 @@ const Header: React.FC = () =>
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-       
+
       <MenuItem>
-      
-        
-       
+
+
+
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
 
           <MailIcon />
@@ -129,51 +129,35 @@ const Header: React.FC = () =>
       </MenuItem>
     </Menu>
   );
+
+
+  const RenderIcons = (
+    <>
+       <Button onClick={handleHome} variant="contained" style={{ height: '40px', width: '110px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa',borderRadius:'20px', boxShadow: 'none' ,margin:'5px'}}>
+                MINT
+              </Button>
+      <Button onClick={handleHome} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius:'20px', boxShadow: 'none' ,margin:'5px' }} >
+        <FaDiscord />
+      </Button>
+        <Button onClick={handleHome} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055',borderRadius:'20px',  boxShadow: 'none' ,margin:'5px' }} >
+          <FaTwitter />
+        </Button>
+
+ 
+        <Button onClick={handleHome} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055',borderRadius:'20px', boxShadow: 'none'  ,margin:'5px'}} >
+          <FaHome />
+        </Button>
+
+    </>);
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="fixed" style={{ boxShadow: 'none', backgroundColor: 'transparent' }} >
           <Toolbar>
-
-
-
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            
-            <Button onClick={ handleHome }   variant="contained" style={{ height :'40px',fontFamily:'Dongle', letterSpacing:'1px' , fontSize:'1.5rem',backgroundColor:'#000000ff',marginRight:'30px'}} >
-            MINT PAGE
-          </Button>
-          
-              <IconButton size='medium' aria-label="show 4 new mails" color="inherit">
-                <FaDiscord />
-
-              </IconButton>
-              <IconButton
-               size='medium' 
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-
-                <FaTwitter />
-
-              </IconButton>
-             
-              <IconButton
-                size='medium' 
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <Link to='/'  >
-                 <FaHome />
-                 </Link>
-              </IconButton>
-             
+              {RenderIcons}
             </Box>
-            
           </Toolbar>
         </AppBar>
         {renderMobileMenu}
