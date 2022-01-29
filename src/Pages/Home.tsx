@@ -26,7 +26,6 @@ import BuildingNft from '../Components/BuildingNft';
 import FAQ from '../Components/FAQ'
 import Teams from '../Components/Teams';
 import Seasons from '../Components/Seasons';
-import { Console } from 'console';
 
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
@@ -39,18 +38,18 @@ const Home: React.FC = () =>
 {
     //react hooks
     var isFullscreen = false;
-    var scrollValue = 0.0;
+
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
-    const [scrollPercent,SetScrollPercent] = React.useState<Number>(0.0);
+    const [ scrollValue, setScrollValue] = React.useState<number>(0.0);
 
     React.useEffect(() => {
         const scrollFun = () => {
-          
-            scrollValue = (-document.body.getBoundingClientRect().top)/document.body.getBoundingClientRect().height;
-           
-           
+         
+      
+            setScrollValue((-document.body.getBoundingClientRect().top)/document.body.getBoundingClientRect().height);
             console.log(scrollValue);
+            unityContext.send("MainMenuControl", "SetScrollBarValue", scrollValue);
         }
         
         window.addEventListener("scroll", scrollFun);
@@ -58,7 +57,7 @@ const Home: React.FC = () =>
         return () => {
           window.removeEventListener("scroll", scrollFun);
         };
-      }, []);
+      }, [scrollValue]);
 
 
     // Built-in event invoked when the Unity app's progress has changed.
@@ -85,12 +84,9 @@ const Home: React.FC = () =>
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
-
         unityContext.on("progress", handleOnUnityProgress);
         unityContext.on("loaded", handleOnUnityLoaded);
         unityContext.on("quitted", function () { });
-
-        unityContext.send("MainMenuControl", "SetScrollBarValue", scrollValue);
 
         return function ()
         {
