@@ -26,6 +26,7 @@ import BuildingNft from '../Components/BuildingNft';
 import FAQ from '../Components/FAQ'
 import Teams from '../Components/Teams';
 import Seasons from '../Components/Seasons';
+import { Console } from 'console';
 
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
@@ -37,11 +38,28 @@ const unityContext = new UnityContext({
 const Home: React.FC = () =>
 {
     //react hooks
-
-    const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     var isFullscreen = false;
-
+    var scrollValue = 0.0;
+    const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
+    const [scrollPercent,SetScrollPercent] = React.useState<Number>(0.0);
+
+    React.useEffect(() => {
+        const scrollFun = () => {
+          
+            scrollValue = (-document.body.getBoundingClientRect().top)/document.body.getBoundingClientRect().height;
+           
+           
+            console.log(scrollValue);
+        }
+        
+        window.addEventListener("scroll", scrollFun);
+      
+        return () => {
+          window.removeEventListener("scroll", scrollFun);
+        };
+      }, []);
+
 
     // Built-in event invoked when the Unity app's progress has changed.
     function handleOnUnityProgress(progression: number)
@@ -71,6 +89,8 @@ const Home: React.FC = () =>
         unityContext.on("progress", handleOnUnityProgress);
         unityContext.on("loaded", handleOnUnityLoaded);
         unityContext.on("quitted", function () { });
+
+        unityContext.send("MainMenuControl", "SetScrollBarValue", scrollValue);
 
         return function ()
         {
@@ -128,6 +148,13 @@ const Home: React.FC = () =>
                     </Grid>
                 </Card>
                 <ThemeProvider theme={themeDark}>
+                   
+
+                    <Lore></Lore>
+                    <BuildingNft></BuildingNft>
+                    <Seasons></Seasons>
+                    <Teams></Teams>
+                    <FAQ></FAQ>
                     <Card style={{ borderRadius: '0' }} >
                         <div className="pagePosWrap">
                             <CardMedia
@@ -155,13 +182,7 @@ const Home: React.FC = () =>
                                 </div>
                             </div>
                         </div>
-                    </Card>
-
-                    <Lore></Lore>
-                    <BuildingNft></BuildingNft>
-                    <Seasons></Seasons>
-                    <Teams></Teams>
-                    <FAQ></FAQ>
+                    </Card>*
                 </ThemeProvider>
             </div>
         </>
