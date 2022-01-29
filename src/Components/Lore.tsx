@@ -11,7 +11,6 @@ import React from "react"
 import Card from '@mui/material/Card';
 import { Grid, Slide } from "@mui/material";
 import Typography from '@mui/material/Typography';
-import { CardMedia } from "@mui/material";
 import '../Pages/Page.css'
 
 const Lore: React.FC = () =>
@@ -21,7 +20,7 @@ const Lore: React.FC = () =>
     //const [height, setHeight] = React.useState(window.innerHeight);
     const updateDimensions = () =>
     {
-   
+
         setWidth(window.innerWidth);
         //setHeight(window.innerHeight);
     }
@@ -47,7 +46,7 @@ const Lore: React.FC = () =>
                             zIndex: -2,
 
                             height: '100%',
-                            background: 'linear-gradient(to right bottom, #ffffff1f,#ffffff00)',
+                            background: 'linear-gradient(to right bottom, #ffffff00,#ffffff00)',
                             borderRadius: '0px',
                             alignItems: ' center',
                             justifyContent: ' center'
@@ -64,7 +63,7 @@ const Lore: React.FC = () =>
 
                                 <Slide in={true} direction='up' timeout={2000}>
                                     <div className='PageContainer'>
-                                        
+
                                         <Typography paddingBottom={'25px'} paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align={(width < 960) ? "center" : "left"} lineHeight={0} color='#fcba0366' fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
                                             .//DISCOVERING
                                         </Typography>
@@ -108,21 +107,8 @@ const Lore: React.FC = () =>
                             </Grid>
                         </Card>
                     </Grid>
-                    <Grid xs={12} md={6}>
-                        <div className='PageVidWrap'>
-                            <div className="PageVid">
-                                <CardMedia
-
-                                    component='video'
-                                    muted={true}
-                                    image={"bobots_montage.mp4"}
-                                    autoPlay
-                                    loop
-                                    style={{ display: 'flex', height: 'inherit' }}
-
-                                />
-                            </div>
-                        </div>
+                    <Grid xs={12} md={6} height={'100vh'}>
+                       
 
                     </Grid>
                 </Grid>

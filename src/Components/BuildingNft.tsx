@@ -9,7 +9,6 @@
 import React from "react"
 
 import Card from '@mui/material/Card';
-import { CardMedia } from "@mui/material";
 import { Grid, Slide } from "@mui/material";
 import Typography from '@mui/material/Typography';
 const BuildingNft: React.FC = () =>
@@ -41,22 +40,7 @@ const BuildingNft: React.FC = () =>
                 justifyContent="center"
             >
                 <Grid container item direction="row" >
-                    <Grid xs={12} md={6}>
-                        <div className='PageVidWrap'>
-                            <div className="PageVid">
-                                <CardMedia
-
-                                    component='video'
-                                    muted={true}
-                                    image={"meta/video_13.mp4"}
-                                    autoPlay
-                                    loop
-                                    style={{ display: 'flex', height: 'inherit' }}
-
-                                />
-                            </div>
-                        </div>
-
+                    <Grid xs={12} md={6} height={'100%'}  >
                     </Grid>
                     <Grid item xs={12} md={6}>
 

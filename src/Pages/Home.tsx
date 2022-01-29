@@ -48,7 +48,7 @@ const Home: React.FC = () =>
          
       
             setScrollValue((-document.body.getBoundingClientRect().top)/document.body.getBoundingClientRect().height);
-            console.log(scrollValue);
+            //console.log(scrollValue);
             unityContext.send("MainMenuControl", "SetScrollBarValue", scrollValue);
         }
         
@@ -104,7 +104,7 @@ const Home: React.FC = () =>
                 <Card style={{
                     zIndex: -2, width: '100vw', height: '100%',
                     borderRadius: '0px',
-                    background: 'linear-gradient(to right bottom, #121212, #050505)'
+                    background: 'linear-gradient(to right bottom, #12121200, #05050500)'
                 }}>
                     <Grid
                         container
@@ -126,7 +126,7 @@ const Home: React.FC = () =>
                             <Unity className="unityWindow"
                                 unityContext={unityContext}
                                 style={{
-                                   
+                                
                                     borderRadius: '20px', width: "100vw", height: "100vh"
                                 }}
                             />
