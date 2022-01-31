@@ -133,8 +133,8 @@ const Header: React.FC = () =>
 
   const RenderIcons = (
     <>
-       <Button onClick={handleHome} variant="contained" style={{ height: '40px', width: '110px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa',borderRadius:'20px', boxShadow: 'none' ,margin:'5px'}}>
-                MINT
+       <Button onClick={handleHome} variant="contained" style={{ height: '40px', width: '210px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa',borderRadius:'20px', boxShadow: 'none' ,margin:'5px'}}>
+                MINT COMING SOON
               </Button>
       <Button onClick={handleHome} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius:'20px', boxShadow: 'none' ,margin:'5px' }} >
         <FaDiscord />

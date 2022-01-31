@@ -11,24 +11,29 @@ import React from "react"
 import Card from '@mui/material/Card';
 import { Grid, Slide } from "@mui/material";
 import Typography from '@mui/material/Typography';
+import { FaArrowCircleLeft,  FaArrowCircleRight } from "react-icons/fa";
+import { Button } from "@mui/material";
 import '../Pages/Page.css'
 
 const Lore: React.FC = () =>
 {
 
     const [width, setWidth] = React.useState(window.innerWidth);
-    //const [height, setHeight] = React.useState(window.innerHeight);
+
     const updateDimensions = () =>
     {
 
         setWidth(window.innerWidth);
-        //setHeight(window.innerHeight);
+
     }
     React.useEffect(() =>
     {
         window.addEventListener("resize", updateDimensions);
         return () => window.removeEventListener("resize", updateDimensions);
     }, []);
+
+
+
     return (
         <>
             <Grid
@@ -39,12 +44,12 @@ const Lore: React.FC = () =>
                 justifyContent="center"
 
             >
-                <Grid container item direction="row" style={{boxShadow:'none'}} >
-                    <Grid item xs={12} md={6}style={{boxShadow:'none'}} >
+                <Grid container item direction="row" style={{ boxShadow: 'none' }} >
+                    <Grid item xs={12} md={6} style={{ boxShadow: 'none' }} >
 
                         <Card style={{
                             zIndex: -2,
-                            boxShadow:'none',
+                            boxShadow: 'none',
                             height: '100%',
                             background: 'linear-gradient(to right bottom, #00000000,#00000000)',
                             borderRadius: '0px',
@@ -76,10 +81,25 @@ const Lore: React.FC = () =>
                                                 Robots have dominantly replace humans with cute robots being stationed on the moon.
                                                 Together, 4040 bobots rule the moon colony.These bobots lives on the ethereum network using the  <b>ERC-721 blockchain.</b>
                                             </Typography>
-
                                             <Grid xs
                                                 width={'100%'}
-                                                paddingTop={'75px'}
+                                                paddingTop={'25px'}
+                                                container
+                                                spacing={3}
+                                                direction="row"
+                                                alignItems="center"
+                                                justifyContent="center" >
+                                            <Button variant="contained" style={{ height: '40px', width: '80px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#ffffffaa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
+                                               <FaArrowCircleLeft/> 
+                                            </Button>
+
+                                            <Button  variant="contained" style={{ height: '40px', width: '80px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#ffffffaa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
+                                            <FaArrowCircleRight/>
+                                            </Button>
+                                            </Grid>
+                                            <Grid xs
+                                                width={'100%'}
+                                                paddingTop={'25px'}
                                                 container
                                                 spacing={3}
                                                 direction="row"
@@ -107,8 +127,8 @@ const Lore: React.FC = () =>
                             </Grid>
                         </Card>
                     </Grid>
-                    <Grid xs={12} md={6} height={'100vh'}style={{boxShadow:'0px'}}>
-                       
+                    <Grid xs={12} md={6} height={'100vh'} style={{ boxShadow: '0px' }}>
+
 
                     </Grid>
                 </Grid>
