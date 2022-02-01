@@ -56,7 +56,6 @@ const Lore: React.FC = () =>
                             alignItems: ' center',
                             justifyContent: ' center'
                         }}>
-
                             <Grid container
                                 spacing={0}
                                 height='100%'
@@ -65,11 +64,9 @@ const Lore: React.FC = () =>
                                 justifyContent="center"
                                 minHeight={width < 960 ? '125vh' : '100%'}
                             >
-
                                 <Slide in={true} direction='up' timeout={2000}>
                                     <div className='PageContainer'>
-
-                                        <Typography paddingBottom={'25px'} paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align={(width < 960) ? "center" : "left"} lineHeight={0} color='#fcba0366' fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
+                                        <Typography paddingBottom={'50px'} paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align={(width < 960) ? "center" : "left"} lineHeight={0} color='#ffffff66' fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
                                             .//DISCOVERING
                                         </Typography>
                                         <div className="glow">
@@ -79,7 +76,7 @@ const Lore: React.FC = () =>
                                             <Typography paddingTop={'25px'} fontFamily='Dongle' align={width < 960 ? "center" : "left"} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.6rem'>
                                                 <b>In the year 4040,</b>
                                                 Robots have dominantly replace humans with cute robots being stationed on the moon.
-                                                Together, 4040 bobots rule the moon colony.These bobots lives on the ethereum network using the  <b>ERC-721 blockchain.</b>
+                                               These bobots lives on the ethereum network using the  <b>ERC-721 blockchain.</b>
                                             </Typography>
                                             <Grid xs
                                                 width={'100%'}

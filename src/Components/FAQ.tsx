@@ -109,7 +109,7 @@ const FAQ: React.FC = () =>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
                                         The bobots web-based game app is an game / app designed for the community to interact with each other.
                                         This web based application is built in parallel with the avatars themselves and will be released on our website during the launch of season 1.
-                                        You can already see the demo of the application on the top of the homepage!
+                                       
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
