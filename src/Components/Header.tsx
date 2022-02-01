@@ -16,13 +16,13 @@ const Header: React.FC = () =>
 
   React.useEffect(() =>
   {
-      
-      window.addEventListener("resize", updateDimensions);
-      return () => window.removeEventListener("resize", updateDimensions);
+
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
   }, []);
   const updateDimensions = () =>
   {
-      setWidth(window.innerWidth);
+    setWidth(window.innerWidth);
 
   }
   const history = useHistory();
@@ -59,6 +59,21 @@ const Header: React.FC = () =>
       </Button>
 
     </>);
+  const RenderIconsMobile = (
+    <>
+      <Button onClick={handleDiscord} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
+        <FaDiscord />
+      </Button>
+      <Button onClick={handleTwitter} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
+        <FaTwitter />
+      </Button>
+
+
+      <Button onClick={handleHome} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
+        <FaHome />
+      </Button>
+
+    </>);
   const Desk = (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -74,21 +89,17 @@ const Header: React.FC = () =>
       </Box>
 
     </>);
- const Mobile = (
-  <>
-  
-        <AppBar position="fixed" style={{ boxShadow: 'none', backgroundColor: 'transparent' }} >
-          <Toolbar>
-            <Box sx={{  flexGrow: 0.5 }}>
-            </Box>
-              {RenderIcons}
-           
-          </Toolbar>
-        </AppBar>
-      
-     
+  const Mobile = (
+    <>
 
-  </>);
+      <AppBar position="fixed" style={{ boxShadow: 'none', backgroundColor: 'transparent' }} >
+        <Toolbar>
+          <Box sx={{ flexGrow: 0.5 }}>
+          </Box>
+          {RenderIconsMobile}
+        </Toolbar>
+      </AppBar>
+    </>);
   return (
     <>
       {

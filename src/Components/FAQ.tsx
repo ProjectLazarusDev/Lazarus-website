@@ -47,7 +47,7 @@ const FAQ: React.FC = () =>
                     style={{ height: '100vh' }}
                 >
                     <div>
-                        <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={0} color={'#ffffff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
+                        <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={'1.5rem'} color={'#ffffff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
                             -SOMETHING ON YOUR MIND? -
                         </Typography>
                         <div className="glow">
