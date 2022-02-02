@@ -96,7 +96,7 @@ const Seasons: React.FC = () =>
           justifyContent="center"
 
         >
-          <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={0} color={'#ffffff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
+          <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={'1.5rem'} color={'#ffffff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
             - WHAT AWAITS IN THE FUTURE? -
           </Typography>
           <div className="glow">
