@@ -196,7 +196,7 @@ const Home: React.FC = () =>
                             <Unity className="unityWindow"
                                 unityContext={unityContext}
 
-                                devicePixelRatio={isMobile ? 0.4 : 0.9}
+                                devicePixelRatio={isMobile ? 0.7 : 0.9}
                                 style={{
                                     borderRadius: '0px', width: "100vw", height: "101vh"
                                 }}
