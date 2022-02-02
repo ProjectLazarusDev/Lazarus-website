@@ -27,7 +27,7 @@ import Teams from '../Components/Teams';
 import Seasons from '../Components/Seasons';
 import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
-
+import { isMobile } from 'react-device-detect';
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
     dataUrl: "devbuild/devbuild.data",
@@ -195,6 +195,8 @@ const Home: React.FC = () =>
                         <div className="pageUnity">
                             <Unity className="unityWindow"
                                 unityContext={unityContext}
+
+                                devicePixelRatio={isMobile ? 0.4 : 0.9}
                                 style={{
                                     borderRadius: '0px', width: "100vw", height: "101vh"
                                 }}
