@@ -175,7 +175,6 @@ const Seasons: React.FC = () =>
                   The launch of season 3 would include:
                   <li>New expansion to web-based app. More information down the line.
                   </li>
-                  <li>New apocalypse themed expansion for web-based game.</li>
                 </Typography>
               </TabPanel>
             </SwipeableViews>
