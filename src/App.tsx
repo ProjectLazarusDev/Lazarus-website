@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 //store all pages
 import Home from "./Pages/Home";
 import MintPage from "./Pages/MintPage";
-
+import MultiplayerTest from "./Pages/MultiplayerTest";
 //renders html
 const App: React.FC = () => 
 {
@@ -24,6 +24,7 @@ const App: React.FC = () =>
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/MintPage' exact component={MintPage} />
+          <Route path='/MaggiGoreng' exact component={MultiplayerTest} />
         </Switch>
       </Router>
     
