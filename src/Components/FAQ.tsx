@@ -125,7 +125,7 @@ const FAQ: React.FC = () =>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                        We will be using Ethereum 721 Blockchain - Layer 1.Web3 and metamask will be used for ethereum based transactions.
+                                        We will be using Ethereum 721 Blockchain - Layer 1. Web3 and metamask will be used for ethereum based transactions.
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
@@ -190,14 +190,14 @@ const FAQ: React.FC = () =>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                        For presale you can mint up to two and for public sale you can mint up to 5.
-                                        How many NFT's will there be and how will the total pool be divided?
+                                        For presale you can mint up to 2 and for public sale you can mint up to 5.
+                                       
                                         There will be a total of 4040 avatars and it will be split into the following.
 
-                                        Presale - 2000
-                                        Public Sale -1840
-                                        Contest and Giveaway - 100
-                                        For devs - 100
+                                        <li>Presale - 2000</li>
+                                        <li> Public Sale -1840</li>
+                                        <li>Contest and Giveaway - 100</li>
+                                        <li>For devs - 100</li>
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>

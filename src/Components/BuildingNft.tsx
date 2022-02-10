@@ -76,13 +76,12 @@ const BuildingNft: React.FC = () =>
                                             <Typography fontFamily='Dongle' align={width < 960 ? "center" : "right"} color={'#ffffffff'} variant='h3' lineHeight={'3.5rem'} fontSize='7.5rem' fontWeight='900'>TO THE MOON</Typography>
 
                                             <Typography paddingBottom={'25px'} paddingTop={'25px'} fontFamily='Dongle' align={width < 960 ? "center" : "right"} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.6rem'>
-                                                <b> Explore the moon base</b> in our interactive web based game application!
-                                                Here take part in an evergrowing game experience as we  <b>update the game with more content with the community.</b>
+                                            <b>Explore the moon base in our interactive web based game application!</b> Here take part in an ever-growing game experience as we update the game with more content for the community.
+Launching with the social hub, Bobots holders will be given exclusive access to the game as we add in mini games and in-game events.
                                             </Typography>
 
                                             <Grid container
                                                 spacing={0}
-
                                                 direction="row"
                                                 alignItems="center"
                                                 justifyContent= {width > 960 ? 'right' : 'center'}
