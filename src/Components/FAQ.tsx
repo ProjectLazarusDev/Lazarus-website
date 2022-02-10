@@ -147,6 +147,21 @@ const FAQ: React.FC = () =>
                                 </AccordionDetails>
                             </Accordion>
 
+                            <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel55'} onChange={handleChange('panel55')}>
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel55bh-content"
+                                    id="panel55bh-header"
+                                >
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>Which Engine does Bobots run on?</Typography>
+
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
+                                        Unity Engine with webGL is being used to build our game.
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
 
                             <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
                                 <AccordionSummary
