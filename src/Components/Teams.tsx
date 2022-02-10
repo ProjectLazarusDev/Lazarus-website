@@ -19,26 +19,34 @@ const Teams: React.FC = () =>
         <>
             <Card style={{
                 zIndex: -2,
-                height: '100%',
+               minHeight: '100vh',
                 background: 'linear-gradient(to right bottom, #4444441f,#00000000)',
                 borderRadius: '0px',
                 alignItems: ' center',
                 justifyContent: ' center'
             }}>
+                 <Typography paddingTop={'170px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={'1.5rem'} color={'#ffffff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
+            - WHO BUILT IT? -
+          </Typography>
+          <div className="glow">
+            <Typography fontFamily='Dongle' paddingBottom="50px"paddingTop="25px" align="center" color={'#ffffffFF'} variant='h3' lineHeight={'3.5rem'} fontSize='5.5rem' fontWeight='900'>MEET THE TEAM</Typography>
+          </div>
                 <Grid xs
-                    style={{ minHeight: '100vh' }}
+                  
                     container
                     spacing={0}
                     direction="row"
                     alignItems="center"
                     justifyContent="center"
                 >
+                    
                     <Grid
                         direction="column"
                         alignItems="center"
                         justifyContent="center"
                         margin="10px"
                     >
+                        
                         <Card style={{
                             zIndex: -2,
 

@@ -5,7 +5,13 @@
     flex-direction: column;
 
 }
-
+.video-right
+{
+    display: flex;
+    flex-direction: 'row';
+    justify-content:  'space-between';
+  
+}
 .PageAcc {
     display: fixed;
     align-items: center;

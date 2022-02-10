@@ -27,7 +27,10 @@ import Teams from '../Components/Teams';
 import Seasons from '../Components/Seasons';
 import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
+import { CardMedia } from "@mui/material";
 import { isMobile } from 'react-device-detect';
+
+
 const unityContext = new UnityContext({
     loaderUrl: "devbuild/devbuild.loader.js",
     dataUrl: "devbuild/devbuild.data",
@@ -260,6 +263,64 @@ const Home: React.FC = () =>
                                                         Robots have dominantly replace humans with cute robots being stationed on the moon.
                                                         These bobots lives on the ethereum network using the  <b>ERC-721 blockchain.</b>
                                                     </Typography>
+                                                    <Grid container
+                                                        spacing={0}
+
+                                                        direction="row"
+                                                        alignItems="center"
+                                                        justifyContent={width > 960 ? 'left' : 'center'}
+
+                                                    >
+                                                        <div className="bobot-horizontal">
+                                                            <CardMedia
+
+                                                                component='video'
+                                                                muted={true}
+                                                                image={"meta/video_37.mp4"}
+                                                                autoPlay
+                                                                loop
+                                                                style={{ margin: '5px', display: 'fixed', width: '100px', height: '100px', borderRadius: '0px' }}
+                                                            />
+
+                                                            <CardMedia
+
+                                                                component='video'
+                                                                muted={true}
+                                                                image={"meta/video_76.mp4"}
+                                                                autoPlay
+                                                                loop
+                                                                style={{ margin: '5px', display: 'fixed', width: '100px', height: '100px', borderRadius: '0px' }}
+                                                            />
+                                                            <CardMedia
+
+                                                                component='video'
+                                                                muted={true}
+                                                                image={"meta/video_43.mp4"}
+                                                                autoPlay
+                                                                loop
+                                                                style={{ margin: '5px', display: 'fixed', width: '100px', height: '100px', borderRadius: '0px' }}
+                                                            />
+                                                            <CardMedia
+
+                                                                component='video'
+                                                                muted={true}
+                                                                image={"meta/video_87.mp4"}
+                                                                autoPlay
+                                                                loop
+                                                                style={{ margin: '5px', display: 'fixed', width: '100px', height: '100px', borderRadius: '0px' }}
+                                                            />
+                                                            <CardMedia
+
+                                                                component='video'
+                                                                muted={true}
+                                                                image={"meta/video_78.mp4"}
+                                                                autoPlay
+                                                                loop
+                                                                style={{ margin: '5px', display: 'fixed', width: '100px', height: '100px', borderRadius: '0px' }}
+                                                            />
+
+                                                        </div>
+                                                    </Grid>
 
                                                     <Typography paddingTop={'75px'} fontFamily='Dongle' align={width < 960 ? "center" : "left"} color={'#ffffff77'} fontWeight='light' variant='subtitle1' fontSize='1.6rem'>
                                                         Click to change preview characters
