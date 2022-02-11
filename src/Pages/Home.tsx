@@ -54,6 +54,7 @@ const Home: React.FC = () =>
             // console.log((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
             setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
             unityContext.send("MainMenuControl", "SetScrollBarValue", scrollValue);
+            
         }
         window.addEventListener("scroll", scrollFun);
 

@@ -41,13 +41,12 @@ const Seasons: React.FC = () =>
           justifyContent="center"
 
         >
-          <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={'1.5rem'} color={'#ffffff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
-            - WHAT AWAITS IN THE FUTURE? -
+          <Typography paddingTop={'170px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={'1.5rem'} color={'#ffffff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
+            - WHAT'S NEXT -
           </Typography>
           <div className="glow">
-            <Typography fontFamily='Dongle' paddingTop="25px" align="center" color={'#ffffffFF'} variant='h3' lineHeight={'3.5rem'} fontSize='5.5rem' fontWeight='900'>THE ROAD AHEAD</Typography>
+            <Typography fontFamily='Dongle' paddingBottom="50px"paddingTop="25px" align="center" color={'#ffffffFF'} variant='h3' lineHeight={'3.5rem'} fontSize= {'4.5rem'} fontWeight='900'>THE ROAD AHEAD</Typography>
           </div>
-
 
 
           <Grid xs
@@ -111,7 +110,7 @@ const Seasons: React.FC = () =>
 
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
-                    fontSize='1.25rem' fontWeight="light" color='white' width= '300px' >
+                    fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
                    The launch of season 1 will see a total of 4040 Bobots being released to the public!
                   </Typography>
                 </Card>
@@ -170,7 +169,7 @@ const Seasons: React.FC = () =>
 
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
-                    fontSize='1.25rem' fontWeight="light" color='white' width= '300px' >
+                    fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
                     Sick of seeing fixed jpgs as NFTs? We are giving you the power to create your own images and profile pictures!
                   </Typography>
                 </Card>
@@ -224,9 +223,9 @@ const Seasons: React.FC = () =>
 
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
-                    fontSize='1.25rem' fontWeight="light" color='white' width= '300px' >
-                    Shortly after release of season 1 Bobots,we will release the key utility that we are building,
-                    multiplayer social experience to meet and chat with other Bobots!
+                    fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
+                    Shortly after release of season 1 Bobots,we will release the key utility, 
+                    a multiplayer social experience to meet and chat with other Bobots!
                   </Typography>
                 </Card>
               </Card>
@@ -282,7 +281,7 @@ const Seasons: React.FC = () =>
 
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
-                    fontSize='1.25rem' fontWeight="light" color='white' width= '300px' >
+                    fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
                     Launch of apocalyse bobots - season 1 holders would receive free airdrops for season 2 content.
                     More info in the future.
                   </Typography>
@@ -337,7 +336,7 @@ const Seasons: React.FC = () =>
 
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
-                    fontSize='1.25rem' fontWeight="light" color='white' width= '300px' >
+                    fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
                      After the events of 'The Apocalypse'. Work begins to rebuild the moon base into a new and thriving community.
                   </Typography>
                 </Card>
@@ -390,7 +389,7 @@ const Seasons: React.FC = () =>
 
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
-                    fontSize='1.25rem' fontWeight="light" color='white' width= '300px' >
+                    fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
                     We will roll out various features throughout all seasons,stay tuned!
                   </Typography>
                 </Card>
