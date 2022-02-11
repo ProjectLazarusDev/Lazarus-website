@@ -53,7 +53,7 @@ const Home: React.FC = () =>
         const scrollFun = () =>
         {
             if(isMobile)
-            unityContext.send("MainMenuControl", "SetMobile");
+                unityContext.send("MainMenuControl", "setMobile");
             setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
             unityContext.send("MainMenuControl", "SetScrollBarValue", scrollValue);
 
