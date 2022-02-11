@@ -259,7 +259,7 @@ const Home: React.FC = () =>
                                                 </div>
                                                 <div className="glowWhite">
                                                     <Typography paddingTop={'25px'} paddingBottom={'0px'} fontFamily='Dongle' align={width < 960 ? "center" : "left"} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.6rem'>
-                                                        <b>In the year 4040,</b>
+                                                        <b>In the year 4040, </b>
                                                         Robots have dominantly replace humans with cute robots being stationed on the moon.
                                                         These bobots lives on the ethereum network using the  <b>ERC-721 blockchain.</b>
                                                     </Typography>

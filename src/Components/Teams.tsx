@@ -141,7 +141,7 @@ const Teams: React.FC = () =>
                                 <Typography paddingTop="20px" align="center" variant="body2" component="h1"
                                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                                     fontSize='1.5rem' fontWeight="light" color='white' width='200px'>
-                                    <b>Artist turned software engineer.</b>
+                                    <b>Artist turned software engineer. </b>
                                     Ranging experience from 3D Art to custom 3D Engines and web development.
                                 </Typography>
                                 <Typography align="center" variant="body2" component="h1"
@@ -196,7 +196,7 @@ const Teams: React.FC = () =>
                                 <Typography paddingTop="20px" align="center" variant="body2" component="h1"
                                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                                     fontSize='1.5rem' fontWeight="light" color='white' width='200px'>
-                                    <b>Artist turned software engineer</b> ,from 3D game art to creating custom game engines.
+                                    <b>Artist turned software engineer</b>, from 3D game art to creating custom game engines.
 
                                 </Typography>
                                 <Typography align="center" variant="body2" component="h1"
