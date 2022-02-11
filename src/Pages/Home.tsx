@@ -48,13 +48,15 @@ const Home: React.FC = () =>
 
     React.useEffect(() =>
     {
+        
 
         const scrollFun = () =>
         {
-            // console.log((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
+            if(isMobile)
+            unityContext.send("MainMenuControl", "SetMobile");
             setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
             unityContext.send("MainMenuControl", "SetScrollBarValue", scrollValue);
-            
+
         }
         window.addEventListener("scroll", scrollFun);
 
@@ -131,6 +133,7 @@ const Home: React.FC = () =>
     {
         document.body.style.overflowY = "hidden";
         window.addEventListener("resize", updateDimensions);
+        
         return () => window.removeEventListener("resize", updateDimensions);
     }, []);
 
