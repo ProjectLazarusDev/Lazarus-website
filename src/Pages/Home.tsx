@@ -141,6 +141,8 @@ const Home: React.FC = () =>
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
+        if(isMobile)
+            unityContext.send("MainMenuControl", "setMobile");
         setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
         unityContext.on("progress", handleOnUnityProgress);
         unityContext.on("loaded", handleOnUnityLoaded);
