@@ -81,6 +81,8 @@ const Home: React.FC = () =>
         setIsLoaded(true);
         setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
         unityContext.setFullscreen(true);
+        if(isMobile)
+            unityContext.send("MainMenuControl", "setMobile");
     }
 
     //toggle full-screen control
