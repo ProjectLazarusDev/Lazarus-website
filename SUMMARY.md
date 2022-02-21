@@ -23,12 +23,7 @@
 ## Bobot Avatar
 
 * [🤖 Season 1 Avatar](bobot-avatar/season-1-avatar.md)
-* [Attributes](bobot-avatar/attributes.md)
-
-## Bobot Moon Base
-
-* [Page 2](bobot-moon-base/page-2.md)
 
 ## TECH
 
-* [Page 3](tech/page-3.md)
+* [💾 Tech Stack](tech/tech-stack.md)
