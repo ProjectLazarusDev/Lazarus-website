@@ -70,14 +70,14 @@ const BuildingNft: React.FC = () =>
                                     <div className='PageContainer'>
                                         <div className="glowBlack">
                                             <Typography paddingBottom={'50px'} paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align={(width < 960) ? "center" : "right"} lineHeight={'1.5rem'} color='#ffffffff' fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
-                                                .//PREPARE FOR LAUNCH
+                                                MAGIC AND TREASUREDAO
                                             </Typography>
 
-                                            <Typography fontFamily='Dongle' align={width < 960 ? "center" : "right"} color={'#ffffffff'} variant='h3' lineHeight={'3.5rem'} fontSize='7.5rem' fontWeight='900'>TO THE MOON</Typography>
+                                            <Typography fontFamily='Dongle' align={width < 960 ? "center" : "right"} color={'#ffffffff'} variant='h3' lineHeight={'3.5rem'} fontSize='7.5rem' fontWeight='900'>FREE MINTS</Typography>
 
                                             <Typography paddingBottom={'25px'} paddingTop={'25px'} fontFamily='Dongle' align={width < 960 ? "center" : "right"} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.6rem'>
-                                            <b>Explore the moon base in our interactive web based game application!</b> Here take part in an ever-growing game experience as we update the game with more content for the community.
-Launching with the social hub, Bobots holders will be given exclusive access to the game as we add in mini games and in-game events.
+                                             Whitelisted members will be given free mints as part of TreasureDAO's fair launch culture.  After launch player will be able to use our web-based application to play and earn various valuable resources.
+                                             Also launching with the collection is a social hub in game where players can interact and chat with one another.
                                             </Typography>
 
                                             <Grid container

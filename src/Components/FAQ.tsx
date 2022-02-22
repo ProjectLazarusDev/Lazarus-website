@@ -32,9 +32,9 @@ const FAQ: React.FC = () =>
         <>
             <Card style={{
                 zIndex: -2,
-                display:'flex',
-                paddingTop:'50px',
-                paddingBottom:'50px',
+                display: 'flex',
+                paddingTop: '50px',
+                paddingBottom: '50px',
                 background: 'linear-gradient(to right bottom, #ffffff1f,#ffffff00)',
                 borderRadius: '0px',
                 alignItems: ' center',
@@ -46,7 +46,7 @@ const FAQ: React.FC = () =>
                     direction="column"
                     alignItems="center"
                     justifyContent="center"
-                    style={{  }}
+                    style={{}}
                 >
                     <div>
                         <Typography paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align="center" lineHeight={'1.5rem'} color={'#ffffff66'} fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
@@ -57,23 +57,7 @@ const FAQ: React.FC = () =>
                         </div>
 
                         <div className="PageAcc">
-                            <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1bh-content"
-                                    id="panel1bh-header"
-                                >
-                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', }}>
-                                        What is an NFT?
-                                    </Typography>
 
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        An NFT stands for “Non-fungible token” which is a term for a unique, digital item whose ownership lives by a blockchain. An NFT could range from a collectible, in-game item , digital art, access to events and more!
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
 
                             <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                                 <AccordionSummary
@@ -82,13 +66,14 @@ const FAQ: React.FC = () =>
                                     id="panel2bh-header"
                                 >
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>
-                                        What are bobots about?
+                                        What is Bobot?
                                     </Typography>
 
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                        Bobots is a 3D generative NFT collection with a total count of 4040 avatars. Accompanying the bobots will be a web-based app to interact with your Bobot!
+                                        Bobots is a Play-to-Earn -  GameFi game using TreasureDAO as the host for our own Bobots meta-verse.
+                                        The long term vision of Bobots is to create an environment where community can hang out in real-time and also stake their assets.
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
@@ -107,7 +92,7 @@ const FAQ: React.FC = () =>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                        Before NFTs, we built small indie sized projects during our free time before moving on with our separate lives. Now years wiser, with the rise of NFTs and the wealth of experience we gained from a variety of mediums, we are taking this opportunity to build something never seen before in the NFT space.
+                                        Before NFTs, we built small indie sized projects during our free time before moving on with our separate lives. Now years wiser, with the rise of NFTs and the wealth of experience we gained from a variety of mediums, we are taking this opportunity to build something never seen before in the blockchain space.
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
@@ -125,27 +110,18 @@ const FAQ: React.FC = () =>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                        We will be using Ethereum 721 Blockchain - Layer 1. Web3 and metamask will be used for ethereum based transactions.
+                                        We will be using Ethereum 721 Blockchain - Layer 2 with Arbitrum being the chosen blockchain to host our collection and blockchain interactions.
+
+                                        Why we chosen Arbitrum is due to the following reasons:
+                                        <li>Gas fee cost: Due to the much lower gas fee cost we can focus on more game based blockchain interaction.</li>
+                                        <li>Widely adopted L2 blockchain: L2 systems are gaining traction in recent times and Arbitrum is capable of sustaining high volumes.</li>
+
+                                        Metamask will be used for ethereum based transactions.
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
 
 
-                            <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel5bh-content"
-                                    id="panel5bh-header"
-                                >
-                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>What Utilities do Bobots have?</Typography>
-
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                        The bobots project started with a 'utility first' mindset in which we will have a web-based game on our Bobots website. Once the web-based idea is set in stone,everything from the art to the final avatars themselves are built and rendered in the game itself. This means the Bobots' sneak peaks are actually captured from in-game! The utility itself is actually being shown on the bobots website,with the game itself being rendered in the background.  With this web-based pipeline that we have created, the first step for Bobots launch is to be able to view your Bobot in real time! Afterwards we will be announcing the different aspects of how we will expand our game.
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
 
                             <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel55'} onChange={handleChange('panel55')}>
                                 <AccordionSummary
@@ -163,21 +139,7 @@ const FAQ: React.FC = () =>
                                 </AccordionDetails>
                             </Accordion>
 
-                            <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel6bh-content"
-                                    id="panel6bh-header"
-                                >
-                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>What would you classify the game as?</Typography>
 
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                        There are different blockchain games out there and we do not want to make something out for generating more money. As we are brought up with a developer’s mindset, we seek to innovate as to what we can do with the technology and bring in what we are good at. Hence we are looking at it as a ‘play to chill’ game where the community interacts with one another,gives feedback and engages into what we are creating.
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
 
                             <Accordion style={{ backgroundColor: 'transparent' }} expanded={expanded === 'panel7'} onChange={handleChange('panel7')}>
                                 <AccordionSummary
@@ -185,19 +147,17 @@ const FAQ: React.FC = () =>
                                     aria-controls="panel7bh-content"
                                     id="panel7bh-header"
                                 >
-                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>How many can I mint for pre-sale(WL) and public sale?</Typography>
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>How many can I mint?</Typography>
 
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                        For presale you can mint up to 2 and for public sale you can mint up to 5.
-                                       
-                                        There will be a total of 4040 avatars and it will be split into the following.
+                                        Whitelisted members will be airdropped 2 Bobots and special roles will be airdropped 4 Bobots.
+                                        There will be no presale , public sale and reveal of the Bobots.
+                                        There will be a total of 4040 avatars and it will be split into the following:
 
-                                        <li>Presale - 2000</li>
-                                        <li> Public Sale -1840</li>
-                                        <li>Contest and Giveaway - 100</li>
-                                        <li>For devs - 100</li>
+                                        <li>Whitelisted members - 3840</li>
+                                        <li>Devs / future giveaway - 200</li>
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
@@ -208,12 +168,12 @@ const FAQ: React.FC = () =>
                                     aria-controls="panel8bh-content"
                                     id="panel8bh-header"
                                 >
-                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>How do I get whitelisted or obtain free NFT?</Typography>
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>How do I get whitelisted and obtain the free NFT?</Typography>
 
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                    We will be hosting very regular whitelist giveaways and free NFTs once in a while!
+                                        We will be hosting very regular raffles and contest giveaways!
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
@@ -229,7 +189,7 @@ const FAQ: React.FC = () =>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                    We will be releasing the first collection of our bobots and an initial rollout of our web-based application.We will be giving sneak peaks of our web app very soon!
+                                        We will be releasing the first collection of our bobots and an initial rollout of our web-based application.We will be giving sneak peaks of our web app very soon!
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
@@ -246,7 +206,7 @@ const FAQ: React.FC = () =>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                    As we expand our community and develop the application,we hope to be able to release the season 1 initial content together with the launch of bobots. Hence we will announce when we are ready.
+                                        As we expand our community and develop the application,we hope to be able to release the season 1 initial content together with the launch of bobots. Hence we will announce when we are ready.
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
@@ -258,14 +218,12 @@ const FAQ: React.FC = () =>
                                     aria-controls="panel11bh-content"
                                     id="panel11bh-header"
                                 >
-                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>What is the price of the nft?</Typography>
+                                    <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem' }}>What is the price of the launch NFTs?</Typography>
 
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                    Price for PRESALE  sale: 0.08eth
-                                    Price of PUBLIC sale: 0.1eth. 
-
+                                        Free:)
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>

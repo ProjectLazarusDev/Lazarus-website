@@ -160,7 +160,7 @@ const Seasons: React.FC = () =>
                 >
                   <Typography align="left" fontSize='1.6rem' lineHeight='1.5rem' variant="body1" component="h1"
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.5rem'} fontWeight='bold' color='white'>
-                    PHOTO MODE
+                    BOBOT STAKING
                   </Typography>
                   <Typography align="left" variant="body1" component="h1" fontSize='1rem' lineHeight='0.5rem'
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.2rem'} color={'#ffffff66'} fontWeight="" >
@@ -170,7 +170,7 @@ const Seasons: React.FC = () =>
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                     fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
-                    Sick of seeing fixed jpgs as NFTs? We are giving you the power to create your own images and profile pictures!
+                    Bobots can be sent on training missions to increase valuable attributes.
                   </Typography>
                 </Card>
               </Card>
@@ -224,7 +224,7 @@ const Seasons: React.FC = () =>
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                     fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
-                    Shortly after release of season 1 Bobots,we will release the key utility, 
+                    With the release of season 1 Bobots,we will release the social hub,
                     a multiplayer social experience to meet and chat with other Bobots!
                   </Typography>
                 </Card>
@@ -272,18 +272,18 @@ const Seasons: React.FC = () =>
                 >
                   <Typography align="left" fontSize='1.6rem' lineHeight='1.5rem' variant="body1" component="h1"
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.5rem'} fontWeight='bold' color='white'>
-                    APOCALYPSE EXPANSION
+                    THE MOON BASE
                   </Typography>
                   <Typography align="left" variant="body1" component="h1" fontSize='1rem' lineHeight='0.5rem'
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.2rem'} color={'#ffffff66'} fontWeight="" >
-                    SEASON 2 LAUNCH
+                    MID SEASON LAUNCH
                   </Typography>
 
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                     fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
-                    Launch of apocalyse bobots - season 1 holders would receive free airdrops for season 2 content.
-                    More info in the future.
+                    The moon base would be airdropped to all whitelisted members,
+                    here the base can be levelled up based on the attributes of your Bobots.
                   </Typography>
                 </Card>
               </Card>
@@ -327,17 +327,17 @@ const Seasons: React.FC = () =>
                 >
                   <Typography align="left" fontSize='1.6rem' lineHeight='1.5rem' variant="body1" component="h1"
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.5rem'} fontWeight='bold' color='white'>
-                   REDEMPTION EXPANSION
+                   MINING QUEST
                   </Typography>
                   <Typography align="left" variant="body1" component="h1" fontSize='1rem' lineHeight='0.5rem'
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.2rem'} color={'#ffffff66'} fontWeight="" >
-                    SEASON 3 LAUNCH
+                   MID SEASON LAUNCH
                   </Typography>
 
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                     fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
-                     After the events of 'The Apocalypse'. Work begins to rebuild the moon base into a new and thriving community.
+                     Stake $MAGIC and your Bobots to receive valuable treasures and rewards.
                   </Typography>
                 </Card>
               </Card>
@@ -380,17 +380,17 @@ const Seasons: React.FC = () =>
                 >
                   <Typography align="left" fontSize='1.6rem' lineHeight='1.5rem' variant="body1" component="h1"
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.5rem'} fontWeight='bold' color='white'>
-                    MORE SEASONAL EVENTS!
+                    TREASUREDAO RESOURCE INTEGRATION
                   </Typography>
                   <Typography align="left" variant="body1" component="h1" fontSize='1rem' lineHeight='0.5rem'
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.2rem'} color={'#ffffff66'} fontWeight="" >
-                    BETWEEN SEASONS
+                    MID SEASON LAUNCH
                   </Typography>
 
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                     fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
-                    We will roll out various features throughout all seasons,stay tuned!
+                    Integrate Consumables and collections from TreasureDAO's metaverse into our game.
                   </Typography>
                 </Card>
               </Card>

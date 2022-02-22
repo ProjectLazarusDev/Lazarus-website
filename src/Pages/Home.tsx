@@ -260,16 +260,15 @@ const Home: React.FC = () =>
                                             <div className='PageContainer'>
 
                                                 <Typography paddingBottom={'50px'} paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'10px'} align={(width < 960) ? "center" : "left"} lineHeight={0} color='#ffffff66' fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
-                                                    .//DISCOVERING
+                                                    A NEW GAME FI EXPERIENCE
                                                 </Typography>
                                                 <div className="glow">
                                                     <Typography fontFamily='Dongle' align={width < 960 ? "center" : "left"} color={'#ffffffFF'} variant='h3' lineHeight={'3.5rem'} fontSize='7.5rem' fontWeight='900'>THE BOBOTS.</Typography>
                                                 </div>
                                                 <div className="glowWhite">
                                                     <Typography paddingTop={'25px'} paddingBottom={'0px'} fontFamily='Dongle' align={width < 960 ? "center" : "left"} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.6rem'>
-                                                        <b>In the year 4040, </b>
-                                                        Robots have dominantly replace humans with cute robots being stationed on the moon.
-                                                        These bobots lives on the ethereum network using the  <b>ERC-721 blockchain.</b>
+                                                    <b>Bobots is a Play-to-Earn -  GameFi game</b> using TreasureDAO as the host for our own Bobots meta-verse.
+The  <b>long term vision of Bobots</b> is to create an environment where community can hang out in real-time and also stake their assets.
                                                     </Typography>
                                                     <Grid container
                                                         spacing={0}
