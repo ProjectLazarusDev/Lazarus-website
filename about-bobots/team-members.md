@@ -26,7 +26,7 @@ Starting out with 3D Game Art before pursuing to be a software engineer. Ranging
 
 ## Farzaana
 
-Artist turned software engineer ,from 3D game art to creating custom game engines. Currently helming as a Blockchain and Smart Contracts Developer.
+Artist turned software engineer, from 3D game art to creating custom game engines. Currently helming as a Blockchain and Smart Contracts Developer.
 
 ## Elston
 
