@@ -8,14 +8,16 @@
 * [🤝 Team Members](about-bobots/team-members.md)
 * [🚧 Arbitrum](about-bobots/arbitrum.md)
 
-## Ecosystem Integration with MAGIC
+## Ecosystem
 
-* [🌎 Ecosystem](ecosystem-integration-with-magic/ecosystem.md)
+* [🌎 Overview](ecosystem/overview.md)
+* [💰 TreasureDAO](ecosystem/treasuredao.md)
+* [💵 Consumables and Currency](ecosystem/consumables-and-currency.md)
 
 ## Facilities
 
 * [Overview](facilities/overview.md)
-* [🔫 Drill Training](facilities/drill-training.md)
+* [🔫 Power Training](facilities/power-training.md)
 * [🏁 Mining Quest](facilities/mining-quest.md)
 * [🌗 Moon Base Expansion](facilities/moon-base-expansion.md)
 * [🏡 Social Hub](facilities/social-hub.md)

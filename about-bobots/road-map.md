@@ -10,9 +10,9 @@ Bobots will be designed for long-term expansion and growth along-side the aribit
 
 ### Launch of Season 1 (May)
 
-* [ ] Launch of initial supply of 4040 Season 1 Bobots
+* [ ] Launch of initial supply of 4040 Bobots
+* [ ] Launch of Social Hub
 * [ ] Avatar Staking system for sending Bobots Avatars to drill training
-*
 
 ### Mid Season 1 (June)
 
@@ -23,3 +23,6 @@ Bobots will be designed for long-term expansion and growth along-side the aribit
 ### Mining Quest Launch
 
 * [ ] $MAGIC staking launch
+* [ ] Incoporation of TreasureDAO meta-verse resources into game
+
+## More to announced down the line...

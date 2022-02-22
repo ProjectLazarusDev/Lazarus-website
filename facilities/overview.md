@@ -2,17 +2,17 @@
 
 ## Facilities of Bobot-Verse
 
-The ecosystem mechanics for Bobots is split into a few key pillars:
+The ecosystem mechanics for Bobots is split into a few locations:
 
-### Drill Training
+## Drill Training
 
 Sent Bobots to training to earn Power Points. Staking of avatars will be required in a certain duration to earn the points. **See more here:**
 
-{% content-ref url="drill-training.md" %}
-[drill-training.md](drill-training.md)
+{% content-ref url="power-training.md" %}
+[power-training.md](power-training.md)
 {% endcontent-ref %}
 
-### Mining Quest
+## Mining Quest
 
 Send Bobots to the mining facility to earn $MAGIC. Staking of Bobots and $MAGIC would be required. See more here:
 
@@ -20,7 +20,7 @@ Send Bobots to the mining facility to earn $MAGIC. Staking of Bobots and $MAGIC 
 [mining-quest.md](mining-quest.md)
 {% endcontent-ref %}
 
-### Moon Base Expansion
+## Moon Base Expansion
 
 Expand the moon base by increasing the power points of all the Bobots. See more here:
 
@@ -28,4 +28,10 @@ Expand the moon base by increasing the power points of all the Bobots. See more 
 [moon-base-expansion.md](moon-base-expansion.md)
 {% endcontent-ref %}
 
-## ****
+## **Social Hub**
+
+Chat and interact with other Bobots in realtime. See more here:
+
+{% content-ref url="social-hub.md" %}
+[social-hub.md](social-hub.md)
+{% endcontent-ref %}
