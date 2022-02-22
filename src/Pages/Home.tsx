@@ -267,7 +267,7 @@ const Home: React.FC = () =>
                                                 </div>
                                                 <div className="glowWhite">
                                                     <Typography paddingTop={'25px'} paddingBottom={'0px'} fontFamily='Dongle' align={width < 960 ? "center" : "left"} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.6rem'>
-                                                    <b>Bobots is a Play-to-Earn -  GameFi game</b> using TreasureDAO as the host for our own Bobots meta-verse.
+                                                    <b>Bobots is a Play-to-Earn -  GameFi game</b> using Arbitrum as the host for our own Bobots meta-verse.
 The  <b>long term vision of Bobots</b> is to create an environment where community can hang out in real-time and also stake their assets.
                                                     </Typography>
                                                     <Grid container

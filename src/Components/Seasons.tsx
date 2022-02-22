@@ -337,7 +337,7 @@ const Seasons: React.FC = () =>
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                     fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
-                     Stake $MAGIC and your Bobots to receive valuable treasures and rewards.
+                     Stake resources and Bobots to receive valuable rewards.
                   </Typography>
                 </Card>
               </Card>
@@ -380,7 +380,7 @@ const Seasons: React.FC = () =>
                 >
                   <Typography align="left" fontSize='1.6rem' lineHeight='1.5rem' variant="body1" component="h1"
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.5rem'} fontWeight='bold' color='white'>
-                    TREASUREDAO RESOURCE INTEGRATION
+                    RESOURCE INTEGRATION
                   </Typography>
                   <Typography align="left" variant="body1" component="h1" fontSize='1rem' lineHeight='0.5rem'
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.2rem'} color={'#ffffff66'} fontWeight="" >
@@ -390,7 +390,7 @@ const Seasons: React.FC = () =>
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                     fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
-                    Integrate Consumables and collections from TreasureDAO's metaverse into our game.
+                    Integrate Consumables and collections from metaverses into our game.
                   </Typography>
                 </Card>
               </Card>

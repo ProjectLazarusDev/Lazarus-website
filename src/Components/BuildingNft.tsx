@@ -76,7 +76,7 @@ const BuildingNft: React.FC = () =>
                                             <Typography fontFamily='Dongle' align={width < 960 ? "center" : "right"} color={'#ffffffff'} variant='h3' lineHeight={'3.5rem'} fontSize='7.5rem' fontWeight='900'>FREE MINTS</Typography>
 
                                             <Typography paddingBottom={'25px'} paddingTop={'25px'} fontFamily='Dongle' align={width < 960 ? "center" : "right"} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.6rem'>
-                                             Whitelisted members will be given free mints as part of TreasureDAO's fair launch culture.  After launch player will be able to use our web-based application to play and earn various valuable resources.
+                                             Whitelisted members will be given free mints as part of the fair launch culture.  After launch player will be able to use our web-based application to play and earn various valuable resources.
                                              Also launching with the collection is a social hub in game where players can interact and chat with one another.
                                             </Typography>
 
