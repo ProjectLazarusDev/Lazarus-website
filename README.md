@@ -10,7 +10,7 @@ coverY: 0
 
 ## What is Bobots?
 
-**Bobots is a play to Earn -  GameFi game** using TreasureDAO as the host for our own Bobots meta-verse.
+**Bobots is a Play-to-Earn -  GameFi game** using TreasureDAO as the host for our own Bobots meta-verse.
 
 The long term vision of Bobots is to create an environment where community can hang out in real-time and also stake their assets.
 
