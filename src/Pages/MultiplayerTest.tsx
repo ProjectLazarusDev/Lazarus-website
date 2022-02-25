@@ -16,7 +16,7 @@ import './Home.css'
 import './Page.css'
 import Typography from '@mui/material/Typography';
 import Header from '../Components/Header';
-
+import { Button } from "@mui/material";
 import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
@@ -40,7 +40,7 @@ const MultiplayerTest: React.FC = () =>
 
         const scrollFun = () =>
         {
-          
+
             setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
             unityContext.send("MainMenuControl", "SetScrollBarValue", scrollValue);
         }
@@ -68,15 +68,29 @@ const MultiplayerTest: React.FC = () =>
         setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
         unityContext.setFullscreen(true);
     }
-
+    function RenderFullScreenButton()
+    {
+      
+        return (
+            <>
+              <Button style={{ color: 'white', height: '40px', fontFamily: 'Dongle', letterSpacing: '1px', fontSize: '1.5rem', backgroundColor: '#000000ff', width: '300px' }} onClick={() => { ToggleFullScreen(true) }} >
+                                    Click to focus game
+                               </Button>
+            </>
+        );
+    }
 
     const updateDimensions = () =>
     {
 
-        
+
 
     }
-
+    //toggle full-screen control
+    function ToggleFullScreen(toggle: boolean)
+    {
+        unityContext.setFullscreen(toggle);
+    }
 
     const GetLoadingString = (load: Number) =>
     {
@@ -118,6 +132,7 @@ const MultiplayerTest: React.FC = () =>
         <>
             <div className="pageGlobal">
                 <Header></Header>
+               
                 <Card style={{
                     zIndex: isLoaded ? -2 : 20,
                     position: 'fixed',
@@ -159,6 +174,7 @@ const MultiplayerTest: React.FC = () =>
                             </div>
                         )}
                         <div className="pageUnity">
+                       
                             <Unity className="unityWindow"
                                 unityContext={unityContext}
 
@@ -168,9 +184,15 @@ const MultiplayerTest: React.FC = () =>
                                 }}
                             />
                         </div>
+                        <div className="pagePos">
+                            <div className="pagePosAlign">
+                                {RenderFullScreenButton()}
+
+                            </div>
+                        </div>
                     </Grid>
                 </Card>
-               
+
             </div>
         </>
     );
