@@ -72,7 +72,7 @@ const FAQ: React.FC = () =>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                        Bobots is a Play-to-Earn -  GameFi game using Arbitrum as the host for our own Bobots meta-verse.
+                                        Bobots is a 3D blockchain game using Arbitrum as the host for our own Bobots meta-verse.
                                         The long term vision of Bobots is to create an environment where community can hang out in real-time and also stake their assets.
                                     </Typography>
                                 </AccordionDetails>
