@@ -33,14 +33,38 @@ To get started, you will require a Web3 wallet such as [**Metamask**](https://me
 
 Once Metamask has been installed, you will need to add the Arbitrum One network into your wallet.&#x20;
 
+{% tabs %}
+{% tab title="Arbitrium One (Mainnet)" %}
+1. From the Metamask wallet, click on your profile picture, and click on '**Settings**'\
+   ![](<../.gitbook/assets/image (5).png>)
+2. Scroll down and click on '**Networks**'.\
+   ![](../.gitbook/assets/image.png)
+3. Click on '**Add Network**' \
+   ![](<../.gitbook/assets/image (2).png>)
+4. Use the following details to add Arbitrum One Mainnet to Metamask \
+   \
+   **Network Name**: Arbitrum One Mainnet \
+   **New RPC URL**: [https://arb1.arbitrum.io/rpc](https://arb1.arbitrum.io/rpc)\
+   **Chain ID**: 42161\
+   **Currency Symbol**: ETH\
+   **Block Explorer URL**: [https://arbiscan.io/](https://arbiscan.io)
+{% endtab %}
+
+{% tab title="Arbitrium One (Testnet)" %}
+\
+\
+
+{% endtab %}
+{% endtabs %}
+
 After adding the Arbitrum One network into the wallet, it is time to bridge ETH into Arbitrum One. Firstly, head to the Arbitrum One Bridge: [https://bridge.arbitrum.io/](https://bridge.arbitrum.io)
 
 Then, follow the following instructions to successfully bridge ETH:&#x20;
 
 1. Login to your Metamask account and switch to Arbitrum Network. \
-   ![](<../.gitbook/assets/image (2).png>)
-2. Enter the amount of ETH that you want to bridge over and click on "Deposit".&#x20;
-3. Read the pop-up alert and click on "Deposit" again.
+   ![](<../.gitbook/assets/image (4).png>)
+2. Enter the amount of ETH that you want to bridge over and click on '**Deposit**'.&#x20;
+3. Read the pop-up alert and click on '**Deposit**' again.
 4. If you want to withdraw ETH, please read [**Bridging back to Ethereum Mainnet**](arbitrum.md#how-to-get-started-1)**.**
 
 **Other resources:**&#x20;
