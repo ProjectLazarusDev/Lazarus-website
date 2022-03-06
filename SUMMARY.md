@@ -17,10 +17,10 @@
 ## Facilities
 
 * [Overview](facilities/overview.md)
-* [🔫 Power Training](facilities/power-training.md)
-* [🏁 Mining Quest](facilities/mining-quest.md)
-* [🌗 Moon Base Expansion](facilities/moon-base-expansion.md)
+* [🔫 Spawning Station](facilities/spawning-station.md)
 * [🏡 Social Hub](facilities/social-hub.md)
+* [🌗 Moon Base](facilities/moon-base.md)
+* [🏁 Museum](facilities/museum.md)
 
 ## Bobot Avatar
 
@@ -29,3 +29,7 @@
 ## TECH
 
 * [💾 Tech Stack](tech/tech-stack.md)
+
+## References
+
+* [Official Links](references/official-links.md)

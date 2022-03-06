@@ -4,28 +4,33 @@
 
 The ecosystem mechanics for Bobots is split into a few locations:
 
-## Drill Training
+* **Spawning Station**&#x20;
+* **Social Hub**
+* **Moon Base**
+* **Museum**
 
-Sent Bobots to training to earn Power Points. Staking of avatars will be required in a certain duration to earn the points. **See more here:**
+## Spawning Station
 
-{% content-ref url="power-training.md" %}
-[power-training.md](power-training.md)
+The spawning station is where players are able to mint their bobots and their lands.&#x20;
+
+{% content-ref url="spawning-station.md" %}
+[spawning-station.md](spawning-station.md)
 {% endcontent-ref %}
 
-## Mining Quest
+## Museum
 
-Send Bobots to the mining facility to earn $MAGIC. Staking of Bobots and $MAGIC would be required. See more here:
+The museum is where players are able to read the lore and see the different lore with the different partnerships that we have. &#x20;
 
-{% content-ref url="mining-quest.md" %}
-[mining-quest.md](mining-quest.md)
+{% content-ref url="museum.md" %}
+[museum.md](museum.md)
 {% endcontent-ref %}
 
-## Moon Base Expansion
+## Moon Base
 
 Expand the moon base by increasing the power points of all the Bobots. See more here:
 
-{% content-ref url="moon-base-expansion.md" %}
-[moon-base-expansion.md](moon-base-expansion.md)
+{% content-ref url="moon-base.md" %}
+[moon-base.md](moon-base.md)
 {% endcontent-ref %}
 
 ## **Social Hub**
