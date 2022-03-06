@@ -12,12 +12,12 @@ Players who are whitelisted will receive two bobots and one moon base, with the 
 
 All initial collection launches will be free mints as part of the fair launch ecosystem
 
-## ~~Cross-project consumables~~
+## Cross-project consumables
 
-~~After launch of Bobots, we will look to explore how we could incoporate established meta-verse consumables into the game. Such resources would be:~~
+After the launch of Bobots, we will look to explore how we could incorporate established meta-verse consumables into the game. Such resources would be:
 
-* ~~**Legions** - Astronauts visiting the moon~~
-* ~~**Treasure** - Found while mining resources~~
+* **Legions** - Astronauts visiting the moon
+* **Treasure** - Found while mining resources
 
 ****
 
