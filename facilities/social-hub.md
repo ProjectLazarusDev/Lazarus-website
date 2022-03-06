@@ -6,7 +6,7 @@ description: Meeting your friends in game!
 
 ## **In-Game social interactions**
 
-![Bobots Social Hub Technical Test](<../.gitbook/assets/image (1).png>)
+![Bobots Social Hub Technical Test](<../.gitbook/assets/image (1) (1).png>)
 
 One of the core experiences the players will be able to do is to meet with other Bobots. Players will choose one of the owned Bobots before entering the space. Here, players will be able to chat and also practice free speech.
 

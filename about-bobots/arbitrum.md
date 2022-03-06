@@ -35,12 +35,11 @@ Once Metamask has been installed, you will need to add the Arbitrum One network 
 
 {% tabs %}
 {% tab title="Arbitrium One (Mainnet)" %}
-1. From the Metamask wallet, click on your profile picture, and click on '**Settings**'\
-   ![](<../.gitbook/assets/image (5).png>)
+1. From the Metamask wallet, click on your profile picture, and click on '**Settings**'![](<../.gitbook/assets/image (5).png>)
 2. Scroll down and click on '**Networks**'.\
-   ![](../.gitbook/assets/image.png)
-3. Click on '**Add Network**' \
    ![](<../.gitbook/assets/image (2).png>)
+3. Click on '**Add Network**' \
+   ![](<../.gitbook/assets/image (2) (1).png>)
 4. Use the following details to add Arbitrum One Mainnet to Metamask \
    \
    **Network Name**: Arbitrum One Mainnet \
@@ -48,12 +47,24 @@ Once Metamask has been installed, you will need to add the Arbitrum One network 
    **Chain ID**: 42161\
    **Currency Symbol**: ETH\
    **Block Explorer URL**: [https://arbiscan.io/](https://arbiscan.io)
+5. Save the following details and Arbitrum One network should be in your Metamask wallet.
 {% endtab %}
 
 {% tab title="Arbitrium One (Testnet)" %}
-\
-\
-
+1. From the Metamask wallet, click on your profile picture, and click on '**Settings**' \
+   ![](<../.gitbook/assets/image (6).png>)
+2. Scroll down and click on '**Networks**'\
+   ![](../.gitbook/assets/image.png)
+3. Click on '**Add Network**'\
+   ![](<../.gitbook/assets/image (1).png>)
+4. Use the following details to add Arbitrum One Testnet to Metamask \
+   \
+   Network Name: Arbitrum Testnet \
+   New RPC URL: [https://rinkeby.arbitrum.io/rpc](https://rinkeby.arbitrum.io/rpc)\
+   ChainID: 421611\
+   Currency Symbol: ETH \
+   Block Explorer URL: [https:// testnet.arbiscan.io](https://testnet.arbiscan.io)
+5. Save the following details and Arbitrum One Testnet should be in your Metamask wallet.
 {% endtab %}
 {% endtabs %}
 
