@@ -13,24 +13,24 @@ The ecosystem mechanics for Bobots is split into a few locations:
 
 The spawning station is where players are able to mint their bobots and their lands.&#x20;
 
-{% content-ref url="spawning-station.md" %}
-[spawning-station.md](spawning-station.md)
+{% content-ref url="power-training.md" %}
+[power-training.md](power-training.md)
 {% endcontent-ref %}
 
 ## Museum
 
 The museum is where players are able to read the lore and see the different lore with the different partnerships that we have. &#x20;
 
-{% content-ref url="museum.md" %}
-[museum.md](museum.md)
+{% content-ref url="mining-quest.md" %}
+[mining-quest.md](mining-quest.md)
 {% endcontent-ref %}
 
 ## Moon Base
 
 Expand the moon base by increasing the power points of all the Bobots. See more here:
 
-{% content-ref url="moon-base.md" %}
-[moon-base.md](moon-base.md)
+{% content-ref url="moon-base-expansion.md" %}
+[moon-base-expansion.md](moon-base-expansion.md)
 {% endcontent-ref %}
 
 ## **Social Hub**

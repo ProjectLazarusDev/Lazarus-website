@@ -17,10 +17,10 @@
 ## Facilities
 
 * [Overview](facilities/overview.md)
-* [🔫 Spawning Station](facilities/spawning-station.md)
+* [🔫 Spawning Station](facilities/power-training.md)
 * [🏡 Social Hub](facilities/social-hub.md)
-* [🌗 Moon Base](facilities/moon-base.md)
-* [🏁 Museum](facilities/museum.md)
+* [🌗 Moon Base](facilities/moon-base-expansion.md)
+* [🏁 Museum](facilities/mining-quest.md)
 
 ## Bobot Avatar
 
