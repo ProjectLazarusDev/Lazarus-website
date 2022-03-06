@@ -1,9 +1,6 @@
 # Official Links
 
-These are the links in this section:\
-
-
-**Website**: [https://bobots.io/](https://bobots.io)
+These are the links in this section:
 
 {% embed url="https://bobots.io" %}
 
