@@ -1,4 +1,10 @@
+---
+description: The overworld of Bobots
+---
+
 # Overview
+
+![Menu to select what activities you want to do](../.gitbook/assets/overview.jpg)
 
 ## Facilities of Bobot-Verse
 

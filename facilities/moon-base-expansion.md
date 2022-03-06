@@ -4,6 +4,8 @@ description: Land HO!
 
 # 🌗 Moon Base
 
+![Moon Base Prototype](../.gitbook/assets/moonbase.jpg)
+
 To start, there are 3 main installations that the players are able to use to build their moon base:
 
 * **Power Chamber**
