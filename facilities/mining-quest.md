@@ -10,6 +10,6 @@ The museum will be a map where lore can be expanded and built upon. The player w
 
 Lore panels will be placed around the map and the player can interact to zoom into them.
 
-## Partership Garage
+## Partnership Garage
 
-Partnered project will have a&#x20;
+Partnered project will have their own panels and lore regarding their landing on the Bobot-verse. Each project's mascot will be placed around the museum.
