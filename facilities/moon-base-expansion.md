@@ -6,11 +6,17 @@ description: Land HO!
 
 ![Moon Base Prototype](../.gitbook/assets/moonbase.jpg)
 
-To start, there are 3 main installations that the players are able to use to build their moon base:
+To start, there are 3 categories of features that the players are able to use to build their moon base:
 
-* **Power Chamber**
-* **Drill**&#x20;
-* **Geometry**
+* **Foundations**
+* **Installations**
+* **Decorations**
+
+### Geometry&#x20;
+
+#### Foundation
+
+The foundations are "lands" to allow the expansion of the given land that the players are provided with. As each player progresses through the game, more space is needed to expand and increase their earnings throughout the game. This is where foundations come in. Players are able to place more lands on top of each other to expand and increase the number of Drills and Decoratives that they can place.
 
 ### Power chamber&#x20;
 
@@ -25,13 +31,7 @@ The drills are installments that the players are able to mine Moon Core from. Mo
 
 _Insert diagram here_
 
-### Geometry&#x20;
-
 There are 2 types of geometry: Foundation and Decoratives
-
-#### Foundation
-
-The foundations are "lands" to allow the expansion of the given land that the players are provided with. As each player progresses through the game, more space is needed to expand and increase their earnings throughout the game. This is where foundations come in. Players are able to place more lands on top of each other to expand and increase the number of Drills and Decoratives that they can place.
 
 #### **Decoratives**&#x20;
 

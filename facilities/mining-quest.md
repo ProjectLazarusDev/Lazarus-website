@@ -4,13 +4,12 @@ description: Main mechanic for $MAGIC staking
 
 # 🏁 Museum
 
-Through direct partnership with the Treasure Universe, the mining quest will function as the key pillar for player to stake their $MAGIC.
+The museum will be a map where lore can be expanded and built upon. The player will be able to control the camera to explore the map.&#x20;
 
-Players can stake $MAGIC with their respective Bobots to enter the $MAGIC emission system and earn valuable rewards, mainly $MAGIC.
+## Lore
 
-### Stake Modifiers
+Lore panels will be placed around the map and the player can interact to zoom into them.
 
-You can send multiple Bobots on a staking quest. Staking modifiers will be based off the total amount of Drilling Power from all the selected Bobots being staked.
+## Partership Garage
 
-
-
+Partnered project will have a&#x20;
