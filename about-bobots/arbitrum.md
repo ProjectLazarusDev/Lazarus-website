@@ -10,7 +10,7 @@ Bobots is originally designed as an NFT Collection in the Ethereum L1 Blockchain
 
 ## **What is Arbitrum**
 
-****[**Arbitrum**](https://arbitrum.io) **** is an Optimistic Rollup scaling solution that allows Ethereum smart contracts to scale by passing messages between the smart contraect on the Ethereum main network and those on the Arbitrum second layer chain (L2). Most of the transaction processing is completed on the second layer and thus, drastically improving the speed and efficiency, and also lowering the gas fees.
+****[**Arbitrum**](https://arbitrum.io) **** is an Optimistic Rollup scaling solution that allows Ethereum smart contracts to scale by passing messages between the smart contract on the Ethereum main network and those on the Arbitrum second layer chain (L2). Most of the transaction processing is completed on the second layer and thus, drastically improving the speed and efficiency, and also lowering the gas fees.
 
 Why we have chosen **Arbitrum** is due to the following reasons:
 
@@ -40,4 +40,18 @@ Then, follow the following instructions to successfully bridge ETH:&#x20;
 1. Login to your Metamask account and switch to Arbitrum Network. \
    ![](<../.gitbook/assets/image (2).png>)
 2. Enter the amount of ETH that you want to bridge over and click on "Deposit".&#x20;
-3. Read the pop-up alert and click on "Deposit" again. &#x20;
+3. Read the pop-up alert and click on "Deposit" again.
+4. If you want to withdraw ETH, please read [**Bridging back to Ethereum Mainnet**](arbitrum.md#how-to-get-started-1)**.**
+
+**Other resources:**&#x20;
+
+* ****[**Arbitrum Bridge Tutorial**](https://medium.com/wardenofficial/arbitrum-bridge-tutorial-9ad648b27b58)****
+
+### **Bridging back to Ethereum Mainnet**
+
+There are a few ways to bridge ETH from Arbitrum to Mainnet:&#x20;
+
+* **Arbitrum Bridge**: [https://bridge.arbitrum.io/](https://bridge.arbitrum.io)
+* **Celer**: [https://cbridge.celer.network/#/transfer](https://cbridge.celer.network/#/transfer)
+* **Hop Exchange**: [https://hop.exchange/](https://hop.exchange)
+* **Synapse**: [https://synapseprotocol.com/?inputCurrency=USDC\&outputCurrency=USDC\&outputChain=42161](https://synapseprotocol.com/?inputCurrency=USDC\&outputCurrency=USDC\&outputChain=42161)
