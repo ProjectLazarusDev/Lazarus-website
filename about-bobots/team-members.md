@@ -8,7 +8,7 @@ The team consist of people from varying technical and artistic backgrounds. Form
 
 The team is specifically formed to complement our different skillsets to create something new for the blockchain community.
 
-## Team lineup
+## Team Lineup
 
 * **Edmund** - 3D Artist / Art Director
 * **Theon** - Web Development / Project Coordinator

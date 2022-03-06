@@ -2,7 +2,7 @@
 description: Main mechanic for $MAGIC staking
 ---
 
-# 🏁 Mining Quest
+# 🏁 Museum
 
 Through direct partnership with the Treasure Universe, the mining quest will function as the key pillar for player to stake their $MAGIC.
 

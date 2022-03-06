@@ -6,6 +6,8 @@ description: >-
 
 # 🤖 Season 1 Avatar
 
+![Launch bobots](../.gitbook/assets/banner.jpg)
+
 Season 1 will launch with a total of 4040 Bobots under fair launch. All whitelisted users will receive 2 Bobots.
 
 Initially built for the L1 blockchain, all Bobots are carefully designed and have the following design guidelines:
@@ -96,8 +98,6 @@ Asset pool is still being refined at this moment.
 
 
 </details>
-
-
 
 <details>
 

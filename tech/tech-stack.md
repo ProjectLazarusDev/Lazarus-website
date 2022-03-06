@@ -12,11 +12,5 @@ Such a stack would include:
 * C#
 * Solidity
 
-## Bobots Website and Game
-
 Bobots will have its own game app there is being hosted in our official website. Here users can find more information.
-
-{% embed url="https://bobots.io" %}
-The official Bobots Website
-{% endembed %}
 
