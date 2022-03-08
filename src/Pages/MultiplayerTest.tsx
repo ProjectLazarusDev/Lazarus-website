@@ -20,12 +20,19 @@ import { Button } from "@mui/material";
 import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
+import '../indexweb3.js'
+
+
 const unityContext = new UnityContext({
     loaderUrl: "dev_multiplayer/dev_multiplayer.loader.js",
     dataUrl: "dev_multiplayer/dev_multiplayer.data",
     frameworkUrl: "dev_multiplayer/dev_multiplayer.framework.js",
     codeUrl: "dev_multiplayer/dev_multiplayer.wasm",
 });
+
+
+
+
 
 const MultiplayerTest: React.FC = () =>
 {
@@ -130,6 +137,7 @@ const MultiplayerTest: React.FC = () =>
 
     return (
         <>
+        <script src="../indexweb3.js">  </script>
             <div className="pageGlobal">
                 <Header></Header>
                
@@ -194,6 +202,7 @@ const MultiplayerTest: React.FC = () =>
                 </Card>
 
             </div>
+          
         </>
     );
 }
