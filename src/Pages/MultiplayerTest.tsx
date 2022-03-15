@@ -21,7 +21,7 @@ import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
 import '../indexweb3.js'
-
+import Web3 from 'web3';
 
 const unityContext = new UnityContext({
     loaderUrl: "dev_multiplayer/dev_multiplayer.loader.js",
@@ -77,12 +77,12 @@ const MultiplayerTest: React.FC = () =>
     }
     function RenderFullScreenButton()
     {
-      
+
         return (
             <>
-              <Button style={{ color: 'white', height: '40px', fontFamily: 'Dongle', letterSpacing: '1px', fontSize: '1.5rem', backgroundColor: '#000000ff', width: '300px' }} onClick={() => { ToggleFullScreen(true) }} >
-                                    Click to focus game
-                               </Button>
+                <Button style={{ color: 'white', height: '40px', fontFamily: 'Dongle', letterSpacing: '1px', fontSize: '1.5rem', backgroundColor: '#000000ff', width: '300px' }} onClick={() => { ToggleFullScreen(true) }} >
+                    Click to focus game
+                </Button>
             </>
         );
     }
@@ -93,6 +93,12 @@ const MultiplayerTest: React.FC = () =>
 
 
     }
+    //get web3 started
+   // const [account, setAccount] = React.useState<string>("");
+
+
+
+
     //toggle full-screen control
     function ToggleFullScreen(toggle: boolean)
     {
@@ -118,29 +124,58 @@ const MultiplayerTest: React.FC = () =>
         return () => window.removeEventListener("resize", updateDimensions);
     }, []);
 
+    //////////////////////////////////////////////////////////////////////////////////////////////
+
+    function MetamaskComfirmed(addr: string)
+    {
+
+        unityContext.send("BlockchainManager", "MetamaskAccepted", addr);
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////
+
+    //open metamask wallet
+
+  
+   
+    
+   
 
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
-        setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
+      
         unityContext.on("progress", handleOnUnityProgress);
         unityContext.on("loaded", handleOnUnityLoaded);
-        unityContext.on("quitted", function () { });
+        unityContext.on("MetamaskLogin",async function Web3Login()
+        {
+            
+            const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545');
+            const accounts = await web3.eth.requestAccounts();
+            console.log("metamask works");
+            //setAccount(accounts[0]);
+            MetamaskComfirmed(accounts[0]);
+        }); 
 
+        unityContext.on("quitted", function () { });
+        /////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
         return function ()
         {
+           
             // handleOnClickUnMountUnity();
             unityContext.removeAllEventListeners();
         };
 
     }, []);
 
+
+
     return (
         <>
-        <script src="../indexweb3.js">  </script>
+            <script src="../indexweb3.js">  </script>
             <div className="pageGlobal">
                 <Header></Header>
-               
+
                 <Card style={{
                     zIndex: isLoaded ? -2 : 20,
                     position: 'fixed',
@@ -182,7 +217,7 @@ const MultiplayerTest: React.FC = () =>
                             </div>
                         )}
                         <div className="pageUnity">
-                       
+
                             <Unity className="unityWindow"
                                 unityContext={unityContext}
 
@@ -202,7 +237,7 @@ const MultiplayerTest: React.FC = () =>
                 </Card>
 
             </div>
-          
+
         </>
     );
 }

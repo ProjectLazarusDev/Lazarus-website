@@ -1,15 +1,15 @@
 import Web3 from 'web3';
 
 // load network.js to get network/chain id
-document.body.appendChild(Object.assign(document.createElement("script"), { type: "text/javascript", src: "../network.js" }));
+document.body.appendChild(Object.assign(document.createElement("script"), { type: "text/javascript", src: "network.js" }));
 // load web3modal to connect to wallet
-document.body.appendChild(Object.assign(document.createElement("script"), { type: "text/javascript", src: "../web3modal.js" }));
+document.body.appendChild(Object.assign(document.createElement("script"), { type: "text/javascript", src: "web3modal.js" }));
 // load web3js to create transactions
-document.body.appendChild(Object.assign(document.createElement("script"), { type: "text/javascript", src: "../web3.min.js" }));
+document.body.appendChild(Object.assign(document.createElement("script"), { type: "text/javascript", src: "web3.min.js" }));
 // uncomment to enable torus wallet
-// document.body.appendChild(Object.assign(document.createElement("script"), { type: "text/javascript", src: "https://unpkg.com/@toruslabs/torus-embed" }));
+ document.body.appendChild(Object.assign(document.createElement("script"), { type: "text/javascript", src: "https://unpkg.com/@toruslabs/torus-embed" }));
 // uncomment to enable walletconnect
-// document.body.appendChild(Object.assign(document.createElement("script"), { type: "text/javascript", src: "https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js" }));
+ document.body.appendChild(Object.assign(document.createElement("script"), { type: "text/javascript", src: "https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js" }));
 // load web3gl to connect to unity
 window.web3gl = {
   networkId: 0,
