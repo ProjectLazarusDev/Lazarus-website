@@ -21,7 +21,10 @@ import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
 import '../indexweb3.js'
+
 import Web3 from 'web3';
+import {ethers,BigNumber} from "ethers";
+
 
 const unityContext = new UnityContext({
     loaderUrl: "dev_multiplayer/dev_multiplayer.loader.js",
@@ -37,11 +40,11 @@ const unityContext = new UnityContext({
 const MultiplayerTest: React.FC = () =>
 {
     //react hooks
-
+    var web3: Web3;
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
     const [scrollValue, setScrollValue] = React.useState<number>(0.0);
-
+    const [account , setAccount] = React.useState([]);
     React.useEffect(() =>
     {
 
@@ -94,7 +97,7 @@ const MultiplayerTest: React.FC = () =>
 
     }
     //get web3 started
-   // const [account, setAccount] = React.useState<string>("");
+    // const [account, setAccount] = React.useState<string>("");
 
 
 
@@ -119,6 +122,9 @@ const MultiplayerTest: React.FC = () =>
 
     React.useEffect(() =>
     {
+        unityContext.on("progress", handleOnUnityProgress);
+        unityContext.on("loaded", handleOnUnityLoaded);
+        unityContext.on("quitted", function () { });
         document.body.style.overflowY = "hidden";
         window.addEventListener("resize", updateDimensions);
         return () => window.removeEventListener("resize", updateDimensions);
@@ -133,42 +139,39 @@ const MultiplayerTest: React.FC = () =>
     }
     //////////////////////////////////////////////////////////////////////////////////////////////
 
-    //open metamask wallet
+    async function Mint()
+    {
 
-  
-   
-    
-   
+    }
+
+
+    async function MetaLogin()
+    {
+        if((window as any).ethereum)
+        {
+            const accounts = await (window as any).ethereum.
+            request({method:"eth_requestAccounts",});
+            setAccount(accounts);
+        }
+    }
+
 
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
-      
-        unityContext.on("progress", handleOnUnityProgress);
-        unityContext.on("loaded", handleOnUnityLoaded);
-        unityContext.on("MetamaskLogin",async function Web3Login()
-        {
-            
-            const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545');
-            const accounts = await web3.eth.requestAccounts();
-            console.log("metamask works");
-            //setAccount(accounts[0]);
-            MetamaskComfirmed(accounts[0]);
-        }); 
 
-        unityContext.on("quitted", function () { });
+
+        unityContext.on("MetamaskLogin", MetaLogin);
         /////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////
         return function ()
         {
-           
+
             // handleOnClickUnMountUnity();
             unityContext.removeAllEventListeners();
         };
 
     }, []);
-
-
 
     return (
         <>
