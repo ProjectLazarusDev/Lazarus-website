@@ -24,18 +24,18 @@
 
 ## TOKENOMICS
 
-* [Bobot Overview](tokenomics/bobot-overview.md)
-* [Bobot Minions](tokenomics/bobot-minions.md)
-* [💵 Bobot Genesis](tokenomics/bobot-genesis.md)
-* [Bobot Megazord](tokenomics/bobot-megazord.md)
-* [Land Overview](tokenomics/land-overview.md)
-* [Core Chamber](tokenomics/core-chamber.md)
-* [Drill](tokenomics/drill.md)
-* [Launch Pad](tokenomics/launch-pad.md)
+* [🤖 Bobot NFT](tokenomics/bobot-nft/README.md)
+  * [🤪 Bobot Minions](tokenomics/bobot-nft/bobot-minions.md)
+  * [😁 Bobot Genesis](tokenomics/bobot-nft/bobot-genesis.md)
+  * [😤 Bobot MegaZord](tokenomics/bobot-nft/bobot-megazord.md)
+* [🏝 Land NFT](tokenomics/land-nft/README.md)
+  * [🔋 Core Chamber](tokenomics/land-nft/core-chamber.md)
+  * [📟 Drill](tokenomics/land-nft/drill.md)
+  * [🛸 Launch Pad](tokenomics/land-nft/launch-pad.md)
 
 ## Bobot Avatar
 
-* [🤖 Season 1 Avatar](bobot-avatar/season-1-avatar.md)
+* [🤖 Genesis Avatar](bobot-avatar/genesis-avatar.md)
 
 ## TECH
 
@@ -43,4 +43,4 @@
 
 ## References
 
-* [Official Links](references/official-links.md)
+* [🔗 Official Links](references/official-links.md)
