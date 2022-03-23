@@ -2,7 +2,11 @@
 description: Bobot avatar minting mechanics
 ---
 
-# 🔫 Spawning Station
+# 🔫 Spawn Station
+
+![Spawn Station](<../.gitbook/assets/image (6).png>)
+
+![View and rotate your bobot in real-time](<../.gitbook/assets/image (3).png>)
 
 ## What is it?&#x20;
 

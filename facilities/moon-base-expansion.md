@@ -26,12 +26,13 @@ These foundations comes in all shapes and sizes and allows the player to be crea
 
 ## Installations
 
-### Power chamber&#x20;
+### Core chamber&#x20;
 
-Every player will be provided a Power Chamber in order to stake Bobots to earn their attributes. This will be the bobots staking system in the game. They are able to earn attributes such as Drilling Strength and Drilling Speed.&#x20;
+Every player will be provided a Power Chamber in order to stake Bobots to earn their attributes. This will be the bobots staking system in the game.&#x20;
 
-* **Drilling Strength** -  This strength enables the Bobot to increase the amount of Moon Core that they are able to mine from&#x20;
-* **Drilling Speed** - The speed enables the Bobot to increase the drilling speed of the drills to increase the amount of Moon Core that they are able to mine from.&#x20;
+{% content-ref url="../tokenomics/land-nft/core-chamber.md" %}
+[core-chamber.md](../tokenomics/land-nft/core-chamber.md)
+{% endcontent-ref %}
 
 ### Drill&#x20;
 

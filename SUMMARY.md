@@ -17,7 +17,7 @@
 ## Facilities
 
 * [Overview](facilities/overview.md)
-* [🔫 Spawning Station](facilities/power-training.md)
+* [🔫 Spawn Station](facilities/spawn-station.md)
 * [🏡 Social Hub](facilities/social-hub.md)
 * [🌗 Moon Base](facilities/moon-base-expansion.md)
 * [🏁 Museum](facilities/mining-quest.md)

@@ -19,8 +19,8 @@ The ecosystem mechanics for Bobots is split into a few locations:
 
 The spawning station is where players are able to mint their bobots and their lands.&#x20;
 
-{% content-ref url="power-training.md" %}
-[power-training.md](power-training.md)
+{% content-ref url="spawn-station.md" %}
+[spawn-station.md](spawn-station.md)
 {% endcontent-ref %}
 
 ## Museum
