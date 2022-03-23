@@ -12,6 +12,7 @@
 
 * [🌎 Overview](ecosystem/overview.md)
 * [💰 TreasureDAO](ecosystem/treasuredao.md)
+* [Bobots](ecosystem/bobots.md)
 * [💵 Consumables and Currency](ecosystem/consumables-and-currency.md)
 
 ## Facilities

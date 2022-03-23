@@ -6,7 +6,7 @@ description: Partnering Eco-system with TreasureDAO through bootstrapped liquidi
 
 ## Initial launch
 
-Players who are whitelisted will receive two bobots and one moon base, with the moon base being airdropped at a later timeline.
+Players who are whitelisted will receive one bobots and three installments for moon base, with the installments being airdropped at a later timeline.
 
 ## Free Mints!
 
