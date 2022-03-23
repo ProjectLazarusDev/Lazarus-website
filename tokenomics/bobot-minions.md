@@ -1,5 +1,7 @@
 # Bobot Minions
 
+### Capsule (Q4 launch)
+
 These will be the Recruits targeted for the new users or players who are here to try out the system of the game before buying and investing in a Bobot.
 
 This Capsule Bobot will be launched after the launch of Moon Base where newer players that want to test out how our system works can buy the Capsule Bobot to play around with.

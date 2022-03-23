@@ -1,5 +1,9 @@
 # Bobot Megazord
 
-This is the paid mint version that comes after the free mint launch. This targets P2E players who wanted to earn more perks as compared to those who wanted to flip the market. (TBC) Along with Bobots, users will be provided with 1 Drill, 1 CC and 1 Launchpad Minting Price: 1~~2ETH Supply: 1000~~2000
+### Megazord (end Q2 - early Q3)&#x20;
 
-Perks: Capsule bobots earned higher perks from Moon Base (Drill, Core Chamber and Launchpad) Details TBC - need to discuss with TreasureDAO but the model is similar to Bridgeworld’s Legion
+This is the founders edition of the Bobots-verse. Along with Bobots, users will be provided with 1 Drill, 1 Core Chamber, and 1 Launchpad&#x20;
+
+* Supply: 2000&#x20;
+* Perks: Mega Bobots earned higher perks from Moon Base (Drill, Core Chamber, and Launchpad)&#x20;
+* Details TBC
