@@ -22,6 +22,17 @@
 * [🌗 Moon Base](facilities/moon-base-expansion.md)
 * [🏁 Museum](facilities/mining-quest.md)
 
+## TOKENOMICS
+
+* [Bobot Overview](tokenomics/bobot-overview.md)
+* [Bobot Minions](tokenomics/bobot-minions.md)
+* [💵 Bobot Genesis](tokenomics/bobot-genesis.md)
+* [Bobot Megazord](tokenomics/bobot-megazord.md)
+* [Land Overview](tokenomics/land-overview.md)
+* [Core Chamber](tokenomics/core-chamber.md)
+* [Drill](tokenomics/drill.md)
+* [Launch Pad](tokenomics/launch-pad.md)
+
 ## Bobot Avatar
 
 * [🤖 Season 1 Avatar](bobot-avatar/season-1-avatar.md)
