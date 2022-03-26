@@ -1,3 +1,8 @@
+const { tasks } = require("hardhat");
+
+required("@nomiclabs/hardhat-waffle");
+
+
 module.exports = {
 
     solidity: {

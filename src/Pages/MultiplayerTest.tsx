@@ -23,7 +23,10 @@ import { isMobile } from 'react-device-detect';
 import '../indexweb3.js'
 
 import Web3 from 'web3';
-import {ethers,BigNumber} from "ethers";
+import { ethers, BigNumber } from "ethers";
+
+//abi import
+import MintAbi from '../ABI/BobotGenesis.json'
 
 
 const unityContext = new UnityContext({
@@ -44,7 +47,7 @@ const MultiplayerTest: React.FC = () =>
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
     const [scrollValue, setScrollValue] = React.useState<number>(0.0);
-    const [account , setAccount] = React.useState([]);
+    const [account, setAccount] = React.useState([]);
     React.useEffect(() =>
     {
 
@@ -137,31 +140,68 @@ const MultiplayerTest: React.FC = () =>
 
         unityContext.send("BlockchainManager", "MetamaskAccepted", addr);
     }
+    
+    function MintComfirmed(id: number)
+    {
+
+        unityContext.send("BlockchainManager", "MintAccepted", id);
+    }
+    
     //////////////////////////////////////////////////////////////////////////////////////////////
 
-    async function Mint()
-    {
-
-    }
-
-
+    //put contract addr here - localhost or remix
+    const contractAddress: string = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+    
+    //connect to metamask
     async function MetaLogin()
     {
-        if((window as any).ethereum)
+        if ((window as any).ethereum)
         {
             const accounts = await (window as any).ethereum.
-            request({method:"eth_requestAccounts",});
+                request({ method: "eth_requestAccounts", });
             setAccount(accounts);
+
+            //send connected address back to engine
+            MetamaskComfirmed(accounts[0]);
         }
     }
 
+    //mint bobot
+    async function MintBobot()
+    {
+        console.log("received: ");
+        if ((window as any).ethereum)
+        {
+         
+            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+            const signer = provider.getSigner();
+            const contract = new ethers.Contract(
+                contractAddress,
+                MintAbi.abi,
+                signer
+            );
+            console.log( contract);
+            try
+            {
+                console.log("await contract");
+                const response = await contract.mint("0xCdEae8E41E953570B54D02f063A23E41e812f16e" ,BigNumber.from(1));
+                console.log("response: ",response);
 
+                //send response back to game engine
+                MintComfirmed(1);
+            }
+            catch {
+                
+            }
+        }
+    }
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
 
 
         unityContext.on("MetamaskLogin", MetaLogin);
+        unityContext.on("Mint", MintBobot);
         /////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////
         return function ()
