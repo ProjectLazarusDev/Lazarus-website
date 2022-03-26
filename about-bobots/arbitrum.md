@@ -52,7 +52,7 @@ Once Metamask has been installed, you will need to add the Arbitrum One network 
 
 {% tab title="Arbitrium One (Testnet)" %}
 1. From the Metamask wallet, click on your profile picture, and click on '**Settings**' \
-   ![](<../.gitbook/assets/image (6).png>)
+   ![](<../.gitbook/assets/image (6) (1) (1).png>)
 2. Scroll down and click on '**Networks**'\
    ![](../.gitbook/assets/image.png)
 3. Click on '**Add Network**'\
@@ -73,7 +73,7 @@ After adding the Arbitrum One network into the wallet, it is time to bridge ETH 
 Then, follow the following instructions to successfully bridge ETH:&#x20;
 
 1. Login to your Metamask account and switch to Arbitrum Network. \
-   ![](<../.gitbook/assets/image (4).png>)
+   ![](<../.gitbook/assets/image (4) (1) (1).png>)
 2. Enter the amount of ETH that you want to bridge over and click on '**Deposit**'.&#x20;
 3. Read the pop-up alert and click on '**Deposit**' again.
 4. If you want to withdraw ETH, please read [**Bridging back to Ethereum Mainnet**](arbitrum.md#how-to-get-started-1)**.**
