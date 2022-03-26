@@ -152,12 +152,9 @@ const FAQ: React.FC = () =>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Dongle'} sx={{ fontSize: '1.5rem', fontWeight: 'light' }}>
-                                        Whitelisted members will be airdropped 2 Bobots and special roles will be airdropped 4 Bobots.
-                                        There will be no presale , public sale and reveal of the Bobots.
-                                        There will be a total of 4040 avatars and it will be split into the following:
-
-                                        <li>Whitelisted members - 3840</li>
-                                        <li>Devs / future giveaway - 200</li>
+                                        Whitelisted members will be able to mint 1 bobot on the spawn station.
+                                        There will be no presale and public sale of the Bobots.
+                                       
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
