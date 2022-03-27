@@ -24,7 +24,7 @@ const App: React.FC = () =>
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/MintPage' exact component={MintPage} />
-          <Route path='/MaggiGoreng' exact component={MultiplayerTest} />
+          <Route path='/HainanChickenRice' exact component={MultiplayerTest} />
         </Switch>
       </Router>
     
