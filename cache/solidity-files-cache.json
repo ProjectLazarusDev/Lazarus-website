@@ -37,8 +37,8 @@
       ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\BobotGenesis.sol": {
-      "lastModificationDate": 1647692862661,
-      "contentHash": "6c96b0a2b9eee08cc7f5a74040de70f1",
+      "lastModificationDate": 1648320815437,
+      "contentHash": "b6764b1bf0db48767419fdc41048fb32",
       "sourceName": "contracts/BobotGenesis.sol",
       "solcConfig": {
         "version": "0.8.4",

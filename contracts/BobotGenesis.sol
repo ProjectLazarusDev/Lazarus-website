@@ -20,7 +20,7 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
         string memory _initBaseURI
     )ERC721(_name, _symbol){
         setBaseURI(_initBaseURI);
-        mint(msg.sender, 9);
+       
     }
 
     // internal 
@@ -29,7 +29,7 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
     }
 
     // public
-    function mint(address _to, uint256 _mintAmount) public payable {
+    function mintBobot(address _to, uint256 _mintAmount) public payable {
         uint256 supply = totalSupply();
         require(!paused);
         require(_mintAmount > 0);
@@ -58,6 +58,21 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
         }
 
         return tokenIDs;
+    }
+
+    function getTokenIds(address _owner)
+     public 
+     view 
+     returns (uint[] memory) 
+     {
+        uint[] memory _tokensOfOwner = new uint[](ERC721.balanceOf(_owner));
+        uint i;
+
+        for (i=0;i<ERC721.balanceOf(_owner);i++)
+        {
+            _tokensOfOwner[i] = ERC721Enumerable.tokenOfOwnerByIndex(_owner, i);
+        }
+        return (_tokensOfOwner);
     }
 
     function tokenURI(uint256 tokenID)

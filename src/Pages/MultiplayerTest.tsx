@@ -47,7 +47,9 @@ const MultiplayerTest: React.FC = () =>
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
     const [scrollValue, setScrollValue] = React.useState<number>(0.0);
-    const [account, setAccount] = React.useState([]);
+
+    //store eth addresses
+    var accounts:any;
     React.useEffect(() =>
     {
 
@@ -140,26 +142,37 @@ const MultiplayerTest: React.FC = () =>
 
         unityContext.send("BlockchainManager", "MetamaskAccepted", addr);
     }
-    
+
     function MintComfirmed(id: number)
     {
 
         unityContext.send("BlockchainManager", "MintAccepted", id);
     }
-    
+    function SendBobotsAllID(tokenIDs: number[])
+    {
+        unityContext.send("BlockchainManager", "BobotsClearID");
+        
+        //send all tokenIDs to engine
+        tokenIDs.forEach(element =>
+        {
+            unityContext.send("BlockchainManager", "BobotsReceiveID", element);
+        });
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////
 
     //put contract addr here - localhost or remix
     const contractAddress: string = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
-    
+
+
     //connect to metamask
     async function MetaLogin()
     {
         if ((window as any).ethereum)
         {
-            const accounts = await (window as any).ethereum.
+            accounts = await (window as any).ethereum.
                 request({ method: "eth_requestAccounts", });
-            setAccount(accounts);
+            console.log(accounts[0]);
 
             //send connected address back to engine
             MetamaskComfirmed(accounts[0]);
@@ -172,7 +185,7 @@ const MultiplayerTest: React.FC = () =>
         console.log("received: ");
         if ((window as any).ethereum)
         {
-         
+
             const provider = new ethers.providers.Web3Provider((window as any).ethereum);
             const signer = provider.getSigner();
             const contract = new ethers.Contract(
@@ -180,28 +193,81 @@ const MultiplayerTest: React.FC = () =>
                 MintAbi.abi,
                 signer
             );
-            console.log( contract);
+            console.log(contract);
             try
             {
+
                 console.log("await contract");
-                const response = await contract.mint("0xCdEae8E41E953570B54D02f063A23E41e812f16e" ,BigNumber.from(1));
-                console.log("response: ",response);
+
+                const response = await contract.mintBobot("0xCdEae8E41E953570B54D02f063A23E41e812f16e", BigNumber.from(1));
+                console.log("response: ", response);
 
                 //send response back to game engine
                 MintComfirmed(1);
+
+               
             }
             catch {
+                //error detection
+
+
+            }
+
+        }
+      
+    }
+
+    async function GetBobotsAllID()
+    {
+        console.log("GetBobotsAllID: ");
+        if ((window as any).ethereum)
+        {
+
+            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+            const signer = provider.getSigner();
+            const contract = new ethers.Contract(
+                contractAddress,
+                MintAbi.abi,
+                signer
+            );
+            console.log(contract);
+            var t:number[] = [];
+            try
+            {
+                console.log("await contract");
+                console.log(accounts[0]);
+                const response = await contract.getTokenIds("0xCdEae8E41E953570B54D02f063A23E41e812f16e");
+                console.log("response: ", response);
+               // const allIDs = response.value;
                 
+     
+            
+
+                for (var _i = 0; _i < response.length; _i++) {
+                    t.push(  response[_i].toNumber()) ;
+                }
+                
+               // console.log(allIDs);
+                SendBobotsAllID(t);
+
+               
+                //send response back to game engine
+
+            }
+            catch (err)
+            {
+                console.log("error: ", err);
             }
         }
     }
+
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
-
-
         unityContext.on("MetamaskLogin", MetaLogin);
         unityContext.on("Mint", MintBobot);
+        unityContext.on("GetAllTokenIDs", GetBobotsAllID);
+
         /////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////
         return function ()
