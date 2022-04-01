@@ -26,7 +26,11 @@ import Web3 from 'web3';
 import { ethers, BigNumber } from "ethers";
 
 //abi import
-import MintAbi from '../ABI/BobotGenesis.json'
+
+
+import BobotGenesisABI from '../ABI/BobotGenesis.json'
+import BobotCoreChamberABI from '../ABI/CoreChamber.json'
+import Erc20ABI from '../ABI/ERC20.json'
 
 
 const unityContext = new UnityContext({
@@ -37,7 +41,10 @@ const unityContext = new UnityContext({
 });
 
 
-
+//put contract addr here - localhost or remix
+const contractAddress: string = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+const coreChamberAddress: string = " ";
+const magicAddress: string = " ";
 
 
 const MultiplayerTest: React.FC = () =>
@@ -47,9 +54,10 @@ const MultiplayerTest: React.FC = () =>
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
     const [scrollValue, setScrollValue] = React.useState<number>(0.0);
+    const [magicAmount, setMagicAmount] = React.useState<number>(0.0);
 
     //store eth addresses
-    var accounts:any;
+    var accounts: any;
     React.useEffect(() =>
     {
 
@@ -145,25 +153,55 @@ const MultiplayerTest: React.FC = () =>
 
     function MintComfirmed(id: number)
     {
-
         unityContext.send("BlockchainManager", "MintAccepted", id);
     }
     function SendBobotsAllID(tokenIDs: number[])
     {
         unityContext.send("BlockchainManager", "BobotsClearID");
-        
+
         //send all tokenIDs to engine
         tokenIDs.forEach(element =>
         {
+            console.log("Send: ", element);
             unityContext.send("BlockchainManager", "BobotsReceiveID", element);
         });
     }
 
+    //connect to erc20 magic
+
+
+
+    //core chamber stake status callback
+    function UpdatePlayerAddress(str: string)
+    {
+        unityContext.send("BlockchainManager", "ReceivePlayerAddress", str);
+    }
+    function UpdatePlayerMagic(value: number)
+    {
+        unityContext.send("BlockchainManager", "ReceivePlayerMagic", value);
+    }
+
+
+
+
+    //core chamber stake status callback
+    function CoreChamberStakeStatusAccepted(status: number)
+    {
+        unityContext.send("BlockchainManager", "CoreChamberStakeStatus", status);
+    }
+
+    //core chamber stake callback
+    function CoreChamberStakeAccepted(id: number)
+    {
+        unityContext.send("BlockchainManager", "CoreChamberStake", id);
+    }
+    //core chamber unstake callback
+    function CoreChamberUnstakeAccepted(id: number)
+    {
+        unityContext.send("BlockchainManager", "CoreChamberUnstake", id);
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////
-
-    //put contract addr here - localhost or remix
-    const contractAddress: string = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
-
 
     //connect to metamask
     async function MetaLogin()
@@ -178,6 +216,41 @@ const MultiplayerTest: React.FC = () =>
             MetamaskComfirmed(accounts[0]);
         }
     }
+    function GetUserData()
+    {
+        MagicGetBalance();
+        UpdatePlayerAddress(accounts[0]);
+    }
+
+    //erc20 magic 
+    async function MagicGetBalance()
+    {
+        console.log("received: ");
+        if ((window as any).ethereum)
+        {
+
+            const tokenContractAddress = '0x539bdE0d7Dbd336b79148AA742883198BBF60342';
+            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+            const contract = new ethers.Contract(tokenContractAddress, Erc20ABI, provider);
+            console.log(contract);
+            console.log(accounts[0]);
+            try
+            {
+                const balance = await contract.balanceOf(accounts[0]);
+                console.log(balance[0]);
+                UpdatePlayerMagic(balance[0]);
+
+                //print magic balance
+                console.log(balance[0]);
+            }
+            catch (err)
+            {
+                console.log("error: ", err);
+            }
+        }
+    }
+
+
 
     //mint bobot
     async function MintBobot()
@@ -190,13 +263,12 @@ const MultiplayerTest: React.FC = () =>
             const signer = provider.getSigner();
             const contract = new ethers.Contract(
                 contractAddress,
-                MintAbi.abi,
+                BobotGenesisABI.abi,
                 signer
             );
             console.log(contract);
             try
             {
-
                 console.log("await contract");
 
                 const response = await contract.mintBobot("0xCdEae8E41E953570B54D02f063A23E41e812f16e", BigNumber.from(1));
@@ -205,52 +277,134 @@ const MultiplayerTest: React.FC = () =>
                 //send response back to game engine
                 MintComfirmed(1);
 
-               
+
             }
             catch {
                 //error detection
 
 
             }
-
         }
-      
     }
+
+    async function CoreChamberGetBobotStakeStatus(tokenIDs: number)
+    {
+        console.log("received: ");
+        if ((window as any).ethereum)
+        {
+
+            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+            const signer = provider.getSigner();
+            const contract = new ethers.Contract(coreChamberAddress, BobotCoreChamberABI.abi, signer);
+            console.log(contract);
+            try
+            {
+                console.log("await contract");
+                const response = await contract.checkStakeStatus(tokenIDs);
+                console.log("response: ", response);
+
+                //0 if unstaked
+                var res = response[0].toNumber();
+                //send response back to game engine
+                CoreChamberStakeStatusAccepted(res);
+            }
+            catch {
+                //error detection
+            }
+        }
+    }
+
+    async function CoreChamberGetBobotLevel(tokenIDs: number)
+    {
+
+    }
+
+
+    async function CoreChamberStakeBobot(tokenIDs: number)
+    {
+        console.log("received: ");
+        if ((window as any).ethereum)
+        {
+
+            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+            const signer = provider.getSigner();
+            const contract = new ethers.Contract(coreChamberAddress, BobotCoreChamberABI.abi, signer);
+            console.log(contract);
+            try
+            {
+                console.log("await contract");
+                const response = await contract.stake(tokenIDs);
+                console.log("response: ", response);
+
+                //send response back to game engine
+                // MintComfirmed(1);
+            }
+            catch {
+                //error detection
+            }
+        }
+    }
+
+    async function CoreChamberUnstakeBobot(tokenIDs: number)
+    {
+        console.log("received: ");
+        if ((window as any).ethereum)
+        {
+
+            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+            const signer = provider.getSigner();
+            const contract = new ethers.Contract(coreChamberAddress, BobotCoreChamberABI.abi, signer);
+            console.log(contract);
+            try
+            {
+                console.log("await contract");
+                const response = await contract.unstake(tokenIDs);
+                console.log("response: ", response);
+
+                //send response back to game engine
+                // MintComfirmed(1);
+            }
+            catch {
+                //error detection
+            }
+        }
+    }
+
 
     async function GetBobotsAllID()
     {
         console.log("GetBobotsAllID: ");
         if ((window as any).ethereum)
         {
-
             const provider = new ethers.providers.Web3Provider((window as any).ethereum);
             const signer = provider.getSigner();
             const contract = new ethers.Contract(
                 contractAddress,
-                MintAbi.abi,
+                BobotGenesisABI.abi,
                 signer
             );
             console.log(contract);
-            var t:number[] = [];
+            var t: number[] = [];
             try
             {
                 console.log("await contract");
                 console.log(accounts[0]);
                 const response = await contract.getTokenIds("0xCdEae8E41E953570B54D02f063A23E41e812f16e");
                 console.log("response: ", response);
-               // const allIDs = response.value;
-                
-     
-            
+                // const allIDs = response.value;
 
-                for (var _i = 0; _i < response.length; _i++) {
-                    t.push(  response[_i].toNumber()) ;
+
+
+
+                for (var _i = 0; _i < response.length; _i++)
+                {
+                    t.push(response[_i].toNumber());
                 }
-                
-               // console.log(allIDs);
+
+                // console.log(allIDs);
                 SendBobotsAllID(t);
 
-               
+
                 //send response back to game engine
 
             }
@@ -267,6 +421,7 @@ const MultiplayerTest: React.FC = () =>
         unityContext.on("MetamaskLogin", MetaLogin);
         unityContext.on("Mint", MintBobot);
         unityContext.on("GetAllTokenIDs", GetBobotsAllID);
+        unityContext.on("GetUserData", GetUserData);
 
         /////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////
