@@ -30,7 +30,7 @@ import { ethers, BigNumber } from "ethers";
 
 import BobotGenesisABI from '../ABI/BobotGenesis.json'
 import BobotCoreChamberABI from '../ABI/CoreChamber.json'
-import Erc20ABI from '../ABI/ERC20.json'
+import Magic20ABI from '../ABI/Magic20.json'
 
 
 const unityContext = new UnityContext({
@@ -42,9 +42,9 @@ const unityContext = new UnityContext({
 
 
 //put contract addr here - localhost or remix
-const contractAddress: string = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
-const coreChamberAddress: string = " ";
-const magicAddress: string = " ";
+const contractAddress: string = "0xc5a5C42992dECbae36851359345FE25997F5C42d";
+const coreChamberAddress: string = "0x67d269191c92Caf3cD7723F116c85e6E9bf55933";
+const magicAddress: string = "0xE6E340D132b5f46d1e472DebcD681B2aBc16e57E";
 
 
 const MultiplayerTest: React.FC = () =>
@@ -229,19 +229,19 @@ const MultiplayerTest: React.FC = () =>
         if ((window as any).ethereum)
         {
 
-            const tokenContractAddress = '0x539bdE0d7Dbd336b79148AA742883198BBF60342';
+            const magicContractAddress = '0x539bdE0d7Dbd336b79148AA742883198BBF60342';
             const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-            const contract = new ethers.Contract(tokenContractAddress, Erc20ABI, provider);
+            const contract = new ethers.Contract("0x4E47624aDE3dF0AD9974f98Be4608301f73185EE", Magic20ABI.abi, provider);
             console.log(contract);
             console.log(accounts[0]);
             try
             {
-                const balance = await contract.balanceOf(accounts[0]);
-                console.log(balance[0]);
-                UpdatePlayerMagic(balance[0]);
+                const balance = await contract.checkBalance(magicContractAddress,accounts[0]);
+                console.log(balance);
+                UpdatePlayerMagic(balance);
 
                 //print magic balance
-                console.log(balance[0]);
+                console.log(balance);
             }
             catch (err)
             {

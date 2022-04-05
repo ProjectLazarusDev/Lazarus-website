@@ -748,8 +748,8 @@
       ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\Magic20.sol": {
-      "lastModificationDate": 1648838048354,
-      "contentHash": "fde128a1e2868b2c947a40a44765e7eb",
+      "lastModificationDate": 1648838721711,
+      "contentHash": "641bc300b3002270656e6574c6556bd1",
       "sourceName": "contracts/Magic20.sol",
       "solcConfig": {
         "version": "0.8.13",

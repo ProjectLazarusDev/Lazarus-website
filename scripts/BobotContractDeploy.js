@@ -32,7 +32,7 @@ async function main()
 
   //magic 20 deploy
   const Magic20 = await hre.ethers.getContractFactory("Magic20");
-  const magic20 = await Magic20.deploy("0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9");
+  const magic20 = await Magic20.deploy();
 
   await magic20.deployed();
 
