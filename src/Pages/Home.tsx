@@ -48,11 +48,11 @@ const Home: React.FC = () =>
 
     React.useEffect(() =>
     {
-        
+
 
         const scrollFun = () =>
         {
-            if(isMobile)
+            if (isMobile)
                 unityContext.send("MainMenuControl", "setMobile");
             setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
             unityContext.send("MainMenuControl", "SetScrollBarValue", scrollValue);
@@ -81,7 +81,7 @@ const Home: React.FC = () =>
         setIsLoaded(true);
         setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
         unityContext.setFullscreen(true);
-        if(isMobile)
+        if (isMobile)
             unityContext.send("MainMenuControl", "setMobile");
     }
 
@@ -135,7 +135,7 @@ const Home: React.FC = () =>
     {
         document.body.style.overflowY = "hidden";
         window.addEventListener("resize", updateDimensions);
-        
+
         return () => window.removeEventListener("resize", updateDimensions);
     }, []);
 
@@ -143,7 +143,7 @@ const Home: React.FC = () =>
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
-        if(isMobile)
+        if (isMobile)
             unityContext.send("MainMenuControl", "setMobile");
         setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
         unityContext.on("progress", handleOnUnityProgress);
@@ -267,8 +267,8 @@ const Home: React.FC = () =>
                                                 </div>
                                                 <div className="glowWhite">
                                                     <Typography paddingTop={'25px'} paddingBottom={'0px'} fontFamily='Dongle' align={width < 960 ? "center" : "left"} color={'white'} fontWeight='light' variant='subtitle1' fontSize='1.6rem'>
-                                                    <b>Bobots is a 3D blockchain game</b> using Arbitrum as the host for our own Bobots meta-verse.
-The  <b>long term vision of Bobots</b> is to create an environment where community can hang out in real-time and also stake their assets.
+                                                        <b>Bobots is a 3D blockchain game</b> using Arbitrum as the host for our own Bobots meta-verse.
+                                                        The  <b>long term vision of Bobots</b> is to create an environment where community can hang out in real-time and also stake their assets.
                                                     </Typography>
                                                     <Grid container
                                                         spacing={0}
@@ -341,11 +341,11 @@ The  <b>long term vision of Bobots</b> is to create an environment where communi
                                                         alignItems={width < 960 ? "center" : "left"}
                                                         justifyContent={width < 960 ? "center" : "left"} >
 
-                                                        <Button onClick={SelectCharacterLeft} variant="contained" style={{ height: '40px', width: '80px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#ffffffaa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
+                                                        <Button onClick={SelectCharacterLeft} variant="contained" style={{ height: '40px', width: '80px', fontFamily: 'Dongle', fontSize: '1.5rem',backgroundColor: '#ebbd34cc', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
 
                                                             <FaArrowCircleLeft />
                                                         </Button>
-                                                        <Button onClick={SelectCharacterRight} variant="contained" style={{ height: '40px', width: '80px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#ffffffaa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
+                                                        <Button onClick={SelectCharacterRight} variant="contained" style={{ height: '40px', width: '80px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#ebbd34cc', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
                                                             <FaArrowCircleRight />
                                                         </Button>
                                                     </Grid>

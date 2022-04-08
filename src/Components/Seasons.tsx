@@ -282,8 +282,8 @@ const Seasons: React.FC = () =>
                   <Typography align="left" variant="body2" component="h1"
                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                     fontSize='1.25rem' fontWeight="light" color='white' width= '250px' >
-                    The moon base would be airdropped to all whitelisted members,
-                    here the base can be levelled up based on the attributes of your Bobots.
+                  Bobot holders will have access to the moon base,
+                    here players will be able to build their dream base and interact with the ecosystem.
                   </Typography>
                 </Card>
               </Card>
@@ -327,7 +327,7 @@ const Seasons: React.FC = () =>
                 >
                   <Typography align="left" fontSize='1.6rem' lineHeight='1.5rem' variant="body1" component="h1"
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.5rem'} fontWeight='bold' color='white'>
-                   MINING QUEST
+                   MINING DRILL
                   </Typography>
                   <Typography align="left" variant="body1" component="h1" fontSize='1rem' lineHeight='0.5rem'
                     gutterBottom fontFamily='Dongle' letterSpacing={'0.2rem'} color={'#ffffff66'} fontWeight="" >
