@@ -87,12 +87,12 @@ const Teams: React.FC = () =>
                                 <Typography paddingTop="20px" align="center" variant="body2" component="h1"
                                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                                     fontSize='1.5rem' fontWeight="light" color='white' width='200px'>
-                                    <b>Experienced 3D Artist</b> with varying expertise from Game art,video editing, commercials to VFX!
+                                    <b>Experienced 3D Artist</b> with varying expertise from game art, video editing and commercials to VFX!
                                 </Typography>
                                 <Typography align="center" variant="body2" component="h1"
                                     gutterBottom fontFamily='Dongle' lineHeight='1.5rem'
                                     fontSize='1.5rem' fontWeight="light" color='white' width='200px'>
-                                    Anchoring project from art concept, direction to modelling of 3D Bobots.
+                                    Anchoring project from art concept and direction to modelling of 3D Bobots.
                                 </Typography>
                             </Card>
                         </Card>
