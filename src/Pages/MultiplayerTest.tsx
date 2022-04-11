@@ -237,11 +237,12 @@ const MultiplayerTest: React.FC = () =>
             try
             {
                 const balance = await contract.checkBalance(magicContractAddress,accounts[0]);
-                console.log(balance);
-                UpdatePlayerMagic(balance);
+                const magicAmount = BigNumber.from(balance).toNumber();
+                console.log(magicAmount);
+                UpdatePlayerMagic(magicAmount);
 
                 //print magic balance
-                console.log(balance);
+                console.log(magicAmount);
             }
             catch (err)
             {

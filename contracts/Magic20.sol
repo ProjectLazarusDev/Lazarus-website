@@ -13,4 +13,6 @@ contract Magic20 {
         IERC20 magic = IERC20(token);
         return magic.balanceOf(holder);
     }
+
+    
 }
