@@ -1,23 +1,59 @@
-// SPDX-License-Identifier: MIT
-// Creator: base64.tech
+//,,,,,,,,,,,,,,,,,,,***************************************,*,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,**,,,,***********************,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,****,,,*,,,**,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,((*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*%%#(*/&%( #( %#.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*###(*....         #(,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,(###(,,...          .,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.,(#%%(*,,,...         ,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/#%%%#**,,,,,... ,,   ,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/###((/**,,,,*,,,,,*.  ,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,(##((#%%%%%##//##((/( ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*((/*........      .,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,(%&&&&&&&&&&&&&%%%%%%%%%#/,,,,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,,,,,,,,,,********,,,....                ,,,,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,#(/,,,,,,*@%(#%%%%%&&&&&&&&%%%%%%%(((//,..  /,,,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,##(/,,&&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%/*,,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,##,.,*/((##(((//****,,,....                  .,,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,,((* .(####(***,,,,,#%%%%%%%%%%%%%#####%%%%%%((/,,,,,,,,,,,,,,,,
+//,,,,,,,,,,,,,,,,*&(%%#%%%%###(((((//#%%%######%%%%%%%###########, ,,,,,,,,,,,,,,
+//*,,,,,,,,,,,,,,,,((%%%%%%%%###((((//#%%#(    .(##%########(/   (. ,,,,,,,,,,,,,,
+//*,*,,,,,,,,,,,,,,/#%%%%%%%####((((//#%%#(    ,(#####   .(#(/   (. ,,,,,,,,,,,,,,
+//*******,,,,,*/ .,(&(#%%%%%%###((((//#%%%%#####%%%%%%%%%%%#######, ,,,,,,,,,,,,,,
+//********,*,///  ,/##&####(///*****(##%%%%%%%%%%%%%%%%%%%%%%##### ,,,,,,,,,,,,,,,
+//********,*/(//  ,,##/.,,,,,,,,,,,,,,,,,*((*,,,,,,,,,,,,(     .*.,,,,,,,,,,,,,,,,
+//**********(((*   *,,,..*(/,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#(#(/,   ,,,,,,,,,,,,,,,
+//*********&&&%*,  ,**((((#(//,/(%&&&%/*,   .%%%%%   ,*,#%## ((,,  (#/,,,,,,,,,,,,
+//*********&&&&(##((,.,%%%%(*. ,#%##&&&&((    #%%%%.   ##%/.#/,   *,.. .,,,,,,,,,,
+//*********@@@&#%(/*,..%@&%#/, .%%###((*, (&& . .**/(&&     /#(.  (*,. .,,,,,,,*,,
+//********(@@@&#%(/*,..***/%%#* .%%%###((////*  %#((((///* .*%#/  #/*,..*,,,,*****
+//********(&&@&#%(/*,.*******#.((%%%%%##////((((%#(/**//((((*,%%%#%(*,.***********
+//*********#####%(/*,,*******#*(%%%%%%%########***%%%%%%%#/****%%#%%/,,,**********
+//                      ____   ____  ____   ____ _______ _____                  //
+//                     |  _ \ / __ \|  _ \ / __ \__   __/ ____|                 //
+//                     | |_) | |  | | |_) | |  | | | | | (___                   //
+//                     |  _ <| |  | |  _ <| |  | | | |  \___ \                  //
+//                     | |_) | |__| | |_) | |__| | | |  ____)                   //
+//                     |____/ \____/|____/ \____/  |_| |_____/                  //
+//////////////////////////////////////////////////////////////////////////////////
+
 pragma solidity ^0.8.13;
-
 import "./ERC721NES.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-/**
- *  @dev This is a sample implementation of a staking controller use in conjunction with
- *  an contract that implements ERC721NES.
- *
- *  This implementation captures the total duration staked for a given token either by
- *  block.timestamp or by block.number and provides a divisor to convert this value
- *  to a balance.
- */
-contract CoreChamber {
-    // Address of the ERC721 token contract
-    address tokenContract;
+//import Bobot genesis
+import "./BobotGenesis.sol";
+
+contract CoreChamber is Ownable 
+{
+
     // block number multiplier to determine the balance to accrue
     // during the duration staked. Defaults to 1.
     uint256 multiplier = 1;
+
+    //bobots genesis contract
+    BobotGenesis public bobotGenesis;
 
     // For each token, this map stores the current block.number
     // if token is mapped to 0, it is currently unstaked.
@@ -27,28 +63,31 @@ contract CoreChamber {
     // measured by block.number
     mapping(uint256 => uint256) public tokenToTotalDurationStaked;
 
-    /**
-     *  @dev constructor
-     */
-    constructor(address _tokenContract, uint256 _multipler) {
-        tokenContract = _tokenContract;
+    /**************************************************************************/
+    /*!
+       \brief constructor
+    */
+    /**************************************************************************/
+    constructor( uint256 _multipler) 
+    {
         multiplier = _multipler;
     }
 
-    /**
-     *  @dev check if token is staked
-     */
-    function checkStakeStatus(uint256 tokenId) 
-        public 
-        view
-        returns (uint256)
-        {
+    /**************************************************************************/
+    /*!
+       \brief check if token is staked
+    */
+    /**************************************************************************/
+
+    function checkStakeStatus(uint256 tokenId) public view returns (uint256) {
         return tokenToWhenStaked[tokenId];
     }
 
-    /**
-     *  @dev returns the additional balance between when token was staked until now
-     */
+    /**************************************************************************/
+    /*!
+       \brief returns the additional balance between when token was staked until now
+    */
+    /**************************************************************************/
     function getCurrentAdditionalBalance(uint256 tokenId)
         public
         view
@@ -61,9 +100,11 @@ contract CoreChamber {
         }
     }
 
-    /**
-     *  @dev returns total duration the token has been staked.
-     */
+    /**************************************************************************/
+    /*!
+       \brief returns total duration the token has been staked.
+    */
+    /**************************************************************************/
     function getCumulativeDurationStaked(uint256 tokenId)
         public
         view
@@ -74,38 +115,61 @@ contract CoreChamber {
             getCurrentAdditionalBalance(tokenId);
     }
 
-    /**
-     *  @dev Returns the amount of tokens rewarded up until this point.
-     */
-    function getStakingRewards(uint256 tokenId) public view returns (uint256) {
-        return getCumulativeDurationStaked(tokenId) * multiplier; // allows for toke accumulation at ~ 10 per hour
+    /**************************************************************************/
+    /*!
+       \brief Returns the amount of tokens rewarded up until this point.
+    */
+    /**************************************************************************/
+
+    function getStakingRewards(uint256 tokenId) public view returns (uint256) 
+    {
+        // allows for toke accumulation at ~ 10 per hour
+        return getCumulativeDurationStaked(tokenId) * multiplier; 
     }
 
-    /**
-     *  @dev Stakes a token and records the start block number or time stamp.
-     */
+    /**************************************************************************/
+    /*!
+       \brief Stakes a token and records the start block number or time stamp.
+    */
+    /**************************************************************************/
     function stake(uint256 tokenId) public {
         require(
-            ERC721NES(tokenContract).ownerOf(tokenId) == msg.sender,
+            ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
             "You are not the owner of this token"
         );
 
         tokenToWhenStaked[tokenId] = block.number;
-        ERC721NES(tokenContract).stakeFromController(tokenId, msg.sender);
+        
+        ERC721NES( address(bobotGenesis)).
+        stakeFromController(tokenId, msg.sender);
     }
 
-    /**
-     *  @dev Unstakes a token and records the start block number or time stamp.
-     */
+    /**************************************************************************/
+    /*!
+       \brief Unstakes a token and records the start block number or time stamp.
+    */
+    /**************************************************************************/
+
     function unstake(uint256 tokenId) public {
         require(
-            ERC721NES(tokenContract).ownerOf(tokenId) == msg.sender,
+            ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
             "You are not the owner of this token"
         );
 
         tokenToTotalDurationStaked[tokenId] += getCurrentAdditionalBalance(
             tokenId
         );
-        ERC721NES(tokenContract).unstakeFromController(tokenId, msg.sender);
+        ERC721NES( address(bobotGenesis)).unstakeFromController(tokenId, msg.sender);
+    }
+
+    //admin function
+
+    /**************************************************************************/
+    /*!
+       \brief Set Bobot Genesis contract
+    */
+    /**************************************************************************/
+    function setBobotGenesis(address _bobotGenesis) external onlyOwner {
+        bobotGenesis = BobotGenesis(_bobotGenesis);
     }
 }
