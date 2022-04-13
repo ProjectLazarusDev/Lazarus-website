@@ -1,4 +1,4 @@
-import unityContext from '../Context/UnityContext';
+import context from '../Context/UnityContext';
 
 
 import { coreChamberAddress, contractAddress } from './ContractAddress';
@@ -14,25 +14,48 @@ import { MintBobot } from './BootUpStation';
 import { GetBobotsAllID } from './Bobots';
 import { GetUserData } from './User';
 
-function BindToContext()
+const blockchainManager: string = "BlockchainManager";
+
+//
+
+export function BindToContext()
 {
     //metamask functions
-    unityContext.on("MetaMaskLogin_Request", MetaLogin);
+    context.on("MetaMaskLogin_Request", MetaLogin);
 
     //mint
-    unityContext.on("Mint_Request", MintBobot);
+    context.on("Mint_Request", MintBobot);
 
     //uri request
-    unityContext.on("GetAllTokenURIs_Request", GetBobotsAllID);
+    context.on("GetAllTokenURIs_Request", GetBobotsAllID);
 
 
-    unityContext.on("GetUserData", GetUserData);
+    context.on("GetUserData", GetUserData);
 
 }
 
-export function MetaMaskLogin_Callback( _address:string)
+export function MetaMaskLogin_Callback(_address: string)
 {
-    unityContext.send("BlockchainManager", "MetaMaskLogin_Callback", _address);
+    context.send(blockchainManager, "MetaMaskLogin_Callback", _address);
 }
 
-export { BindToContext};
+export function GetMagic_Callback(_magic: number)
+{
+    context.send(blockchainManager, "GetMagic_Callback", _magic);
+}
+
+export function GetAllTokenURIs_Callback(_errorCode: number)
+{
+    context.send(blockchainManager, "GetAllTokenURIs_Callback", _errorCode);
+}
+
+export function RecieveTokenURI_Callback(_tokenURI: string)
+{
+    context.send(blockchainManager, "RecieveTokenURI_Callback", _tokenURI);
+}
+
+export function CompletedTokenURI_Callback()
+{
+    context.send(blockchainManager, "Mint_Callback");
+}
+
