@@ -1,7 +1,7 @@
 
 
-import unityContext from './UnityContext';
-
+import unityContext from '../Context/UnityContext';
+import * as blockchain from './BlockchainFunctions';
 //sotres metamask accounts
 var MetaMaskAccounts: any;
 
@@ -15,13 +15,8 @@ async function MetaLogin()
         console.log(MetaMaskAccounts[0]);
 
         //send connected address back to engine
-        MetamaskComfirmed(MetaMaskAccounts[0]);
+        blockchain.MetaMaskLogin_Callback(MetaMaskAccounts[0]);
     }
 }
 
-function MetamaskComfirmed(addr: string)
-{
-    unityContext.send("BlockchainManager", "MetamaskAccepted", addr);
-}
-
-export { MetaLogin,MetaMaskAccounts};
+export { MetaLogin, MetaMaskAccounts };

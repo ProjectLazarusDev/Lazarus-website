@@ -23,11 +23,11 @@ import { isMobile } from 'react-device-detect';
 import '../indexweb3.js'
 
 
-import {BindToContext} from './BlockchainFunctions';
+import {BindToContext} from '../Blockchain/BlockchainFunctions';
 import Web3 from 'web3';
 import { ethers, BigNumber } from "ethers";
 
-import unityContext from './UnityContext';
+import unityContext from '../Context/UnityContext';
 //abi import
 
 
@@ -116,18 +116,12 @@ const MultiplayerTest: React.FC = () =>
         return () => window.removeEventListener("resize", updateDimensions);
     }, []);
 
-    //////////////////////////////////////////////////////////////////////////////////////////////
-
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
         BindToContext();
-
-        /////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////
         return function ()
         {
-
             // handleOnClickUnMountUnity();
             unityContext.removeAllEventListeners();
         };

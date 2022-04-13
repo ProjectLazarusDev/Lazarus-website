@@ -6,7 +6,7 @@ import BobotGenesisABI from '../ABI/BobotGenesis.json'
 import BobotCoreChamberABI from '../ABI/CoreChamber.json'
 
 import { MetaLogin, MetaMaskAccounts } from './MetaMaskLogin';
-import unityContext from './UnityContext';
+import unityContext from '../Context/UnityContext';
 async function GetBobotsAllID()
 {
     console.log("GetBobotsAllID: ");

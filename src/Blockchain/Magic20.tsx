@@ -1,7 +1,7 @@
 import { ethers, BigNumber } from "ethers";
 
 import { MetaLogin, MetaMaskAccounts } from './MetaMaskLogin';
-import unityContext from './UnityContext';
+import unityContext from '../Context/UnityContext';
 import Magic20ABI from '../ABI/Magic20.json'
 //erc20 magic 
 async function MagicGetBalance()

@@ -1,4 +1,4 @@
-import unityContext from './UnityContext';
+import unityContext from '../Context/UnityContext';
 
 
 import { coreChamberAddress, contractAddress } from './ContractAddress';
@@ -16,11 +16,23 @@ import { GetUserData } from './User';
 
 function BindToContext()
 {
-    unityContext.on("MetamaskLogin", MetaLogin);
-    unityContext.on("Mint", MintBobot);
-    unityContext.on("GetAllTokenIDs", GetBobotsAllID);
+    //metamask functions
+    unityContext.on("MetaMaskLogin_Request", MetaLogin);
+
+    //mint
+    unityContext.on("Mint_Request", MintBobot);
+
+    //uri request
+    unityContext.on("GetAllTokenURIs_Request", GetBobotsAllID);
+
+
     unityContext.on("GetUserData", GetUserData);
 
 }
 
-export {BindToContext};
+export function MetaMaskLogin_Callback( _address:string)
+{
+    unityContext.send("BlockchainManager", "MetaMaskLogin_Callback", _address);
+}
+
+export { BindToContext};
