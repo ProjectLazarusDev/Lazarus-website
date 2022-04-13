@@ -43,8 +43,8 @@ const Header: React.FC = () =>
 
   const RenderIcons = (
     <>
-      <Button variant="contained" style={{ height: '40px', width: '210px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
-       LAUNCH COMING SOON
+      <Button variant="contained" style={{ height: '40px', width: '250px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
+       SEASON 0 COMING SOON
       </Button>
       <Button onClick={handleDiscord} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
         <FaDiscord />
