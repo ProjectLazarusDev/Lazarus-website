@@ -40,9 +40,9 @@ async function MintBobot()
     }
 }
 
-export default MintBobot;
-
 function MintComfirmed(id: number)
 {
     unityContext.send("BlockchainManager", "MintAccepted", id);
 }
+
+export { MintBobot};

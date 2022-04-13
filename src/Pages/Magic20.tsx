@@ -36,3 +36,7 @@ function UpdatePlayerMagic(value: number)
     unityContext.send("BlockchainManager", "ReceivePlayerMagic", value);
 }
 
+export {
+    MagicGetBalance,
+    UpdatePlayerMagic
+};

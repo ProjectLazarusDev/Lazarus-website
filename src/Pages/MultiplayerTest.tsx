@@ -22,19 +22,14 @@ import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
 import '../indexweb3.js'
 
+
+import {BindToContext} from './BlockchainFunctions';
 import Web3 from 'web3';
 import { ethers, BigNumber } from "ethers";
 
 import unityContext from './UnityContext';
 //abi import
-import MetaLogin from './MetaMaskLogin';
-import MintBobot from './BootUpStation';
 
-import {coreChamberAddress,contractAddress } from './ContractAddress';
-
-import BobotGenesisABI from '../ABI/BobotGenesis.json'
-import BobotCoreChamberABI from '../ABI/CoreChamber.json'
-import Magic20ABI from '../ABI/Magic20.json'
 
 
 const MultiplayerTest: React.FC = () =>
@@ -123,28 +118,10 @@ const MultiplayerTest: React.FC = () =>
 
     //////////////////////////////////////////////////////////////////////////////////////////////
 
-
-    //core chamber stake status callback
-    function UpdatePlayerAddress(str: string)
-    {
-        unityContext.send("BlockchainManager", "ReceivePlayerAddress", str);
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////////////////
-
-    function GetUserData()
-    {
-        MagicGetBalance();
-        UpdatePlayerAddress(accounts[0]);
-    }
-
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
-        unityContext.on("MetamaskLogin", MetaLogin);
-        unityContext.on("Mint", MintBobot);
-        unityContext.on("GetAllTokenIDs", GetBobotsAllID);
-        unityContext.on("GetUserData", GetUserData);
+        BindToContext();
 
         /////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////

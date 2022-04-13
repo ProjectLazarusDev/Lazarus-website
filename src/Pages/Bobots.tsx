@@ -27,10 +27,8 @@ async function GetBobotsAllID()
             console.log(MetaMaskAccounts[0]);
             const response = await contract.getTokenIds("0xCdEae8E41E953570B54D02f063A23E41e812f16e");
             console.log("response: ", response);
+
             // const allIDs = response.value;
-
-
-
 
             for (var _i = 0; _i < response.length; _i++)
             {
@@ -63,4 +61,5 @@ function SendBobotsAllID(tokenIDs: number[])
     });
 }
 
+export {GetBobotsAllID,SendBobotsAllID};
 
