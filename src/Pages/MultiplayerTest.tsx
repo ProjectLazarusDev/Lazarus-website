@@ -25,42 +25,29 @@ import '../indexweb3.js'
 import Web3 from 'web3';
 import { ethers, BigNumber } from "ethers";
 
+import unityContext from './UnityContext';
 //abi import
+import MetaLogin from './MetaMaskLogin';
+import MintBobot from './BootUpStation';
 
+import {coreChamberAddress,contractAddress } from './ContractAddress';
 
 import BobotGenesisABI from '../ABI/BobotGenesis.json'
 import BobotCoreChamberABI from '../ABI/CoreChamber.json'
 import Magic20ABI from '../ABI/Magic20.json'
 
 
-const unityContext = new UnityContext({
-    loaderUrl: "dev_multiplayer/dev_multiplayer.loader.js",
-    dataUrl: "dev_multiplayer/dev_multiplayer.data",
-    frameworkUrl: "dev_multiplayer/dev_multiplayer.framework.js",
-    codeUrl: "dev_multiplayer/dev_multiplayer.wasm",
-});
-
-
-//put contract addr here - localhost or remix
-const contractAddress: string = "0xc5a5C42992dECbae36851359345FE25997F5C42d";
-const coreChamberAddress: string = "0x67d269191c92Caf3cD7723F116c85e6E9bf55933";
-const magicAddress: string = "0xE6E340D132b5f46d1e472DebcD681B2aBc16e57E";
-
-
 const MultiplayerTest: React.FC = () =>
 {
     //react hooks
-    var web3: Web3;
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
     const [scrollValue, setScrollValue] = React.useState<number>(0.0);
-    const [magicAmount, setMagicAmount] = React.useState<number>(0.0);
 
     //store eth addresses
     var accounts: any;
     React.useEffect(() =>
     {
-
         const scrollFun = () =>
         {
 
@@ -104,16 +91,7 @@ const MultiplayerTest: React.FC = () =>
     }
 
     const updateDimensions = () =>
-    {
-
-
-
-    }
-    //get web3 started
-    // const [account, setAccount] = React.useState<string>("");
-
-
-
+    {}
 
     //toggle full-screen control
     function ToggleFullScreen(toggle: boolean)
@@ -145,275 +123,19 @@ const MultiplayerTest: React.FC = () =>
 
     //////////////////////////////////////////////////////////////////////////////////////////////
 
-    function MetamaskComfirmed(addr: string)
-    {
-
-        unityContext.send("BlockchainManager", "MetamaskAccepted", addr);
-    }
-
-    function MintComfirmed(id: number)
-    {
-        unityContext.send("BlockchainManager", "MintAccepted", id);
-    }
-    function SendBobotsAllID(tokenIDs: number[])
-    {
-        unityContext.send("BlockchainManager", "BobotsClearID");
-
-        //send all tokenIDs to engine
-        tokenIDs.forEach(element =>
-        {
-            console.log("Send: ", element);
-            unityContext.send("BlockchainManager", "BobotsReceiveID", element);
-        });
-    }
-
-    //connect to erc20 magic
-
-
 
     //core chamber stake status callback
     function UpdatePlayerAddress(str: string)
     {
         unityContext.send("BlockchainManager", "ReceivePlayerAddress", str);
     }
-    function UpdatePlayerMagic(value: number)
-    {
-        unityContext.send("BlockchainManager", "ReceivePlayerMagic", value);
-    }
-
-
-
-
-    //core chamber stake status callback
-    function CoreChamberStakeStatusAccepted(status: number)
-    {
-        unityContext.send("BlockchainManager", "CoreChamberStakeStatus", status);
-    }
-
-    //core chamber stake callback
-    function CoreChamberStakeAccepted(id: number)
-    {
-        unityContext.send("BlockchainManager", "CoreChamberStake", id);
-    }
-    //core chamber unstake callback
-    function CoreChamberUnstakeAccepted(id: number)
-    {
-        unityContext.send("BlockchainManager", "CoreChamberUnstake", id);
-    }
 
     //////////////////////////////////////////////////////////////////////////////////////////////
 
-    //connect to metamask
-    async function MetaLogin()
-    {
-        if ((window as any).ethereum)
-        {
-            accounts = await (window as any).ethereum.
-                request({ method: "eth_requestAccounts", });
-            console.log(accounts[0]);
-
-            //send connected address back to engine
-            MetamaskComfirmed(accounts[0]);
-        }
-    }
     function GetUserData()
     {
         MagicGetBalance();
         UpdatePlayerAddress(accounts[0]);
-    }
-
-    //erc20 magic 
-    async function MagicGetBalance()
-    {
-        console.log("received: ");
-        if ((window as any).ethereum)
-        {
-
-            const magicContractAddress = '0x539bdE0d7Dbd336b79148AA742883198BBF60342';
-            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-            const contract = new ethers.Contract("0x4E47624aDE3dF0AD9974f98Be4608301f73185EE", Magic20ABI.abi, provider);
-            console.log(contract);
-            console.log(accounts[0]);
-            try
-            {
-                const balance = await contract.checkBalance(magicContractAddress,accounts[0]);
-                const magicAmount = BigNumber.from(balance).toNumber();
-                console.log(magicAmount);
-                UpdatePlayerMagic(magicAmount);
-
-                //print magic balance
-                console.log(magicAmount);
-            }
-            catch (err)
-            {
-                console.log("error: ", err);
-            }
-        }
-    }
-
-
-
-    //mint bobot
-    async function MintBobot()
-    {
-        console.log("received: ");
-        if ((window as any).ethereum)
-        {
-
-            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-            const signer = provider.getSigner();
-            const contract = new ethers.Contract(
-                contractAddress,
-                BobotGenesisABI.abi,
-                signer
-            );
-            console.log(contract);
-            try
-            {
-                console.log("await contract");
-
-                const response = await contract.mintBobot("0xCdEae8E41E953570B54D02f063A23E41e812f16e", BigNumber.from(1));
-                console.log("response: ", response);
-
-                //send response back to game engine
-                MintComfirmed(1);
-
-
-            }
-            catch {
-                //error detection
-
-
-            }
-        }
-    }
-
-    async function CoreChamberGetBobotStakeStatus(tokenIDs: number)
-    {
-        console.log("received: ");
-        if ((window as any).ethereum)
-        {
-
-            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-            const signer = provider.getSigner();
-            const contract = new ethers.Contract(coreChamberAddress, BobotCoreChamberABI.abi, signer);
-            console.log(contract);
-            try
-            {
-                console.log("await contract");
-                const response = await contract.checkStakeStatus(tokenIDs);
-                console.log("response: ", response);
-
-                //0 if unstaked
-                var res = response[0].toNumber();
-                //send response back to game engine
-                CoreChamberStakeStatusAccepted(res);
-            }
-            catch {
-                //error detection
-            }
-        }
-    }
-
-    async function CoreChamberGetBobotLevel(tokenIDs: number)
-    {
-
-    }
-
-
-    async function CoreChamberStakeBobot(tokenIDs: number)
-    {
-        console.log("received: ");
-        if ((window as any).ethereum)
-        {
-
-            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-            const signer = provider.getSigner();
-            const contract = new ethers.Contract(coreChamberAddress, BobotCoreChamberABI.abi, signer);
-            console.log(contract);
-            try
-            {
-                console.log("await contract");
-                const response = await contract.stake(tokenIDs);
-                console.log("response: ", response);
-
-                //send response back to game engine
-                // MintComfirmed(1);
-            }
-            catch {
-                //error detection
-            }
-        }
-    }
-
-    async function CoreChamberUnstakeBobot(tokenIDs: number)
-    {
-        console.log("received: ");
-        if ((window as any).ethereum)
-        {
-
-            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-            const signer = provider.getSigner();
-            const contract = new ethers.Contract(coreChamberAddress, BobotCoreChamberABI.abi, signer);
-            console.log(contract);
-            try
-            {
-                console.log("await contract");
-                const response = await contract.unstake(tokenIDs);
-                console.log("response: ", response);
-
-                //send response back to game engine
-                // MintComfirmed(1);
-            }
-            catch {
-                //error detection
-            }
-        }
-    }
-
-
-    async function GetBobotsAllID()
-    {
-        console.log("GetBobotsAllID: ");
-        if ((window as any).ethereum)
-        {
-            const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-            const signer = provider.getSigner();
-            const contract = new ethers.Contract(
-                contractAddress,
-                BobotGenesisABI.abi,
-                signer
-            );
-            console.log(contract);
-            var t: number[] = [];
-            try
-            {
-                console.log("await contract");
-                console.log(accounts[0]);
-                const response = await contract.getTokenIds("0xCdEae8E41E953570B54D02f063A23E41e812f16e");
-                console.log("response: ", response);
-                // const allIDs = response.value;
-
-
-
-
-                for (var _i = 0; _i < response.length; _i++)
-                {
-                    t.push(response[_i].toNumber());
-                }
-
-                // console.log(allIDs);
-                SendBobotsAllID(t);
-
-
-                //send response back to game engine
-
-            }
-            catch (err)
-            {
-                console.log("error: ", err);
-            }
-        }
     }
 
     // When the component is mounted, we'll register some event listener.
