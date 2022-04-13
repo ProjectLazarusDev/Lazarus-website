@@ -25,6 +25,10 @@ const App: React.FC = () =>
           <Route path='/' exact component={Home} />
           <Route path='/MintPage' exact component={MintPage} />
           <Route path='/HainanChickenRice' exact component={MultiplayerTest} />
+          <Route path='/collab' component={() => { 
+     window.location.href = 'https://docs.google.com/forms/u/1/d/1K8xtkr46I-_WPlS7_OeELhgWeYKbohpwOIP2UwLuy-g/edit?usp=drive_web'; 
+     return null;
+}} />
         </Switch>
       </Router>
     
