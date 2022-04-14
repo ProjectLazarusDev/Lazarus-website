@@ -26,7 +26,7 @@ const App: React.FC = () =>
           <Route path='/MintPage' exact component={MintPage} />
           <Route path='/HainanChickenRice' exact component={MultiplayerTest} />
           <Route path='/collab' component={() => { 
-     window.location.href = 'https://docs.google.com/forms/u/1/d/1K8xtkr46I-_WPlS7_OeELhgWeYKbohpwOIP2UwLuy-g/edit?usp=drive_web'; 
+     window.location.href = 'https://forms.gle/bjnW8NfSN2XWxwoG8'; 
      return null;
 }} />
         </Switch>
