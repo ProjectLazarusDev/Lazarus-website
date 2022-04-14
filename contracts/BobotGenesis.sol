@@ -41,7 +41,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 //                     |  _ <| |  | |  _ <| |  | | | |  \___ \                  //
 //                     | |_) | |__| | |_) | |__| | | |  ____)                   //
 //                     |____/ \____/|____/ \____/  |_| |_____/                  //
-//////////////////////////////////////////////////////////////////////////////////                                    
+//////////////////////////////////////////////////////////////////////////////////
 
 //other staking contracts
 import "./InstallationCoreChamber.sol";
@@ -49,13 +49,11 @@ import "./InstallationCoreChamber.sol";
 //$MAGIC transactions
 import "./Magic20.sol";
 
-
 contract BobotGenesis is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
     //revealed and unrevealed uri
     string public baseURI;
-    string public baseHiddenURI;
 
     string public baseExtention = ".json";
     uint256 public maxSupply = 4040;
@@ -69,17 +67,15 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
     bool public onlyWhitelisted = true;
 
     //store whitelisted addresses
-    address[] public whitelistedAddresses;
+
+    //1 bobot
+    address[] public whitelistedAddressesGuardians;
+
+    //2 bobot
+    address[] public whitelistedAddressesLunars;
 
     //core chamber
     CoreChamber public coreChamber;
-
-
-    //amount mintable per whitelist
-    mapping(address => uint256) public addressMintedBalance;
-
-    //which id is revealed
-    mapping(uint256 => bool) public tokenIDRevealed;
 
     //core points on a per bobot basis
     //one bobot -> core point
@@ -87,7 +83,6 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
 
     //is the contract running
     bool public paused = false;
-
 
     //modifiers
     /**************************************************************************/
@@ -108,11 +103,9 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
     constructor(
         string memory _name,
         string memory _symbol,
-        string memory _initBaseURI,
-        string memory _initHiddenURI
+        string memory _initBaseURI
     ) ERC721(_name, _symbol) {
         setBaseURI(_initBaseURI);
-        setHiddenURI(_initHiddenURI);
     }
 
     /**************************************************************************/
@@ -124,7 +117,6 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
         return baseURI; // return own base URI
     }
 
-
     // public
 
     /**************************************************************************/
@@ -133,62 +125,40 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
        does user have $MAGIC in their wallet?
     */
     /**************************************************************************/
-    function mintBobot(address _to, uint256 _mintAmount) public payable {
+    function mintBobot(address _to) public payable {
         uint256 supply = totalSupply();
 
         //is contract running?
         require(!paused);
-        require(_mintAmount > 0);
-        require(_mintAmount <= maxMintAmount);
-        require(supply + _mintAmount <= maxSupply);
-
+        uint256 mintCount = 0;
         if (msg.sender != owner()) {
-
             //minter must be whitelisted
             if (onlyWhitelisted == true) {
-                require(
-                    isUserWhitelisted(msg.sender),
-                    "user is not whitelisted"
-                );
+                bool isGuardians = isUserWhitelistedGuardians(msg.sender);
+                bool isLunars = isUserWhitelistedLunars(msg.sender);
+                require(isGuardians || isLunars, "user not whitelisted");
+                if (isGuardians)
+                {
+                    require(supply + 1 <= maxSupply);
+                    mintCount = 1;
+                }
+
+                if (isLunars) 
+                {
+                    require(supply + 2 <= maxSupply);
+                    mintCount = 2;
+                }
 
                 //guardians will have 1 mint
                 //lunars will have 2 mint
-                uint256 ownerMintedCount = addressMintedBalance[msg.sender];
-                require(
-                    ownerMintedCount + _mintAmount <= nftPerAddressLimit,
-                    "max NFT per address exceeded"
-                );
             }
         }
 
-        for (uint256 i = 1; i <= _mintAmount; ++i) {
+        for (uint256 i = 1; i <= mintCount; ++i) {
             _safeMint(_to, supply + i);
-            tokenIDRevealed[supply + i] = false;
         }
     }
-    /**************************************************************************/
-    /*!
-       \brief reveal one bobot
-    */
-    /**************************************************************************/
-    function revealTokenID (uint256 _id) public payable
-    {
-        if( tokenIDRevealed[_id] == false)
-        {
-            tokenIDRevealed[_id] = true;
 
-            //change uri for revealed bobots
-        }
-    }
-    /**************************************************************************/
-    /*!
-       \brief check if the bobot is revealed
-    */
-    /**************************************************************************/
-    function checkRevealTokenID(uint256 _id) public view returns (bool)
-    {
-        return tokenIDRevealed[_id];
-    }
     /**************************************************************************/
     /*!
        \brief return all token ids that a owner holds
@@ -207,19 +177,39 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
 
         return tokenIDs;
     }
+
     /**************************************************************************/
     /*!
-       \brief is current use whitelisted
+       \brief is current use whitelisted - guardians
     */
     /**************************************************************************/
-    function isUserWhitelisted(address _user) public view returns (bool) {
-        for (uint256 i = 0; i < whitelistedAddresses.length; i++) {
-            if (whitelistedAddresses[i] == _user) {
+    function isUserWhitelistedGuardians(address _user)
+        public
+        view
+        returns (bool)
+    {
+        for (uint256 i = 0; i < whitelistedAddressesGuardians.length; i++) {
+            if (whitelistedAddressesGuardians[i] == _user) {
                 return true;
             }
         }
         return false;
     }
+
+    /**************************************************************************/
+    /*!
+       \brief is current use whitelisted - Lunar
+    */
+    /**************************************************************************/
+    function isUserWhitelistedLunars(address _user) public view returns (bool) {
+        for (uint256 i = 0; i < whitelistedAddressesLunars.length; i++) {
+            if (whitelistedAddressesLunars[i] == _user) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**************************************************************************/
     /*!
        \brief return all token ids a holder owns
@@ -240,6 +230,7 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
         }
         return (_tokensOfOwner);
     }
+
     /**************************************************************************/
     /*!
        \brief return URI of a token - could be revealed or hidden
@@ -258,28 +249,25 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
         );
 
         string memory currentBaseURI = _baseURI();
-        string memory currentBaseHiddenURI = _baseURI();
-
-        bool IDRevealed = checkRevealTokenID(tokenID);
 
         return
             bytes(currentBaseURI).length > 0
                 ? string(
-                    abi.encodePacked(IDRevealed ? baseURI : currentBaseHiddenURI, tokenID.toString(), baseExtention)
+                    abi.encodePacked(baseURI, tokenID.toString(), baseExtention)
                 )
                 : "";
     }
 
-    
     /**************************************************************************/
     /*!
        \brief earning core points logic
     */
     /**************************************************************************/
-    function coreChamberCorePointUpdate
-    (uint256 _tokenId, uint256 _coreEarned) external onlyCoreChamber
+    function coreChamberCorePointUpdate(uint256 _tokenId, uint256 _coreEarned)
+        external
+        onlyCoreChamber
     {
-       bobotCorePoints[_tokenId] += _coreEarned;
+        bobotCorePoints[_tokenId] += _coreEarned;
     }
 
     //admin functions
@@ -289,8 +277,7 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
        \brief enable reveal phase
     */
     /**************************************************************************/
-    function reveal () public onlyOwner
-    {
+    function reveal() public onlyOwner {
         revealed = true;
     }
 
@@ -299,9 +286,8 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
        \brief set Core Chamber Contract
     */
     /**************************************************************************/
-     function setCoreChamber(address _coreChamber) external onlyOwner {
+    function setCoreChamber(address _coreChamber) external onlyOwner {
         coreChamber = CoreChamber(_coreChamber);
-
     }
 
     /**************************************************************************/
@@ -312,6 +298,7 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
     function setmaxMintAmount(uint256 _newmaxMintAmount) public onlyOwner {
         maxMintAmount = _newmaxMintAmount;
     }
+
     /**************************************************************************/
     /*!
        \brief set base URI
@@ -320,14 +307,7 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
     function setBaseURI(string memory _newBaseURI) public onlyOwner {
         baseURI = _newBaseURI;
     }
-    /**************************************************************************/
-    /*!
-       \brief set Hidden URI
-    */
-    /**************************************************************************/
-    function setHiddenURI(string memory _newBaseURI) public onlyOwner {
-        baseHiddenURI = _newBaseURI;
-    }
+
     /**************************************************************************/
     /*!
        \brief set Base Extensions
@@ -339,6 +319,7 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
     {
         baseExtention = _newBaseExtentions;
     }
+
     /**************************************************************************/
     /*!
        \brief pause smart contract
@@ -347,6 +328,7 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
     function pause(bool _state) public onlyOwner {
         paused = _state;
     }
+
     /**************************************************************************/
     /*!
        \brief withdraw
