@@ -25,7 +25,7 @@ const App: React.FC = () =>
           <Route path='/' exact component={Home} />
           <Route path='/MintPage' exact component={MintPage} />
           <Route path='/HainanChickenRice' exact component={MultiplayerTest} />
-          <Route path='/collab' component={() => { 
+          <Route path='/OperationDarkArts' component={() => { 
      window.location.href = 'https://forms.gle/bjnW8NfSN2XWxwoG8'; 
      return null;
 }} />
