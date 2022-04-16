@@ -1,8 +1,3 @@
-pragma solidity ^0.8.13;
-
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-
 //,,,,,,,,,,,,,,,,,,,***************************************,*,,,,,,,,,,,,,,,,,,,,
 //,,,,,,,,,,,,,,,,,,,,,**,,,,***********************,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 //,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,****,,,*,,,**,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -42,6 +37,14 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 //                     | |_) | |__| | |_) | |__| | | |  ____)                   //
 //                     |____/ \____/|____/ \____/  |_| |_____/                  //
 //////////////////////////////////////////////////////////////////////////////////
+pragma solidity ^0.8.13;
+
+import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
+import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 //other staking contracts
 import "./InstallationCoreChamber.sol";
@@ -49,9 +52,17 @@ import "./InstallationCoreChamber.sol";
 //$MAGIC transactions
 import "./Magic20.sol";
 
-contract BobotGenesis is ERC721Enumerable, Ownable {
+contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
+    using SafeERC20Upgradeable for IERC20Upgradeable;
+    using AddressUpgradeable for address;
+    using CountersUpgradeable for CountersUpgradeable.Counter;
     using Strings for uint256;
 
+    //magic contract
+    IERC20Upgradeable public magic;
+
+    uint256 currencyExchange = (10**9);
+    uint256 magicBalanceCost = 25;
     //revealed and unrevealed uri
     string public baseURI;
 
@@ -67,12 +78,22 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
     bool public onlyWhitelisted = true;
 
     //store whitelisted addresses
+    address[] whitelistedAddressesGuardians;
+    address[] whitelistedAddressesLunars;
 
-    //1 bobot
-    address[] public whitelistedAddressesGuardians;
+    //root hash for merkle proof
+    bytes32 public rootGuardiansHash;
+    bytes32 public rootLunarsHash;
 
-    //2 bobot
-    address[] public whitelistedAddressesLunars;
+    //token id counter
+    CountersUpgradeable.Counter private _tokenIdCounter;
+
+    //level cost
+    uint256 levelCost;
+
+    //amount mintable per whitelist
+    mapping(address => bool) public whitelistedAddressesGuardiansClaimed;
+    mapping(address => bool) public whitelistedAddressesLunarClaimed;
 
     //core chamber
     CoreChamber public coreChamber;
@@ -97,20 +118,7 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
 
     /**************************************************************************/
     /*!
-       \brief constructor
-    */
-    /**************************************************************************/
-    constructor(
-        string memory _name,
-        string memory _symbol,
-        string memory _initBaseURI
-    ) ERC721(_name, _symbol) {
-        setBaseURI(_initBaseURI);
-    }
-
-    /**************************************************************************/
-    /*!
-       \brief base revealed URI
+       \brief view URI reveal / hidden
     */
     /**************************************************************************/
     function _baseURI() internal view virtual override returns (string memory) {
@@ -125,28 +133,56 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
        does user have $MAGIC in their wallet?
     */
     /**************************************************************************/
-    function mintBobot(address _to) public payable {
-        uint256 supply = totalSupply();
-
+    function mintBobot(
+        bytes32[] calldata _merkleProof,
+        bytes32[] calldata _merkleProof2
+    ) public payable {
         //is contract running?
         require(!paused);
+        require(
+            magic.balanceOf(msg.sender) / currencyExchange > magicBalanceCost,
+            "Not enough magic in wallet"
+        );
+
         uint256 mintCount = 0;
         if (msg.sender != owner()) {
             //minter must be whitelisted
             if (onlyWhitelisted == true) {
-                bool isGuardians = isUserWhitelistedGuardians(msg.sender);
-                bool isLunars = isUserWhitelistedLunars(msg.sender);
-                require(isGuardians || isLunars, "user not whitelisted");
-                if (isGuardians)
-                {
-                    require(supply + 1 <= maxSupply);
+                require(
+                    whitelistedAddressesGuardiansClaimed[msg.sender] ||
+                        whitelistedAddressesLunarClaimed[msg.sender],
+                    "user already whitelisted"
+                );
+
+                bytes32 leaf = keccak256(abi.encodePacked(msg.sender));
+
+                bool isGuardians = MerkleProof.verify(
+                    _merkleProof,
+                    rootGuardiansHash,
+                    leaf
+                );
+                bool isLunars = MerkleProof.verify(
+                    _merkleProof2,
+                    rootLunarsHash,
+                    leaf
+                );
+
+                //check if leaf is valid
+                require(
+                    !isGuardians && !isLunars,
+                    "Invalid proof - not whitelisted"
+                );
+
+                if (isGuardians) {
+                    require(_getNextTokenId() <= maxSupply);
                     mintCount = 1;
+                    whitelistedAddressesGuardiansClaimed[msg.sender] = true;
                 }
 
-                if (isLunars) 
-                {
-                    require(supply + 2 <= maxSupply);
+                if (isLunars) {
+                    require(_getNextTokenId() + 1 <= maxSupply);
                     mintCount = 2;
+                    whitelistedAddressesLunarClaimed[msg.sender] = true;
                 }
 
                 //guardians will have 1 mint
@@ -155,59 +191,22 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
         }
 
         for (uint256 i = 1; i <= mintCount; ++i) {
-            _safeMint(_to, supply + i);
+            uint256 nextTokenId = _getNextTokenId();
+            _safeMint(msg.sender, nextTokenId + i);
         }
     }
 
     /**************************************************************************/
     /*!
-       \brief return all token ids that a owner holds
+       \brief mint a bobot - multiple things to check 
+       does user have $MAGIC in their wallet?
     */
     /**************************************************************************/
-    function walletOfOwner(address _owner)
-        public
-        view
-        returns (uint256[] memory)
-    {
-        uint256 ownerTokenCount = balanceOf(_owner);
-        uint256[] memory tokenIDs = new uint256[](ownerTokenCount);
-        for (uint256 i; i < ownerTokenCount; ++i) {
-            tokenIDs[i] = tokenOfOwnerByIndex(_owner, i);
-        }
-
-        return tokenIDs;
-    }
-
-    /**************************************************************************/
-    /*!
-       \brief is current use whitelisted - guardians
-    */
-    /**************************************************************************/
-    function isUserWhitelistedGuardians(address _user)
-        public
-        view
-        returns (bool)
-    {
-        for (uint256 i = 0; i < whitelistedAddressesGuardians.length; i++) {
-            if (whitelistedAddressesGuardians[i] == _user) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**************************************************************************/
-    /*!
-       \brief is current use whitelisted - Lunar
-    */
-    /**************************************************************************/
-    function isUserWhitelistedLunars(address _user) public view returns (bool) {
-        for (uint256 i = 0; i < whitelistedAddressesLunars.length; i++) {
-            if (whitelistedAddressesLunars[i] == _user) {
-                return true;
-            }
-        }
-        return false;
+    function mintBobotTest() public payable {
+        //is contract running?
+        require(!paused);
+        uint256 nextTokenId = _getNextTokenId();
+        _safeMint(msg.sender, nextTokenId);
     }
 
     /**************************************************************************/
@@ -220,13 +219,15 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
         view
         returns (uint256[] memory)
     {
-        uint256[] memory _tokensOfOwner = new uint256[](
-            ERC721.balanceOf(_owner)
-        );
+        uint256 t = ERC721Upgradeable.balanceOf(_owner);
+        uint256[] memory _tokensOfOwner = new uint256[](t);
         uint256 i;
 
-        for (i = 0; i < ERC721.balanceOf(_owner); i++) {
-            _tokensOfOwner[i] = ERC721Enumerable.tokenOfOwnerByIndex(_owner, i);
+        for (i = 0; i < ERC721Upgradeable.balanceOf(_owner); i++) {
+            _tokensOfOwner[i] = ERC721EnumerableUpgradeable.tokenOfOwnerByIndex(
+                _owner,
+                i
+            );
         }
         return (_tokensOfOwner);
     }
@@ -258,6 +259,18 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
                 : "";
     }
 
+    function _getNextTokenId() private view returns (uint256) {
+        return (_tokenIdCounter.current() + 1);
+    }
+
+    function _safeMint(address to, uint256 tokenId)
+        internal
+        override(ERC721Upgradeable)
+    {
+        super._safeMint(to, tokenId);
+        _tokenIdCounter.increment();
+    }
+
     /**************************************************************************/
     /*!
        \brief earning core points logic
@@ -272,13 +285,44 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
 
     //admin functions
 
+    function setRootGuardiansHash(bytes32 _rootHash) external onlyOwner {
+        rootGuardiansHash = _rootHash;
+    }
+
+    function setRootLunarsHash(bytes32 _rootHash) external onlyOwner {
+        rootLunarsHash = _rootHash;
+    }
+
     /**************************************************************************/
     /*!
        \brief enable reveal phase
     */
     /**************************************************************************/
-    function reveal() public onlyOwner {
+    function reveal() external onlyOwner {
         revealed = true;
+    }
+
+    /**************************************************************************/
+    /*!
+       \brief set whitelist guardians
+    */
+    /**************************************************************************/
+    function setWhitelistGuardians(address[] calldata _address)
+        public
+        onlyOwner
+    {
+        delete whitelistedAddressesGuardians;
+        whitelistedAddressesGuardians = _address;
+    }
+
+    /**************************************************************************/
+    /*!
+       \brief set whitelist lunar
+    */
+    /**************************************************************************/
+    function setWhitelistLunars(address[] calldata _address) public onlyOwner {
+        delete whitelistedAddressesLunars;
+        whitelistedAddressesLunars = _address;
     }
 
     /**************************************************************************/
@@ -301,11 +345,29 @@ contract BobotGenesis is ERC721Enumerable, Ownable {
 
     /**************************************************************************/
     /*!
+       \brief set max mint amount
+    */
+    /**************************************************************************/
+    function setMagicBalanceCost(uint256 _newAmount) public onlyOwner {
+        magicBalanceCost = _newAmount;
+    }
+
+    /**************************************************************************/
+    /*!
        \brief set base URI
     */
     /**************************************************************************/
     function setBaseURI(string memory _newBaseURI) public onlyOwner {
         baseURI = _newBaseURI;
+    }
+
+    /**************************************************************************/
+    /*!
+       \brief set magic address
+    */
+    /**************************************************************************/
+    function setMagicAddress(address _address) public onlyOwner {
+        magic = IERC20Upgradeable(_address);
     }
 
     /**************************************************************************/

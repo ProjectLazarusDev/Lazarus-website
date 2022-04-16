@@ -1,8 +1,7 @@
 
 
 //put contract addr here - localhost or remix
-const contractAddress: string = "0xc5a5C42992dECbae36851359345FE25997F5C42d";
-const coreChamberAddress: string = "0x67d269191c92Caf3cD7723F116c85e6E9bf55933";
-const magicAddress: string = "0xE6E340D132b5f46d1e472DebcD681B2aBc16e57E";
+export const contractAddress: string = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+export const coreChamberAddress: string = "0x67d269191c92Caf3cD7723F116c85e6E9bf55933";
+export const magicAddress: string = "0x539bdE0d7Dbd336b79148AA742883198BBF60342";
 
-export {contractAddress,coreChamberAddress, magicAddress};

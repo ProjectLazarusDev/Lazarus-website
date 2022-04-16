@@ -50,7 +50,7 @@ contract Magic20 is Ownable {
     //$magic contract address
     address public magicAddress;
 
-    //multi-sig wallet address
+    //wallet address
     address public mainAddress;
 
     //store magic address

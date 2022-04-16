@@ -6,7 +6,7 @@ async function main()
   
   //genesis contract deploy
   const BobotGenesis = await hre.ethers.getContractFactory("BobotGenesis");
-  const bobotGenesis = await BobotGenesis.deploy("mint","mint","mint");
+  const bobotGenesis = await BobotGenesis.deploy();
 
   await bobotGenesis.deployed();
 

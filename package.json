@@ -10,6 +10,7 @@
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.0.6",
     "@openzeppelin/contracts": "^4.5.0",
+    "@openzeppelin/contracts-upgradeable": "^4.5.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",

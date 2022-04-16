@@ -9,34 +9,44 @@ import BobotCoreChamberABI from '../ABI/CoreChamber.json';
 import Magic20ABI from '../ABI/Magic20.json';
 
 
-import { MetaLogin } from './MetaMaskLogin';
-import { MintBobot } from './BootUpStation';
-import { GetBobotsAllID } from './Bobots';
-import { GetUserData } from './User';
+import * as metaLogin from './MetaMaskLogin';
+import * as bootUpStation from './BootUpStation';
+import * as bobots from './Bobots';
+import * as user from './User';
 
 const blockchainManager: string = "BlockchainManager";
 
-//
+export enum BlockchainError
+{
+    NoError = 0,
+    NetworkBusy
+}
+
 
 export function BindToContext()
 {
     //metamask functions
-    context.on("MetaMaskLogin_Request", MetaLogin);
+    context.on("MetaMaskLogin_Request", metaLogin.MetaLogin);
 
     //mint
-    context.on("Mint_Request", MintBobot);
+    context.on("Mint_Request", bootUpStation.MintBobotTest);
 
     //uri request
-    context.on("GetAllTokenURIs_Request", GetBobotsAllID);
+    context.on("GetAllTokenURIs_Request", bobots.GetBobotsAllID);
 
-
-    context.on("GetUserData", GetUserData);
+    //address and magic
+    context.on("GetUserData", user.GetUserData);
 
 }
 
 export function MetaMaskLogin_Callback(_address: string)
 {
     context.send(blockchainManager, "MetaMaskLogin_Callback", _address);
+}
+
+export function Mint_Callback(_errorCode: number)
+{
+    context.send(blockchainManager, "Mint_Callback", _errorCode);
 }
 
 export function GetMagic_Callback(_magic: number)

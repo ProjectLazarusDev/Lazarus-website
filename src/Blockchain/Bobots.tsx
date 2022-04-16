@@ -7,7 +7,9 @@ import BobotCoreChamberABI from '../ABI/CoreChamber.json'
 
 import { MetaLogin, MetaMaskAccounts } from './MetaMaskLogin';
 import unityContext from '../Context/UnityContext';
-async function GetBobotsAllID()
+import * as blockchain from './BlockchainFunctions';
+
+export async function GetBobotsAllID()
 {
     console.log("GetBobotsAllID: ");
     if ((window as any).ethereum)
@@ -23,19 +25,16 @@ async function GetBobotsAllID()
         var t: number[] = [];
         try
         {
-            console.log("await contract");
-            console.log(MetaMaskAccounts[0]);
-            const response = await contract.getTokenIds("0xCdEae8E41E953570B54D02f063A23E41e812f16e");
+   
+            const response = await contract.getTokenIds(MetaMaskAccounts[0]);
             console.log("response: ", response);
-
-            // const allIDs = response.value;
 
             for (var _i = 0; _i < response.length; _i++)
             {
                 t.push(response[_i].toNumber());
             }
 
-            // console.log(allIDs);
+             console.log("passed");
             SendBobotsAllID(t);
 
 
@@ -45,21 +44,25 @@ async function GetBobotsAllID()
         catch (err)
         {
             console.log("error: ", err);
+
+            //callback to engine
+            blockchain.GetAllTokenURIs_Callback( blockchain.BlockchainError.NetworkBusy);
         }
     }
 }
 
-function SendBobotsAllID(tokenIDs: number[])
+export function SendBobotsAllID(tokenIDs: number[])
 {
-    unityContext.send("BlockchainManager", "BobotsClearID");
+    blockchain.GetAllTokenURIs_Callback(blockchain.BlockchainError.NoError);
 
     //send all tokenIDs to engine
     tokenIDs.forEach(element =>
     {
         console.log("Send: ", element);
-        unityContext.send("BlockchainManager", "BobotsReceiveID", element);
-    });
-}
 
-export {GetBobotsAllID,SendBobotsAllID};
+        //change to uri next time
+        blockchain.RecieveTokenURI_Callback(element.toString());      
+    });
+    blockchain.CompletedTokenURI_Callback();
+}
 

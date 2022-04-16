@@ -3,8 +3,10 @@ import { ethers, BigNumber } from "ethers";
 import { MetaLogin, MetaMaskAccounts } from './MetaMaskLogin';
 import unityContext from '../Context/UnityContext';
 import Magic20ABI from '../ABI/Magic20.json'
+
+import * as blockchain from './BlockchainFunctions';
 //erc20 magic 
-async function MagicGetBalance()
+export async function MagicGetBalance()
 {
     console.log("received: ");
     if ((window as any).ethereum)
@@ -20,23 +22,13 @@ async function MagicGetBalance()
             const balance = await contract.checkBalance(magicContractAddress, MetaMaskAccounts[0]);
             const magicAmount = BigNumber.from(balance).toNumber();
             console.log(magicAmount);
-            UpdatePlayerMagic(magicAmount);
+            blockchain.GetAllTokenURIs_Callback(magicAmount);
 
-            //print magic balance
-            console.log(magicAmount);
         }
         catch (err)
         {
             console.log("error: ", err);
+            blockchain.GetAllTokenURIs_Callback(0);
         }
     }
 }
-function UpdatePlayerMagic(value: number)
-{
-    unityContext.send("BlockchainManager", "ReceivePlayerMagic", value);
-}
-
-export {
-    MagicGetBalance,
-    UpdatePlayerMagic
-};
