@@ -37,8 +37,8 @@
       ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\BobotGenesis.sol": {
-      "lastModificationDate": 1650141726520,
-      "contentHash": "3a04daf115a34b0b447c1530f226e514",
+      "lastModificationDate": 1650214176696,
+      "contentHash": "588c1f87d105a7185d37ba909a6a6564",
       "sourceName": "contracts/BobotGenesis.sol",
       "solcConfig": {
         "version": "0.8.13",
@@ -70,6 +70,7 @@
         "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
         "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol",
         "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol",
+        "@openzeppelin/contracts/utils/math/Math.sol",
         "./InstallationCoreChamber.sol",
         "./Magic20.sol"
       ],
@@ -973,7 +974,7 @@
       ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\InstallationCoreChamber.sol": {
-      "lastModificationDate": 1649927116628,
+      "lastModificationDate": 1650210767477,
       "contentHash": "74a03ef43da022ba0ef22e13eb8c95e6",
       "sourceName": "contracts/InstallationCoreChamber.sol",
       "solcConfig": {
@@ -1641,6 +1642,41 @@
       "imports": [],
       "versionPragmas": [],
       "artifacts": []
+    },
+    "C:\\Users\\Theon\\Lazarus-website\\node_modules\\@openzeppelin\\contracts\\utils\\math\\Math.sol": {
+      "lastModificationDate": 1647683575751,
+      "contentHash": "339b9793dcbd7b5d55af725ef47de74c",
+      "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
+      "solcConfig": {
+        "version": "0.8.13",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Math"
+      ]
     }
   }
 }
