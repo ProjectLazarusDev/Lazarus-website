@@ -45,6 +45,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721Enumer
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
+import "@openzeppelin/contracts/utils/math/Math.sol";
 
 //other staking contracts
 import "./InstallationCoreChamber.sol";
@@ -63,12 +64,15 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
 
     uint256 currencyExchange = (10**9);
     uint256 magicBalanceCost = 25;
+
     //revealed and unrevealed uri
-    string public baseURI;
+    string public baseRevealedURI;
+    string public baseHiddenURI;
 
     string public baseExtention = ".json";
     uint256 public maxSupply = 4040;
     uint256 public maxMintAmount = 1;
+    uint256 public maxLevelAmount = 10;
 
     //max bobots per account
     uint256 public nftPerAddressLimit = 5;
@@ -84,6 +88,9 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     //root hash for merkle proof
     bytes32 public rootGuardiansHash;
     bytes32 public rootLunarsHash;
+
+    //core chamber level update cost
+    uint256 public coreChamberLevelCost = 100;
 
     //token id counter
     CountersUpgradeable.Counter private _tokenIdCounter;
@@ -122,7 +129,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     */
     /**************************************************************************/
     function _baseURI() internal view virtual override returns (string memory) {
-        return baseURI; // return own base URI
+        return revealed ? baseRevealedURI : baseHiddenURI; // return own base URI
     }
 
     // public
@@ -250,12 +257,24 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         );
 
         string memory currentBaseURI = _baseURI();
+        uint256 level = Math.min(
+            bobotCorePoints[tokenID] / coreChamberLevelCost,
+            maxLevelAmount
+        );
+
+        string memory revealedURI = string(
+            abi.encodePacked(
+                baseRevealedURI,
+                tokenID.toString(),
+                "/",
+                level.toString(),
+                baseExtention
+            )
+        );
 
         return
             bytes(currentBaseURI).length > 0
-                ? string(
-                    abi.encodePacked(baseURI, tokenID.toString(), baseExtention)
-                )
+                ? (revealed ? revealedURI : baseHiddenURI)
                 : "";
     }
 
@@ -298,8 +317,8 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
        \brief enable reveal phase
     */
     /**************************************************************************/
-    function reveal() external onlyOwner {
-        revealed = true;
+    function reveal(bool _revealed) external onlyOwner {
+        revealed = _revealed;
     }
 
     /**************************************************************************/
@@ -357,8 +376,17 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
        \brief set base URI
     */
     /**************************************************************************/
-    function setBaseURI(string memory _newBaseURI) public onlyOwner {
-        baseURI = _newBaseURI;
+    function setBaseRevealedURI(string memory _newBaseURI) public onlyOwner {
+        baseRevealedURI = _newBaseURI;
+    }
+
+    /**************************************************************************/
+    /*!
+       \brief set base URI
+    */
+    /**************************************************************************/
+    function setBaseHiddenURI(string memory _newBaseURI) public onlyOwner {
+        baseHiddenURI = _newBaseURI;
     }
 
     /**************************************************************************/

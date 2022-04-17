@@ -9,11 +9,12 @@ import { MetaLogin, MetaMaskAccounts } from './MetaMaskLogin';
 import unityContext from '../Context/UnityContext';
 import * as blockchain from './BlockchainFunctions';
 
-export async function GetBobotsAllID()
+export async function GetBobotsAllURI()
 {
     console.log("GetBobotsAllID: ");
     if ((window as any).ethereum)
     {
+        var t: number[] = [];
         const provider = new ethers.providers.Web3Provider((window as any).ethereum);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(
@@ -22,7 +23,7 @@ export async function GetBobotsAllID()
             signer
         );
         console.log(contract);
-        var t: number[] = [];
+       
         try
         {
    
@@ -35,7 +36,7 @@ export async function GetBobotsAllID()
             }
 
              console.log("passed");
-            SendBobotsAllID(t);
+           
 
 
             //send response back to game engine
@@ -48,6 +49,38 @@ export async function GetBobotsAllID()
             //callback to engine
             blockchain.GetAllTokenURIs_Callback( blockchain.BlockchainError.NetworkBusy);
         }
+
+
+        //get all tokenURI
+        for (var _i = 0; _i < t.length; _i++)
+        {
+            try
+        {
+   
+            const response = await contract.tokenURI(t[_i]);
+            console.log("response: ", response);
+            blockchain.RecieveTokenURI_Callback(response as string);
+            //send response back to game engine
+
+        }
+        catch (err)
+        {
+            console.log("error: ", err);
+
+            //callback to engine
+            blockchain.GetAllTokenURIs_Callback( blockchain.BlockchainError.NetworkBusy);
+        }
+
+        }
+
+
+        blockchain.CompletedTokenURI_Callback();
+
+
+
+
+
+
     }
 }
 

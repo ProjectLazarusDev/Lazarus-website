@@ -23,7 +23,7 @@ import { isMobile } from 'react-device-detect';
 import '../indexweb3.js'
 
 
-import {BindToContext} from '../Blockchain/BlockchainFunctions';
+import * as blockchain from '../Blockchain/BlockchainFunctions';
 import Web3 from 'web3';
 import { ethers, BigNumber } from "ethers";
 
@@ -119,7 +119,7 @@ const MultiplayerTest: React.FC = () =>
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
-        BindToContext();
+        blockchain.BindToContext();
         return function ()
         {
             // handleOnClickUnMountUnity();

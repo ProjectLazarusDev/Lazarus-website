@@ -32,7 +32,7 @@ export function BindToContext()
     context.on("Mint_Request", bootUpStation.MintBobotTest);
 
     //uri request
-    context.on("GetAllTokenURIs_Request", bobots.GetBobotsAllID);
+    context.on("GetAllTokenURIs_Request", bobots.GetBobotsAllURI);
 
     //address and magic
     context.on("GetUserData", user.GetUserData);
@@ -66,6 +66,6 @@ export function RecieveTokenURI_Callback(_tokenURI: string)
 
 export function CompletedTokenURI_Callback()
 {
-    context.send(blockchainManager, "Mint_Callback");
+    context.send(blockchainManager, "CompletedTokenURI_Callback");
 }
 
