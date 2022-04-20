@@ -21,30 +21,28 @@ import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
 import '../indexweb3.js'
+
+
+import * as blockchain from '../Blockchain/BlockchainFunctions';
 import Web3 from 'web3';
+import { ethers, BigNumber } from "ethers";
 
-const unityContext = new UnityContext({
-    loaderUrl: "dev_multiplayer/dev_multiplayer.loader.js",
-    dataUrl: "dev_multiplayer/dev_multiplayer.data",
-    frameworkUrl: "dev_multiplayer/dev_multiplayer.framework.js",
-    codeUrl: "dev_multiplayer/dev_multiplayer.wasm",
-});
-
-
+import unityContext from '../Context/UnityContext';
+//abi import
 
 
 
 const MultiplayerTest: React.FC = () =>
 {
     //react hooks
-
     const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
     const [progression, setProgression] = React.useState<number>(0);
     const [scrollValue, setScrollValue] = React.useState<number>(0.0);
 
+    //store eth addresses
+    var accounts: any;
     React.useEffect(() =>
     {
-
         const scrollFun = () =>
         {
 
@@ -88,16 +86,7 @@ const MultiplayerTest: React.FC = () =>
     }
 
     const updateDimensions = () =>
-    {
-
-
-
-    }
-    //get web3 started
-   // const [account, setAccount] = React.useState<string>("");
-
-
-
+    {}
 
     //toggle full-screen control
     function ToggleFullScreen(toggle: boolean)
@@ -119,56 +108,25 @@ const MultiplayerTest: React.FC = () =>
 
     React.useEffect(() =>
     {
+        unityContext.on("progress", handleOnUnityProgress);
+        unityContext.on("loaded", handleOnUnityLoaded);
+        unityContext.on("quitted", function () { });
         document.body.style.overflowY = "hidden";
         window.addEventListener("resize", updateDimensions);
         return () => window.removeEventListener("resize", updateDimensions);
     }, []);
 
-    //////////////////////////////////////////////////////////////////////////////////////////////
-
-    function MetamaskComfirmed(addr: string)
-    {
-
-        unityContext.send("BlockchainManager", "MetamaskAccepted", addr);
-    }
-    //////////////////////////////////////////////////////////////////////////////////////////////
-
-    //open metamask wallet
-
-  
-   
-    
-   
-
     // When the component is mounted, we'll register some event listener.
     React.useEffect(() =>
     {
-      
-        unityContext.on("progress", handleOnUnityProgress);
-        unityContext.on("loaded", handleOnUnityLoaded);
-        unityContext.on("MetamaskLogin",async function Web3Login()
-        {
-            
-            const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545');
-            const accounts = await web3.eth.requestAccounts();
-            console.log("metamask works");
-            //setAccount(accounts[0]);
-            MetamaskComfirmed(accounts[0]);
-        }); 
-
-        unityContext.on("quitted", function () { });
-        /////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////
+        blockchain.BindToContext();
         return function ()
         {
-           
             // handleOnClickUnMountUnity();
             unityContext.removeAllEventListeners();
         };
 
     }, []);
-
-
 
     return (
         <>
