@@ -39,7 +39,7 @@ const MultiplayerTest: React.FC = () =>
     const [scrollValue, setScrollValue] = React.useState<number>(0.0);
 
     //store eth addresses
-    var accounts: any;
+
     React.useEffect(() =>
     {
         const scrollFun = () =>
