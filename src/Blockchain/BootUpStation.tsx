@@ -1,10 +1,8 @@
-import { ethers, BigNumber } from "ethers";
-import unityContext from '../Context/UnityContext';
+import { ethers } from "ethers";
 
 import BobotGenesisABI from '../ABI/BobotGenesis.json'
-import BobotCoreChamberABI from '../ABI/CoreChamber.json'
-import Magic20ABI from '../ABI/Magic20.json'
-import { coreChamberAddress, contractAddress } from './ContractAddress';
+
+import { contractAddress } from './ContractAddress';
 
 import axios from 'axios';
 

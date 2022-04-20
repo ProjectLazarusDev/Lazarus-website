@@ -149,8 +149,7 @@ contract BobotMegaBot is ERC721EnumerableUpgradeable, OwnableUpgradeable,IBobot 
     */
     /**************************************************************************/
     function mintBobot(
-        bytes32[] calldata _merkleProof,
-        bytes32[] calldata _merkleProof2
+
     ) public payable {
         //is contract running?
         require(!paused);

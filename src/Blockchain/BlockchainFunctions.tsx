@@ -1,14 +1,5 @@
 import context from '../Context/UnityContext';
 
-
-import { coreChamberAddress, contractAddress } from './ContractAddress';
-
-//abi data
-import BobotGenesisABI from '../ABI/BobotGenesis.json';
-import BobotCoreChamberABI from '../ABI/CoreChamber.json';
-import Magic20ABI from '../ABI/Magic20.json';
-
-
 import * as metaLogin from './MetaMaskLogin';
 import * as bootUpStation from './BootUpStation';
 import * as bobots from './Bobots';
