@@ -46,23 +46,18 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/utils/math/Math.sol";
-
+import "@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol";
 //other staking contracts
-import "./IBobot.sol";
 import "./InstallationCoreChamber.sol";
 
 //$MAGIC transactions
 import "./Magic20.sol";
 
-contract BobotGenesis is
-    ERC721EnumerableUpgradeable,
-    OwnableUpgradeable,
-    IBobot
-{
+contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     using SafeERC20Upgradeable for IERC20Upgradeable;
     using AddressUpgradeable for address;
     using CountersUpgradeable for CountersUpgradeable.Counter;
-    using Strings for uint256;
+    using StringsUpgradeable for uint256;
 
     //magic contract
     IERC20Upgradeable public magic;
@@ -116,22 +111,6 @@ contract BobotGenesis is
 
     //is the contract running
     bool public paused = false;
-
-    function initialize(address _magicAddress) external initializer {
-        __ERC721Enumerable_init();
-        __Ownable_init();
-
-        magic = IERC20Upgradeable(_magicAddress);
-    }
-
-    function getBobotType(uint256 _tokenID)
-        external
-        view
-        override
-        returns (BobotType)
-    {
-        return BobotType.BOBOT_GEN;
-    }
 
     //modifiers
     /**************************************************************************/

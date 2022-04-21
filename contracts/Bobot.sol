@@ -43,13 +43,14 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/utils/math/Math.sol";
 
 //other staking contracts
 import "./IBobot.sol";
 import "./InstallationCoreChamber.sol";
+import "./InstallationMiningDrill.sol";
+import "./InstallationLaunchPad.sol";
 
 //$MAGIC transactions
 import "./Magic20.sol";
@@ -67,12 +68,10 @@ abstract contract Bobot is
     uint256 currencyExchange = (10**9);
 
     uint256 public maxLevelAmount = 10;
-
+    uint256 public maxMintAmount = 1;
     //core chamber level update cost
     uint256 public coreChamberLevelCost = 100;
 
-    //token id counter
-    CountersUpgradeable.Counter private _tokenIdCounter;
 
     //level cost
     uint256 levelCost;

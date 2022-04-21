@@ -37,8 +37,8 @@
       ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\BobotGenesis.sol": {
-      "lastModificationDate": 1650218243283,
-      "contentHash": "fe3b62fc242f69202a383e33ff9c2342",
+      "lastModificationDate": 1650541005536,
+      "contentHash": "d910e3346db352cbda65dd63da375af4",
       "sourceName": "contracts/BobotGenesis.sol",
       "solcConfig": {
         "version": "0.8.13",
@@ -71,6 +71,7 @@
         "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol",
         "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol",
         "@openzeppelin/contracts/utils/math/Math.sol",
+        "@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol",
         "./InstallationCoreChamber.sol",
         "./Magic20.sol"
       ],
@@ -974,7 +975,7 @@
       ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\InstallationCoreChamber.sol": {
-      "lastModificationDate": 1650217617350,
+      "lastModificationDate": 1650476173154,
       "contentHash": "74a03ef43da022ba0ef22e13eb8c95e6",
       "sourceName": "contracts/InstallationCoreChamber.sol",
       "solcConfig": {
@@ -1458,8 +1459,8 @@
       ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\BobotMegaBot.sol": {
-      "lastModificationDate": 1649927116619,
-      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "lastModificationDate": 1650547460255,
+      "contentHash": "f75cd29ba0bb5923f4d109135f4f8157",
       "sourceName": "contracts/BobotMegaBot.sol",
       "solcConfig": {
         "version": "0.8.13",
@@ -1484,9 +1485,16 @@
           }
         }
       },
-      "imports": [],
-      "versionPragmas": [],
-      "artifacts": []
+      "imports": [
+        "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol",
+        "./Bobot.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.13"
+      ],
+      "artifacts": [
+        "BobotMegaBot"
+      ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\BobotMinion.sol": {
       "lastModificationDate": 1649927116619,
@@ -1520,8 +1528,8 @@
       "artifacts": []
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\BobotsLandItem.sol": {
-      "lastModificationDate": 1650055434793,
-      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "lastModificationDate": 1650539455237,
+      "contentHash": "def8466de50f0fc324745048764f6972",
       "sourceName": "contracts/BobotsLandItem.sol",
       "solcConfig": {
         "version": "0.8.13",
@@ -1546,13 +1554,27 @@
           }
         }
       },
-      "imports": [],
-      "versionPragmas": [],
-      "artifacts": []
+      "imports": [
+        "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol",
+        "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol",
+        "@openzeppelin/contracts/utils/math/Math.sol",
+        "./InstallationCoreChamber.sol",
+        "./Magic20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.13"
+      ],
+      "artifacts": [
+        "BobotsLandItem"
+      ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\InstallationBase.sol": {
-      "lastModificationDate": 1649927116626,
-      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "lastModificationDate": 1650539455237,
+      "contentHash": "93bac816e0f31fc1e5329034f97e2c35",
       "sourceName": "contracts/InstallationBase.sol",
       "solcConfig": {
         "version": "0.8.13",
@@ -1577,13 +1599,24 @@
           }
         }
       },
-      "imports": [],
-      "versionPragmas": [],
-      "artifacts": []
+      "imports": [
+        "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721EnumerableUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol",
+        "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol",
+        "@openzeppelin/contracts/utils/math/Math.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.13"
+      ],
+      "artifacts": [
+        "IInstallation"
+      ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\InstallationLaunchPad.sol": {
-      "lastModificationDate": 1649927116629,
-      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "lastModificationDate": 1650541059248,
+      "contentHash": "e72d9b936eea7e6edd34a5b549c7e303",
       "sourceName": "contracts/InstallationLaunchPad.sol",
       "solcConfig": {
         "version": "0.8.13",
@@ -1608,13 +1641,21 @@
           }
         }
       },
-      "imports": [],
-      "versionPragmas": [],
-      "artifacts": []
+      "imports": [
+        "./ERC721NES.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "./BobotGenesis.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.13"
+      ],
+      "artifacts": [
+        "LaunchPad"
+      ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\InstallationMiningDrill.sol": {
-      "lastModificationDate": 1649927116630,
-      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "lastModificationDate": 1650541039456,
+      "contentHash": "fcc926450985e052319f4d8d41d13aa2",
       "sourceName": "contracts/InstallationMiningDrill.sol",
       "solcConfig": {
         "version": "0.8.13",
@@ -1639,9 +1680,17 @@
           }
         }
       },
-      "imports": [],
-      "versionPragmas": [],
-      "artifacts": []
+      "imports": [
+        "./ERC721NES.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "./BobotGenesis.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.13"
+      ],
+      "artifacts": [
+        "MiningDrill"
+      ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\node_modules\\@openzeppelin\\contracts\\utils\\math\\Math.sol": {
       "lastModificationDate": 1647683575751,
@@ -1676,6 +1725,88 @@
       ],
       "artifacts": [
         "Math"
+      ]
+    },
+    "C:\\Users\\Theon\\Lazarus-website\\contracts\\Bobot.sol": {
+      "lastModificationDate": 1650547391668,
+      "contentHash": "8873594b69dcc2689e00a32ed793ea87",
+      "sourceName": "contracts/Bobot.sol",
+      "solcConfig": {
+        "version": "0.8.13",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
+        "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol",
+        "@openzeppelin/contracts/utils/math/Math.sol",
+        "./IBobot.sol",
+        "./InstallationCoreChamber.sol",
+        "./InstallationMiningDrill.sol",
+        "./InstallationLaunchPad.sol",
+        "./Magic20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.13"
+      ],
+      "artifacts": [
+        "Bobot"
+      ]
+    },
+    "C:\\Users\\Theon\\Lazarus-website\\contracts\\IBobot.sol": {
+      "lastModificationDate": 1650540563334,
+      "contentHash": "82dee45b89829185097ef4ba81d28a67",
+      "sourceName": "contracts/IBobot.sol",
+      "solcConfig": {
+        "version": "0.8.13",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.13"
+      ],
+      "artifacts": [
+        "IBobot"
       ]
     }
   }
