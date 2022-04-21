@@ -37,8 +37,8 @@
       ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\BobotGenesis.sol": {
-      "lastModificationDate": 1650214176696,
-      "contentHash": "588c1f87d105a7185d37ba909a6a6564",
+      "lastModificationDate": 1650218243283,
+      "contentHash": "fe3b62fc242f69202a383e33ff9c2342",
       "sourceName": "contracts/BobotGenesis.sol",
       "solcConfig": {
         "version": "0.8.13",
@@ -974,7 +974,7 @@
       ]
     },
     "C:\\Users\\Theon\\Lazarus-website\\contracts\\InstallationCoreChamber.sol": {
-      "lastModificationDate": 1650210767477,
+      "lastModificationDate": 1650217617350,
       "contentHash": "74a03ef43da022ba0ef22e13eb8c95e6",
       "sourceName": "contracts/InstallationCoreChamber.sol",
       "solcConfig": {

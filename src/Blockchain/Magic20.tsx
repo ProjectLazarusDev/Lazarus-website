@@ -1,7 +1,6 @@
 import { ethers, BigNumber } from "ethers";
 
-import { MetaLogin, MetaMaskAccounts } from './MetaMaskLogin';
-import unityContext from '../Context/UnityContext';
+import {  MetaMaskAccounts } from './MetaMaskLogin';
 import Magic20ABI from '../ABI/Magic20.json'
 
 import * as blockchain from './BlockchainFunctions';

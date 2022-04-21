@@ -1,6 +1,6 @@
 
 
-import Unity, { UnityContext } from "react-unity-webgl";
+import { UnityContext } from "react-unity-webgl";
 
 const unityContext = new UnityContext({
     loaderUrl: "dev_multiplayer/dev_multiplayer.loader.js",

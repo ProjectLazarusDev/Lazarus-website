@@ -1,12 +1,10 @@
-import { ethers, BigNumber } from "ethers";
+import { ethers } from "ethers";
 
-import { coreChamberAddress, contractAddress } from './ContractAddress';
+import { contractAddress } from './ContractAddress';
 
 import BobotGenesisABI from '../ABI/BobotGenesis.json'
-import BobotCoreChamberABI from '../ABI/CoreChamber.json'
 
-import { MetaLogin, MetaMaskAccounts } from './MetaMaskLogin';
-import unityContext from '../Context/UnityContext';
+import { MetaMaskAccounts } from './MetaMaskLogin';
 import * as blockchain from './BlockchainFunctions';
 
 export async function GetBobotsAllURI()
@@ -23,10 +21,10 @@ export async function GetBobotsAllURI()
             signer
         );
         console.log(contract);
-       
+
         try
         {
-   
+
             const response = await contract.getTokenIds(MetaMaskAccounts[0]);
             console.log("response: ", response);
 
@@ -35,8 +33,8 @@ export async function GetBobotsAllURI()
                 t.push(response[_i].toNumber());
             }
 
-             console.log("passed");
-           
+            console.log("passed");
+
 
 
             //send response back to game engine
@@ -47,29 +45,27 @@ export async function GetBobotsAllURI()
             console.log("error: ", err);
 
             //callback to engine
-            blockchain.GetAllTokenURIs_Callback( blockchain.BlockchainError.NetworkBusy);
+            blockchain.GetAllTokenURIs_Callback(blockchain.BlockchainError.NetworkBusy);
         }
 
 
         //get all tokenURI
-        for (var _i = 0; _i < t.length; _i++)
+        for (var index = 0; index < t.length; index++)
         {
             try
-        {
-   
-            const response = await contract.tokenURI(t[_i]);
-            console.log("response: ", response);
-            blockchain.RecieveTokenURI_Callback(response as string);
-            //send response back to game engine
+            {
+                const response = await contract.tokenURI(t[index]);
+                console.log("response: ", response);
+                blockchain.RecieveTokenURI_Callback(response as string);
+                //send response back to game engine
+            }
+            catch (err)
+            {
+                console.log("error: ", err);
 
-        }
-        catch (err)
-        {
-            console.log("error: ", err);
-
-            //callback to engine
-            blockchain.GetAllTokenURIs_Callback( blockchain.BlockchainError.NetworkBusy);
-        }
+                //callback to engine
+                blockchain.GetAllTokenURIs_Callback(blockchain.BlockchainError.NetworkBusy);
+            }
 
         }
 
@@ -94,7 +90,7 @@ export function SendBobotsAllID(tokenIDs: number[])
         console.log("Send: ", element);
 
         //change to uri next time
-        blockchain.RecieveTokenURI_Callback(element.toString());      
+        blockchain.RecieveTokenURI_Callback(element.toString());
     });
     blockchain.CompletedTokenURI_Callback();
 }

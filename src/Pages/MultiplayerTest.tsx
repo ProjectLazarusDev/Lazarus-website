@@ -11,7 +11,7 @@ import React from 'react';
 import { Grid } from "@mui/material";
 import Card from '@mui/material/Card';
 import '../Theme/Theme';
-import Unity, { UnityContext } from "react-unity-webgl";
+import Unity from "react-unity-webgl";
 import './Home.css'
 import './Page.css'
 import Typography from '@mui/material/Typography';
@@ -24,8 +24,7 @@ import '../indexweb3.js'
 
 
 import * as blockchain from '../Blockchain/BlockchainFunctions';
-import Web3 from 'web3';
-import { ethers, BigNumber } from "ethers";
+
 
 import unityContext from '../Context/UnityContext';
 //abi import
@@ -40,7 +39,7 @@ const MultiplayerTest: React.FC = () =>
     const [scrollValue, setScrollValue] = React.useState<number>(0.0);
 
     //store eth addresses
-    var accounts: any;
+
     React.useEffect(() =>
     {
         const scrollFun = () =>

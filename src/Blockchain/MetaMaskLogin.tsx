@@ -1,6 +1,6 @@
 
 
-import unityContext from '../Context/UnityContext';
+
 import * as blockchain from './BlockchainFunctions';
 //sotres metamask accounts
 var MetaMaskAccounts: any;
@@ -10,8 +10,7 @@ async function MetaLogin()
 {
     if ((window as any).ethereum)
     {
-        MetaMaskAccounts = await (window as any).ethereum.
-            request({ method: "eth_requestAccounts", });
+        MetaMaskAccounts = await (window as any).ethereum.request({ method: "eth_requestAccounts", });
         console.log(MetaMaskAccounts[0]);
 
         //send connected address back to engine

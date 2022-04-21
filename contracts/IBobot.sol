@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/utils/math/Math.sol";
 //other staking contracts
 import "./InstallationCoreChamber.sol";
 interface IBobot is IERC721EnumerableUpgradeable {
-
+    
     enum BobotType
     {
         BOBOT_GEN,

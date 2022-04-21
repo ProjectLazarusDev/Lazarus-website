@@ -1,6 +1,6 @@
 import unityContext from '../Context/UnityContext';
 import { MagicGetBalance } from './Magic20';
-import { MetaLogin, MetaMaskAccounts } from './MetaMaskLogin';
+import {  MetaMaskAccounts } from './MetaMaskLogin';
 
 //core chamber stake status callback
 export function UpdatePlayerAddress(str: string)

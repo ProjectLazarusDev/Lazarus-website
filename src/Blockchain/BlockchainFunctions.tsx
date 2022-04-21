@@ -1,14 +1,5 @@
 import context from '../Context/UnityContext';
 
-
-import { coreChamberAddress, contractAddress } from './ContractAddress';
-
-//abi data
-import BobotGenesisABI from '../ABI/BobotGenesis.json';
-import BobotCoreChamberABI from '../ABI/CoreChamber.json';
-import Magic20ABI from '../ABI/Magic20.json';
-
-
 import * as metaLogin from './MetaMaskLogin';
 import * as bootUpStation from './BootUpStation';
 import * as bobots from './Bobots';
@@ -37,6 +28,15 @@ export function BindToContext()
     //address and magic
     context.on("GetUserData", user.GetUserData);
 
+    //open an external link
+    context.on("OpenURL_Request",function(url:string){
+        window.open(url);
+    });
+
+}
+export function OpenURL_Callback(_address: string)
+{
+    context.send(blockchainManager, "OpenURL_Callback", _address);
 }
 
 export function MetaMaskLogin_Callback(_address: string)
