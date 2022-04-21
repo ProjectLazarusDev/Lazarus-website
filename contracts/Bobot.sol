@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 //,,,,,,,,,,,,,,,,,,,***************************************,*,,,,,,,,,,,,,,,,,,,,
 //,,,,,,,,,,,,,,,,,,,,,**,,,,***********************,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 //,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,****,,,*,,,**,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -50,187 +48,118 @@ import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/utils/math/Math.sol";
 
 //other staking contracts
-import "./Bobot.sol";
+import "./IBobot.sol";
 import "./InstallationCoreChamber.sol";
 
 //$MAGIC transactions
 import "./Magic20.sol";
 
-contract BobotMegaBot is Bobot {
+abstract contract Bobot is
+    ERC721EnumerableUpgradeable,
+    OwnableUpgradeable,
+    IBobot
+{
     using SafeERC20Upgradeable for IERC20Upgradeable;
-    using AddressUpgradeable for address;
-    using CountersUpgradeable for CountersUpgradeable.Counter;
-    using Strings for uint256;
 
-  
-    uint256 mintCost = 1 ether;
+      //magic contract
+    IERC20Upgradeable public magic;
 
-    //revealed and unrevealed uri
-    string public baseRevealedURI;
+    uint256 currencyExchange = (10**9);
 
-    string public baseExtention = ".json";
-    uint256 public maxSupply = 1000;
-    uint256 public maxMintAmount = 1;
+    uint256 public maxLevelAmount = 10;
+
+    //core chamber level update cost
+    uint256 public coreChamberLevelCost = 100;
+
+    //token id counter
+    CountersUpgradeable.Counter private _tokenIdCounter;
+
+    //level cost
+    uint256 levelCost;
+
+    //core chamber
+    CoreChamber public coreChamber;
+    MiningDrill public miningDrill;
+    LaunchPad public launchPad;
+
+    //core points on a per bobot basis
+    //one bobot -> core point
+    mapping(uint256 => uint256) public bobotCorePoints;
 
 
-    //max bobots per account
-    uint256 public nftPerAddressLimit = 5;
     
-    //is the contract running
-    bool public paused = false;
+    //modifiers
+    /**************************************************************************/
+    /*!
+       \brief only core chamber can access this function
+    */
+    /**************************************************************************/
+    modifier onlyCoreChamber() {
+        require(msg.sender == address(coreChamber), "Bobots: !CoreChamber");
+        _;
+    }
 
-
-
- function initialize(  address _magicAddress) external initializer {
-        __ERC721Enumerable_init();
-        __Ownable_init();
-
-        magic = IERC20Upgradeable(_magicAddress);
- 
-
- }
-    function getBobotType(uint256 _tokenID)
+    //core chamber functions
+    /**************************************************************************/
+    /*!
+       \brief earning core points logic
+    */
+    /**************************************************************************/
+    function coreChamberCorePointUpdate(uint256 _tokenId, uint256 _coreEarned)
         external
-        view
-        override
-        returns (BobotType)
+        onlyCoreChamber
     {
-        return BobotType.BOBOT_MEGA;
+        bobotCorePoints[_tokenId] += _coreEarned;
     }
-    /**************************************************************************/
-    /*!
-       \brief view URI reveal / hidden
-    */
-    /**************************************************************************/
-    function _baseURI() internal view virtual override returns (string memory) {
-        return baseRevealedURI ; // return own base URI
-    }
-
-    // public
 
     /**************************************************************************/
     /*!
-       \brief mint a bobot - multiple things to check 
-       does user have $MAGIC in their wallet?
+       \brief set Core Chamber Contract
     */
     /**************************************************************************/
-    function mintBobot(address _address,uint256 _amount ) public payable {
-        //is contract running?
-        require(!paused);
+    function setCoreChamber(address _coreChamber) external onlyOwner {
+        coreChamber = CoreChamber(_coreChamber);
+    }
 
-        uint256 mintCount = 0;
+    /**************************************************************************/
+    /*!
+       \brief set max mint amount
+    */
+    /**************************************************************************/
+    function setmaxMintAmount(uint256 _newmaxMintAmount) public onlyOwner {
+        maxMintAmount = _newmaxMintAmount;
+    }
+        /**************************************************************************/
+    /*!
+       \brief set magic address
+    */
+    /**************************************************************************/
+    function setMagicAddress(address _address) public onlyOwner {
+        magic = IERC20Upgradeable(_address);
+    }
 
-        for (uint256 i = 1; i <= _amount; ++i) {
-            uint256 nextTokenId = _getNextTokenId();
-            _safeMint(msg.sender, nextTokenId + i);
+
+    /**************************************************************************/
+    /*!
+       \brief return all token ids a holder owns
+    */
+    /**************************************************************************/
+    function getTokenIds(address _owner)
+        public
+        view
+        returns (uint256[] memory)
+    {
+        uint256 t = ERC721Upgradeable.balanceOf(_owner);
+        uint256[] memory _tokensOfOwner = new uint256[](t);
+        uint256 i;
+
+        for (i = 0; i < ERC721Upgradeable.balanceOf(_owner); i++) {
+            _tokensOfOwner[i] = ERC721EnumerableUpgradeable.tokenOfOwnerByIndex(
+                _owner,
+                i
+            );
         }
-    }
-
-    /**************************************************************************/
-    /*!
-       \brief mint a bobot - multiple things to check 
-       does user have $MAGIC in their wallet?
-    */
-    /**************************************************************************/
-    function mintBobotTest() public payable {
-        //is contract running?
-        require(!paused);
-        uint256 nextTokenId = _getNextTokenId();
-        _safeMint(msg.sender, nextTokenId);
-    }
-
-    /**************************************************************************/
-    /*!
-       \brief return URI of a token - could be revealed or hidden
-    */
-    /**************************************************************************/
-    function tokenURI(uint256 tokenID)
-        public
-        view
-        virtual
-        override
-        returns (string memory)
-    {
-        require(
-            _exists(tokenID),
-            "ERC721Metadata: URI query for nonexistent token"
-        );
-
-        string memory currentBaseURI = _baseURI();
-        uint256 level = Math.min(
-            bobotCorePoints[tokenID] / coreChamberLevelCost,
-            maxLevelAmount
-        );
-
-        string memory revealedURI = string(
-            abi.encodePacked(
-                baseRevealedURI,
-                tokenID.toString(),
-                "/",
-                level.toString(),
-                baseExtention
-            )
-        );
-
-        return
-            bytes(currentBaseURI).length > 0
-                ? (revealedURI)
-                : "";
-    }
-
-    function _getNextTokenId() private view returns (uint256) {
-        return (_tokenIdCounter.current() + 1);
-    }
-
-    function _safeMint(address to, uint256 tokenId)
-        internal
-        override(ERC721Upgradeable)
-    {
-        super._safeMint(to, tokenId);
-        _tokenIdCounter.increment();
-    }
-
-
-    /**************************************************************************/
-    /*!
-       \brief enable reveal phase
-    */
-    /**************************************************************************/
-    function reveal(bool _revealed) external onlyOwner {
-        revealed = _revealed;
-    }
-
-    /**************************************************************************/
-    /*!
-       \brief set base URI
-    */
-    /**************************************************************************/
-    function setBaseRevealedURI(string memory _newBaseURI) public onlyOwner {
-        baseRevealedURI = _newBaseURI;
-    }
-
-
-
-    /**************************************************************************/
-    /*!
-       \brief set Base Extensions
-    */
-    /**************************************************************************/
-    function setBaseExtentions(string memory _newBaseExtentions)
-        public
-        onlyOwner
-    {
-        baseExtention = _newBaseExtentions;
-    }
-
-    /**************************************************************************/
-    /*!
-       \brief pause smart contract
-    */
-    /**************************************************************************/
-    function pause(bool _state) public onlyOwner {
-        paused = _state;
+        return (_tokensOfOwner);
     }
 
 }
->>>>>>> Stashed changes

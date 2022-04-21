@@ -47,22 +47,31 @@ import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/utils/math/Math.sol";
 
+<<<<<<< Updated upstream
 //other staking contracts
+=======
+
+>>>>>>> Stashed changes
 import "./InstallationCoreChamber.sol";
 
 //$MAGIC transactions
 import "./Magic20.sol";
 
+<<<<<<< Updated upstream
 contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
+=======
+//other staking contracts
+import "./Bobot.sol";
+
+contract BobotGenesis is Bobot {
+>>>>>>> Stashed changes
     using SafeERC20Upgradeable for IERC20Upgradeable;
     using AddressUpgradeable for address;
     using CountersUpgradeable for CountersUpgradeable.Counter;
     using Strings for uint256;
 
     //magic contract
-    IERC20Upgradeable public magic;
-
-    uint256 currencyExchange = (10**9);
+  
     uint256 magicBalanceCost = 25;
 
     //revealed and unrevealed uri
@@ -70,9 +79,10 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     string public baseHiddenURI;
 
     string public baseExtention = ".json";
-    uint256 public maxSupply = 4040;
+
+    uint256 public constant maxSupply = 4040;
     uint256 public maxMintAmount = 1;
-    uint256 public maxLevelAmount = 10;
+
 
     //max bobots per account
     uint256 public nftPerAddressLimit = 5;
@@ -89,29 +99,15 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     bytes32 public rootGuardiansHash;
     bytes32 public rootLunarsHash;
 
-    //core chamber level update cost
-    uint256 public coreChamberLevelCost = 100;
-
-    //token id counter
-    CountersUpgradeable.Counter private _tokenIdCounter;
-
-    //level cost
-    uint256 levelCost;
-
     //amount mintable per whitelist
     mapping(address => bool) public whitelistedAddressesGuardiansClaimed;
     mapping(address => bool) public whitelistedAddressesLunarClaimed;
 
-    //core chamber
-    CoreChamber public coreChamber;
-
-    //core points on a per bobot basis
-    //one bobot -> core point
-    mapping(uint256 => uint256) public bobotCorePoints;
 
     //is the contract running
     bool public paused = false;
 
+<<<<<<< Updated upstream
     //modifiers
     /**************************************************************************/
     /*!
@@ -122,6 +118,24 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         require(msg.sender == address(coreChamber), "Bobots: !CoreChamber");
         _;
     }
+=======
+    function initialize(address _magicAddress) external initializer {
+        __ERC721Enumerable_init();
+        __Ownable_init();
+
+        magic = IERC20Upgradeable(_magicAddress);
+    }
+
+    function getBobotType(uint256 _tokenID)
+        external
+        view
+        override
+        returns (BobotType)
+    {
+        return BobotType.BOBOT_GEN;
+    }
+
+>>>>>>> Stashed changes
 
     /**************************************************************************/
     /*!
@@ -181,13 +195,19 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
                 );
 
                 if (isGuardians) {
-                    require(_getNextTokenId() <= maxSupply);
+                    require(
+                        _getNextTokenId() <= maxSupply,
+                        "Max supply exceeded"
+                    );
                     mintCount = 1;
                     whitelistedAddressesGuardiansClaimed[msg.sender] = true;
                 }
 
                 if (isLunars) {
-                    require(_getNextTokenId() + 1 <= maxSupply);
+                    require(
+                        _getNextTokenId() + 1 <= maxSupply,
+                        "Max supply exceeded"
+                    );
                     mintCount = 2;
                     whitelistedAddressesLunarClaimed[msg.sender] = true;
                 }
@@ -216,28 +236,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         _safeMint(msg.sender, nextTokenId);
     }
 
-    /**************************************************************************/
-    /*!
-       \brief return all token ids a holder owns
-    */
-    /**************************************************************************/
-    function getTokenIds(address _owner)
-        public
-        view
-        returns (uint256[] memory)
-    {
-        uint256 t = ERC721Upgradeable.balanceOf(_owner);
-        uint256[] memory _tokensOfOwner = new uint256[](t);
-        uint256 i;
-
-        for (i = 0; i < ERC721Upgradeable.balanceOf(_owner); i++) {
-            _tokensOfOwner[i] = ERC721EnumerableUpgradeable.tokenOfOwnerByIndex(
-                _owner,
-                i
-            );
-        }
-        return (_tokensOfOwner);
-    }
+   
 
     /**************************************************************************/
     /*!
@@ -290,18 +289,6 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         _tokenIdCounter.increment();
     }
 
-    /**************************************************************************/
-    /*!
-       \brief earning core points logic
-    */
-    /**************************************************************************/
-    function coreChamberCorePointUpdate(uint256 _tokenId, uint256 _coreEarned)
-        external
-        onlyCoreChamber
-    {
-        bobotCorePoints[_tokenId] += _coreEarned;
-    }
-
     //admin functions
 
     function setRootGuardiansHash(bytes32 _rootHash) external onlyOwner {
@@ -344,23 +331,6 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         whitelistedAddressesLunars = _address;
     }
 
-    /**************************************************************************/
-    /*!
-       \brief set Core Chamber Contract
-    */
-    /**************************************************************************/
-    function setCoreChamber(address _coreChamber) external onlyOwner {
-        coreChamber = CoreChamber(_coreChamber);
-    }
-
-    /**************************************************************************/
-    /*!
-       \brief set max mint amount
-    */
-    /**************************************************************************/
-    function setmaxMintAmount(uint256 _newmaxMintAmount) public onlyOwner {
-        maxMintAmount = _newmaxMintAmount;
-    }
 
     /**************************************************************************/
     /*!
@@ -389,14 +359,6 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         baseHiddenURI = _newBaseURI;
     }
 
-    /**************************************************************************/
-    /*!
-       \brief set magic address
-    */
-    /**************************************************************************/
-    function setMagicAddress(address _address) public onlyOwner {
-        magic = IERC20Upgradeable(_address);
-    }
 
     /**************************************************************************/
     /*!
@@ -417,14 +379,5 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     /**************************************************************************/
     function pause(bool _state) public onlyOwner {
         paused = _state;
-    }
-
-    /**************************************************************************/
-    /*!
-       \brief withdraw
-    */
-    /**************************************************************************/
-    function withdraw() public payable onlyOwner {
-        require(payable(msg.sender).send(address(this).balance));
     }
 }
