@@ -40,6 +40,11 @@ const Header: React.FC = () =>
   {
     window.open('https://twitter.com/BobotsNFT');
   }
+  //TODO: route to /play
+  function handlePlay()
+  {
+    history.push("/play");
+  }
 
   const RenderIcons = (
     <>
@@ -56,6 +61,10 @@ const Header: React.FC = () =>
 
       <Button onClick={handleHome} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
         <FaHome />
+      </Button>
+
+      <Button onClick={handlePlay} variant="contained" style={{ height: '40px', width: '150px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
+       PLAY NOW
       </Button>
 
     </>);
