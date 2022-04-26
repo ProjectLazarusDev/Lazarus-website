@@ -21,7 +21,7 @@ import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
 import '../indexweb3.js'
-
+import GameScreen from '../Components/GameScreen';
 
 import * as blockchain from '../Blockchain/BlockchainFunctions';
 
@@ -72,39 +72,9 @@ const Multiplayer: React.FC = () =>
         setScrollValue((-document.body.getBoundingClientRect().top) / document.body.getBoundingClientRect().height);
         unityContext.setFullscreen(true);
     }
-    function RenderFullScreenButton()
-    {
-
-        return (
-            <>
-                <Button style={{ color: 'white', height: '40px', fontFamily: 'Dongle', letterSpacing: '1px', fontSize: '1.5rem', backgroundColor: '#000000ff', width: '350px' }} onClick={() => { ToggleFullScreen(true) }} >
-                    Click to focus game or Press F11
-                </Button>
-            </>
-        );
-    }
 
     const updateDimensions = () =>
     {}
-
-    //toggle full-screen control
-    function ToggleFullScreen(toggle: boolean)
-    {
-        console.log("toggle is", toggle);
-        unityContext.setFullscreen(toggle);
-    }
-
-    const GetLoadingString = (load: Number) =>
-    {
-        if (load < 0.5)
-            return "CHARGING UP...";
-
-        if (load < 0.8)
-            return "BOBOTS ROLLING IN...";
-
-        return "INITIALIZING...";
-    }
-
 
     React.useEffect(() =>
     {
@@ -150,48 +120,9 @@ const Multiplayer: React.FC = () =>
                     borderRadius: '0px',
                     background: 'linear-gradient(to right bottom, #12121200, #05050500)'
                 }}>
-                    <Grid
-                        container
-                        spacing={0}
-                        direction="column"
-                        alignItems="center"
-                        justifyContent="center"
-                        style={{ borderRadius: '0px', height: '100vh', boxShadow: 'none' }}
-                    >
-                        <div className="progress-bar" style={{ zIndex: isLoaded ? -2 : 21 }}>
-                            <div className="progress-bar-title" >
-                                <Typography paddingBottom={'50px'} paddingTop={'25px'} fontFamily='Dongle' letterSpacing={'5px'} lineHeight={0} color='#ffffffff' fontWeight='bold' variant='subtitle1' fontSize='1.25rem'>
-                                    {GetLoadingString(progression)}
-                                </Typography>
-                            </div>
-                        </div>
-                        {isLoaded === false && (
-
-                            <div className="progress-bar" style={{ zIndex: isLoaded ? -2 : 21 }}>
-                                <div
-                                    className="progress-bar-fill"
-                                    style={{ width: progression * 100 + "%" }}
-                                />
-                            </div>
-                        )}
-                        <div className="pageUnity">
-
-                            <Unity className="unityWindow"
-                                unityContext={unityContext}
-
-                                devicePixelRatio={isMobile ? 0.85 : 0.9}
-                                style={{
-                                    borderRadius: '0px', width: "100vw", height: "101vh"
-                                }}
-                            />
-                        </div>
-                        <div className="pagePos">
-                            <div className="pagePosAlign">
-                                {RenderFullScreenButton()}
-
-                            </div>
-                        </div>
-                    </Grid>
+                        {isMobile === false ? 
+                        <GameScreen isLoaded={isLoaded} progression={progression}> </GameScreen> :
+                        null}
                 </Card>
 
             </div>
