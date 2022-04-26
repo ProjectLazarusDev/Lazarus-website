@@ -1,3 +1,11 @@
+.ui-text {
+    position: fixed;
+    width: 400px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+  }
+
 .PageContainer {
     z-index: 1;
     display: flex;
