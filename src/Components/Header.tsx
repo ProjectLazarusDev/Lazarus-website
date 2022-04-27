@@ -1,135 +1,213 @@
-import React from "react"
-
+import React from 'react';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 
-import { FaDiscord, FaTwitter, FaHome } from "react-icons/fa";
-import { Button } from "@mui/material";
+import { FaDiscord, FaTwitter, FaHome } from 'react-icons/fa';
+import { Button } from '@mui/material';
 import { isMobile } from 'react-device-detect';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
-const Header: React.FC = () =>
-{
+const Header: React.FC = () => {
   const [width, setWidth] = React.useState(window.innerWidth);
 
-  React.useEffect(() =>
-  {
-
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
+  React.useEffect(() => {
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
   }, []);
-  const updateDimensions = () =>
-  {
+  const updateDimensions = () => {
     setWidth(window.innerWidth);
-
-  }
+  };
   const history = useHistory();
 
-  function handleHome()
-  {
-    history.push("/");
+  function handleHome() {
+    history.push('/');
   }
 
-  function handleDiscord()
-  {
+  function handleDiscord() {
     window.open('https://discord.gg/jbBzyemqk7');
   }
-  function handleTwitter()
-  {
+  function handleTwitter() {
     window.open('https://twitter.com/BobotsNFT');
   }
   //TODO: route to /play
-  function handlePlay()
-  {
-    history.push("/play");
+  function handlePlay() {
+    history.push('/play');
   }
 
   const RenderIcons = (
     <>
-      <Button variant="contained" style={{ height: '40px', width: '250px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
-       SEASON 0 COMING SOON
+      <Button
+        variant="contained"
+        style={{
+          height: '40px',
+          width: '250px',
+          fontFamily: 'Dongle',
+          fontSize: '1.5rem',
+          backgroundColor: '#000000aa',
+          borderRadius: '20px',
+          boxShadow: 'none',
+          margin: '5px',
+        }}
+      >
+        SEASON 0 COMING SOON
       </Button>
-      <Button onClick={handleDiscord} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
+      <Button
+        onClick={handleDiscord}
+        variant="contained"
+        style={{
+          height: '40px',
+          width: '40px',
+          fontFamily: 'Dongle',
+          fontSize: '1.5rem',
+          backgroundColor: '#00000055',
+          borderRadius: '20px',
+          boxShadow: 'none',
+          margin: '5px',
+        }}
+      >
         <FaDiscord />
       </Button>
-      <Button onClick={handleTwitter} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
+      <Button
+        onClick={handleTwitter}
+        variant="contained"
+        style={{
+          height: '40px',
+          width: '40px',
+          fontFamily: 'Dongle',
+          fontSize: '1.5rem',
+          backgroundColor: '#00000055',
+          borderRadius: '20px',
+          boxShadow: 'none',
+          margin: '5px',
+        }}
+      >
         <FaTwitter />
       </Button>
 
-
-      <Button onClick={handleHome} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
+      <Button
+        onClick={handleHome}
+        variant="contained"
+        style={{
+          height: '40px',
+          width: '40px',
+          fontFamily: 'Dongle',
+          fontSize: '1.5rem',
+          backgroundColor: '#00000055',
+          borderRadius: '20px',
+          boxShadow: 'none',
+          margin: '5px',
+        }}
+      >
         <FaHome />
       </Button>
 
-      {isMobile === false ? 
-        <Button onClick={handlePlay} variant="contained" style={{ height: '40px', width: '150px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
-        PLAY NOW
+      {isMobile === false ? (
+        <Button
+          onClick={handlePlay}
+          variant="contained"
+          style={{
+            height: '40px',
+            width: '150px',
+            fontFamily: 'Dongle',
+            fontSize: '1.5rem',
+            backgroundColor: '#000000aa',
+            borderRadius: '20px',
+            boxShadow: 'none',
+            margin: '5px',
+          }}
+        >
+          PLAY NOW
         </Button>
-      : null}
-
-    </>);
+      ) : null}
+    </>
+  );
   const RenderIconsMobile = (
     <>
-      <Button onClick={handleDiscord} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
+      <Button
+        onClick={handleDiscord}
+        variant="contained"
+        style={{
+          height: '40px',
+          width: '40px',
+          fontFamily: 'Dongle',
+          fontSize: '1.5rem',
+          backgroundColor: '#00000055',
+          borderRadius: '20px',
+          boxShadow: 'none',
+          margin: '5px',
+        }}
+      >
         <FaDiscord />
       </Button>
-      <Button onClick={handleTwitter} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
+      <Button
+        onClick={handleTwitter}
+        variant="contained"
+        style={{
+          height: '40px',
+          width: '40px',
+          fontFamily: 'Dongle',
+          fontSize: '1.5rem',
+          backgroundColor: '#00000055',
+          borderRadius: '20px',
+          boxShadow: 'none',
+          margin: '5px',
+        }}
+      >
         <FaTwitter />
       </Button>
 
-
-      <Button onClick={handleHome} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
+      <Button
+        onClick={handleHome}
+        variant="contained"
+        style={{
+          height: '40px',
+          width: '40px',
+          fontFamily: 'Dongle',
+          fontSize: '1.5rem',
+          backgroundColor: '#00000055',
+          borderRadius: '20px',
+          boxShadow: 'none',
+          margin: '5px',
+        }}
+      >
         <FaHome />
       </Button>
-
-    </>);
+    </>
+  );
   const Desk = (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed" style={{ boxShadow: 'none', backgroundColor: 'transparent' }} >
+        <AppBar position="fixed" style={{ boxShadow: 'none', backgroundColor: 'transparent' }}>
           <Toolbar>
             <Box sx={{ flexGrow: 1 }} />
-            <Box >
-              {RenderIcons}
-            </Box>
+            <Box>{RenderIcons}</Box>
           </Toolbar>
         </AppBar>
-
       </Box>
-
-    </>);
+    </>
+  );
   const Mobile = (
     <>
-
-      <AppBar position="fixed" style={{ boxShadow: 'none', backgroundColor: 'transparent' }} >
+      <AppBar position="fixed" style={{ boxShadow: 'none', backgroundColor: 'transparent' }}>
         <Toolbar>
-          <Box sx={{ flexGrow: 0.5 }}>
-          </Box>
+          <Box sx={{ flexGrow: 0.5 }}></Box>
           {RenderIconsMobile}
         </Toolbar>
       </AppBar>
-    </>);
+    </>
+  );
   return (
     <>
       {
         <div>
-
           {width >= 960 && Desk}
           {width < 960 && Mobile}
-
-
         </div>
       }
-
     </>
   );
-
-}
-
-
-
-
+};
 
 export default Header;

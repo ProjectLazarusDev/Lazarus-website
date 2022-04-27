@@ -1,150 +1,131 @@
 .ui-text {
-    position: fixed;
-    width: 400px;
-    border-radius: 5px;
-    text-align: center;
-    color: white;
-  }
+  position: fixed;
+  width: 400px;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+}
 
 .PageContainer {
-    z-index: 1;
-    display: flex;
-    width: 70%;
-    flex-direction: column;
-
+  z-index: 1;
+  display: flex;
+  width: 70%;
+  flex-direction: column;
 }
-.video-right
-{
-    display: flex;
-    flex-direction: 'row';
-    justify-content:  'space-between';
-  
+.video-right {
+  display: flex;
+  flex-direction: 'row';
+  justify-content: 'space-between';
 }
 .PageAcc {
-    display: fixed;
-    align-items: center;
-    justify-content: center;
-    object-fit: contain;
-    overflow: hidden;
-    margin-left: 20%;
-    margin-right: 20%;
+  display: fixed;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+  overflow: hidden;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .lines {
-    display: flex;
-    position: absolute;
-    background-size: 50px 50px;
-    height: 100%;
-    width: 100%;
-    background-image:
-        linear-gradient(0deg, transparent 0%,
-            rgba(0, 217, 255, 0.04) 10%, rgba(0, 217, 255, .001) 10.1%, transparent 5.1%, transparent 5.2%),
-        linear-gradient(90deg, transparent 0%,
-            rgba(0, 217, 255, .04) 10%, rgba(0, 217, 255, .001) 10.1%, transparent 5.1%, transparent 5.2%);
+  display: flex;
+  position: absolute;
+  background-size: 50px 50px;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(
+      0deg,
+      transparent 0%,
+      rgba(0, 217, 255, 0.04) 10%,
+      rgba(0, 217, 255, 0.001) 10.1%,
+      transparent 5.1%,
+      transparent 5.2%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 217, 255, 0.04) 10%,
+      rgba(0, 217, 255, 0.001) 10.1%,
+      transparent 5.1%,
+      transparent 5.2%
+    );
 }
 
 .pageUnity {
-    z-index: -1;
-    position: fixed;
+  z-index: -1;
+  position: fixed;
 }
 
 .pageFullScreen {
-    position: fixed;
+  position: fixed;
 }
 
 .glow {
-
-    animation: glow 1s ease-in-out infinite alternate;
-    text-shadow:
-        0 0 7px #ffffff66,
-        0 0 10px #ffffff66,
-        0 0 21px #ffffff66,
-        0 0 42px #ffffff66;
-
+  animation: glow 1s ease-in-out infinite alternate;
+  text-shadow: 0 0 7px #ffffff66, 0 0 10px #ffffff66, 0 0 21px #ffffff66, 0 0 42px #ffffff66;
 }
 
 .glowWhite {
-
-    text-shadow:
-        0 0 30px #ffffff75,
-        0 0 10px #ffffffff;
-
+  text-shadow: 0 0 30px #ffffff75, 0 0 10px #ffffffff;
 }
 .glowBlack {
-
-    text-shadow:
-        0 0 30px #00000075,
-        0 0 20px rgba(0, 0, 0, 0.5),
-        0 0 10px rgb(0, 0, 0);
-
+  text-shadow: 0 0 30px #00000075, 0 0 20px rgba(0, 0, 0, 0.5), 0 0 10px rgb(0, 0, 0);
 }
 .PageVidWrap {
-    z-index: 200;
+  z-index: 200;
 
-
-    object-fit: contain;
-    overflow: hidden;
+  object-fit: contain;
+  overflow: hidden;
 }
 
 .pagePosWidth {
-    margin-left: 30%;
-    margin-right: 30%;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
 .pagePosAlign {
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 .pagePos {
-    position: absolute;
+  position: absolute;
 
-    top: 15%;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  top: 15%;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
-    align-items: center;
-    justify-content: center;
-    display: block;
-
-
+  align-items: center;
+  justify-content: center;
+  display: block;
 }
 
 .pagePosOverlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    align-items: center;
-    justify-content: center;
-    display: block;
-
-
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  display: block;
 }
 
 .pagePosWrap {
-
-    position: relative;
-
-
+  position: relative;
 }
 
 .PageVid {
+  display: block;
 
-
-    display: block;
-
-    object-fit: cover;
-    transition: all 0.2s linear;
+  object-fit: cover;
+  transition: all 0.2s linear;
 }
 
 .pageGlobal {
-  
-    background-color: #00000000;
-    overflow: hidden;
-
+  background-color: #00000000;
+  overflow: hidden;
 }
