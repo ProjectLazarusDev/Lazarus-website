@@ -38,24 +38,24 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
       <>
         <Button
           sx={{
-            //opacity: [0.5,0.5,0.5],
+            opacity: [0.75,0.75,0.75],
           }}
           style={{
             color: 'white',
             fontFamily: 'Dongle',
             letterSpacing: '1px',
-            fontSize: '1.5rem',
+            fontSize: '5rem',
             backgroundColor: '#000000ff',
-            height: "400px",
-            width: "400px",
+            height: "100vh",
+            width: "100vw",
           }}
           onClick={() => {
             ToggleFullScreen(true);
           }}
         >
-          Click to toggle to game
+          Click on screen to toggle to game
         </Button>
-      </>
+        </>
     );
   }
 
@@ -113,8 +113,8 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
               }}
             />
           </div>
-          <div className='pagePos'>
-            <div className='pagePosAlign'>{RenderFullScreenButton()}</div>
+          <div className='pageFullScreen'>
+            {RenderFullScreenButton()}
           </div>
         </Grid>
       }

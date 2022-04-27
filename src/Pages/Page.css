@@ -48,6 +48,10 @@
     position: fixed;
 }
 
+.pageFullScreen {
+    position: fixed;
+}
+
 .glow {
 
     animation: glow 1s ease-in-out infinite alternate;
