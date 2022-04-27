@@ -7,7 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 
 import { FaDiscord, FaTwitter, FaHome } from "react-icons/fa";
 import { Button } from "@mui/material";
-
+import { isMobile } from 'react-device-detect';
 import { useHistory } from "react-router-dom";
 
 const Header: React.FC = () =>
@@ -63,9 +63,11 @@ const Header: React.FC = () =>
         <FaHome />
       </Button>
 
-      <Button onClick={handlePlay} variant="contained" style={{ height: '40px', width: '150px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
-       PLAY NOW
-      </Button>
+      {isMobile === false ? 
+        <Button onClick={handlePlay} variant="contained" style={{ height: '40px', width: '150px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
+        PLAY NOW
+        </Button>
+      : null}
 
     </>);
   const RenderIconsMobile = (
