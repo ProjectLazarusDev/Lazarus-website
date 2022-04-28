@@ -38,7 +38,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
       <>
         <Button
           sx={{
-            opacity: [0.75,0.75,0.75],
+            opacity: [0.75, 0.75, 0.75],
           }}
           style={{
             color: 'white',
@@ -46,8 +46,8 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
             letterSpacing: '1px',
             fontSize: '5rem',
             backgroundColor: '#000000ff',
-            height: "100vh",
-            width: "100vw",
+            height: '100vh',
+            width: '100vw',
           }}
           onClick={() => {
             ToggleFullScreen(true);
@@ -55,7 +55,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
         >
           Click on screen to toggle to game
         </Button>
-        </>
+      </>
     );
   }
 
@@ -65,45 +65,36 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
         <Grid
           container
           spacing={0}
-          direction='column'
-          alignItems='center'
-          justifyContent='center'
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
           style={{ borderRadius: '0px', height: '100vh', boxShadow: 'none' }}
         >
-          <div
-            className='progress-bar'
-            style={{ zIndex: props.isLoaded ? -2 : 21 }}
-          >
-            <div className='progress-bar-title'>
+          <div className="progress-bar" style={{ zIndex: props.isLoaded ? -2 : 21 }}>
+            <div className="progress-bar-title">
               <Typography
                 paddingBottom={'50px'}
                 paddingTop={'25px'}
-                fontFamily='Dongle'
+                fontFamily="Dongle"
                 letterSpacing={'5px'}
                 lineHeight={0}
-                color='#ffffffff'
-                fontWeight='bold'
-                variant='subtitle1'
-                fontSize='1.25rem'
+                color="#ffffffff"
+                fontWeight="bold"
+                variant="subtitle1"
+                fontSize="1.25rem"
               >
                 {GetLoadingString(props.progression)}
               </Typography>
             </div>
           </div>
           {props.isLoaded === false && (
-            <div
-              className='progress-bar'
-              style={{ zIndex: props.isLoaded ? -2 : 21 }}
-            >
-              <div
-                className='progress-bar-fill'
-                style={{ width: props.progression * 100 + '%' }}
-              />
+            <div className="progress-bar" style={{ zIndex: props.isLoaded ? -2 : 21 }}>
+              <div className="progress-bar-fill" style={{ width: props.progression * 100 + '%' }} />
             </div>
           )}
-          <div className='pageUnity'>
+          <div className="pageUnity">
             <Unity
-              className='unityWindow'
+              className="unityWindow"
               unityContext={unityContext}
               devicePixelRatio={isMobile ? 0.85 : 0.9}
               style={{
@@ -113,9 +104,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
               }}
             />
           </div>
-          <div className='pageFullScreen'>
-            {RenderFullScreenButton()}
-          </div>
+          <div className="pageFullScreen">{RenderFullScreenButton()}</div>
         </Grid>
       }
     </>
