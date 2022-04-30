@@ -25,10 +25,11 @@ import GameScreen from "../Components/GameScreen";
 
 import * as blockchain from "../Blockchain/BlockchainFunctions";
 
-import unityContext from "../Context/UnityContext";
+import  {unityContextSeason0}  from "../Context/UnityContext";
 //abi import
 
-const Multiplayer: React.FC = () => {
+const Multiplayer: React.FC = () =>
+{
   //react hooks
   const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
   const [progression, setProgression] = React.useState<number>(0);
@@ -36,55 +37,63 @@ const Multiplayer: React.FC = () => {
 
   //store eth addresses
 
-  React.useEffect(() => {
-    const scrollFun = () => {
+  React.useEffect(() =>
+  {
+    const scrollFun = () =>
+    {
       setScrollValue(
         -document.body.getBoundingClientRect().top /
-          document.body.getBoundingClientRect().height
+        document.body.getBoundingClientRect().height
       );
-      unityContext.send("MainMenuControl", "SetScrollBarValue", scrollValue);
+      //unityContextSeason0.send("MainMenuControl", "SetScrollBarValue", scrollValue);
     };
     window.addEventListener("scroll", scrollFun);
 
-    return () => {
+    return () =>
+    {
       window.removeEventListener("scroll", scrollFun);
     };
   }, [scrollValue]);
 
   // Built-in event invoked when the Unity app's progress has changed.
-  function handleOnUnityProgress(progression: number) {
+  function handleOnUnityProgress(progression: number)
+  {
     setProgression(progression);
   }
 
   // Built-in event invoked when the Unity app is loaded.
-  function handleOnUnityLoaded() {
+  function handleOnUnityLoaded()
+  {
     document.body.style.overflowY = "scroll";
     document.documentElement.scrollTop = 0;
     setIsLoaded(true);
     setScrollValue(
       -document.body.getBoundingClientRect().top /
-        document.body.getBoundingClientRect().height
+      document.body.getBoundingClientRect().height
     );
-    unityContext.setFullscreen(true);
+    unityContextSeason0.setFullscreen(true);
   }
 
-  const updateDimensions = () => {};
+  const updateDimensions = () => { };
 
-  React.useEffect(() => {
-    unityContext.on("progress", handleOnUnityProgress);
-    unityContext.on("loaded", handleOnUnityLoaded);
-    unityContext.on("quitted", function () {});
+  React.useEffect(() =>
+  {
+    unityContextSeason0.on("progress", handleOnUnityProgress);
+    unityContextSeason0.on("loaded", handleOnUnityLoaded);
+    unityContextSeason0.on("quitted", function () { });
     document.body.style.overflowY = "hidden";
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
   // When the component is mounted, we'll register some event listener.
-  React.useEffect(() => {
+  React.useEffect(() =>
+  {
     blockchain.BindToContext();
-    return function () {
+    return function ()
+    {
       // handleOnClickUnMountUnity();
-      unityContext.removeAllEventListeners();
+      unityContextSeason0.removeAllEventListeners();
     };
   }, []);
 

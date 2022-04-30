@@ -1,4 +1,4 @@
-import unityContext from '../Context/UnityContext';
+import {unityContext} from '../Context/UnityContext';
 import { MagicGetBalance } from './Magic20';
 import {  MetaMaskAccounts } from './MetaMaskLogin';
 

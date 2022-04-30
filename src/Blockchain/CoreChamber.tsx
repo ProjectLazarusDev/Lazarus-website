@@ -1,4 +1,4 @@
-import unityContext from '../Context/UnityContext';
+import {unityContext} from '../Context/UnityContext';
 import { ethers, BigNumber } from "ethers";
 import {coreChamberAddress,contractAddress } from './ContractAddress';
 import BobotGenesisABI from '../ABI/BobotGenesis.json'

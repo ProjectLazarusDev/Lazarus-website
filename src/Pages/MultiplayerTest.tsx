@@ -26,7 +26,7 @@ import '../indexweb3.js'
 import * as blockchain from '../Blockchain/BlockchainFunctions';
 
 
-import unityContext from '../Context/UnityContext';
+import {unityContext} from '../Context/UnityContext';
 //abi import
 
 

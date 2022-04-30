@@ -5,7 +5,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 
-import { FaDiscord, FaTwitter, FaHome } from "react-icons/fa";
+import { FaDiscord, FaTwitter, FaHome,FaPlay } from "react-icons/fa";
 import { Button } from "@mui/material";
 import { isMobile } from 'react-device-detect';
 import { useHistory } from "react-router-dom";
@@ -48,9 +48,7 @@ const Header: React.FC = () =>
 
   const RenderIcons = (
     <>
-      <Button variant="contained" style={{ height: '40px', width: '250px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
-       SEASON 0 COMING SOON
-      </Button>
+      
       <Button onClick={handleDiscord} variant="contained" style={{ height: '40px', width: '40px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#00000055', borderRadius: '20px', boxShadow: 'none', margin: '5px' }} >
         <FaDiscord />
       </Button>
@@ -64,8 +62,8 @@ const Header: React.FC = () =>
       </Button>
 
       {isMobile === false ? 
-        <Button onClick={handlePlay} variant="contained" style={{ height: '40px', width: '150px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
-        PLAY NOW
+        <Button onClick={handlePlay} variant="contained" style={{height: '100px', width: '100px', fontFamily: 'Dongle', fontSize: '1.5rem', backgroundColor: '#000000aa', borderRadius: '20px', boxShadow: 'none', margin: '5px' }}>
+         <FaPlay />
         </Button>
       : null}
 
@@ -88,7 +86,7 @@ const Header: React.FC = () =>
   const Desk = (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed" style={{ boxShadow: 'none', backgroundColor: 'transparent' }} >
+        <AppBar position="fixed" style={{paddingTop:'20px', boxShadow: 'none', backgroundColor: 'transparent' }} >
           <Toolbar>
             <Box sx={{ flexGrow: 1 }} />
             <Box >

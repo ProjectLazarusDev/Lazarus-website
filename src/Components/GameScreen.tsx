@@ -10,16 +10,20 @@ import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
 import '../indexweb3.js';
+import { FaHandPointUp } from "react-icons/fa";
 
-import unityContext from '../Context/UnityContext';
+import { unityContextSeason0 } from '../Context/UnityContext';
 
-interface GameScreenProps {
+interface GameScreenProps
+{
   isLoaded: boolean;
   progression: number;
 }
 
-const GameScreen: React.FC<GameScreenProps> = (props) => {
-  const GetLoadingString = (load: Number) => {
+const GameScreen: React.FC<GameScreenProps> = (props) =>
+{
+  const GetLoadingString = (load: Number) =>
+  {
     if (load < 0.5) return 'CHARGING UP...';
 
     if (load < 0.8) return 'BOBOTS ROLLING IN...';
@@ -28,34 +32,41 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
   };
 
   //toggle full-screen control
-  function ToggleFullScreen(toggle: boolean) {
+  function ToggleFullScreen(toggle: boolean)
+  {
     console.log('toggle is', toggle);
-    unityContext.setFullscreen(toggle);
+    unityContextSeason0.setFullscreen(toggle);
   }
 
-  function RenderFullScreenButton() {
+  function RenderFullScreenButton()
+  {
     return (
       <>
         <Button
           sx={{
-            opacity: [0.75,0.75,0.75],
+            opacity: [0.75, 0.75, 0.75],
           }}
           style={{
             color: 'white',
             fontFamily: 'Dongle',
             letterSpacing: '1px',
-            fontSize: '5rem',
+            fontSize: '2rem',
             backgroundColor: '#000000ff',
             height: "100vh",
             width: "100vw",
+            paddingTop: '40%'
+
           }}
-          onClick={() => {
+          onClick={() =>
+          {
             ToggleFullScreen(true);
           }}
         >
-          Click on screen to toggle to game
+          <FaHandPointUp />
+           Click on screen to enter game 
+          <FaHandPointUp />
         </Button>
-        </>
+      </>
     );
   }
 
@@ -104,7 +115,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
           <div className='pageUnity'>
             <Unity
               className='unityWindow'
-              unityContext={unityContext}
+              unityContext={unityContextSeason0}
               devicePixelRatio={isMobile ? 0.85 : 0.9}
               style={{
                 borderRadius: '0px',
