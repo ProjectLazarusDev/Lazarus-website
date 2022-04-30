@@ -34,6 +34,7 @@ const Header: React.FC = () =>
 
   function handleDiscord()
   {
+    
     window.open('https://discord.gg/jbBzyemqk7');
   }
   function handleTwitter()

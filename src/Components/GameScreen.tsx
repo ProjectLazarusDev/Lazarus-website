@@ -28,7 +28,8 @@ const GameScreen: React.FC<GameScreenProps> = (props) =>
 
     if (load < 0.8) return 'BOBOTS ROLLING IN...';
 
-    return 'INITIALIZING...';
+
+    return 'DOWNLOADED...LOADING GAME';
   };
 
   //toggle full-screen control

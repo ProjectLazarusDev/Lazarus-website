@@ -101,7 +101,7 @@ const Home: React.FC = () => {
 
     if (load < 0.8) return 'BOBOTS ROLLING IN...';
 
-    return 'INITIALIZING...';
+    return  'DOWNLOADED...LOADING UP!';
   };
 
   React.useEffect(() => {
