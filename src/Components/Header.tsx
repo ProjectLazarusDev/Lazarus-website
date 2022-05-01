@@ -110,7 +110,7 @@ const Header: React.FC = () => {
         <FaHome />
       </Button>
 
-      {isMobile === false && location.pathname != '/play' ? (
+      {isMobile === false && location.pathname !== '/play' ? (
         <Button
           onClick={handlePlay}
           variant="contained"
