@@ -30,7 +30,7 @@ import 'motion-pointer/dist/index.js';
 import { CardMedia } from '@mui/material';
 import { isMobile } from 'react-device-detect';
 
-const unityContext = new UnityContext({
+export const unityContextHomePage = new UnityContext({
   loaderUrl: 'devbuild/devbuild.loader.js',
   dataUrl: 'devbuild/devbuild.data',
   frameworkUrl: 'devbuild/devbuild.framework.js',
@@ -46,9 +46,9 @@ const Home: React.FC = () => {
 
   React.useEffect(() => {
     const scrollFun = () => {
-      if (isMobile) unityContext.send('MainMenuControl', 'setMobile');
+      if (isMobile) unityContextHomePage.send('MainMenuControl', 'setMobile');
       setScrollValue(-document.body.getBoundingClientRect().top / document.body.getBoundingClientRect().height);
-      unityContext.send('MainMenuControl', 'SetScrollBarValue', scrollValue);
+      unityContextHomePage.send('MainMenuControl', 'SetScrollBarValue', scrollValue);
     };
     window.addEventListener('scroll', scrollFun);
 
@@ -68,8 +68,8 @@ const Home: React.FC = () => {
     document.documentElement.scrollTop = 0;
     setIsLoaded(true);
     setScrollValue(-document.body.getBoundingClientRect().top / document.body.getBoundingClientRect().height);
-    unityContext.setFullscreen(true);
-    if (isMobile) unityContext.send('MainMenuControl', 'setMobile');
+    unityContextHomePage.setFullscreen(true);
+    if (isMobile) unityContextHomePage.send('MainMenuControl', 'setMobile');
   }
 
   //toggle full-screen control
@@ -85,10 +85,10 @@ const Home: React.FC = () => {
     return <></>;
   }
   function SelectCharacterLeft() {
-    unityContext.send('MainMenuControl', 'ChangeCharacterLeft');
+    unityContextHomePage.send('MainMenuControl', 'ChangeCharacterLeft');
   }
   function SelectCharacterRight() {
-    unityContext.send('MainMenuControl', 'ChangeCharacterRight');
+    unityContextHomePage.send('MainMenuControl', 'ChangeCharacterRight');
   }
   const [width, setWidth] = React.useState(window.innerWidth);
 
@@ -101,7 +101,7 @@ const Home: React.FC = () => {
 
     if (load < 0.8) return 'BOBOTS ROLLING IN...';
 
-    return  'DOWNLOADED...LOADING UP!';
+    return 'DOWNLOADED...LOADING UP!';
   };
 
   React.useEffect(() => {
@@ -113,15 +113,15 @@ const Home: React.FC = () => {
 
   // When the component is mounted, we'll register some event listener.
   React.useEffect(() => {
-    if (isMobile) unityContext.send('MainMenuControl', 'setMobile');
+    if (isMobile) unityContextHomePage.send('MainMenuControl', 'setMobile');
     setScrollValue(-document.body.getBoundingClientRect().top / document.body.getBoundingClientRect().height);
-    unityContext.on('progress', handleOnUnityProgress);
-    unityContext.on('loaded', handleOnUnityLoaded);
-    unityContext.on('quitted', function () {});
+    unityContextHomePage.on('progress', handleOnUnityProgress);
+    unityContextHomePage.on('loaded', handleOnUnityLoaded);
+    unityContextHomePage.on('quitted', function () {});
 
     return function () {
       // handleOnClickUnMountUnity();
-      unityContext.removeAllEventListeners();
+      unityContextHomePage.removeAllEventListeners();
     };
   }, []);
 
@@ -184,7 +184,7 @@ const Home: React.FC = () => {
             <div className="pageUnity">
               <Unity
                 className="unityWindow"
-                unityContext={unityContext}
+                unityContext={unityContextHomePage}
                 devicePixelRatio={isMobile ? 0.85 : 0.9}
                 style={{
                   borderRadius: '0px',

@@ -7,9 +7,10 @@ import Toolbar from '@mui/material/Toolbar';
 import { FaDiscord, FaTwitter, FaHome, FaPlay } from 'react-icons/fa';
 import { Button } from '@mui/material';
 import { isMobile } from 'react-device-detect';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { unityContext, unityContextSeason0 } from '../Context/UnityContext';
+import { unityContextHomePage } from '../Pages/Home';
 
 const Header: React.FC = () => {
   const [width, setWidth] = React.useState(window.innerWidth);
@@ -22,12 +23,16 @@ const Header: React.FC = () => {
     setWidth(window.innerWidth);
   };
   const history = useHistory();
-
+  const location = useLocation();
   // placeholder code to fix the popup error caused by unity 2021.2 ver with react-unity-webgl
   // https://github.com/jeffreylanters/react-unity-webgl/issues/250
   const unityUnload = async () => {
     await unityContext.quitUnityInstance();
     await unityContextSeason0.quitUnityInstance();
+  };
+
+  const unityHomeUnload = async () => {
+    await unityContextHomePage.quitUnityInstance();
   };
 
   async function handleHome() {
@@ -46,7 +51,7 @@ const Header: React.FC = () => {
   }
 
   async function handlePlay() {
-    unityUnload()
+    unityHomeUnload()
       .then(() => {
         history.push('/play');
       })
@@ -105,7 +110,7 @@ const Header: React.FC = () => {
         <FaHome />
       </Button>
 
-      {isMobile === false ? (
+      {isMobile === false && location.pathname != '/play' ? (
         <Button
           onClick={handlePlay}
           variant="contained"
