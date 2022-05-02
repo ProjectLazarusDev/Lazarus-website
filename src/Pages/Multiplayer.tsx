@@ -28,6 +28,8 @@ import * as blockchain from '../Blockchain/BlockchainFunctions';
 import { unityContextSeason0 } from '../Context/UnityContext';
 //abi import
 
+import { ethers } from 'ethers';
+
 const Multiplayer: React.FC = () => {
   //react hooks
   const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
@@ -35,6 +37,18 @@ const Multiplayer: React.FC = () => {
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
 
   //store eth addresses
+
+  //TODO: chainID must be 42161 aka arbitrium else use popup to make user change it
+  //TODO: need to use await for this
+  React.useEffect(() => {
+    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+    console.log(
+      'provider.getNetwork()',
+      provider.getNetwork().then((response) => {
+        console.log('network.chainId', response.chainId);
+      })
+    );
+  });
 
   React.useEffect(() => {
     const scrollFun = () => {
