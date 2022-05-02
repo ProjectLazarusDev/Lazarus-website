@@ -204,3 +204,27 @@ async function addEthereumChain() {
       window.location.reload();
     });
 }
+
+//TODO: this needs to be a typescript version to be exportable
+// as of now the chainId has to be 42161 (Arbitrum One) to play the game
+// export async function switchNetwork(chainID) {
+//   //TODO: not sure if this is correct??
+//   const account = (await web3.eth.getAccounts())[0];
+
+//   // fetch https://chainid.network/chains.json
+//   const response = await fetch('https://chainid.network/chains.json');
+//   const chains = await response.json();
+//   // find chain with network id
+//   const chain = chains.find((chain) => chain.chainId === chainID);
+
+//   const params = generateParam(chain);
+
+//   await window.ethereum
+//     .request({
+//       method: "wallet_addEthereumChain",
+//       params: [params, account]
+//     })
+//     .catch(() => {
+//       window.location.reload();
+//     });
+// }

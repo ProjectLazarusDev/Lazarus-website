@@ -36,18 +36,22 @@ const Multiplayer: React.FC = () => {
   const [progression, setProgression] = React.useState<number>(0);
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
 
-  //store eth addresses
+  const verifyNetwork = async (correctChainID: number) => {
+    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+    provider.getNetwork().then((response) => {
+      //TODO: if not on Arbitrum One's network, initiate request to change to it for user
+      if (response.chainId !== correctChainID) {
+        console.log('wrong network');
+      } else {
+        console.log('correct network');
+      }
+    });
+  };
 
   //TODO: chainID must be 42161 aka arbitrium else use popup to make user change it
   //TODO: need to use await for this
   React.useEffect(() => {
-    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-    console.log(
-      'provider.getNetwork()',
-      provider.getNetwork().then((response) => {
-        console.log('network.chainId', response.chainId);
-      })
-    );
+    verifyNetwork(42161);
   });
 
   React.useEffect(() => {
