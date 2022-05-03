@@ -35,26 +35,28 @@ const Multiplayer: React.FC = () => {
   const [progression, setProgression] = React.useState<number>(0);
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
 
+  const unityLoad = () => {
+    unityContextSeason0.on('progress', handleOnUnityProgress);
+    unityContextSeason0.on('loaded', handleOnUnityLoaded);
+    unityContextSeason0.on('quitted', function () {});
+    document.body.style.overflowY = 'hidden';
+    window.addEventListener('resize', updateDimensions);
+  };
+
+  // player must be on Arbitrum One's network, else initiate request to change to it for user
+  // only then we load the game
   const verifyNetwork = async (correctChainID: number) => {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     provider.getNetwork().then((response) => {
-      //TODO: if not on Arbitrum One's network, initiate request to change to it for user
       if (response.chainId !== correctChainID) {
-        console.log('wrong network');
-        switchNetwork(42161).then((response2: any) => {
-          console.log('switch to chainid', response2.chainID);
+        switchNetwork(42161).then(() => {
+          window.location.reload();
         });
       } else {
-        console.log('correct network');
+        unityLoad();
       }
     });
   };
-
-  //TODO: chainID must be 42161 aka arbitrium else use popup to make user change it
-  //TODO: need to use await for this
-  React.useEffect(() => {
-    verifyNetwork(42161);
-  });
 
   React.useEffect(() => {
     const scrollFun = () => {
@@ -85,11 +87,7 @@ const Multiplayer: React.FC = () => {
   const updateDimensions = () => {};
 
   React.useEffect(() => {
-    unityContextSeason0.on('progress', handleOnUnityProgress);
-    unityContextSeason0.on('loaded', handleOnUnityLoaded);
-    unityContextSeason0.on('quitted', function () {});
-    document.body.style.overflowY = 'hidden';
-    window.addEventListener('resize', updateDimensions);
+    verifyNetwork(42161);
     return () => window.removeEventListener('resize', updateDimensions);
   }, []);
 
