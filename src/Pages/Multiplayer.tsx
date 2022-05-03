@@ -20,11 +20,10 @@ import Header from '../Components/Header';
 import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
-import '../indexweb3.js';
 import GameScreen from '../Components/GameScreen';
 
 import * as blockchain from '../Blockchain/BlockchainFunctions';
-
+import { switchNetwork } from '../indexweb3.js';
 import { unityContextSeason0 } from '../Context/UnityContext';
 //abi import
 
@@ -42,6 +41,9 @@ const Multiplayer: React.FC = () => {
       //TODO: if not on Arbitrum One's network, initiate request to change to it for user
       if (response.chainId !== correctChainID) {
         console.log('wrong network');
+        switchNetwork(42161).then((response2: any) => {
+          console.log('switch to chainid', response2.chainID);
+        });
       } else {
         console.log('correct network');
       }

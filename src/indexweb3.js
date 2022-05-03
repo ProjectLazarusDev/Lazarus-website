@@ -205,26 +205,40 @@ async function addEthereumChain() {
     });
 }
 
-//TODO: this needs to be a typescript version to be exportable
+//TODO: web3 is undefined here, unable to pass in the account variable
 // as of now the chainId has to be 42161 (Arbitrum One) to play the game
-// export async function switchNetwork(chainID) {
-//   //TODO: not sure if this is correct??
-//   const account = (await web3.eth.getAccounts())[0];
+export async function switchNetwork(chainID) {
+  console.log("switching network", web3);
 
-//   // fetch https://chainid.network/chains.json
-//   const response = await fetch('https://chainid.network/chains.json');
-//   const chains = await response.json();
-//   // find chain with network id
-//   const chain = chains.find((chain) => chain.chainId === chainID);
+  //const account = (await web3.eth.getAccounts())[0];
 
-//   const params = generateParam(chain);
+  // fetch https://chainid.network/chains.json
+  const response = await fetch('https://chainid.network/chains.json');
+  const chains = await response.json();
+  // find chain with network id
+  const chain = chains.find((chain) => chain.chainId === chainID);
 
-//   await window.ethereum
-//     .request({
-//       method: "wallet_addEthereumChain",
-//       params: [params, account]
-//     })
-//     .catch(() => {
-//       window.location.reload();
-//     });
-// }
+  const params = {
+    chainId: '0x' + chain.chainId.toString(16), // A 0x-prefixed hexadecimal string
+    chainName: chain.name,
+    nativeCurrency: {
+      name: chain.nativeCurrency.name,
+      symbol: chain.nativeCurrency.symbol, // 2-6 characters long
+      decimals: chain.nativeCurrency.decimals,
+    },
+    rpcUrls: chain.rpc,
+    blockExplorerUrls: [
+      chain.explorers && chain.explorers.length > 0 && chain.explorers[0].url ? chain.explorers[0].url : chain.infoURL,
+    ],
+  };
+
+  await window.ethereum
+    .request({
+      method: "wallet_addEthereumChain",
+      params: [params]
+      //params: [params, account]
+    })
+    .catch(() => {
+      window.location.reload();
+    });
+}
