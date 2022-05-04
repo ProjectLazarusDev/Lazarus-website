@@ -34,7 +34,6 @@ const GameScreen: React.FC<GameScreenProps> = (props) =>
   //toggle full-screen control
   function ToggleFullScreen(toggle: boolean)
   {
-    console.log('toggle is', toggle);
     props.currUnityContext.setFullscreen(toggle);
   }
 
