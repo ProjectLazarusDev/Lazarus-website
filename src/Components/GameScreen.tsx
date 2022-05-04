@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import '../Theme/Theme';
-import Unity, { UnityContext } from 'react-unity-webgl';
+import Unity from 'react-unity-webgl';
 import '../Pages/Home.css';
 import '../Pages/Page.css';
 import Typography from '@mui/material/Typography';
@@ -12,11 +12,12 @@ import { isMobile } from 'react-device-detect';
 import '../indexweb3.js';
 import { FaHandPointUp } from "react-icons/fa";
 
+import { unityContextSeason0 } from '../Context/UnityContext';
+
 interface GameScreenProps
 {
   isLoaded: boolean;
   progression: number;
-  currUnityContext: UnityContext;
 }
 
 const GameScreen: React.FC<GameScreenProps> = (props) =>
@@ -35,7 +36,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) =>
   function ToggleFullScreen(toggle: boolean)
   {
     console.log('toggle is', toggle);
-    props.currUnityContext.setFullscreen(toggle);
+    unityContextSeason0.setFullscreen(toggle);
   }
 
   function RenderFullScreenButton()
@@ -115,7 +116,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) =>
           <div className='pageUnity'>
             <Unity
               className='unityWindow'
-              unityContext={props.currUnityContext}
+              unityContext={unityContextSeason0}
               devicePixelRatio={isMobile ? 0.85 : 0.9}
               style={{
                 borderRadius: '0px',
