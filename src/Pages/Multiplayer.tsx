@@ -135,7 +135,7 @@ const Multiplayer: React.FC = () => {
           }}
         >
           {isMobile === false ? (
-            <GameScreen isLoaded={isLoaded} progression={progression}>
+            <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
               {' '}
             </GameScreen>
           ) : (
