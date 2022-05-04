@@ -23,7 +23,7 @@ import { isMobile } from 'react-device-detect';
 import GameScreen from '../Components/GameScreen';
 
 import * as blockchain from '../Blockchain/BlockchainFunctions';
-import { switchNetwork } from '../indexweb3.js';
+import { onNetworkChange, switchNetwork } from '../indexweb3.js';
 import { unityContextSeason0 } from '../Context/UnityContext';
 //abi import
 
@@ -34,6 +34,9 @@ const Multiplayer: React.FC = () => {
   const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
   const [progression, setProgression] = React.useState<number>(0);
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
+  // using Abitrium One network as default
+  const [chainID, setChainID] = React.useState<number>(42161);
+  const provider = new ethers.providers.Web3Provider((window as any).ethereum);
 
   const unityLoad = () => {
     unityContextSeason0.on('progress', handleOnUnityProgress);
@@ -46,10 +49,9 @@ const Multiplayer: React.FC = () => {
   // player must be on Arbitrum One's network, else initiate request to change to it for user
   // only then we load the game
   const verifyNetwork = async (correctChainID: number) => {
-    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     provider.getNetwork().then((response) => {
       if (response.chainId !== correctChainID) {
-        switchNetwork(42161).then(() => {
+        switchNetwork(correctChainID).then(() => {
           window.location.reload();
         });
       } else {
@@ -57,6 +59,10 @@ const Multiplayer: React.FC = () => {
       }
     });
   };
+
+  React.useEffect(() => {
+    window.addEventListener('load', onNetworkChange);
+  });
 
   React.useEffect(() => {
     const scrollFun = () => {
@@ -87,7 +93,7 @@ const Multiplayer: React.FC = () => {
   const updateDimensions = () => {};
 
   React.useEffect(() => {
-    verifyNetwork(42161);
+    verifyNetwork(chainID);
     return () => window.removeEventListener('resize', updateDimensions);
   }, []);
 

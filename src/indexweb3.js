@@ -242,3 +242,24 @@ export async function switchNetwork(chainID) {
       window.location.reload();
     });
 }
+// https://medium.com/singapore-blockchain-dapps/detecting-metamask-account-or-network-change-in-javascript-using-web3-1-2-4-2020-a441ebfda318
+export async function onNetworkChange(correctChaindID) {
+  if (window.ethereum) {
+    window.ethereum.enable(); // get permission to access accounts
+
+    // detect Metamask account change
+    // window.ethereum.on('accountsChanged', function (accounts) {
+    //   console.log('accountsChanges', accounts);
+    // });
+
+    // detect Network account change
+    window.ethereum.on('networkChanged', function (networkId) {
+      console.log('networkChanged', networkId);
+
+      if (networkId !== correctChaindID) {
+        window.location.reload();
+      }
+
+    });
+  }
+}
