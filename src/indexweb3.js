@@ -205,12 +205,9 @@ async function addEthereumChain() {
     });
 }
 
-//TODO: web3 is undefined here, unable to pass in the account variable
-// as of now the chainId has to be 42161 (Arbitrum One) to play the game
-export async function switchNetwork(chainID) {
-  console.log("switching network", web3);
-
-  //const account = (await web3.eth.getAccounts())[0];
+async function switchNetwork(chainID) {
+  // accounts returns as an array as one can login to multiple accounts
+  const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 
   // fetch https://chainid.network/chains.json
   const response = await fetch('https://chainid.network/chains.json');
@@ -235,26 +232,26 @@ export async function switchNetwork(chainID) {
   await window.ethereum
     .request({
       method: "wallet_addEthereumChain",
-      params: [params]
-      //params: [params, account]
+      params: [params, accounts]
     })
     .catch(() => {
       window.location.reload();
     });
 }
+
 // https://medium.com/singapore-blockchain-dapps/detecting-metamask-account-or-network-change-in-javascript-using-web3-1-2-4-2020-a441ebfda318
-export async function onNetworkChange(correctChaindID) {
+async function onNetworkChange(correctChaindID) {
   if (window.ethereum) {
-    window.ethereum.enable(); // get permission to access accounts
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 
     // detect Metamask account change
-    // window.ethereum.on('accountsChanged', function (accounts) {
-    //   console.log('accountsChanges', accounts);
-    // });
+    window.ethereum.on('accountsChanged', function (accounts) {
+      window.location.reload();
+    });
 
     // detect Network account change
-    window.ethereum.on('networkChanged', function (networkId) {
-      console.log('networkChanged', networkId);
+    window.ethereum.on('chainChanged', function (networkId) {
+      console.log('chainChanged', networkId);
 
       if (networkId !== correctChaindID) {
         window.location.reload();
@@ -263,3 +260,14 @@ export async function onNetworkChange(correctChaindID) {
     });
   }
 }
+
+//TODO: might not be the best way to do it, refer to 
+// https://docs.metamask.io/guide/ethereum-provider.html#using-the-provider 
+async function getMetaMaskAccounts() {
+  if (window.ethereum) {
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    return accounts;
+  }
+}
+
+export { switchNetwork, onNetworkChange, getMetaMaskAccounts };
