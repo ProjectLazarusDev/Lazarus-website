@@ -264,10 +264,21 @@ async function onNetworkChange(correctChaindID) {
 //TODO: might not be the best way to do it, refer to 
 // https://docs.metamask.io/guide/ethereum-provider.html#using-the-provider 
 async function getMetaMaskAccounts() {
+
   if (window.ethereum) {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     return accounts;
   }
 }
 
-export { switchNetwork, onNetworkChange, getMetaMaskAccounts };
+function isMetaMaskInstalled() {
+  if (typeof window.ethereum !== 'undefined') {
+    return true;
+  }
+  else {
+    console.log('MetaMask is not installed!');
+    return false;
+  }
+}
+
+export { switchNetwork, onNetworkChange, getMetaMaskAccounts, isMetaMaskInstalled };

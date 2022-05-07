@@ -23,8 +23,9 @@ import { isMobile } from 'react-device-detect';
 import GameScreen from '../Components/GameScreen';
 
 import * as blockchain from '../Blockchain/BlockchainFunctions';
-import { onNetworkChange, switchNetwork } from '../indexweb3.js';
+import { onNetworkChange, switchNetwork, isMetaMaskInstalled } from '../indexweb3.js';
 import { unityContextSeason0 } from '../Context/UnityContext';
+import MobileMessage from '../Components/Multiplayer/MobileMessage';
 //abi import
 
 import { ethers } from 'ethers';
@@ -139,34 +140,7 @@ const Multiplayer: React.FC = () => {
               {' '}
             </GameScreen>
           ) : (
-            <Grid
-              container
-              spacing={0}
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-              style={{
-                borderRadius: '0px',
-                height: '100vh',
-                boxShadow: 'none',
-              }}
-            >
-              <div className="ui-text" style={{ zIndex: isLoaded ? -2 : 21 }}>
-                <Typography
-                  paddingBottom={'50px'}
-                  paddingTop={'25px'}
-                  fontFamily="Dongle"
-                  letterSpacing={'5px'}
-                  lineHeight={0}
-                  color="#ffffffff"
-                  fontWeight="bold"
-                  variant="subtitle1"
-                  fontSize="1.25rem"
-                >
-                  Game is not available on mobile!
-                </Typography>
-              </div>
-            </Grid>
+            <MobileMessage isLoaded={isLoaded}></MobileMessage>
           )}
         </Card>
       </div>
