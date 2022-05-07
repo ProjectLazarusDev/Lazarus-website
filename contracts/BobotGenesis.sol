@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 //,,,,,,,,,,,,,,,,,,,***************************************,*,,,,,,,,,,,,,,,,,,,,
 //,,,,,,,,,,,,,,,,,,,,,**,,,,***********************,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 //,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,****,,,*,,,**,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -63,7 +65,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     IERC20Upgradeable public magic;
 
     uint256 currencyExchange = (10**9);
-    uint256 magicBalanceCost = 25;
+    uint256 magicBalanceCost = 20;
 
     //revealed and unrevealed uri
     string public baseRevealedURI;
@@ -72,7 +74,8 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     string public baseExtention = ".json";
     uint256 public maxSupply = 4040;
     uint256 public maxMintAmount = 1;
-    uint256 public maxLevelAmount = 10;
+    uint256 public maxLevelAmount = 7;
+    uint256 public currentLevelAmount = 0;
 
     //max bobots per account
     uint256 public nftPerAddressLimit = 5;
@@ -90,7 +93,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     bytes32 public rootLunarsHash;
 
     //core chamber level update cost
-    uint256 public coreChamberLevelCost = 100;
+    uint256 public coreChamberLevelCost = 200;
 
     //token id counter
     CountersUpgradeable.Counter private _tokenIdCounter;
@@ -152,6 +155,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         );
 
         uint256 mintCount = 0;
+        
         if (msg.sender != owner()) {
             //minter must be whitelisted
             if (onlyWhitelisted == true) {
@@ -160,6 +164,9 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
                         whitelistedAddressesLunarClaimed[msg.sender],
                     "user already whitelisted"
                 );
+
+                // default max mint amount is 1 
+                maxMintAmount = 1;
 
                 bytes32 leaf = keccak256(abi.encodePacked(msg.sender));
 
@@ -180,20 +187,24 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
                     "Invalid proof - not whitelisted"
                 );
 
+                //guardians will have 1 mint
+                //lunars will have 2 mint
+
                 if (isGuardians) {
                     require(_getNextTokenId() <= maxSupply);
+                    setmaxMintAmount(1);
                     mintCount = 1;
                     whitelistedAddressesGuardiansClaimed[msg.sender] = true;
                 }
 
                 if (isLunars) {
                     require(_getNextTokenId() + 1 <= maxSupply);
+                    setmaxMintAmount(2);
                     mintCount = 2;
                     whitelistedAddressesLunarClaimed[msg.sender] = true;
                 }
 
-                //guardians will have 1 mint
-                //lunars will have 2 mint
+                
             }
         }
 
@@ -302,7 +313,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         bobotCorePoints[_tokenId] += _coreEarned;
     }
 
-    //admin functions
+    //--------------- ADMIN FUNCTIONS ---------------------------------------------
 
     function setRootGuardiansHash(bytes32 _rootHash) external onlyOwner {
         rootGuardiansHash = _rootHash;
@@ -364,7 +375,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
 
     /**************************************************************************/
     /*!
-       \brief set max mint amount
+       \brief set magic balance cost
     */
     /**************************************************************************/
     function setMagicBalanceCost(uint256 _newAmount) public onlyOwner {
@@ -412,7 +423,32 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
 
     /**************************************************************************/
     /*!
-       \brief pause smart contract
+       \brief set new Level (for Bobots staking purposes)
+    */
+    /**************************************************************************/
+    function setNewLevel(uint256 _newLevel)
+        public 
+        onlyOwner
+    {
+        currentLevelAmount = _newLevel;
+    }
+
+    /**************************************************************************/
+    /*!
+       \brief set Max Level
+    */
+    /**************************************************************************/
+    function setMaxLevel(uint256 _newLevelAmount)
+        public
+        onlyOwner
+    {
+        maxLevelAmount = _newLevelAmount;
+    }
+
+
+    /**************************************************************************/
+    /*!
+       \brief pause smart contract (for safety purposes)
     */
     /**************************************************************************/
     function pause(bool _state) public onlyOwner {
