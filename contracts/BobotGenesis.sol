@@ -93,7 +93,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     bytes32 public rootLunarsHash;
 
     //core chamber level update cost
-    uint256 public coreChamberLevelCost = 200;
+    uint256 public coreChamberLevelCost = 1200;
 
     //token id counter
     CountersUpgradeable.Counter private _tokenIdCounter;
@@ -268,7 +268,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         );
 
         string memory currentBaseURI = _baseURI();
-        uint256 level = Math.min(
+        currentLevelAmount = Math.min(
             bobotCorePoints[tokenID] / coreChamberLevelCost,
             maxLevelAmount
         );
@@ -278,7 +278,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
                 baseRevealedURI,
                 tokenID.toString(),
                 "/",
-                level.toString(),
+                currentLevelAmount.toString(),
                 baseExtention
             )
         );
@@ -299,6 +299,20 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     {
         super._safeMint(to, tokenId);
         _tokenIdCounter.increment();
+    }
+
+    /**************************************************************************/
+    /*!
+       \brief returns the bobots current level
+    */
+    /**************************************************************************/
+    function getCurrentBobotLevel(uint256 _tokenID) 
+        public 
+        view 
+        returns (uint256)
+    {
+
+        return bobotCorePoints[_tokenID].currentLevelAmount;
     }
 
     /**************************************************************************/

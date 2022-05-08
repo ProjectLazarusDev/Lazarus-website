@@ -47,10 +47,15 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 //import Bobot genesis
 import "./BobotGenesis.sol";
+import "./BobotMegaBot.sol";
+import "./IRarity.sol";
 
 
-contract CoreChamber is Ownable 
+contract CoreChamber is 
+    ERC721EnumerableUpgradeable,
+    OwnableUpgradeable 
 {
+    using SafeERC20Upgradeable for IERC20Upgradeable;
 
     // block number multiplier to determine the balance to accrue
     // during the duration staked. Defaults to 1.
@@ -58,6 +63,15 @@ contract CoreChamber is Ownable
 
     //bobots genesis contract
     BobotGenesis public bobotGenesis;
+
+    //bobots megabots contract 
+    BobotMegaBot public bobotMegabot;
+
+    // bobot type
+    uint256 currentBobotType;
+
+    // check current level of the bobot
+    uint256 currentBobotLevel; 
 
     // For each token, this map stores the current block.number
     // if token is mapped to 0, it is currently unstaked.
@@ -67,6 +81,7 @@ contract CoreChamber is Ownable
     // measured by block.number
     mapping(uint256 => uint256) public tokenToTotalDurationStaked;
 
+        
     
     /**************************************************************************/
     /*!
@@ -107,6 +122,31 @@ contract CoreChamber is Ownable
 
     /**************************************************************************/
     /*!
+       \brief returns the current bobot level
+    */
+    /**************************************************************************/
+    function getCurrentBobotLevel(uint256 tokenID) 
+        public 
+        view 
+        returns (uint256)
+    {
+        if (BobotGenesis.getCurrentBobotLevel(tokenID))
+        {
+            return BobotGenesis.getCurrentBobotLevel(tokenID);
+        }
+
+        if (BobotMegaBot.getCurrentBobotLevel(tokenID))
+        {
+            return BobotMegaBot.getCurrentBobotLevel(tokenID);
+        }
+        else 
+        {
+            return -1;
+        }
+    }
+
+    /**************************************************************************/
+    /*!
        \brief returns total duration the token has been staked.
     */
     /**************************************************************************/
@@ -138,15 +178,15 @@ contract CoreChamber is Ownable
     */
     /**************************************************************************/
     function stake(uint256 tokenId) public {
-        require(
-            ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
-            "You are not the owner of this token"
-        );
+        // require(
+        //     ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
+        //     "You are not the owner of this token"
+        // );
 
-        tokenToWhenStaked[tokenId] = block.number;
+        // tokenToWhenStaked[tokenId] = block.number;
         
-        ERC721NES( address(bobotGenesis)).
-        stakeFromController(tokenId, msg.sender);
+        // ERC721NES( address(bobotGenesis)).
+        // stakeFromController(tokenId, msg.sender);
     }
 
     /**************************************************************************/
@@ -156,15 +196,15 @@ contract CoreChamber is Ownable
     /**************************************************************************/
 
     function unstake(uint256 tokenId) public {
-        require(
-            ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
-            "You are not the owner of this token"
-        );
+        // require(
+        //     ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
+        //     "You are not the owner of this token"
+        // );
 
-        tokenToTotalDurationStaked[tokenId] += getCurrentAdditionalBalance(
-            tokenId
-        );
-        ERC721NES( address(bobotGenesis)).unstakeFromController(tokenId, msg.sender);
+        // tokenToTotalDurationStaked[tokenId] += getCurrentAdditionalBalance(
+        //     tokenId
+        // );
+        // ERC721NES( address(bobotGenesis)).unstakeFromController(tokenId, msg.sender);
     }
 
     //admin function
@@ -177,4 +217,15 @@ contract CoreChamber is Ownable
     function setBobotGenesis(address _bobotGenesis) external onlyOwner {
         bobotGenesis = BobotGenesis(_bobotGenesis);
     }
+
+    /**************************************************************************/
+    /*!
+       \brief Set multiplier
+    */
+    /**************************************************************************/
+    // function setLevelMultiplier() onlyOwner
+    // {
+        
+    // }
+
 }

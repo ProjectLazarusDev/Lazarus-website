@@ -54,9 +54,11 @@ contract BobotMegaBot is Bobot {
 
     string public baseExtention = ".json";
     uint256 public maxSupply = 1000;
+    uint256 public maxLevelAmount = 10;
+    uint256 public currentLevelAmount = 0;
 
     //max bobots per account
-    uint256 public nftPerAddressLimit = 5;
+    //uint256 public nftPerAddressLimit = 5;
 
     //reveal whitelist variables
     bool public revealed = false;
@@ -184,7 +186,19 @@ contract BobotMegaBot is Bobot {
         _tokenIdCounter.increment();
     }
 
-   
+    /**************************************************************************/
+    /*!
+       \brief returns the bobots current level
+    */
+    /**************************************************************************/
+    function getCurrentBobotLevel(uint256 _tokenID) 
+        public 
+        view 
+        returns (uint256)
+    {
+        return bobotCorePoints[_tokenID].currentLevelAmount;
+    }
+
 
     /**************************************************************************/
     /*!
