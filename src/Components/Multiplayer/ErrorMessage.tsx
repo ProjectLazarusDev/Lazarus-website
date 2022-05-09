@@ -37,7 +37,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = (props) => {
           color="#ffffffff"
           fontWeight="bold"
           variant="subtitle1"
-          fontSize="1.25rem"
+          fontSize="1.5rem"
         >
           {props.message}
         </Typography>

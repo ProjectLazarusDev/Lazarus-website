@@ -122,9 +122,9 @@ const Multiplayer: React.FC = () => {
     if (isMobile === true) {
       currentRender = <ErrorMessage message="Game is not available on mobile!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isMetaMaskInstalled() === false) {
-      currentRender = <ErrorMessage message="Please install metamask first!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = <ErrorMessage message="Please install MetaMask first!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isLocked === true) {
-      currentRender = <ErrorMessage message="Please login to metamask first!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = <ErrorMessage message="Please login to MetaMask first!" isLoaded={isLoaded}></ErrorMessage>;
     } else {
       currentRender = (
         <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
