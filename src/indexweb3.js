@@ -229,14 +229,30 @@ async function switchNetwork(chainID) {
     ],
   };
 
-  await window.ethereum
-    .request({
-      method: "wallet_addEthereumChain",
-      params: [params, accounts]
-    })
-    .catch(() => {
-      window.location.reload();
+  // https://docs.metamask.io/guide/rpc-api.html#unrestricted-methods 
+  try {
+    await window.ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [params, accounts],
     });
+  }
+  catch (switchError) {
+    // This error code indicates that the chain has not been added to MetaMask.
+    if (switchError.code === 4902) {
+      try {
+        await window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [params, accounts],
+        });
+      } catch (addError) {
+        console.log("Error adding new ethereum chain", addError);
+      }
+    }
+    // handle other "switch" errors
+    else {
+      console.log("Error switching to ethereum chain", switchError);
+    }
+  }
 }
 
 // https://medium.com/singapore-blockchain-dapps/detecting-metamask-account-or-network-change-in-javascript-using-web3-1-2-4-2020-a441ebfda318
@@ -246,17 +262,14 @@ async function onNetworkChange(correctChaindID) {
 
     // detect Metamask account change
     window.ethereum.on('accountsChanged', function (accounts) {
+      console.log('accountsChanged', accounts);
       window.location.reload();
     });
 
     // detect Network account change
     window.ethereum.on('chainChanged', function (networkId) {
       console.log('chainChanged', networkId);
-
-      if (networkId !== correctChaindID) {
-        window.location.reload();
-      }
-
+      window.location.reload();
     });
   }
 }

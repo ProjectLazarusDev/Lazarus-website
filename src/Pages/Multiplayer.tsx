@@ -30,12 +30,16 @@ import { ethers } from 'ethers';
 
 const Multiplayer: React.FC = () => {
   //react hooks
+  // check on whether unity game has beend loaded
   const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
+  // check to see if meta mask account is locked
+  const [isLocked, setIsLocked] = React.useState<boolean>(true);
+  // check on whether the correct network is used
+  const [isCorrectNetwork, setIsCorrectNetwork] = React.useState<boolean>(false);
   const [progression, setProgression] = React.useState<number>(0);
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
   // using Abitrium One network as default
   const [chainID, setChainID] = React.useState<number>(42161);
-  const [isLocked, setIsLocked] = React.useState<boolean>(true);
 
   const unityLoad = () => {
     unityContextSeason0.on('progress', handleOnUnityProgress);
@@ -51,10 +55,9 @@ const Multiplayer: React.FC = () => {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     provider.getNetwork().then((response) => {
       if (response.chainId !== correctChainID) {
-        switchNetwork(correctChainID).then(() => {
-          window.location.reload();
-        });
+        setIsCorrectNetwork(false);
       } else {
+        setIsCorrectNetwork(true);
         unityLoad();
       }
     });
@@ -62,10 +65,8 @@ const Multiplayer: React.FC = () => {
 
   const isAccountLocked = async () => {
     if (await isMetaMaskLocked()) {
-      console.log('lockeeddd');
       setIsLocked(true);
     } else {
-      console.log('not lockeeddd');
       setIsLocked(false);
     }
   };
@@ -123,6 +124,8 @@ const Multiplayer: React.FC = () => {
       currentRender = <ErrorMessage message="Game is not available on mobile!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isMetaMaskInstalled() === false) {
       currentRender = <ErrorMessage message="Please install MetaMask first!" isLoaded={isLoaded}></ErrorMessage>;
+    } else if (isCorrectNetwork === false) {
+      currentRender = <ErrorMessage message="Change network on MetaMask!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isLocked === true) {
       currentRender = <ErrorMessage message="Please login to MetaMask first!" isLoaded={isLoaded}></ErrorMessage>;
     } else {
