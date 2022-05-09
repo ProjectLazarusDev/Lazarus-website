@@ -10,35 +10,29 @@ import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
 import '../indexweb3.js';
-import { FaHandPointUp } from "react-icons/fa";
+import { FaHandPointUp } from 'react-icons/fa';
 
-interface GameScreenProps
-{
+interface GameScreenProps {
   isLoaded: boolean;
   progression: number;
   currUnityContext: UnityContext;
 }
 
-const GameScreen: React.FC<GameScreenProps> = (props) =>
-{
-  const GetLoadingString = (load: Number) =>
-  {
+const GameScreen: React.FC<GameScreenProps> = (props) => {
+  const GetLoadingString = (load: Number) => {
     if (load < 0.5) return 'CHARGING UP...';
 
     if (load < 0.8) return 'BOBOTS ROLLING IN...';
-
 
     return 'DOWNLOADED...LOADING GAME';
   };
 
   //toggle full-screen control
-  function ToggleFullScreen(toggle: boolean)
-  {
+  function ToggleFullScreen(toggle: boolean) {
     props.currUnityContext.setFullscreen(toggle);
   }
 
-  function RenderFullScreenButton()
-  {
+  function RenderFullScreenButton() {
     return (
       <>
         <Button
@@ -51,18 +45,16 @@ const GameScreen: React.FC<GameScreenProps> = (props) =>
             letterSpacing: '1px',
             fontSize: '2rem',
             backgroundColor: '#000000ff',
-            height: "100vh",
-            width: "100vw",
-            paddingTop: '40%'
-
+            height: '100vh',
+            width: '100vw',
+            paddingTop: '40%',
           }}
-          onClick={() =>
-          {
+          onClick={() => {
             ToggleFullScreen(true);
           }}
         >
           <FaHandPointUp />
-           Click on screen to enter game 
+          Click on screen to enter game
           <FaHandPointUp />
         </Button>
       </>
@@ -75,45 +67,36 @@ const GameScreen: React.FC<GameScreenProps> = (props) =>
         <Grid
           container
           spacing={0}
-          direction='column'
-          alignItems='center'
-          justifyContent='center'
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
           style={{ borderRadius: '0px', height: '100vh', boxShadow: 'none' }}
         >
-          <div
-            className='progress-bar'
-            style={{ zIndex: props.isLoaded ? -2 : 21 }}
-          >
-            <div className='progress-bar-title'>
+          <div className="progress-bar" style={{ zIndex: props.isLoaded ? -2 : 21 }}>
+            <div className="progress-bar-title">
               <Typography
                 paddingBottom={'50px'}
                 paddingTop={'25px'}
-                fontFamily='Dongle'
+                fontFamily="Dongle"
                 letterSpacing={'5px'}
                 lineHeight={0}
-                color='#ffffffff'
-                fontWeight='bold'
-                variant='subtitle1'
-                fontSize='1.25rem'
+                color="#ffffffff"
+                fontWeight="bold"
+                variant="subtitle1"
+                fontSize="1.25rem"
               >
                 {GetLoadingString(props.progression)}
               </Typography>
             </div>
           </div>
           {props.isLoaded === false && (
-            <div
-              className='progress-bar'
-              style={{ zIndex: props.isLoaded ? -2 : 21 }}
-            >
-              <div
-                className='progress-bar-fill'
-                style={{ width: props.progression * 100 + '%' }}
-              />
+            <div className="progress-bar" style={{ zIndex: props.isLoaded ? -2 : 21 }}>
+              <div className="progress-bar-fill" style={{ width: props.progression * 100 + '%' }} />
             </div>
           )}
-          <div className='pageUnity'>
+          <div className="pageUnity">
             <Unity
-              className='unityWindow'
+              className="unityWindow"
               unityContext={props.currUnityContext}
               devicePixelRatio={isMobile ? 0.85 : 0.9}
               style={{
@@ -123,9 +106,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) =>
               }}
             />
           </div>
-          <div className='pageFullScreen'>
-            {RenderFullScreenButton()}
-          </div>
+          <div className="pageFullScreen">{RenderFullScreenButton()}</div>
         </Grid>
       }
     </>
