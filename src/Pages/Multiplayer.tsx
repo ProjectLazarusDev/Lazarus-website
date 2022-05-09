@@ -21,9 +21,10 @@ import { isMobile } from 'react-device-detect';
 import GameScreen from '../Components/GameScreen';
 
 import * as blockchain from '../Blockchain/BlockchainFunctions';
-import { onNetworkChange, switchNetwork, isMetaMaskLocked, isMetaMaskInstalled } from '../indexweb3.js';
+import { onNetworkChange, isMetaMaskLocked, isMetaMaskInstalled } from '../indexweb3.js';
 import { unityContextSeason0 } from '../Context/UnityContext';
 import ErrorMessage from '../Components/Multiplayer/ErrorMessage';
+import SwitchNetworkButton from '../Components/Multiplayer/SwitchNetworkButton';
 //abi import
 
 import { ethers } from 'ethers';
@@ -125,7 +126,7 @@ const Multiplayer: React.FC = () => {
     } else if (isMetaMaskInstalled() === false) {
       currentRender = <ErrorMessage message="Please install MetaMask first!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isCorrectNetwork === false) {
-      currentRender = <ErrorMessage message="Change network on MetaMask!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = <SwitchNetworkButton chainID={chainID}></SwitchNetworkButton>;
     } else if (isLocked === true) {
       currentRender = <ErrorMessage message="Please login to MetaMask first!" isLoaded={isLoaded}></ErrorMessage>;
     } else {

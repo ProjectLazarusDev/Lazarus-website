@@ -233,7 +233,7 @@ async function switchNetwork(chainID) {
   try {
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
-      params: [params, accounts],
+      params: [{ chainId: params.chainId }],
     });
   }
   catch (switchError) {
