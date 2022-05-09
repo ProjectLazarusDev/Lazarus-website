@@ -8,11 +8,12 @@ import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import '../../indexweb3.js';
 
-interface MobileMessageProps {
+interface ErrorMessageProps {
+  message: string;
   isLoaded: boolean;
 }
 
-const MobileMessage: React.FC<MobileMessageProps> = (props) => {
+const ErrorMessage: React.FC<ErrorMessageProps> = (props) => {
   return (
     <Grid
       container
@@ -38,11 +39,11 @@ const MobileMessage: React.FC<MobileMessageProps> = (props) => {
           variant="subtitle1"
           fontSize="1.25rem"
         >
-          Game is not available on mobile!
+          {props.message}
         </Typography>
       </div>
     </Grid>
   );
 };
 
-export default MobileMessage;
+export default ErrorMessage;

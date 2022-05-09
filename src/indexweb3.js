@@ -261,14 +261,23 @@ async function onNetworkChange(correctChaindID) {
   }
 }
 
-//TODO: might not be the best way to do it, refer to 
-// https://docs.metamask.io/guide/ethereum-provider.html#using-the-provider 
-async function getMetaMaskAccounts() {
+async function isMetaMaskLocked() {
+  let isLogined = false;
 
   if (window.ethereum) {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    return accounts;
+    await window.ethereum
+      .request({ method: 'eth_requestAccounts' })
+      .then((result) => {
+        console.log("result", result);
+        isLogined = true;
+      })
+      .catch((error) => {
+        console.log('Please login to MetaMask.', error);
+      });;
+
   }
+
+  return isLogined;
 }
 
 function isMetaMaskInstalled() {
@@ -281,4 +290,4 @@ function isMetaMaskInstalled() {
   }
 }
 
-export { switchNetwork, onNetworkChange, getMetaMaskAccounts, isMetaMaskInstalled };
+export { switchNetwork, onNetworkChange, isMetaMaskLocked, isMetaMaskInstalled };

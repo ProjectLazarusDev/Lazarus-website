@@ -8,13 +8,11 @@
 /*****************************************************************************/
 
 import React from 'react';
-import { Grid } from '@mui/material';
 import Card from '@mui/material/Card';
 import '../Theme/Theme';
 
 import './Home.css';
 import './Page.css';
-import Typography from '@mui/material/Typography';
 import Header from '../Components/Header';
 
 import 'motion-pointer/dist/index.css';
@@ -23,9 +21,9 @@ import { isMobile } from 'react-device-detect';
 import GameScreen from '../Components/GameScreen';
 
 import * as blockchain from '../Blockchain/BlockchainFunctions';
-import { onNetworkChange, switchNetwork, isMetaMaskInstalled } from '../indexweb3.js';
+import { onNetworkChange, switchNetwork, isMetaMaskLocked, isMetaMaskInstalled } from '../indexweb3.js';
 import { unityContextSeason0 } from '../Context/UnityContext';
-import MobileMessage from '../Components/Multiplayer/MobileMessage';
+import ErrorMessage from '../Components/Multiplayer/ErrorMessage';
 //abi import
 
 import { ethers } from 'ethers';
@@ -107,6 +105,25 @@ const Multiplayer: React.FC = () => {
     };
   }, []);
 
+  function render() {
+    let currentRender;
+    if (isMobile === true) {
+      currentRender = <ErrorMessage message="Game is not available on mobile!" isLoaded={isLoaded}></ErrorMessage>;
+    } else if (isMetaMaskInstalled() == false) {
+      currentRender = (
+        <ErrorMessage message="Please install metamask first!" isLoaded={isLoaded}></ErrorMessage>
+      );
+    } else {
+      currentRender = (
+        <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
+          {' '}
+        </GameScreen>
+      );
+    }
+
+    return currentRender;
+  }
+
   return (
     <>
       <script src="../indexweb3.js"> </script>
@@ -135,13 +152,7 @@ const Multiplayer: React.FC = () => {
             background: 'linear-gradient(to right bottom, #12121200, #05050500)',
           }}
         >
-          {isMobile === false ? (
-            <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
-              {' '}
-            </GameScreen>
-          ) : (
-            <MobileMessage isLoaded={isLoaded}></MobileMessage>
-          )}
+          {render()}
         </Card>
       </div>
     </>
