@@ -35,7 +35,7 @@ const Multiplayer: React.FC = () => {
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
   // using Abitrium One network as default
   const [chainID, setChainID] = React.useState<number>(42161);
-  const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+
 
   const unityLoad = () => {
     unityContextSeason0.on('progress', handleOnUnityProgress);
@@ -48,6 +48,7 @@ const Multiplayer: React.FC = () => {
   // player must be on Arbitrum One's network, else initiate request to change to it for user
   // only then we load the game
   const verifyNetwork = async (correctChainID: number) => {
+    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     provider.getNetwork().then((response) => {
       if (response.chainId !== correctChainID) {
         switchNetwork(correctChainID).then(() => {
