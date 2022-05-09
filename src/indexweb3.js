@@ -262,22 +262,19 @@ async function onNetworkChange(correctChaindID) {
 }
 
 async function isMetaMaskLocked() {
-  let isLogined = false;
+  let isLocked = true;
 
   if (window.ethereum) {
     await window.ethereum
       .request({ method: 'eth_requestAccounts' })
       .then((result) => {
-        console.log("result", result);
-        isLogined = true;
+        isLocked = false;
       })
       .catch((error) => {
         console.log('Please login to MetaMask.', error);
-      });;
-
+      });
   }
-
-  return isLogined;
+  return isLocked;
 }
 
 function isMetaMaskInstalled() {

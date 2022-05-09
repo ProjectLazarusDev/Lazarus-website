@@ -35,7 +35,7 @@ const Multiplayer: React.FC = () => {
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
   // using Abitrium One network as default
   const [chainID, setChainID] = React.useState<number>(42161);
-
+  const [isLocked, setIsLocked] = React.useState<boolean>(true);
 
   const unityLoad = () => {
     unityContextSeason0.on('progress', handleOnUnityProgress);
@@ -58,6 +58,16 @@ const Multiplayer: React.FC = () => {
         unityLoad();
       }
     });
+  };
+
+  const isAccountLocked = async () => {
+    if (await isMetaMaskLocked()) {
+      console.log('lockeeddd');
+      setIsLocked(true);
+    } else {
+      console.log('not lockeeddd');
+      setIsLocked(false);
+    }
   };
 
   React.useEffect(() => {
@@ -93,6 +103,7 @@ const Multiplayer: React.FC = () => {
   const updateDimensions = () => {};
 
   React.useEffect(() => {
+    isAccountLocked();
     verifyNetwork(chainID);
     return () => window.removeEventListener('resize', updateDimensions);
   }, []);
@@ -110,10 +121,10 @@ const Multiplayer: React.FC = () => {
     let currentRender;
     if (isMobile === true) {
       currentRender = <ErrorMessage message="Game is not available on mobile!" isLoaded={isLoaded}></ErrorMessage>;
-    } else if (isMetaMaskInstalled() == false) {
-      currentRender = (
-        <ErrorMessage message="Please install metamask first!" isLoaded={isLoaded}></ErrorMessage>
-      );
+    } else if (isMetaMaskInstalled() === false) {
+      currentRender = <ErrorMessage message="Please install metamask first!" isLoaded={isLoaded}></ErrorMessage>;
+    } else if (isLocked === true) {
+      currentRender = <ErrorMessage message="Please login to metamask first!" isLoaded={isLoaded}></ErrorMessage>;
     } else {
       currentRender = (
         <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
