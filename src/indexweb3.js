@@ -204,3 +204,100 @@ async function addEthereumChain() {
       window.location.reload();
     });
 }
+
+async function switchNetwork(chainID) {
+  // accounts returns as an array as one can login to multiple accounts
+  const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+  // fetch https://chainid.network/chains.json
+  const response = await fetch('https://chainid.network/chains.json');
+  const chains = await response.json();
+  // find chain with network id
+  const chain = chains.find((chain) => chain.chainId === chainID);
+
+  const params = {
+    chainId: '0x' + chain.chainId.toString(16), // A 0x-prefixed hexadecimal string
+    chainName: chain.name,
+    nativeCurrency: {
+      name: chain.nativeCurrency.name,
+      symbol: chain.nativeCurrency.symbol, // 2-6 characters long
+      decimals: chain.nativeCurrency.decimals,
+    },
+    rpcUrls: chain.rpc,
+    blockExplorerUrls: [
+      chain.explorers && chain.explorers.length > 0 && chain.explorers[0].url ? chain.explorers[0].url : chain.infoURL,
+    ],
+  };
+
+  // https://docs.metamask.io/guide/rpc-api.html#unrestricted-methods 
+  try {
+    await window.ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: params.chainId }],
+    });
+  }
+  catch (switchError) {
+    // This error code indicates that the chain has not been added to MetaMask.
+    if (switchError.code === 4902) {
+      try {
+        await window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [params, accounts],
+        });
+      } catch (addError) {
+        console.log("Error adding new ethereum chain", addError);
+      }
+    }
+    // handle other "switch" errors
+    else {
+      console.log("Error switching to ethereum chain", switchError);
+    }
+  }
+}
+
+// https://medium.com/singapore-blockchain-dapps/detecting-metamask-account-or-network-change-in-javascript-using-web3-1-2-4-2020-a441ebfda318
+async function onNetworkChange(correctChaindID) {
+  if (window.ethereum) {
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+    // detect Metamask account change
+    window.ethereum.on('accountsChanged', function (accounts) {
+      console.log('accountsChanged', accounts);
+      window.location.reload();
+    });
+
+    // detect Network account change
+    window.ethereum.on('chainChanged', function (networkId) {
+      console.log('chainChanged', networkId);
+      window.location.reload();
+    });
+  }
+}
+
+async function isMetaMaskLocked() {
+  let isLocked = true;
+
+  if (window.ethereum) {
+    await window.ethereum
+      .request({ method: 'eth_requestAccounts' })
+      .then((result) => {
+        isLocked = false;
+      })
+      .catch((error) => {
+        console.log('Please login to MetaMask.', error);
+      });
+  }
+  return isLocked;
+}
+
+function isMetaMaskInstalled() {
+  if (typeof window.ethereum !== 'undefined') {
+    return true;
+  }
+  else {
+    console.log('MetaMask is not installed!');
+    return false;
+  }
+}
+
+export { switchNetwork, onNetworkChange, isMetaMaskLocked, isMetaMaskInstalled };

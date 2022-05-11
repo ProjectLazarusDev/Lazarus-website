@@ -8,33 +8,73 @@
 /*****************************************************************************/
 
 import React from 'react';
-import { Grid } from '@mui/material';
 import Card from '@mui/material/Card';
 import '../Theme/Theme';
 
 import './Home.css';
 import './Page.css';
-import Typography from '@mui/material/Typography';
 import Header from '../Components/Header';
 
 import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
-import '../indexweb3.js';
 import GameScreen from '../Components/GameScreen';
 
 import * as blockchain from '../Blockchain/BlockchainFunctions';
-
+import { onNetworkChange, isMetaMaskLocked, isMetaMaskInstalled } from '../indexweb3.js';
 import { unityContextSeason0 } from '../Context/UnityContext';
+import ErrorMessage from '../Components/Multiplayer/ErrorMessage';
+import SwitchNetworkButton from '../Components/Multiplayer/SwitchNetworkButton';
 //abi import
+
+import { ethers } from 'ethers';
 
 const Multiplayer: React.FC = () => {
   //react hooks
+  // check on whether unity game has beend loaded
   const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
+  // check to see if meta mask account is locked
+  const [isLocked, setIsLocked] = React.useState<boolean>(true);
+  // check on whether the correct network is used
+  const [isCorrectNetwork, setIsCorrectNetwork] = React.useState<boolean>(false);
   const [progression, setProgression] = React.useState<number>(0);
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
+  // using Abitrium One network as default
+  const [chainID, setChainID] = React.useState<number>(42161);
 
-  //store eth addresses
+  const unityLoad = () => {
+    unityContextSeason0.on('progress', handleOnUnityProgress);
+    unityContextSeason0.on('loaded', handleOnUnityLoaded);
+    unityContextSeason0.on('quitted', function () {});
+    document.body.style.overflowY = 'hidden';
+    window.addEventListener('resize', updateDimensions);
+  };
+
+  // player must be on Arbitrum One's network, else initiate request to change to it for user
+  // only then we load the game
+  const verifyNetwork = async (correctChainID: number) => {
+    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+    provider.getNetwork().then((response) => {
+      if (response.chainId !== correctChainID) {
+        setIsCorrectNetwork(false);
+      } else {
+        setIsCorrectNetwork(true);
+        unityLoad();
+      }
+    });
+  };
+
+  const isAccountLocked = async () => {
+    if (await isMetaMaskLocked()) {
+      setIsLocked(true);
+    } else {
+      setIsLocked(false);
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('load', onNetworkChange);
+  });
 
   React.useEffect(() => {
     const scrollFun = () => {
@@ -65,11 +105,8 @@ const Multiplayer: React.FC = () => {
   const updateDimensions = () => {};
 
   React.useEffect(() => {
-    unityContextSeason0.on('progress', handleOnUnityProgress);
-    unityContextSeason0.on('loaded', handleOnUnityLoaded);
-    unityContextSeason0.on('quitted', function () {});
-    document.body.style.overflowY = 'hidden';
-    window.addEventListener('resize', updateDimensions);
+    isAccountLocked();
+    verifyNetwork(chainID);
     return () => window.removeEventListener('resize', updateDimensions);
   }, []);
 
@@ -81,6 +118,27 @@ const Multiplayer: React.FC = () => {
       unityContextSeason0.removeAllEventListeners();
     };
   }, []);
+
+  function render() {
+    let currentRender;
+    if (isMobile === true) {
+      currentRender = <ErrorMessage message="Game is not available on mobile!" isLoaded={isLoaded}></ErrorMessage>;
+    } else if (isMetaMaskInstalled() === false) {
+      currentRender = <ErrorMessage message="Please install MetaMask first!" isLoaded={isLoaded}></ErrorMessage>;
+    } else if (isLocked === true) {
+      currentRender = <ErrorMessage message="Please login to MetaMask first!" isLoaded={isLoaded}></ErrorMessage>;
+    } else if (isCorrectNetwork === false) {
+      currentRender = <SwitchNetworkButton chainID={chainID}></SwitchNetworkButton>;
+    } else {
+      currentRender = (
+        <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
+          {' '}
+        </GameScreen>
+      );
+    }
+
+    return currentRender;
+  }
 
   return (
     <>
@@ -110,40 +168,7 @@ const Multiplayer: React.FC = () => {
             background: 'linear-gradient(to right bottom, #12121200, #05050500)',
           }}
         >
-          {isMobile === false ? (
-            <GameScreen isLoaded={isLoaded} progression={progression}>
-              {' '}
-            </GameScreen>
-          ) : (
-            <Grid
-              container
-              spacing={0}
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-              style={{
-                borderRadius: '0px',
-                height: '100vh',
-                boxShadow: 'none',
-              }}
-            >
-              <div className="ui-text" style={{ zIndex: isLoaded ? -2 : 21 }}>
-                <Typography
-                  paddingBottom={'50px'}
-                  paddingTop={'25px'}
-                  fontFamily="Dongle"
-                  letterSpacing={'5px'}
-                  lineHeight={0}
-                  color="#ffffffff"
-                  fontWeight="bold"
-                  variant="subtitle1"
-                  fontSize="1.25rem"
-                >
-                  Game is not available on mobile!
-                </Typography>
-              </div>
-            </Grid>
-          )}
+          {render()}
         </Card>
       </div>
     </>
