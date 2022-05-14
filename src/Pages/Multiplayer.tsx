@@ -139,7 +139,7 @@ const Multiplayer: React.FC = () => {
                   variant="subtitle1"
                   fontSize="1.25rem"
                 >
-                  Game is not available on mobile!
+                  GAME IS NOT AVAILABLE IN MOBILE!
                 </Typography>
               </div>
             </Grid>
