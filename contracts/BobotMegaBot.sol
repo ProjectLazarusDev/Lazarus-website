@@ -40,27 +40,41 @@
 //                     |____/ \____/|____/ \____/  |_| |_____/                  //
 //////////////////////////////////////////////////////////////////////////////////
 pragma solidity ^0.8.13;
+import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+
 //other staking contracts
 import "./Bobot.sol";
 
-contract BobotMegaBot is Bobot {
+//$MAGIC transactions
+import "./Magic20.sol";
+
+contract BobotMegaBot is Bobot
+{
+    using SafeERC20Upgradeable for IERC20Upgradeable;
+    using AddressUpgradeable for address;
     using CountersUpgradeable for CountersUpgradeable.Counter;
-    using Strings for uint256;
+    using StringsUpgradeable for uint256;
+
+    //magic contract
+    IERC20Upgradeable public magic;
+
+    uint256 currencyExchange = (10**9);
+    uint256 magicBalanceCost = 20;
     uint256 mintCost = 1 ether;
 
     //revealed and unrevealed uri
     string public baseRevealedURI;
+    string public baseHiddenURI;
 
     string public baseExtention = ".json";
     uint256 public maxSupply = 1000;
-    uint256 public maxLevelAmount = 10;
+    uint256 public maxLevelAmount = 20;
     uint256 public currentLevelAmount = 0;
 
-    //max bobots per account
-    //uint256 public nftPerAddressLimit = 5;
-
-    //reveal whitelist variables
+    // reveal variables
     bool public revealed = false;
 
     //is the contract running
@@ -70,14 +84,15 @@ contract BobotMegaBot is Bobot {
     CountersUpgradeable.Counter public _tokenIdCounter;
 
 
- function initialize(  address _magicAddress) external initializer {
+    function initialize(  address _magicAddress) external initializer {
         __ERC721Enumerable_init();
         __Ownable_init();
 
         magic = IERC20Upgradeable(_magicAddress);
  
 
- }
+    }
+    
     function getBobotType(uint256 _tokenID)
         external
         pure

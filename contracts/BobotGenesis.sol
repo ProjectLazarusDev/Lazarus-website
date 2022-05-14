@@ -74,7 +74,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     string public baseExtention = ".json";
     uint256 public maxSupply = 4040;
     uint256 public maxMintAmount = 1;
-    uint256 public maxLevelAmount = 7;
+    uint256 public maxLevelAmount = 10;
     uint256 public currentLevelAmount = 0;
 
     //max bobots per account
@@ -93,7 +93,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     bytes32 public rootLunarsHash;
 
     //core chamber level update cost
-    uint256 public coreChamberLevelCost = 1200;
+    uint256 public coreChamberLevelCost;
 
     //token id counter
     CountersUpgradeable.Counter private _tokenIdCounter;
