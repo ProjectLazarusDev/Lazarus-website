@@ -110,7 +110,7 @@ const MultiplayerTest: React.FC = () => {
     isAccountLocked();
     verifyNetwork(chainID);
     return () => window.removeEventListener('resize', updateDimensions);
-  }, []);
+  });
 
   // When the component is mounted, we'll register some event listener.
   React.useEffect(() => {
