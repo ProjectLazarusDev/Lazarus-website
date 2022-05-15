@@ -40,7 +40,7 @@ const Multiplayer: React.FC = () => {
   const [progression, setProgression] = React.useState<number>(0);
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
   // using Abitrium One network as default
-  const [chainID, setChainID] = React.useState<number>(42161);
+  const chainID = 42161;
 
   const unityLoad = () => {
     unityContextSeason0.on('progress', handleOnUnityProgress);

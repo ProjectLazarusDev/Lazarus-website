@@ -258,8 +258,6 @@ async function switchNetwork(chainID) {
 // https://medium.com/singapore-blockchain-dapps/detecting-metamask-account-or-network-change-in-javascript-using-web3-1-2-4-2020-a441ebfda318
 async function onNetworkChange(correctChaindID) {
   if (window.ethereum) {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-
     // detect Metamask account change
     window.ethereum.on('accountsChanged', function (accounts) {
       console.log('accountsChanged', accounts);
