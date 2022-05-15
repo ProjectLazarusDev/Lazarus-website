@@ -6,6 +6,14 @@
   color: white;
 }
 
+.ui-text-long {
+  position: fixed;
+  width: 1000px;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+}
+
 .PageContainer {
   z-index: 1;
   display: flex;

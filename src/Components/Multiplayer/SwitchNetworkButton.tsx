@@ -13,7 +13,7 @@ interface SwitchNetworkProps {
 
 const SwitchNetworkButton: React.FC<SwitchNetworkProps> = (props) => {
   return (
-    <div className="ui-text" style={{ zIndex: 21 }}>
+    <div className="ui-text-long" style={{ zIndex: 21 }}>
       <Button
         sx={{
           opacity: [0.75, 0.75, 0.75],

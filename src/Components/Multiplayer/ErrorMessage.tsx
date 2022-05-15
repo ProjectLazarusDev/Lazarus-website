@@ -27,7 +27,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = (props) => {
         boxShadow: 'none',
       }}
     >
-      <div className="ui-text" style={{ zIndex: props.isLoaded ? -2 : 21 }}>
+      <div className="ui-text-long" style={{ zIndex: props.isLoaded ? -2 : 21 }}>
         <Typography
           paddingBottom={'50px'}
           paddingTop={'25px'}
