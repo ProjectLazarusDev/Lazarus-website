@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 //,,,,,,,,,,,,,,,,,,,***************************************,*,,,,,,,,,,,,,,,,,,,,
 //,,,,,,,,,,,,,,,,,,,,,**,,,,***********************,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 //,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,****,,,*,,,**,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -42,8 +44,10 @@ pragma solidity ^0.8.13;
 import "./ERC721NES.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+
 //import Bobot genesis
 import "./BobotGenesis.sol";
+
 
 contract CoreChamber is Ownable 
 {
@@ -63,6 +67,7 @@ contract CoreChamber is Ownable
     // measured by block.number
     mapping(uint256 => uint256) public tokenToTotalDurationStaked;
 
+    
     /**************************************************************************/
     /*!
        \brief constructor

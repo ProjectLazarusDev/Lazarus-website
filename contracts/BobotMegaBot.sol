@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 //,,,,,,,,,,,,,,,,,,,***************************************,*,,,,,,,,,,,,,,,,,,,,
 //,,,,,,,,,,,,,,,,,,,,,**,,,,***********************,*,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 //,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,****,,,*,,,**,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -43,7 +45,7 @@ import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "./Bobot.sol";
 
 contract BobotMegaBot is Bobot {
-      using CountersUpgradeable for CountersUpgradeable.Counter;
+    using CountersUpgradeable for CountersUpgradeable.Counter;
     using Strings for uint256;
     uint256 mintCost = 1 ether;
 
@@ -51,7 +53,7 @@ contract BobotMegaBot is Bobot {
     string public baseRevealedURI;
 
     string public baseExtention = ".json";
-    uint256 public maxSupply = 4040;
+    uint256 public maxSupply = 1000;
 
     //max bobots per account
     uint256 public nftPerAddressLimit = 5;
@@ -76,11 +78,12 @@ contract BobotMegaBot is Bobot {
  }
     function getBobotType(uint256 _tokenID)
         external
-        view
+        pure
         override
         returns (BobotType)
     {
-        return BobotType.BOBOT_GEN;
+        
+        return BobotType.BOBOT_MEGA;
     }
 
 
@@ -170,7 +173,7 @@ contract BobotMegaBot is Bobot {
 
     function _getNextTokenId() private view returns (uint256) {
         return (_tokenIdCounter.current() + 1);
-         return ( 1);
+        //return ( 1);
     }
 
     function _safeMint(address to, uint256 tokenId)
