@@ -52,5 +52,5 @@ interface IBobot
 
     function unstakeInLaunchPad(uint256 _tokenID, BobotType bobotType) external;
 
-
+    
 }

@@ -26,6 +26,10 @@ interface ICoreChamber
 
     function checkStakedStatus(uint256 _tokenID) external view returns(bool);
 
+    function getCurrentCorePoints(uint256 _tokenID) external view returns(uint256);
+    
+    function getBreakabilityStatus(uint256 _tokenID) external view returns(bool);
+
     function getCurrentLandTierType(uint256 _tokenID) external view returns(ILandTier.LandTierType);
 
     // ------------- OWNER FUNCTIONS -------------

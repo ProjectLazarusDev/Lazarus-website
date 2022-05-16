@@ -10,8 +10,13 @@ interface ILandTier  {
         TIER_BRONZE
     }  
     
+    // ----------- VIEW FUNCTIONS -----------
     function getLandTierType(uint256 _tokenID) external view  returns (LandTierType);
+    
+    function getLandCost(uint256 _tokenID, LandTierType _landTier) external view returns (uint256);
+
     function setLandTierType(uint256 _tokenID, LandTierType _landTier) external;
+
 }
 
 
