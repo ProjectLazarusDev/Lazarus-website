@@ -42,8 +42,10 @@
 pragma solidity ^0.8.13;
 import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
-//import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
-//import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
+import "@openzeppelin/contracts/utils/math/Math.sol";
 
 //other staking contracts
 import "./Bobot.sol";
@@ -51,7 +53,7 @@ import "./Bobot.sol";
 //$MAGIC transactions
 import "./Magic20.sol";
 
-contract BobotMegaBot is Bobot
+contract BobotMegaBot is Bobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
 {
     using SafeERC20Upgradeable for IERC20Upgradeable;
     using AddressUpgradeable for address;
@@ -74,8 +76,15 @@ contract BobotMegaBot is Bobot
     uint256 public maxLevelAmount = 20;
     uint256 public currentLevelAmount = 0;
 
+    //core chamber level update cost
+    uint256 public coreChamberLevelCost;
+
     // reveal variables
     bool public revealed = false;
+
+    //core points on a per bobot basis
+    //one bobot -> core point
+    mapping(uint256 => uint256) public bobotCorePoints;
 
     //is the contract running
     bool public paused = false;
@@ -84,7 +93,7 @@ contract BobotMegaBot is Bobot
     CountersUpgradeable.Counter public _tokenIdCounter;
 
 
-    function initialize(  address _magicAddress) external initializer {
+    function initialize(address _magicAddress) external initializer {
         __ERC721Enumerable_init();
         __Ownable_init();
 
@@ -121,9 +130,7 @@ contract BobotMegaBot is Bobot
        does user have $MAGIC in their wallet?
     */
     /**************************************************************************/
-    function mintBobot(
-
-    ) public payable {
+    function mintBobot() public payable {
         //is contract running?
         require(!paused);
 
@@ -211,7 +218,7 @@ contract BobotMegaBot is Bobot
         view 
         returns (uint256)
     {
-        return bobotCorePoints[_tokenID].currentLevelAmount;
+        //return bobotCorePoints[_tokenID].currentLevelAmount;
     }
 
 

@@ -52,7 +52,7 @@ import "./BobotMegaBot.sol";
 
 contract CoreChamber is 
     ERC721EnumerableUpgradeable,
-    OwnableUpgradeable 
+    OwnableUpgradeable
 {
     using SafeERC20Upgradeable for IERC20Upgradeable;
 
