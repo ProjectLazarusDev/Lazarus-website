@@ -71,6 +71,7 @@ abstract contract Bobot is
 
     uint256 public maxLevelAmount = 10;
     uint256 public maxMintAmount = 1;
+    
     //core chamber level update cost
     uint256 public coreChamberLevelCost = 100;
 

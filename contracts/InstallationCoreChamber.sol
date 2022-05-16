@@ -48,7 +48,6 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 //import Bobot genesis
 import "./BobotGenesis.sol";
 import "./BobotMegaBot.sol";
-import "./IRarity.sol";
 
 
 contract CoreChamber is 
