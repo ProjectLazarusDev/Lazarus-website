@@ -42,7 +42,7 @@ const MultiplayerTest: React.FC = () => {
   const [progression, setProgression] = React.useState<number>(0);
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
   // using Abitrium One Test network as default
-  const [chainID, setChainID] = React.useState<number>(421611);
+  const chainID = 421611;
 
   const unityLoad = () => {
     unityContextSeason0.on('progress', handleOnUnityProgress);
@@ -110,7 +110,7 @@ const MultiplayerTest: React.FC = () => {
     isAccountLocked();
     verifyNetwork(chainID);
     return () => window.removeEventListener('resize', updateDimensions);
-  }, []);
+  });
 
   // When the component is mounted, we'll register some event listener.
   React.useEffect(() => {
@@ -124,11 +124,11 @@ const MultiplayerTest: React.FC = () => {
   function render() {
     let currentRender;
     if (isMobile === true) {
-      currentRender = <ErrorMessage message="Game is not available on mobile!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = <ErrorMessage message="GAME IS NOT AVAILABLE IN MOBILE!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isMetaMaskInstalled() === false) {
-      currentRender = <ErrorMessage message="Please install MetaMask first!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = <ErrorMessage message="PLEASE INSTALL METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isLocked === true) {
-      currentRender = <ErrorMessage message="Please login to MetaMask first!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = <ErrorMessage message="PLEASE LOGIN TO METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isCorrectNetwork === false) {
       currentRender = <SwitchNetworkButton chainID={chainID}></SwitchNetworkButton>;
     } else {
