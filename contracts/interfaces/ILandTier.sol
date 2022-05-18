@@ -15,8 +15,11 @@ interface ILandTier  {
     
     function getLandCost(uint256 _tokenID, LandTierType _landTier) external view returns (uint256);
 
+    function checkBreakImmunity(uint256 _tokenID, LandTierType _landTier) external view return (bool);
+
     function setLandTierType(uint256 _tokenID, LandTierType _landTier) external;
 
+    
 }
 
 

@@ -115,28 +115,19 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
     //one bobot -> core point
     mapping(uint256 => uint256) public bobotCorePoints;
 
+    bool isStaked = false;
+
     //is the contract running
     bool public paused = false;
 
-    function initialize(  address _magicAddress) external initializer {
+    function initialize(address _magicAddress) external initializer 
+    {
         __ERC721Enumerable_init();
         __Ownable_init();
 
         magic = IERC20Upgradeable(_magicAddress);
- 
-
     }
     
-    function getBobotType(uint256 _tokenID)
-        external
-        pure
-        override
-        returns (BobotType)
-    {
-        
-        return BobotType.BOBOT_GEN;
-    }
-
     //modifiers
     /**************************************************************************/
     /*!
@@ -158,7 +149,6 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
     }
 
     // public
-
     /**************************************************************************/
     /*!
        \brief mint a bobot - multiple things to check 
@@ -249,6 +239,26 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
         _safeMint(msg.sender, nextTokenId);
     }
 
+    function getBobotType(uint256 _tokenID)
+        external
+        view
+        override
+        returns (BobotType)
+    {
+        
+        return BobotType.BOBOT_GEN;
+    }
+
+
+    function getCurrentBobotLevel(uint256 _tokenID, BobotType _bobotType) 
+        external 
+        view 
+        override
+        returns (uint256)
+    {
+        return currentBobotLevel;
+    }
+
     /**************************************************************************/
     /*!
        \brief return all token ids a holder owns
@@ -277,7 +287,7 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
        \brief return URI of a token - could be revealed or hidden
     */
     /**************************************************************************/
-    function tokenURI(uint256 tokenID)
+    function getTokenURI(uint256 tokenID)
         public
         view
         virtual
@@ -480,6 +490,31 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
     {
         maxLevelAmount = _newLevelAmount;
     }
+
+    function setStakedStatus(uint256 _tokenID, bool _isStaked) external view
+    {
+        bobotCorePoints[_tokenID].isStaked = _isStaked;
+    }
+
+    function stakeInCoreChamber(uint256 _tokenID, BobotType bobotType) 
+        external
+        override
+        onlyOwner
+    {
+        setStakedStatus(_tokenID, true);
+
+        
+    }
+    
+    function unstakeInCoreChamber(uint256 _tokenID, BobotType bobotType) 
+        external
+        override
+        onlyOwner
+    {
+
+    }
+
+
 
 
     /**************************************************************************/

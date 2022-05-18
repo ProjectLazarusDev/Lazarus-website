@@ -35,5 +35,6 @@ interface ICoreChamber
     // ------------- OWNER FUNCTIONS -------------
     function setBobotLevel(uint256 _tokenID) external;
 
+    
 
 }
