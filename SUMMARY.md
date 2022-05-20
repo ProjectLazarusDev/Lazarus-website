@@ -35,7 +35,7 @@
   * [😤 Megabots](tokenomics/bobot-nft/megabots.md)
 * [🏝 Land NFT](tokenomics/land-nft/README.md)
   * [🔋 Core Chamber](tokenomics/land-nft/core-chamber.md)
-  * [📟 Drill](tokenomics/land-nft/drill.md)
+  * [📟 Mining Drill](tokenomics/land-nft/mining-drill.md)
   * [🛸 Launch Pad](tokenomics/land-nft/launch-pad.md)
 
 ## Bobot Avatar
