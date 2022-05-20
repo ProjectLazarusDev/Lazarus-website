@@ -10,7 +10,7 @@ Bobots is originally designed as an NFT Collection in the Ethereum L1 Blockchain
 
 ## **What is Arbitrum**
 
-****[**Arbitrum**](https://arbitrum.io) **** is an Optimistic Rollup scaling solution that allows Ethereum smart contracts to scale by passing messages between the smart contract on the Ethereum main network and those on the Arbitrum second layer chain (L2). Most of the transaction processing is completed on the second layer and thus, drastically improving the speed and efficiency, and also lowering the gas fees.
+****[**Arbitrum**](https://arbitrum.io/) **** is an Optimistic Rollup scaling solution that allows Ethereum smart contracts to scale by passing messages between the smart contract on the Ethereum main network and those on the Arbitrum second layer chain (L2). Most of the transaction processing is completed on the second layer and thus, drastically improving the speed and efficiency, and also lowering the gas fees.
 
 Why we have chosen **Arbitrum** is due to the following reasons:
 
@@ -22,20 +22,20 @@ Why we have chosen **Arbitrum** is due to the following reasons:
 To learn more about Ethereum L2 and Arbritrum, these are the following resources for you to check out:&#x20;
 
 * [Layer 1 vs Layer 2: What you need to know about the different Blockchain Layer solutions, A Medium Article by Petro Wallace](https://medium.com/the-capital/layer-1-vs-layer-2-what-you-need-to-know-about-different-blockchain-layer-solutions-69f91904ce40)
-* Arbitrum Ecosystem: [https://portal.arbitrum.one/](https://portal.arbitrum.one)
-* Layer 2 Fees Checker: [https://l2fees.info/](https://l2fees.info)
+* Arbitrum Ecosystem: [https://portal.arbitrum.one/](https://portal.arbitrum.one/)
+* Layer 2 Fees Checker: [https://l2fees.info/](https://l2fees.info/)
 
 ## **How to get started**
 
 Arbitrum has an official tutorial on bridging ETH from the Ethereum Mainnet into Arbitrum. The following link leads to the official tutorial: [https://arbitrum.io/bridge-tutorial/](https://arbitrum.io/bridge-tutorial/)
 
-To get started, you will require a Web3 wallet such as [**Metamask**](https://metamask.io).&#x20;
+To get started, you will require a Web3 wallet such as [**Metamask**](https://metamask.io/).&#x20;
 
 Once Metamask has been installed, you will need to add the Arbitrum One network into your wallet.&#x20;
 
 {% tabs %}
 {% tab title="Arbitrium One (Mainnet)" %}
-1. From the Metamask wallet, click on your profile picture, and click on '**Settings**'![](<../.gitbook/assets/image (5).png>)
+1. From the Metamask wallet, click on your profile picture, and click on '**Settings**'![](<../.gitbook/assets/image (5) (1).png>)
 2. Scroll down and click on '**Networks**'.\
    ![](<../.gitbook/assets/image (2).png>)
 3. Click on '**Add Network**' \
@@ -46,17 +46,17 @@ Once Metamask has been installed, you will need to add the Arbitrum One network 
    **New RPC URL**: [https://arb1.arbitrum.io/rpc](https://arb1.arbitrum.io/rpc)\
    **Chain ID**: 42161\
    **Currency Symbol**: ETH\
-   **Block Explorer URL**: [https://arbiscan.io/](https://arbiscan.io)
+   **Block Explorer URL**: [https://arbiscan.io/](https://arbiscan.io/)
 5. Save the following details and Arbitrum One network should be in your Metamask wallet.
 {% endtab %}
 
 {% tab title="Arbitrium One (Testnet)" %}
 1. From the Metamask wallet, click on your profile picture, and click on '**Settings**' \
-   ![](<../.gitbook/assets/image (6) (1) (1).png>)
+   ![](<../.gitbook/assets/image (6) (1) (1) (1).png>)
 2. Scroll down and click on '**Networks**'\
    ![](../.gitbook/assets/image.png)
 3. Click on '**Add Network**'\
-   ![](<../.gitbook/assets/image (1).png>)
+   ![](<../.gitbook/assets/image (1) (1).png>)
 4. Use the following details to add Arbitrum One Testnet to Metamask \
    \
    Network Name: Arbitrum Testnet \
@@ -68,12 +68,12 @@ Once Metamask has been installed, you will need to add the Arbitrum One network 
 {% endtab %}
 {% endtabs %}
 
-After adding the Arbitrum One network into the wallet, it is time to bridge ETH into Arbitrum One. Firstly, head to the Arbitrum One Bridge: [https://bridge.arbitrum.io/](https://bridge.arbitrum.io)
+After adding the Arbitrum One network into the wallet, it is time to bridge ETH into Arbitrum One. Firstly, head to the Arbitrum One Bridge: [https://bridge.arbitrum.io/](https://bridge.arbitrum.io/)
 
 Then, follow the following instructions to successfully bridge ETH:&#x20;
 
 1. Login to your Metamask account and switch to Arbitrum Network. \
-   ![](<../.gitbook/assets/image (4) (1) (1).png>)
+   ![](<../.gitbook/assets/image (4) (1) (1) (1).png>)
 2. Enter the amount of ETH that you want to bridge over and click on '**Deposit**'.&#x20;
 3. Read the pop-up alert and click on '**Deposit**' again.
 4. If you want to withdraw ETH, please read [**Bridging back to Ethereum Mainnet**](arbitrum.md#how-to-get-started-1)**.**
@@ -86,7 +86,7 @@ Then, follow the following instructions to successfully bridge ETH:&#x20;
 
 There are a few ways to bridge ETH from Arbitrum to Mainnet:&#x20;
 
-* **Arbitrum Bridge**: [https://bridge.arbitrum.io/](https://bridge.arbitrum.io)
+* **Arbitrum Bridge**: [https://bridge.arbitrum.io/](https://bridge.arbitrum.io/)
 * **Celer**: [https://cbridge.celer.network/#/transfer](https://cbridge.celer.network/#/transfer)
-* **Hop Exchange**: [https://hop.exchange/](https://hop.exchange)
+* **Hop Exchange**: [https://hop.exchange/](https://hop.exchange/)
 * **Synapse**: [https://synapseprotocol.com/?inputCurrency=USDC\&outputCurrency=USDC\&outputChain=42161](https://synapseprotocol.com/?inputCurrency=USDC\&outputCurrency=USDC\&outputChain=42161)

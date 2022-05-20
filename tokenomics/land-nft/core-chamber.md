@@ -4,7 +4,7 @@ description: Leveling up Bobots!
 
 # 🔋 Core Chamber
 
-![Core Chamber on moon base - WIP](<../../.gitbook/assets/image (4) (1).png>)
+![Core Chamber on moon base - WIP](<../../.gitbook/assets/image (4) (1) (1).png>)
 
 ## Main objective
 

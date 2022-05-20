@@ -1,6 +1,6 @@
 # 📟 Drill
 
-![Drill Model - WIP](<../../.gitbook/assets/image (6) (1).png>)
+![Drill Model - WIP](<../../.gitbook/assets/image (6) (1) (1).png>)
 
 ## Main Objective
 

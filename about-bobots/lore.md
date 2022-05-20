@@ -1,6 +1,6 @@
 # 📙 Lore
 
-!["I was happy ,floating ,staring at the stars\~"](../.gitbook/assets/Randoms-01.jpg)
+!["I was happy, floating, staring at the stars\~"](../.gitbook/assets/Randoms-01.jpg)
 
 _**Log update : 21 March 4040AD.**_\
 \

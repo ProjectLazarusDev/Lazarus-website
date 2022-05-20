@@ -1,6 +1,6 @@
 # 🛸 Launch Pad
 
-![Launch Pad Model - WIP](<../../.gitbook/assets/image (4).png>)
+![Launch Pad Model - WIP](<../../.gitbook/assets/image (4) (1).png>)
 
 ## Main Objective
 
