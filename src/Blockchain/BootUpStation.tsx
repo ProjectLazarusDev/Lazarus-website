@@ -35,8 +35,8 @@ export async function MintBobotTest()
             console.log("await contract");
 
             const response = await contract.mintBobotTest();
-            console.log("response: ", response);
- 
+            console.log("mint response: ", response);
+            //TODO: try delaying until player confirm on metamask to see if it fixes mint bug
             //send response back to game engine
             blockchain.Mint_Callback(blockchain.BlockchainError.NoError);
 
