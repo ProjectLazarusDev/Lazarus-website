@@ -16,21 +16,26 @@
 
 ## Facilities
 
-* [Overview](facilities/overview.md)
-* [🔫 Spawn Station](facilities/spawn-station.md)
-* [🏡 Social Hub](facilities/social-hub.md)
-* [🌗 Moon Base](facilities/moon-base-expansion.md)
-* [🏁 Museum](facilities/mining-quest.md)
+* [📺 Bridge](facilities/bridge.md)
+* [🔫 Boot-up Station](facilities/boot-up-station.md)
+* [🏡 Central Hub](facilities/central-hub.md)
+* [🌗 Moon Base](facilities/moon-base/README.md)
+  * [Structures](facilities/moon-base/structures/README.md)
+    * [Foundations](facilities/moon-base/structures/foundations.md)
+    * [Crafting Table](facilities/moon-base/structures/crafting-table.md)
+    * [Lands](facilities/moon-base/structures/lands.md)
+    * [Decorations](facilities/moon-base/structures/decorations.md)
+* [🏁 Black Box](facilities/black-box.md)
 
 ## TOKENOMICS
 
 * [🤖 Bobot NFT](tokenomics/bobot-nft/README.md)
-  * [🤪 Bobot Minions](tokenomics/bobot-nft/bobot-minions.md)
-  * [😁 Bobot Genesis](tokenomics/bobot-nft/bobot-genesis.md)
-  * [😤 Bobot MegaZord](tokenomics/bobot-nft/bobot-megazord.md)
+  * [🤪 Nanobots](tokenomics/bobot-nft/nanobots.md)
+  * [😁 Genesis Bobots](tokenomics/bobot-nft/genesis-bobots.md)
+  * [😤 Megabots](tokenomics/bobot-nft/megabots.md)
 * [🏝 Land NFT](tokenomics/land-nft/README.md)
   * [🔋 Core Chamber](tokenomics/land-nft/core-chamber.md)
-  * [📟 Drill](tokenomics/land-nft/drill.md)
+  * [📟 Mining Drill](tokenomics/land-nft/mining-drill.md)
   * [🛸 Launch Pad](tokenomics/land-nft/launch-pad.md)
 
 ## Bobot Avatar
@@ -43,4 +48,4 @@
 
 ## References
 
-* [🔗 Official Links](references/official-links.md)
+* [🔗 Contact Us](references/contact-us.md)
