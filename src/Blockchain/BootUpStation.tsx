@@ -34,7 +34,7 @@ export async function MintBobotTest() {
         response
           .wait()
           .then((waitResponse: any) => {
-            if (waitResponse.status == 1) {
+            if (waitResponse.status === 1) {
               blockchain.Mint_Callback(blockchain.BlockchainError.NoError);
             }
           })
