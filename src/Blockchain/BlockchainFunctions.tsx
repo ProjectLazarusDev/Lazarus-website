@@ -13,7 +13,7 @@ export enum BlockchainError
     NetworkBusy
 }
 
-
+// Communication from Unity to React with unityContext.on(...)
 export function BindToContext()
 {
     //metamask functions
@@ -33,7 +33,14 @@ export function BindToContext()
         window.open(url);
     });
 
+    // for debugging purposes on the brower's console
+    unityContext.on("ConsoleLog_Request", function (message:string){
+        console.log("UNITY-LOG: " + message);
+    })
+
 }
+
+// Communication from React to Unity with unityContext.send(...)
 export function OpenURL_Callback(_address: string)
 {
     unityContext.send(blockchainManager, "OpenURL_Callback", _address);
