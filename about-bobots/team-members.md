@@ -4,7 +4,7 @@ Bobots is created by the Project Lazarus Team.&#x20;
 
 ## Project Lazarus
 
-The team consist of people from varying technical and artistic backgrounds. Forming close relationships years ago, the development team has experience from game development, custom 3D engines , VFX to web development.&#x20;
+The team consist of people from varying technical and artistic backgrounds. Forming close relationships over many years, the development team has a wide range of skills and experience from game development and custom 3D engines, to VFX and web development.&#x20;
 
 The team is specifically formed to complement our different skillsets to create something new for the blockchain community.
 

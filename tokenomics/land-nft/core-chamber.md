@@ -4,45 +4,31 @@ description: Leveling up Bobots!
 
 # 🔋 Core Chamber
 
-![Core Chamber on moon base - WIP](<../../.gitbook/assets/image (4) (1).png>)
+![Core Chamber on moon base - WIP](<../../.gitbook/assets/image (4) (1) (1).png>)
 
-## Main objective
+Earns core points and levels up staked Bobots over time, up to a limit. The tier of the Bobot will affect how fast the Bobot will take to level up, and the maximum amount of Core Points it can hold. If the player decides to unstake, the full stake cost will be returned to the player.
 
-Use core chamber to level up your bobots!
+**Stake cost:** 5 $MAGIC
 
-The tier level of the Bobot will affect how fast the Bobot will take to level up.&#x20;
+![Breakdown of how long a Bobot will take to earn Core Points](<../../.gitbook/assets/image (13).png>)
 
-## Bobot Staking
+### Tier Bronze
 
-Staking a bobot will cost 5 $MAGIC. Bobots will return in 24hours with a verdict whether it succeeded or failed.
+**Break Immunity:** 750 core points&#x20;
 
-## Bobot Level to Core Points
+**Break Chance:** 10% chance of breaking per 100 core points earned after 750 total core points gained from this unit
 
-Bobots that leveled up will be able to **use more core points** which leads to the player being able to use those points to **build more structures** on the moon base.
+### Tier Silver
 
-| Bobot Level | Core Points |
-| ----------- | ----------- |
-| Level 0     | 100         |
-| Level 1     | 150         |
-| Level 2     | 200         |
-| Level 3     | 250         |
-| Level 4     | 300         |
-| Level 5     | 350         |
-| Level 6     | 400         |
-| Level 7     | 450         |
-| Level 8     | 500         |
-| Level 9     | 550         |
-| Level 10    | 600         |
+**Break Immunity:** 1000 core points&#x20;
 
-## Staking outcomes
+**Break Chance:** 7.5% chance of breaking per 100 core points earned after 1000 total core points gained from this unit
 
-### **Successful**&#x20;
+### Tier Gold
 
-Regain 5 $MAGIC + Core Points (to level up the Bobot to encourage player to buy a better equipment)
+**Break Immunity:** 2000 core points&#x20;
 
-### **Failure**
-
-4 $MAGIC to be returned to the player, 1 $MAGIC to be sent to the bank.
+**Break Chance:** 5% chance of breaking per 100 core points earned after 2000 total core points gained from this unit
 
 #### <mark style="color:purple;">Reference:</mark>&#x20;
 

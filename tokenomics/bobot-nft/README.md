@@ -8,35 +8,29 @@ description: >-
 
 ## **3 Bobots Collection**
 
-**There will be multiple variants of Bobots**, each with their own tiers and benefits being linked to the ecosystem
+**There will be multiple variants of Bobots**, each with their own tiers and benefits being linked to the ecosystem.&#x20;
 
 There is a **tier ranking system** that ties in with the ecosystem.&#x20;
 
-* **Bobot Minions** (launch in Q4)&#x20;
-* **Bobots Genesis** (launching in MID Q2)&#x20;
-* **Bobots MegaZord** \[also known as Founder's Edition] (launching in end Q2 - early Q3)&#x20;
+* **Nanobots**
+* **Bobots Genesis**&#x20;
+* **Megabots**
 
-## Bobot Minions
+There are a few perks that the higher tiers of Bobots will have over the others:&#x20;
 
-Small sized bobots for entry level
+* Higher max level&#x20;
+* Gain core points more quickly&#x20;
+* Better rewards from staking
 
-{% content-ref url="bobot-minions.md" %}
-[bobot-minions.md](bobot-minions.md)
+{% content-ref url="nanobots.md" %}
+[nanobots.md](nanobots.md)
 {% endcontent-ref %}
 
-## Bobots Genesis
-
-Free Mint bobots for medium entry level and medium perks
-
-{% content-ref url="bobot-genesis.md" %}
-[bobot-genesis.md](bobot-genesis.md)
+{% content-ref url="genesis-bobots.md" %}
+[genesis-bobots.md](genesis-bobots.md)
 {% endcontent-ref %}
 
-## Bobot MegaZord
-
-Hardcore peeps who wants nice bobots with more perks
-
-{% content-ref url="bobot-megazord.md" %}
-[bobot-megazord.md](bobot-megazord.md)
+{% content-ref url="megabots.md" %}
+[megabots.md](megabots.md)
 {% endcontent-ref %}
 
