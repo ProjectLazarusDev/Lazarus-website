@@ -531,6 +531,14 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
         isStaked = _state;
     }
 
+    function getStakingState(uint256 _tokenID) 
+        public
+        view 
+        returns (bool)
+    {
+        return isStaked;
+    }
+
     function getStakeStartTime(uint256 _tokenID)
         public 
         view 
