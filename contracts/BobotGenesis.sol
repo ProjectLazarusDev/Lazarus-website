@@ -502,13 +502,13 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
         bobotCorePoints[_tokenID].isStaked = _isStaked;
     }
 
-    function stakeInCoreChamber(uint256 _tokenID, uint256, _amount, BobotType bobotType) 
+    function stakeInCoreChamber(uint256 _tokenID, BobotType bobotType) 
         external
         override
         onlyOwner
     {
         isStaking(true);
-        stake[msg.sender] = Stake(_tokenID, _amount, block.timestamp);
+        stake[msg.sender] = Stake(_tokenID, block.timestamp);
         startTime = stake[msg.sender].timestamp;
         
     }
@@ -522,7 +522,7 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
         
         stakedtimeTaken = (block.timestamp - stakes[msg.sender].timestamp);
         stakingTime[msg.sender] += (block.timestamp - stakes[msg.sender].timestamp);
-        bobotCorePoints[_tokenID] = timeTaken / 40; 
+        bobotCorePoints[_tokenID] = timeTaken / 20; // 1 core point per 20 min
         
         delete stakes[msg.sender];
     }
