@@ -22,6 +22,9 @@ export function BindToContext()
     //mint
     unityContext.on("Mint_Request", bootUpStation.MintBobotTest);
 
+    //stake
+    unityContext.on("Stake_Request", bootUpStation.StakeBobot);
+
     //uri request
     unityContext.on("GetAllTokenURIs_Request", bobots.GetBobotsAllURI);
 

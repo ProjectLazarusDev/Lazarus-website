@@ -12,6 +12,31 @@ import { MetaMaskAccounts } from './MetaMaskLogin';
 const guardiansBaseCID: string = 'QmWZKWRoktdtmUsFL1V85mk4mMqGhbZAAzvGtC197LLiYT';
 const lunarsBaseCID: string = 'QmWZKWRoktdtmUsFL1V85mk4mMqGhbZAAzvGtC197LLiYT';
 
+export async function StakeBobot(bobotID: number) {
+  if ((window as any).ethereum) {
+    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(contractAddress, BobotGenesisABI.abi, signer);
+    console.log(contract);
+
+    //TODO: check if user is at arbitrum network
+
+    console.log("bobot id is: ", bobotID);
+
+    try {
+      if (contract.getStakingState()) {
+        console.log("b4 unstake", contract.getStakingState());
+        contract.unstakeInCoreChamber(bobotID, contract.getBobotType(bobotID));
+        console.log("aft unstake", contract.getStakingState());
+      } else {
+        console.log("b4 stake", contract.getStakingState());
+        contract.stakeInCoreChamber(bobotID, contract.getBobotType(bobotID));
+        console.log("aft stake", contract.getStakingState());
+      }
+    } catch {}
+  }
+}
+
 //mint bobot
 export async function MintBobotTest() {
   if ((window as any).ethereum) {
@@ -20,13 +45,15 @@ export async function MintBobotTest() {
     const contract = new ethers.Contract(contractAddress, BobotGenesisABI.abi, signer);
     console.log(contract);
 
+    //TODO: check if user is at arbitrum network
+
     // 1) call the mintBobotTest() inside the solidity contract
-    // 2) response is of type TransactionResponse, we use wait() to check if 
+    // 2) response is of type TransactionResponse, we use wait() to check if
     // transaction has successfully gone through
-    // 3) The status of a transaction is 1 is successful or 0 if it was reverted. 
+    // 3) The status of a transaction is 1 is successful or 0 if it was reverted.
     // https://docs.ethers.io/v5/api/contract/contract/#contract-functionsSend
     // https://docs.ethers.io/v5/api/providers/types/#providers-TransactionResponse
-    // docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt 
+    // docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt
     try {
       contract.mintBobotTest().then((response: any) => {
         console.log('mint response: ', response);
