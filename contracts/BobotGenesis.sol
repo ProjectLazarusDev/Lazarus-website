@@ -53,6 +53,7 @@ import "@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol";
 //other staking contracts
 import "./interfaces/IBobot.sol";
 import "./InstallationCoreChamber.sol";
+import "./interfaces/IStake.sol";
 
 //$MAGIC transactions
 import "./Magic20.sol";
@@ -116,6 +117,11 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
     mapping(uint256 => uint256) public bobotCorePoints;
 
     bool isStaked = false;
+    mapping(address => IStake.Stake) public stakes; 
+    mapping (address=> uint256) public stakingTime;
+
+    uint256 startTime; 
+    uint256 stakedTimeTaken; 
 
     //is the contract running
     bool public paused = false;
@@ -256,7 +262,7 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
         override
         returns (uint256)
     {
-        return currentBobotLevel;
+        //return currentBobotLevel;
     }
 
     /**************************************************************************/
@@ -496,13 +502,14 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
         bobotCorePoints[_tokenID].isStaked = _isStaked;
     }
 
-    function stakeInCoreChamber(uint256 _tokenID, BobotType bobotType) 
+    function stakeInCoreChamber(uint256 _tokenID, uint256, _amount, BobotType bobotType) 
         external
         override
         onlyOwner
     {
-        setStakedStatus(_tokenID, true);
-
+        isStaking(true);
+        stake[msg.sender] = Stake(_tokenID, _amount, block.timestamp);
+        startTime = stake[msg.sender].timestamp;
         
     }
     
@@ -511,11 +518,35 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
         override
         onlyOwner
     {
-
+        isStaking(false);
+        
+        stakedtimeTaken = (block.timestamp - stakes[msg.sender].timestamp);
+        stakingTime[msg.sender] += (block.timestamp - stakes[msg.sender].timestamp);
+        bobotCorePoints[_tokenID] = timeTaken / 40; 
+        
+        delete stakes[msg.sender];
     }
 
+    function isStaking (bool _state) public onlyOwner {
+        isStaked = _state;
+    }
 
+    function getStakeStartTime(uint256 _tokenID)
+        public 
+        view 
+        returns (uint256)
+    {
+        return startTime;
+    }
+    
 
+    function getStakeDuration(uint256 _tokenID)
+        public 
+        view 
+        returns (uint256)
+    {
+        return stakedTimeTaken;
+    }
 
     /**************************************************************************/
     /*!
