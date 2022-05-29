@@ -55,21 +55,12 @@ import "./interfaces/IBobot.sol";
 import "./InstallationCoreChamber.sol";
 import "./interfaces/IStake.sol";
 
-//$MAGIC transactions
-import "./Magic20.sol";
-
 contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable 
 {
     using SafeERC20Upgradeable for IERC20Upgradeable;
     using AddressUpgradeable for address;
     using CountersUpgradeable for CountersUpgradeable.Counter;
     using StringsUpgradeable for uint256;
-
-    //magic contract
-    IERC20Upgradeable public magic;
-
-    uint256 currencyExchange = (10**9);
-    uint256 magicBalanceCost = 20;
 
     //revealed and unrevealed uri
     string public baseRevealedURI;
@@ -116,13 +107,6 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
     //one bobot -> core point
     mapping(uint256 => uint256) public bobotCorePoints;
 
-    bool isStaked = false;
-    mapping(address => IStake.Stake) public stakes; 
-    mapping (address=> uint256) public stakingTime;
-
-    uint256 startTime; 
-    uint256 stakedTimeTaken; 
-
     //is the contract running
     bool public paused = false;
 
@@ -130,8 +114,6 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
     {
         __ERC721Enumerable_init();
         __Ownable_init();
-
-        magic = IERC20Upgradeable(_magicAddress);
     }
     
     //modifiers
@@ -167,11 +149,7 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
     ) public payable {
         //is contract running?
         require(!paused);
-        require(
-            magic.balanceOf(msg.sender) / currencyExchange > magicBalanceCost,
-            "Not enough magic in wallet"
-        );
-
+       
         uint256 mintCount = 0;
         
         if (msg.sender != owner()) {
@@ -221,8 +199,6 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
                     mintCount = 2;
                     whitelistedAddressesLunarClaimed[msg.sender] = true;
                 }
-
-                
             }
         }
 
@@ -251,19 +227,11 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
         override
         returns (BobotType)
     {
-        
         return BobotType.BOBOT_GEN;
     }
 
 
-    function getCurrentBobotLevel(uint256 _tokenID, BobotType _bobotType) 
-        external 
-        view 
-        override
-        returns (uint256)
-    {
-        //return currentBobotLevel;
-    }
+
 
     /**************************************************************************/
     /*!
@@ -350,7 +318,10 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
         returns (uint256)
     {
 
-        return bobotCorePoints[_tokenID].currentLevelAmount;
+        return  Math.min(
+            bobotCorePoints[_tokenID] / coreChamberLevelCost,
+            maxLevelAmount
+        );
     }
 
     /**************************************************************************/
@@ -427,15 +398,6 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
 
     /**************************************************************************/
     /*!
-       \brief set magic balance cost
-    */
-    /**************************************************************************/
-    function setMagicBalanceCost(uint256 _newAmount) public onlyOwner {
-        magicBalanceCost = _newAmount;
-    }
-
-    /**************************************************************************/
-    /*!
        \brief set base URI
     */
     /**************************************************************************/
@@ -450,15 +412,6 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
     /**************************************************************************/
     function setBaseHiddenURI(string memory _newBaseURI) public onlyOwner {
         baseHiddenURI = _newBaseURI;
-    }
-
-    /**************************************************************************/
-    /*!
-       \brief set magic address
-    */
-    /**************************************************************************/
-    function setMagicAddress(address _address) public onlyOwner {
-        magic = IERC20Upgradeable(_address);
     }
 
     /**************************************************************************/
@@ -495,65 +448,6 @@ contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable
         onlyOwner
     {
         maxLevelAmount = _newLevelAmount;
-    }
-
-    function setStakedStatus(uint256 _tokenID, bool _isStaked) external view
-    {
-        bobotCorePoints[_tokenID].isStaked = _isStaked;
-    }
-
-    function stakeInCoreChamber(uint256 _tokenID, BobotType bobotType) 
-        external
-        override
-        onlyOwner
-    {
-        isStaking(true);
-        stake[msg.sender] = Stake(_tokenID, block.timestamp);
-        startTime = stake[msg.sender].timestamp;
-        
-    }
-    
-    function unstakeInCoreChamber(uint256 _tokenID, BobotType bobotType) 
-        external
-        override
-        onlyOwner
-    {
-        isStaking(false);
-        
-        stakedtimeTaken = (block.timestamp - stakes[msg.sender].timestamp);
-        stakingTime[msg.sender] += (block.timestamp - stakes[msg.sender].timestamp);
-        bobotCorePoints[_tokenID] = timeTaken / 20; // 1 core point per 20 min
-        
-        delete stakes[msg.sender];
-    }
-
-    function isStaking (bool _state) public onlyOwner {
-        isStaked = _state;
-    }
-
-    function getStakingState(uint256 _tokenID) 
-        public
-        view 
-        returns (bool)
-    {
-        return isStaked;
-    }
-
-    function getStakeStartTime(uint256 _tokenID)
-        public 
-        view 
-        returns (uint256)
-    {
-        return startTime;
-    }
-    
-
-    function getStakeDuration(uint256 _tokenID)
-        public 
-        view 
-        returns (uint256)
-    {
-        return stakedTimeTaken;
     }
 
     /**************************************************************************/
