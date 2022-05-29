@@ -4,8 +4,9 @@ pragma solidity ^0.8.13;
 import "./IBobot.sol";
 import "./ILandTier.sol";
 
-interface ICoreChamber
+interface IInstallationBase
 {
+
     // -------------- EVENTS ------------------
     event StakeNFT(address indexed nft, uint256 tokenId, uint256 amount, IBobot.BobotType bobotType);
     event UnstakeNFT(address indexed nft, uint256 tokenId, uint256 amount, IBobot.BobotType bobotType);

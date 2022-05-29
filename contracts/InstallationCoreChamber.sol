@@ -41,14 +41,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 pragma solidity ^0.8.13;
-import "./ERC721NES.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-
 
 //import Bobot genesis
 import "./BobotGenesis.sol";
 import "./BobotMegaBot.sol";
-
+import "./interfaces/IBobot.sol";
 
 contract CoreChamber is OwnableUpgradeable
 {
@@ -63,7 +61,7 @@ contract CoreChamber is OwnableUpgradeable
     //bobots megabots contract 
     BobotMegaBot public bobotMegabot;
    
-    uint256 public totalIqStored;
+    uint256 public totalCorePointsStored;
 
     uint256 public lastRewardTimestamp;
 
@@ -95,97 +93,73 @@ contract CoreChamber is OwnableUpgradeable
         require(bobotMegabot.ownerOf(_tokenId) == msg.sender, "Megabot: only megabot owner can send to core chamber");
         _;
     }
-    modifier updateTotalCorePoints(bool isJoining, BobotType _bobotType) {
+    modifier updateTotalCorePoints(bool isJoining, IBobot.BobotType _bobotType) {
         if (genesisSupply > 0) {
-            totalIqStored = totalIQ();
+            totalCorePointsStored = totalCorePoints();
         }
         lastRewardTimestamp = block.timestamp;
-        if(_bobotType == BobotType.BOBOT_GEN)
+        if(_bobotType == IBobot.BobotType.BOBOT_GEN)
             isJoining ? genesisSupply++ : genesisSupply--;
-        if(_bobotType == BobotType.BOBOT_MEGA)
+        if(_bobotType == IBobot.BobotType.BOBOT_MEGA)
             isJoining ? megabotSupply++ :  megabotSupply--;
         _;
     }
 
-    /**************************************************************************/
-    /*!
-       \brief returns the current bobot level
-    */
-    /**************************************************************************/
-    function getCurrentBobotLevel(uint256 tokenID) 
-        public 
-        view 
-        returns (uint256)
-    {
-        if (BobotGenesis.getCurrentBobotLevel(tokenID))
-        {
-            return BobotGenesis.getCurrentBobotLevel(tokenID);
-        }
-
-        if (BobotMegaBot.getCurrentBobotLevel(tokenID))
-        {
-            return BobotMegaBot.getCurrentBobotLevel(tokenID);
-        }
-        else 
-        {
-            return -1;
-        }
-    }
     function totalCorePoints() public view returns (uint256) {
         uint256 timeDelta = block.timestamp - lastRewardTimestamp;
-        return totalIqStored +
-         (genesisSupply * iqPerWeek * timeDelta / WEEK) + 
-         (megabotSupply * iqPerWeek * timeDelta / WEEK);
+        return totalCorePointsStored +
+         (genesisSupply * corePointsPerWeekGenesis * timeDelta / WEEK) + 
+         (megabotSupply * corePointsPerWeekMegabot * timeDelta / WEEK);
     }
 
 
     function corePointsEarnedGenesis(uint256 _tokenId) public view 
     returns (uint256 points) 
     {
-        if (timestampJoined[_tokenId] == 0) return 0;
+        if (genesisTimestampJoined[_tokenId] == 0) return 0;
         uint256 timedelta = block.timestamp -  genesisTimestampJoined[_tokenId];
         points = corePointsPerWeekGenesis * timedelta / WEEK;
     }
     function corePointsEarnedMegabot(uint256 _tokenId) public view 
     returns (uint256 points) 
     {
-        if (timestampJoined[_tokenId] == 0) return 0;
-        uint256 timedelta = block.timestamp -  genesisTimestampJoined[_tokenId];
+        if (megabotTimestampJoined[_tokenId] == 0) return 0;
+        uint256 timedelta = block.timestamp -  megabotTimestampJoined[_tokenId];
         points = corePointsPerWeekMegabot * timedelta / WEEK;
     }
-    function stakeGenesis(uint256 tokenId)  
+    function stakeGenesis(uint256 _tokenId)  
         external
         onlyGenesisOwner(_tokenId)
         atCoreChamberGenesis(_tokenId, false)
-        updateTotalCorePoints(true,BobotType.BOBOT_GEN) {
+        updateTotalCorePoints(true,IBobot.BobotType.BOBOT_GEN) {
         genesisTimestampJoined[_tokenId] = block.timestamp;
     }
 
-    function unstakeGenesis(uint256 tokenId) 
+    function unstakeGenesis(uint256 _tokenId) 
         external
         onlyGenesisOwner(_tokenId)
         atCoreChamberGenesis(_tokenId, true)
-        updateTotalCorePoints(false,BobotType.BOBOT_GEN)
+        updateTotalCorePoints(false,IBobot.BobotType.BOBOT_GEN)
         {
-        bobotsGenesis.coreChamberCorePointUpdate(_tokenId, corePointsEarnedGenesis(_tokenId));
+        bobotGenesis.coreChamberCorePointUpdate(_tokenId, corePointsEarnedGenesis(_tokenId));
         genesisTimestampJoined[_tokenId] = 0;
     }
-    function stakeMegabot(uint256 tokenId)  
+    function stakeMegabot(uint256 _tokenId)  
         external
         onlyMegabotOwner(_tokenId)
         atCoreChamberMegabot(_tokenId, false)
-        updateTotalCorePoints(true,BobotType.BOBOT_GEN) {
-        genesisTimestampJoined[_tokenId] = block.timestamp;
+        updateTotalCorePoints(true,IBobot.BobotType.BOBOT_MEGA) {
+        megabotTimestampJoined[_tokenId] = block.timestamp;
     }
 
-    function unstakeMegabot(uint256 tokenId) 
+    function unstakeMegabot(uint256 _tokenId) 
         external
         onlyMegabotOwner(_tokenId)
         atCoreChamberMegabot(_tokenId, true)
-        updateTotalCorePoints(false,BobotType.BOBOT_GEN)
+        updateTotalCorePoints(false,IBobot.BobotType.BOBOT_MEGA)
         {
-        bobotsGenesis.coreChamberCorePointUpdate(_tokenId, corePointsEarnedGenesis(_tokenId));
-        genesisTimestampJoined[_tokenId] = 0;
+        bobotMegabot.coreChamberCorePointUpdate(_tokenId, corePointsEarnedMegabot(_tokenId));
+        megabotTimestampJoined[_tokenId] = 0;
     }
   
     //admin function
@@ -198,21 +172,16 @@ contract CoreChamber is OwnableUpgradeable
     function setBobotGenesis(address _bobotGenesis) external onlyOwner {
         bobotGenesis = BobotGenesis(_bobotGenesis);
     }
+
    function setBobotMegabot(address _bobotMegabot) external onlyOwner {
-        bobotMegabot = BobotMegabot(_bobotMegabot);
+        bobotMegabot = BobotMegaBot(_bobotMegabot);
     }
 
-    /**************************************************************************/
-    /*!
-       \brief Set multiplier
-    */
-    /**************************************************************************/
-    // function setLevelMultiplier() onlyOwner
-    // {
-        
-    // }
- function setIqPerWeek(uint256 _iqPerWeek) external onlyOwner {
-        iqPerWeek = _iqPerWeek;
-        emit SetIqPerWeek(_iqPerWeek);
+    function setCorePointsPerWeekGenesis(uint256 _corePointsPerWeekGenesis) external onlyOwner {
+        corePointsPerWeekGenesis = _corePointsPerWeekGenesis;
+    }
+
+    function setCorePointsPerWeekMegabot(uint256 _corePointsPerWeekMegabot) external onlyOwner {
+        corePointsPerWeekMegabot = _corePointsPerWeekMegabot;
     }
 }

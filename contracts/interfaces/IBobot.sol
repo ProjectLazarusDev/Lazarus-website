@@ -43,6 +43,7 @@ interface IBobot
     function setStakedStatus(uint256 _tokenID, bool _isStaked) external view;
 
     // ---------------- OWNER OPERATIONS -----------------
+    /*
     function stakeInCoreChamber(uint256 _tokenID, BobotType bobotType) external;
     
     function unstakeInCoreChamber(uint256 _tokenID, BobotType bobotType) external;
@@ -54,6 +55,7 @@ interface IBobot
     function stakeInLaunchPad(uint256 _tokenID, BobotType bobotType) external;
 
     function unstakeInLaunchPad(uint256 _tokenID, BobotType bobotType) external;
+    */
 
     
 }
