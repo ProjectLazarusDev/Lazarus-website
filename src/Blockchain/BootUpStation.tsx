@@ -12,7 +12,7 @@ import { MetaMaskAccounts } from './MetaMaskLogin';
 const guardiansBaseCID: string = 'QmWZKWRoktdtmUsFL1V85mk4mMqGhbZAAzvGtC197LLiYT';
 const lunarsBaseCID: string = 'QmWZKWRoktdtmUsFL1V85mk4mMqGhbZAAzvGtC197LLiYT';
 
-export async function StakeBobot(bobotID: number) {
+export async function StakeBobot(bobotID: any) {
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
@@ -21,19 +21,37 @@ export async function StakeBobot(bobotID: number) {
 
     //TODO: check if user is at arbitrum network
 
-    console.log("bobot id is: ", bobotID);
+    console.log('bobot id is: ', bobotID);
 
+    //TODO: when passing number from contract to react need convert from BigNumber to number
+    // can see Magic20.tsx
     try {
-      if (contract.getStakingState()) {
-        console.log("b4 unstake", contract.getStakingState());
-        contract.unstakeInCoreChamber(bobotID, contract.getBobotType(bobotID));
-        console.log("aft unstake", contract.getStakingState());
+      if (contract.getStakingState() === true) {
+        console.log('b4 unstake', contract.getStakingState());
+        contract
+          .unstakeInCoreChamber(bobotID, contract.getBobotType(bobotID))
+          .then((response: any) => {
+            console.log('response:', response);
+            console.log('aft unstake', contract.getStakingState());
+          })
+          .catch((error: any) => {
+            console.log(error);
+          });
       } else {
-        console.log("b4 stake", contract.getStakingState());
-        contract.stakeInCoreChamber(bobotID, contract.getBobotType(bobotID));
-        console.log("aft stake", contract.getStakingState());
+        console.log('b4 stake', contract.getStakingState());
+        await contract
+          .stakeInCoreChamber(bobotID, contract.getBobotType(bobotID))
+          .then((response: any) => {
+            console.log('response:', response);
+            console.log('aft stake', contract.getStakingState());
+          })
+          .catch((error: any) => {
+            console.log(error);
+          });
       }
-    } catch {}
+    } catch {
+      console.log("An error has occured when staking!");
+    }
   }
 }
 

@@ -35,12 +35,6 @@ export function BindToContext()
     unityContext.on("OpenURL_Request",function(url:string){
         window.open(url);
     });
-
-    // for debugging purposes on the brower's console
-    unityContext.on("ConsoleLog_Request", function (message:string){
-        console.log("UNITY-LOG: " + message);
-    })
-
 }
 
 // Communication from React to Unity with unityContext.send(...)
