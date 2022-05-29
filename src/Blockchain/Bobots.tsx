@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 
-import { contractAddress } from './ContractAddress';
+import { bobotGenesisAddress } from './ContractAddress';
 
 import BobotGenesisABI from '../ABI/BobotGenesis.json';
 
@@ -13,7 +13,7 @@ export async function GetBobotsAllURI() {
     var t: number[] = [];
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(contractAddress, BobotGenesisABI.output.abi, signer);
+    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
     console.log(contract);
 
     try {

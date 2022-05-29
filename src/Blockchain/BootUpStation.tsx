@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 
 import BobotGenesisABI from '../ABI/BobotGenesis.json';
 
-import { contractAddress } from './ContractAddress';
+import { bobotGenesisAddress } from './ContractAddress';
 
 import axios from 'axios';
 
@@ -16,7 +16,7 @@ export async function StakeBobot(bobotID: any) {
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(contractAddress, BobotGenesisABI.output.abi, signer);
+    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
     console.log(contract);
 
     //TODO: check if user is at arbitrum network
@@ -60,7 +60,7 @@ export async function MintBobotTest() {
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(contractAddress, BobotGenesisABI.output.abi, signer);
+    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
     console.log(contract);
 
     //TODO: check if user is at arbitrum network
@@ -120,7 +120,7 @@ export async function MintBobot() {
 
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(contractAddress, BobotGenesisABI.output.abi, signer);
+    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
     console.log(contract);
     try {
       console.log('await contract');
