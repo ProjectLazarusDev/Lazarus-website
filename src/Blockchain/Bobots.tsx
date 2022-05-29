@@ -13,7 +13,7 @@ export async function GetBobotsAllURI() {
     var t: number[] = [];
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(contractAddress, BobotGenesisABI.abi, signer);
+    const contract = new ethers.Contract(contractAddress, BobotGenesisABI.output.abi, signer);
     console.log(contract);
 
     try {
