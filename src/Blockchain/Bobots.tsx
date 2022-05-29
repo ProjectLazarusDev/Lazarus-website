@@ -37,7 +37,7 @@ export async function GetBobotsAllURI() {
     //get all tokenURI
     for (var index = 0; index < t.length; index++) {
       try {
-        const response = await contract.tokenURI(t[index]);
+        const response = await contract.getTokenURI(t[index]);
         console.log('response: ', response);
         blockchain.RecieveTokenURI_Callback(response as string);
         //send response back to game engine
