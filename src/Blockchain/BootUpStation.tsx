@@ -29,26 +29,27 @@ export async function StakeBobot(bobotID: any) {
     // convert from string to number
     const tokenID = parseInt(bobotID);
 
-
+    const isStaked = await contract.isAtCoreChamberGenesis(tokenID);
+    console.log("contract.isAtCoreChamberGenesis(tokenID)", isStaked);
     try {
-      if (contract.isAtCoreChamberGenesis(tokenID) === true) {
-        console.log('b4 unstake', contract.isAtCoreChamberGenesis(tokenID));
+      if (isStaked === true) {
         contract
           .unstakeGenesis(tokenID)
-          .then((response: any) => {
+          .then(async (response: any) => {
             console.log('unstake response:', response);
-            console.log('aft unstake', contract.isAtCoreChamberGenesis(tokenID));
+            const test = await contract.isAtCoreChamberGenesis(tokenID)
+            console.log('aft unstake should be false', test);
           })
           .catch((error: any) => {
             console.log(error);
           });
       } else {
-        console.log('b4 stake', contract.isAtCoreChamberGenesis(tokenID));
         await contract
           .stakeGenesis(tokenID)
-          .then((response: any) => {
+          .then(async (response: any) => {
             console.log('stake response:', response);
-            console.log('aft stake', contract.isAtCoreChamberGenesis(tokenID));
+            const test = await contract.isAtCoreChamberGenesis(tokenID);
+            console.log('aft stake should be true', );
           })
           .catch((error: any) => {
             console.log(error);
