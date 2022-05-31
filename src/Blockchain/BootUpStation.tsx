@@ -1,8 +1,8 @@
 import { ethers } from 'ethers';
 
-import BobotGenesisABI from '../ABI/BobotGenesis.json';
+import installationCoreChamberABI from '../ABI/CoreChamber.json';
 
-import { bobotGenesisAddress } from './ContractAddress';
+import { installationCoreChamberAddress } from './ContractAddress';
 
 import axios from 'axios';
 
@@ -16,41 +16,46 @@ export async function StakeBobot(bobotID: any) {
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
+    const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamberABI.output.abi, signer);
     console.log(contract);
 
     //TODO: check if user is at arbitrum network
 
     console.log('bobot id is: ', bobotID);
-
+    
+    
     //TODO: when passing number from contract to react need convert from BigNumber to number
     // can see Magic20.tsx
+    // convert from string to number
+    const tokenID = parseInt(bobotID);
+
+
     try {
-      if (contract.getStakingState() === true) {
-        console.log('b4 unstake', contract.getStakingState());
+      if (contract.isAtCoreChamberGenesis(tokenID) === true) {
+        console.log('b4 unstake', contract.isAtCoreChamberGenesis(tokenID));
         contract
-          .unstakeInCoreChamber(bobotID, contract.getBobotType(bobotID))
+          .unstakeGenesis(tokenID)
           .then((response: any) => {
-            console.log('response:', response);
-            console.log('aft unstake', contract.getStakingState());
+            console.log('unstake response:', response);
+            console.log('aft unstake', contract.isAtCoreChamberGenesis(tokenID));
           })
           .catch((error: any) => {
             console.log(error);
           });
       } else {
-        console.log('b4 stake', contract.getStakingState());
+        console.log('b4 stake', contract.isAtCoreChamberGenesis(tokenID));
         await contract
-          .stakeInCoreChamber(bobotID, contract.getBobotType(bobotID))
+          .stakeGenesis(tokenID)
           .then((response: any) => {
-            console.log('response:', response);
-            console.log('aft stake', contract.getStakingState());
+            console.log('stake response:', response);
+            console.log('aft stake', contract.isAtCoreChamberGenesis(tokenID));
           })
           .catch((error: any) => {
             console.log(error);
           });
       }
     } catch {
-      console.log("An error has occured when staking!");
+      console.log('An error has occured when staking!');
     }
   }
 }
@@ -60,7 +65,7 @@ export async function MintBobotTest() {
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
+    const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamberABI.output.abi, signer);
     console.log(contract);
 
     //TODO: check if user is at arbitrum network
@@ -120,7 +125,7 @@ export async function MintBobot() {
 
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
+    const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamberABI.output.abi, signer);
     console.log(contract);
     try {
       console.log('await contract');
