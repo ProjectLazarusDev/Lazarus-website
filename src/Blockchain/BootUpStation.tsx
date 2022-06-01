@@ -1,16 +1,19 @@
+import React from 'react';
 import { ethers } from 'ethers';
 
 import installationCoreChamberABI from '../ABI/CoreChamber.json';
+import BobotGenesisABI from '../ABI/BobotGenesis.json';
 
-import { installationCoreChamberAddress } from './ContractAddress';
+import { bobotGenesisAddress, installationCoreChamberAddress } from './ContractAddress';
 
 import axios from 'axios';
 
 import * as blockchain from './BlockchainFunctions';
 import { MetaMaskAccounts } from './MetaMaskLogin';
 
-const guardiansBaseCID: string = 'QmWZKWRoktdtmUsFL1V85mk4mMqGhbZAAzvGtC197LLiYT';
-const lunarsBaseCID: string = 'QmWZKWRoktdtmUsFL1V85mk4mMqGhbZAAzvGtC197LLiYT';
+// by right guardian should be able to mint 1 and lunar is 2
+const guardiansBaseCID: string = 'QmXMbZ9NhQHJsRvhctNftsGzGNiNP1k4urGVfJ5E6yv9Bt';
+const lunarsBaseCID: string = 'QmPo25VQeRpkLrxDRSCjpdsmg3hbA19FuiB1apwdShoE3F';
 
 export async function StakeBobot(bobotID: any) {
   if ((window as any).ethereum) {
@@ -22,23 +25,22 @@ export async function StakeBobot(bobotID: any) {
     //TODO: check if user is at arbitrum network
 
     console.log('bobot id is: ', bobotID);
-    
-    
+
     //TODO: when passing number from contract to react need convert from BigNumber to number
     // can see Magic20.tsx
     // convert from string to number
     const tokenID = parseInt(bobotID);
 
     const isStaked = await contract.isAtCoreChamberGenesis(tokenID);
-    console.log("contract.isAtCoreChamberGenesis(tokenID)", isStaked);
+    console.log('contract.isAtCoreChamberGenesis(tokenID)', isStaked);
     try {
       if (isStaked === true) {
         contract
           .unstakeGenesis(tokenID)
           .then(async (response: any) => {
             console.log('unstake response:', response);
-            const test = await contract.isAtCoreChamberGenesis(tokenID)
-            console.log('aft unstake should be false', test);
+            // const test = await contract.isAtCoreChamberGenesis(tokenID)
+            // console.log('aft unstake should be false', test);
           })
           .catch((error: any) => {
             console.log(error);
@@ -48,8 +50,8 @@ export async function StakeBobot(bobotID: any) {
           .stakeGenesis(tokenID)
           .then(async (response: any) => {
             console.log('stake response:', response);
-            const test = await contract.isAtCoreChamberGenesis(tokenID);
-            console.log('aft stake should be true', );
+            // const test = await contract.isAtCoreChamberGenesis(tokenID);
+            // console.log('aft stake should be true', );
           })
           .catch((error: any) => {
             console.log(error);
@@ -66,7 +68,7 @@ export async function MintBobotTest() {
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamberABI.output.abi, signer);
+    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
     console.log(contract);
 
     //TODO: check if user is at arbitrum network
@@ -99,43 +101,62 @@ export async function MintBobotTest() {
 }
 
 //mint bobot
+// refer to https://www.merkleme.io/documentation
 export async function MintBobot() {
-  console.log('received: ');
+  interface MerkleResponseProps {
+    leafValue: String;
+    leafHex: String;
+    leafHash: String;
+    proof: Array<String>;
+  }
+  let responseGuardians = {} as MerkleResponseProps;
+  let responseLunar = {} as MerkleResponseProps;
+
   if ((window as any).ethereum) {
     //merkle proof axios
-    const requestBodyGuardians = {
-      whitelist: 'https://gateway.pinata.cloud/ipfs/' + guardiansBaseCID,
-      leafToVerify: MetaMaskAccounts[0],
-    };
+    try {
+      const requestBodyGuardians = {
+        whitelist: 'https://gateway.pinata.cloud/ipfs/' + guardiansBaseCID,
+        leafToVerify: MetaMaskAccounts[0],
+      };
+      responseGuardians = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyGuardians);
+      console.log(responseGuardians);
+    } catch {
+      console.log('responseGuardians is not found!');
+    }
 
-    const responseGuardians = await axios.post(
-      'https://merklemeapi.vincanger.repl.co/verify/proof',
-      requestBodyGuardians
-    );
-
-    console.log(responseGuardians);
-
-    const requestBodyLunars = {
-      whitelist: 'https://gateway.pinata.cloud/ipfs/' + lunarsBaseCID,
-      leafToVerify: MetaMaskAccounts[0],
-    };
-
-    const responseLunar = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyLunars);
-
-    console.log(responseLunar);
+    try {
+      const requestBodyLunars = {
+        whitelist: 'https://gateway.pinata.cloud/ipfs/' + lunarsBaseCID,
+        leafToVerify: MetaMaskAccounts[0],
+      };
+      responseLunar = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyLunars);
+      console.log(responseLunar);
+    } catch {
+      console.log('responseLunar is not found!');
+    }
 
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamberABI.output.abi, signer);
+    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
     console.log(contract);
+
     try {
-      console.log('await contract');
+      contract
+        .mintBobot(responseGuardians?.proof, responseLunar?.proof)
+        .then((response: any) => {
+          console.log('mint response: ', response);
 
-      const response = await contract.mintBobot((responseGuardians as any).proof, (responseLunar as any).proof);
-      console.log('response: ', response);
-
-      //send response back to game engine
-      blockchain.Mint_Callback(blockchain.BlockchainError.NoError);
+          response
+            .wait()
+            .then((waitResponse: any) => {
+              if (waitResponse.status === 1) {
+                blockchain.Mint_Callback(blockchain.BlockchainError.NoError);
+              }
+            })
+            .catch((error: any) => console.log(error));
+        })
+        .catch((error: any) => console.log(error));
     } catch {
       //error detection
       blockchain.Mint_Callback(blockchain.BlockchainError.NetworkBusy);

@@ -20,7 +20,7 @@ export function BindToContext()
     unityContext.on("MetaMaskLogin_Request", metaLogin.MetaLogin);
 
     //mint
-    unityContext.on("Mint_Request", bootUpStation.MintBobotTest);
+    unityContext.on("Mint_Request", bootUpStation.MintBobot);
 
     //stake
     unityContext.on("Stake_Request", bootUpStation.StakeBobot);
