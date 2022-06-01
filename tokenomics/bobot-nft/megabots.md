@@ -1,5 +1,5 @@
 ---
-description: It's in the endgame now
+description: It's in the endgame now.
 ---
 
 # 😤 Megabots
