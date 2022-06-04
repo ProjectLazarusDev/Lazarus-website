@@ -26,6 +26,8 @@ export async function StakeBobot(bobotID: any) {
 
     console.log('bobot id is: ', bobotID);
 
+    //TODO: pass bobot id + whether successfully staked to ylen
+
     //TODO: when passing number from contract to react need convert from BigNumber to number
     // can see Magic20.tsx
     // convert from string to number
@@ -104,10 +106,12 @@ export async function MintBobotTest() {
 // refer to https://www.merkleme.io/documentation
 export async function MintBobot() {
   interface MerkleResponseProps {
-    leafValue: String;
-    leafHex: String;
-    leafHash: String;
-    proof: Array<String>;
+    data: {
+      leafValue: String;
+      leafHex: String;
+      leafHash: String;
+      proof: Array<String>;
+    }
   }
   let responseGuardians = {} as MerkleResponseProps;
   let responseLunar = {} as MerkleResponseProps;
@@ -143,7 +147,7 @@ export async function MintBobot() {
 
     try {
       contract
-        .mintBobot(responseGuardians?.proof, responseLunar?.proof)
+        .mintBobot(responseGuardians?.data?.proof, responseLunar?.data?.proof)
         .then((response: any) => {
           console.log('mint response: ', response);
 
