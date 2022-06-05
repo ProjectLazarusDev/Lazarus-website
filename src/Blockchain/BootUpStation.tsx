@@ -1,4 +1,3 @@
-import React from 'react';
 import { ethers } from 'ethers';
 
 import installationCoreChamberABI from '../ABI/CoreChamber.json';
@@ -11,10 +10,58 @@ import axios from 'axios';
 import * as blockchain from './BlockchainFunctions';
 import { MetaMaskAccounts } from './MetaMaskLogin';
 
+import { chainID } from '../Pages/Multiplayer';
+import { testChainID } from '../Pages/MultiplayerTest';
+
 // by right guardian should be able to mint 1 and lunar is 2
 const guardiansBaseCID: string = 'QmXMbZ9NhQHJsRvhctNftsGzGNiNP1k4urGVfJ5E6yv9Bt';
 const lunarsBaseCID: string = 'QmPo25VQeRpkLrxDRSCjpdsmg3hbA19FuiB1apwdShoE3F';
 
+const verifyNetwork = (response: ethers.providers.Network): boolean => {
+  if (
+    (response.chainId === chainID && window.location.pathname === '/play') ||
+    (response.chainId === testChainID && window.location.pathname === '/operationdarkarts')
+  ) {
+    return true;
+  }
+
+  return false;
+};
+
+const stakeGenesis = async (contract: ethers.Contract, bobotID: any) => {
+  // convert from string to number
+  const tokenID = parseInt(bobotID);
+
+  const isStaked = await contract.isAtCoreChamberGenesis(tokenID);
+  console.log('contract.isAtCoreChamberGenesis(tokenID)', isStaked);
+  try {
+    if (isStaked === true) {
+      contract
+        .unstakeGenesis(tokenID)
+        .then(async (response: any) => {
+          console.log('unstake response:', response);
+          //TODO: pass bobot id + whether successfully staked to ylen
+        })
+        .catch((error: any) => {
+          console.log(error);
+        });
+    } else {
+      await contract
+        .stakeGenesis(tokenID)
+        .then(async (response: any) => {
+          console.log('stake response:', response);
+          //TODO: pass bobot id + whether successfully staked to ylen
+        })
+        .catch((error: any) => {
+          console.log(error);
+        });
+    }
+  } catch {
+    console.log('An error has occured when staking!');
+  }
+};
+
+// currently bobotID is passed as a string from unity
 export async function StakeBobot(bobotID: any) {
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
@@ -22,46 +69,19 @@ export async function StakeBobot(bobotID: any) {
     const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamberABI.output.abi, signer);
     console.log(contract);
 
-    //TODO: check if user is at arbitrum network
-
-    console.log('bobot id is: ', bobotID);
-
-    //TODO: pass bobot id + whether successfully staked to ylen
-
-    //TODO: when passing number from contract to react need convert from BigNumber to number
-    // can see Magic20.tsx
-    // convert from string to number
-    const tokenID = parseInt(bobotID);
-
-    const isStaked = await contract.isAtCoreChamberGenesis(tokenID);
-    console.log('contract.isAtCoreChamberGenesis(tokenID)', isStaked);
-    try {
-      if (isStaked === true) {
-        contract
-          .unstakeGenesis(tokenID)
-          .then(async (response: any) => {
-            console.log('unstake response:', response);
-            // const test = await contract.isAtCoreChamberGenesis(tokenID)
-            // console.log('aft unstake should be false', test);
-          })
-          .catch((error: any) => {
-            console.log(error);
-          });
-      } else {
-        await contract
-          .stakeGenesis(tokenID)
-          .then(async (response: any) => {
-            console.log('stake response:', response);
-            // const test = await contract.isAtCoreChamberGenesis(tokenID);
-            // console.log('aft stake should be true', );
-          })
-          .catch((error: any) => {
-            console.log(error);
-          });
-      }
-    } catch {
-      console.log('An error has occured when staking!');
-    }
+    provider
+      .getNetwork()
+      .then((response) => {
+        if (verifyNetwork(response) === true) {
+          stakeGenesis(contract, bobotID);
+        } else {
+          console.log('Cannot stake due to incorrect network!');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        return false;
+      });
   }
 }
 
@@ -72,8 +92,6 @@ export async function MintBobotTest() {
     const signer = provider.getSigner();
     const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
     console.log(contract);
-
-    //TODO: check if user is at arbitrum network
 
     // 1) call the mintBobotTest() inside the solidity contract
     // 2) response is of type TransactionResponse, we use wait() to check if
@@ -111,7 +129,7 @@ export async function MintBobot() {
       leafHex: String;
       leafHash: String;
       proof: Array<String>;
-    }
+    };
   }
   let responseGuardians = {} as MerkleResponseProps;
   let responseLunar = {} as MerkleResponseProps;

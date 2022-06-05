@@ -29,6 +29,9 @@ import SwitchNetworkButton from '../Components/Multiplayer/SwitchNetworkButton';
 
 import { ethers } from 'ethers';
 
+// using Abitrium One network as default
+const chainID = 42161;
+
 const Multiplayer: React.FC = () => {
   //react hooks
   // check on whether unity game has beend loaded
@@ -39,8 +42,6 @@ const Multiplayer: React.FC = () => {
   const [isCorrectNetwork, setIsCorrectNetwork] = React.useState<boolean>(false);
   const [progression, setProgression] = React.useState<number>(0);
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
-  // using Abitrium One network as default
-  const chainID = 42161;
 
   const unityLoad = () => {
     unityContextSeason0.on('progress', handleOnUnityProgress);
@@ -174,4 +175,4 @@ const Multiplayer: React.FC = () => {
     </>
   );
 };
-export default Multiplayer;
+export { Multiplayer, chainID };

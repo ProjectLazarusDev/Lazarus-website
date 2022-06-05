@@ -31,6 +31,9 @@ import SwitchNetworkButton from '../Components/Multiplayer/SwitchNetworkButton';
 import { ethers } from 'ethers';
 //abi import
 
+// using Abitrium One Test network as default
+const testChainID = 421611;
+
 const MultiplayerTest: React.FC = () => {
   //react hooks
   // check on whether unity game has beend loaded
@@ -41,8 +44,6 @@ const MultiplayerTest: React.FC = () => {
   const [isCorrectNetwork, setIsCorrectNetwork] = React.useState<boolean>(false);
   const [progression, setProgression] = React.useState<number>(0);
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
-  // using Abitrium One Test network as default
-  const chainID = 421611;
 
   const unityLoad = () => {
     unityContextSeason0.on('progress', handleOnUnityProgress);
@@ -81,7 +82,7 @@ const MultiplayerTest: React.FC = () => {
   React.useEffect(() => {
     const scrollFun = () => {
       setScrollValue(-document.body.getBoundingClientRect().top / document.body.getBoundingClientRect().height);
-      unityContextSeason0.send("MainMenuControl", "SetScrollBarValue", scrollValue);
+      unityContextSeason0.send('MainMenuControl', 'SetScrollBarValue', scrollValue);
     };
     window.addEventListener('scroll', scrollFun);
 
@@ -108,7 +109,7 @@ const MultiplayerTest: React.FC = () => {
 
   React.useEffect(() => {
     isAccountLocked();
-    verifyNetwork(chainID);
+    verifyNetwork(testChainID);
     return () => window.removeEventListener('resize', updateDimensions);
   });
 
@@ -130,7 +131,7 @@ const MultiplayerTest: React.FC = () => {
     } else if (isLocked === true) {
       currentRender = <ErrorMessage message="PLEASE LOGIN TO METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isCorrectNetwork === false) {
-      currentRender = <SwitchNetworkButton chainID={chainID}></SwitchNetworkButton>;
+      currentRender = <SwitchNetworkButton chainID={testChainID}></SwitchNetworkButton>;
     } else {
       currentRender = (
         <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
@@ -176,4 +177,4 @@ const MultiplayerTest: React.FC = () => {
     </>
   );
 };
-export default MultiplayerTest;
+export { MultiplayerTest, testChainID };
