@@ -15,7 +15,7 @@ import { testChainID } from '../Pages/MultiplayerTest';
 
 // by right guardian should be able to mint 1 and lunar is 2
 const guardiansBaseCID: string = 'QmXMbZ9NhQHJsRvhctNftsGzGNiNP1k4urGVfJ5E6yv9Bt';
-const lunarsBaseCID: string = 'QmPo25VQeRpkLrxDRSCjpdsmg3hbA19FuiB1apwdShoE3F';
+const lunarsBaseCID: string = 'QmQyYtVApQur8mrUSKDNkKfxF4nPNvdj5xbjnXip56LjDp';
 
 const verifyNetwork = (response: ethers.providers.Network): boolean => {
   if (
@@ -153,7 +153,7 @@ const generateMerkle = async () => {
     console.log('responseLunar is not found!');
   }
 
-  return[responseGuardians, responseLunar];
+  return [responseGuardians, responseLunar];
 };
 
 const mintGenesis = async (
@@ -161,25 +161,32 @@ const mintGenesis = async (
   responseGuardians: MerkleResponseProps,
   responseLunar: MerkleResponseProps
 ) => {
-  try {
-    contract
-      .mintBobot(responseGuardians?.data?.proof, responseLunar?.data?.proof)
-      .then((response: any) => {
-        console.log('mint response: ', response);
+  const proofGuardian: String[] = responseGuardians?.data?.proof === undefined ? [] : responseGuardians?.data?.proof;
+  const proofLunar: String[] = responseLunar?.data?.proof === undefined ? [] : responseLunar?.data?.proof;
 
-        response
-          .wait()
-          .then((waitResponse: any) => {
-            if (waitResponse.status === 1) {
-              blockchain.Mint_Callback(blockchain.BlockchainError.NoError);
-            }
-          })
-          .catch((error: any) => console.log(error));
-      })
-      .catch((error: any) => console.log(error));
-  } catch {
-    //error detection
-    blockchain.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
+  if (proofGuardian.length == 0 && proofLunar.length == 0) {
+    console.log('You are not whitelisted to mint!');
+  } else {
+    try {
+      contract
+        .mintBobot(proofGuardian, proofLunar)
+        .then((response: any) => {
+          console.log('mint response: ', response);
+
+          response
+            .wait()
+            .then((waitResponse: any) => {
+              if (waitResponse.status === 1) {
+                blockchain.Mint_Callback(blockchain.BlockchainError.NoError);
+              }
+            })
+            .catch((error: any) => console.log(error));
+        })
+        .catch((error: any) => console.log(error));
+    } catch {
+      //error detection
+      blockchain.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
+    }
   }
 };
 
