@@ -1,4 +1,4 @@
-import { ethers } from 'ethers';
+import { ethers, BigNumber } from 'ethers';
 
 import installationCoreChamberABI from '../ABI/CoreChamber.json';
 import BobotGenesisABI from '../ABI/BobotGenesis.json';
@@ -33,14 +33,17 @@ const stakeGenesis = async (contract: ethers.Contract, bobotID: any) => {
   const tokenID = parseInt(bobotID);
 
   const isStaked = await contract.isAtCoreChamberGenesis(tokenID);
-  console.log('contract.isAtCoreChamberGenesis(tokenID)', isStaked);
+  // get core points value and convert from big number to number
+  const corePointsResponse = await contract.corePointsEarnedGenesis(tokenID);
+  const corePoints = BigNumber.from(corePointsResponse?._hex).toNumber();
+
   try {
     if (isStaked === true) {
       contract
         .unstakeGenesis(tokenID)
         .then(async (response: any) => {
           console.log('unstake response:', response);
-          //TODO: pass bobot id + whether successfully staked to ylen
+          blockchain.ReceiveTokenStakeStatus_Callback(tokenID, true, corePoints);
         })
         .catch((error: any) => {
           console.log(error);
@@ -50,7 +53,7 @@ const stakeGenesis = async (contract: ethers.Contract, bobotID: any) => {
         .stakeGenesis(tokenID)
         .then(async (response: any) => {
           console.log('stake response:', response);
-          //TODO: pass bobot id + whether successfully staked to ylen
+          blockchain.ReceiveTokenStakeStatus_Callback(bobotID, true, corePoints);
         })
         .catch((error: any) => {
           console.log(error);

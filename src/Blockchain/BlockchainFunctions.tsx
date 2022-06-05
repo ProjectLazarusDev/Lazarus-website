@@ -1,75 +1,76 @@
-import {unityContext} from '../Context/UnityContext';
+import { unityContext } from '../Context/UnityContext';
 
 import * as metaLogin from './MetaMaskLogin';
 import * as bootUpStation from './BootUpStation';
 import * as bobots from './Bobots';
 import * as user from './User';
 
-const blockchainManager: string = "BlockchainManager";
+const blockchainManager: string = 'BlockchainManager';
 
-export enum BlockchainError
-{
-    NoError = 0,
-    NetworkBusy
+export enum BlockchainError {
+  NoError = 0,
+  NetworkBusy,
 }
 
 // Communication from Unity to React with unityContext.on(...)
-export function BindToContext()
-{
-    //metamask functions
-    unityContext.on("MetaMaskLogin_Request", metaLogin.MetaLogin);
+export function BindToContext() {
+  //metamask functions
+  unityContext.on('MetaMaskLogin_Request', metaLogin.MetaLogin);
 
-    //mint
-    unityContext.on("Mint_Request", bootUpStation.MintBobot);
+  //mint
+  unityContext.on('Mint_Request', bootUpStation.MintBobot);
 
-    //stake
-    unityContext.on("Stake_Request", bootUpStation.StakeBobot);
+  //stake
+  unityContext.on('Stake_Request', bootUpStation.StakeBobot);
 
-    //uri request
-    unityContext.on("GetAllTokenURIs_Request", bobots.GetBobotsAllURI);
+  //uri request
+  unityContext.on('GetAllTokenURIs_Request', bobots.GetBobotsAllURI);
 
-    //address and magic
-    unityContext.on("GetUserData", user.GetUserData);
+  //address and magic
+  unityContext.on('GetUserData', user.GetUserData);
 
-    //open an external link
-    unityContext.on("OpenURL_Request",function(url:string){
-        window.open(url);
-    });
+  //open an external link
+  unityContext.on('OpenURL_Request', function (url: string) {
+    window.open(url);
+  });
 }
 
 // Communication from React to Unity with unityContext.send(...)
-export function OpenURL_Callback(_address: string)
-{
-    unityContext.send(blockchainManager, "OpenURL_Callback", _address);
+export function OpenURL_Callback(_address: string) {
+  unityContext.send(blockchainManager, 'OpenURL_Callback', _address);
 }
 
-export function MetaMaskLogin_Callback(_address: string)
-{
-    unityContext.send(blockchainManager, "MetaMaskLogin_Callback", _address);
+export function MetaMaskLogin_Callback(_address: string) {
+  unityContext.send(blockchainManager, 'MetaMaskLogin_Callback', _address);
 }
 
-export function Mint_Callback(_errorCode: number)
-{
-    unityContext.send(blockchainManager, "Mint_Callback", _errorCode);
+export function Mint_Callback(_errorCode: number) {
+  unityContext.send(blockchainManager, 'Mint_Callback', _errorCode);
 }
 
-export function GetMagic_Callback(_magic: number)
-{
-    unityContext.send(blockchainManager, "GetMagic_Callback", _magic);
+export function GetMagic_Callback(_magic: number) {
+  unityContext.send(blockchainManager, 'GetMagic_Callback', _magic);
 }
 
-export function GetAllTokenURIs_Callback(_errorCode: number)
-{
-    unityContext.send(blockchainManager, "GetAllTokenURIs_Callback", _errorCode);
+export function GetAllTokenURIs_Callback(_errorCode: number) {
+  unityContext.send(blockchainManager, 'GetAllTokenURIs_Callback', _errorCode);
 }
 
-export function RecieveTokenURI_Callback(_tokenURI: string)
-{
-    unityContext.send(blockchainManager, "RecieveTokenURI_Callback", _tokenURI);
+export function RecieveTokenURI_Callback(_tokenURI: string) {
+  unityContext.send(blockchainManager, 'RecieveTokenURI_Callback', _tokenURI);
 }
 
-export function CompletedTokenURI_Callback()
-{
-    unityContext.send(blockchainManager, "CompletedTokenURI_Callback");
+export function CompletedTokenURI_Callback() {
+  unityContext.send(blockchainManager, 'CompletedTokenURI_Callback');
 }
 
+export function ReceiveTokenStakeStatus_Callback(tokenId: number, stakeStatus: boolean, currentCorePoints: number) {
+  const stakeStatusData = {
+    _tokenId: tokenId,
+    _stakeStatus: stakeStatus,
+    _currentCorePoints: currentCorePoints,
+  };
+  const jsonData = JSON.stringify(stakeStatusData);
+
+  unityContext.send(blockchainManager, 'ReceiveTokenStakeStatus_Callback', jsonData);
+}
