@@ -78,10 +78,7 @@ export async function StakeBobot(bobotID: any) {
           console.log('Cannot stake due to incorrect network!');
         }
       })
-      .catch((error) => {
-        console.log(error);
-        return false;
-      });
+      .catch((error) => console.log(error));
   }
 }
 
@@ -120,68 +117,91 @@ export async function MintBobotTest() {
   }
 }
 
-//mint bobot
+interface MerkleResponseProps {
+  data: {
+    leafValue: String;
+    leafHex: String;
+    leafHash: String;
+    proof: Array<String>;
+  };
+}
+
 // refer to https://www.merkleme.io/documentation
-export async function MintBobot() {
-  interface MerkleResponseProps {
-    data: {
-      leafValue: String;
-      leafHex: String;
-      leafHash: String;
-      proof: Array<String>;
-    };
-  }
+const generateMerkle = async () => {
   let responseGuardians = {} as MerkleResponseProps;
   let responseLunar = {} as MerkleResponseProps;
+  //merkle proof axios
+  try {
+    const requestBodyGuardians = {
+      whitelist: 'https://gateway.pinata.cloud/ipfs/' + guardiansBaseCID,
+      leafToVerify: MetaMaskAccounts[0],
+    };
+    responseGuardians = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyGuardians);
+    console.log(responseGuardians);
+  } catch {
+    console.log('responseGuardians is not found!');
+  }
+
+  try {
+    const requestBodyLunars = {
+      whitelist: 'https://gateway.pinata.cloud/ipfs/' + lunarsBaseCID,
+      leafToVerify: MetaMaskAccounts[0],
+    };
+    responseLunar = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyLunars);
+    console.log(responseLunar);
+  } catch {
+    console.log('responseLunar is not found!');
+  }
+
+  return[responseGuardians, responseLunar];
+};
+
+const mintGenesis = async (
+  contract: ethers.Contract,
+  responseGuardians: MerkleResponseProps,
+  responseLunar: MerkleResponseProps
+) => {
+  try {
+    contract
+      .mintBobot(responseGuardians?.data?.proof, responseLunar?.data?.proof)
+      .then((response: any) => {
+        console.log('mint response: ', response);
+
+        response
+          .wait()
+          .then((waitResponse: any) => {
+            if (waitResponse.status === 1) {
+              blockchain.Mint_Callback(blockchain.BlockchainError.NoError);
+            }
+          })
+          .catch((error: any) => console.log(error));
+      })
+      .catch((error: any) => console.log(error));
+  } catch {
+    //error detection
+    blockchain.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
+  }
+};
+
+//mint bobot
+export async function MintBobot() {
+  const [responseGuardians, responseLunar] = await generateMerkle();
 
   if ((window as any).ethereum) {
-    //merkle proof axios
-    try {
-      const requestBodyGuardians = {
-        whitelist: 'https://gateway.pinata.cloud/ipfs/' + guardiansBaseCID,
-        leafToVerify: MetaMaskAccounts[0],
-      };
-      responseGuardians = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyGuardians);
-      console.log(responseGuardians);
-    } catch {
-      console.log('responseGuardians is not found!');
-    }
-
-    try {
-      const requestBodyLunars = {
-        whitelist: 'https://gateway.pinata.cloud/ipfs/' + lunarsBaseCID,
-        leafToVerify: MetaMaskAccounts[0],
-      };
-      responseLunar = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyLunars);
-      console.log(responseLunar);
-    } catch {
-      console.log('responseLunar is not found!');
-    }
-
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
     console.log(contract);
 
-    try {
-      contract
-        .mintBobot(responseGuardians?.data?.proof, responseLunar?.data?.proof)
-        .then((response: any) => {
-          console.log('mint response: ', response);
-
-          response
-            .wait()
-            .then((waitResponse: any) => {
-              if (waitResponse.status === 1) {
-                blockchain.Mint_Callback(blockchain.BlockchainError.NoError);
-              }
-            })
-            .catch((error: any) => console.log(error));
-        })
-        .catch((error: any) => console.log(error));
-    } catch {
-      //error detection
-      blockchain.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
-    }
+    provider
+      .getNetwork()
+      .then((response) => {
+        if (verifyNetwork(response) === true) {
+          mintGenesis(contract, responseGuardians, responseLunar);
+        } else {
+          console.log('Cannot mint due to incorrect network!');
+        }
+      })
+      .catch((error) => console.log(error));
   }
 }
