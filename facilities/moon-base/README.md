@@ -35,9 +35,3 @@ Players can obtain new Lands by crafting them through the Crafting Table. Each p
 Bobots level up while earning core points. Bobots level up once they have earned the maximum amount of core points for their current level, up to a max level determined by the collection that the Bobot originates from.&#x20;
 
 Features that use the Leveling System will be introduced in the future.&#x20;
-
-## Invasion
-
-Fight against a relentless hoard and defend your Moon Base!&#x20;
-
-Game mode still in development, more details will be released in the future.&#x20;

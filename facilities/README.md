@@ -2,7 +2,9 @@
 description: Where everything comes together.
 ---
 
-# 📺 Bridge
+# 📺 Facilities
+
+## Bridge
 
 Players will be greeted by the Bridge when they first enter the game. Here, the player can access every other facility in the game.&#x20;
 
