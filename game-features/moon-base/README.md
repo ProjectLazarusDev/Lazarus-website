@@ -4,7 +4,7 @@ description: Build your base!
 
 # 🌗 Moon Base
 
-The Moon Base will be the baseline of gameplay in the Bobots metaverse. In the Moon Base, players will be able to stake Bobots to farm for Core Points and $MAGIC. The resources gained from staking can then be used to craft and build more structures, thus increasing the returns a player can get over time!
+The Moon Base will be the baseline of gameplay in the Bobots metaverse. In the Moon Base, players will be able to stake Bobots to collect Core Points and $MAGIC. The resources gained from staking can then be used to craft and build more structures, thus increasing the returns a player can get over time!
 
 There are 3 core systems that make up the Moon Base:&#x20;
 
