@@ -1,6 +1,11 @@
 # 🏁 Black Box
 
-The Black Box is where players can explore the lore and partners in the metaverse. Interact with any of the installations to zoom into them and learn more!&#x20;
+_Contact established._ \
+_Initializing communication protocols..._ \
+_Communication lines active._ \
+_Welcome aboard the Monolift._&#x20;
+
+The Black Box is where players can explore the lore and partners in the metaverse. Interact with any of the installations to zoom in and learn more!&#x20;
 
 ### Lore
 
@@ -16,6 +21,6 @@ Partnered projects will have their own panels and lore regarding their landing o
 
 ### Community Creations
 
-Due to the large number of talented individuals in the Bobots Community, we have opened up a section in the Black Box dedicated to the winners of any of the creative competitions! Join us on Discord for a chance for one of your works to be featured!&#x20;
+Due to the large number of talented individuals in the Bobots Community, we have opened up a section in the Black Box dedicated to the winners of any of the creative contests! Join us on Discord for a chance for one of your works to be featured!&#x20;
 
 \[IMAGE: SCREENSHOT OF FAN ART AREA FROM IN-GAME]
