@@ -4,7 +4,7 @@ description: FREE MINT GRINDING!
 
 # 😁 Genesis Bobots
 
-![Bobots Genesis](../../.gitbook/assets/banner.jpg)
+![Bobots Genesis](../../../.gitbook/assets/banner.jpg)
 
 ## Free Mint!
 
@@ -24,4 +24,4 @@ description: FREE MINT GRINDING!
 
 The following table is the amount of core points that players can earn:
 
-![](<../../.gitbook/assets/image (8).png>)
+![](<../../../.gitbook/assets/image (8).png>)

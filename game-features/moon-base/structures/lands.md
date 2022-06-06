@@ -8,6 +8,6 @@ Higher tiered Land NFTs provide more returns to the player compared to their low
 
 Lands will wear out and have a chance to break after a while, so tread wisely! While new, some Lands may have Break Immunity, so they will not break until the Immunity has been used up.&#x20;
 
-{% content-ref url="../../../tokenomics/land-nft/" %}
-[land-nft](../../../tokenomics/land-nft/)
+{% content-ref url="../../../nfts/land-nft/" %}
+[land-nft](../../../nfts/land-nft/)
 {% endcontent-ref %}

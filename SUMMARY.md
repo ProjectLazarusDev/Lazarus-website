@@ -1,51 +1,35 @@
 # Table of contents
 
-## About Bobots
+* [Bobots](README.md)
+* [Player Goals](player-goals.md)
+* [📺 Game Features](game-features/README.md)
+  * [🔫 Boot-up Station](game-features/boot-up-station.md)
+  * [🌗 Moon Base](game-features/moon-base/README.md)
+    * [Structures](game-features/moon-base/structures/README.md)
+      * [Foundations](game-features/moon-base/structures/foundations.md)
+      * [Crafting Table](game-features/moon-base/structures/crafting-table.md)
+      * [Lands](game-features/moon-base/structures/lands.md)
+      * [Decorations](game-features/moon-base/structures/decorations.md)
+  * [🏡 Central Hub](game-features/central-hub.md)
+  * [🏁 Black Box](game-features/black-box.md)
+* [NFTs](nfts/README.md)
+  * [🤖 Bobot NFT](nfts/bobot-nft/README.md)
+    * [🤪 Nanobots](nfts/bobot-nft/nanobots.md)
+    * [😁 Genesis Bobots](nfts/bobot-nft/genesis-bobots/README.md)
+      * [🤖 Genesis Avatar](nfts/bobot-nft/genesis-bobots/genesis-avatar.md)
+    * [😤 Megabots](nfts/bobot-nft/megabots.md)
+  * [🏝 Land NFT](nfts/land-nft/README.md)
+    * [🔋 Core Chamber](nfts/land-nft/core-chamber.md)
+    * [📟 Mining Drill](nfts/land-nft/mining-drill.md)
+    * [🛸 Launch Pad](nfts/land-nft/launch-pad.md)
+* [Ecosystem](ecosystem/README.md)
+  * [💰 TreasureDAO](ecosystem/treasuredao.md)
+  * [💵 Tokenomics](ecosystem/tokenomics.md)
+* [Road Map](road-map.md)
+* [💾 Technology](technology.md)
+* [🤝 Team](team.md)
+* [🔗 Contact Us](contact-us.md)
 
-* [📺 Introduction](README.md)
-* [📙 Lore](about-bobots/lore.md)
-* [🛣 Road Map](about-bobots/road-map.md)
-* [🤝 Team Members](about-bobots/team-members.md)
-* [🚧 Arbitrum](about-bobots/arbitrum.md)
+## Player Guides
 
-## Ecosystem
-
-* [🌎 Overview](ecosystem/overview.md)
-* [💰 TreasureDAO](ecosystem/treasuredao.md)
-* [💵 Consumables and Currency](ecosystem/consumables-and-currency.md)
-
-## Facilities
-
-* [📺 Bridge](facilities/bridge.md)
-* [🔫 Boot-up Station](facilities/boot-up-station.md)
-* [🏡 Central Hub](facilities/central-hub.md)
-* [🌗 Moon Base](facilities/moon-base/README.md)
-  * [Structures](facilities/moon-base/structures/README.md)
-    * [Foundations](facilities/moon-base/structures/foundations.md)
-    * [Crafting Table](facilities/moon-base/structures/crafting-table.md)
-    * [Lands](facilities/moon-base/structures/lands.md)
-    * [Decorations](facilities/moon-base/structures/decorations.md)
-* [🏁 Black Box](facilities/black-box.md)
-
-## TOKENOMICS
-
-* [🤖 Bobot NFT](tokenomics/bobot-nft/README.md)
-  * [🤪 Nanobots](tokenomics/bobot-nft/nanobots.md)
-  * [😁 Genesis Bobots](tokenomics/bobot-nft/genesis-bobots.md)
-  * [😤 Megabots](tokenomics/bobot-nft/megabots.md)
-* [🏝 Land NFT](tokenomics/land-nft/README.md)
-  * [🔋 Core Chamber](tokenomics/land-nft/core-chamber.md)
-  * [📟 Mining Drill](tokenomics/land-nft/mining-drill.md)
-  * [🛸 Launch Pad](tokenomics/land-nft/launch-pad.md)
-
-## Bobot Avatar
-
-* [🤖 Genesis Avatar](bobot-avatar/genesis-avatar.md)
-
-## TECH
-
-* [💾 Tech Stack](tech/tech-stack.md)
-
-## References
-
-* [🔗 Contact Us](references/contact-us.md)
+* [🚧 Arbitrum](player-guides/arbitrum.md)

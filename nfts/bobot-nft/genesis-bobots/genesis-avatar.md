@@ -4,9 +4,9 @@ description: >-
   unique traits
 ---
 
-# 🤖 Season 1 Avatar
+# 🤖 Genesis Avatar
 
-![Launch bobots](../.gitbook/assets/banner.jpg)
+![Launch bobots](../../../.gitbook/assets/banner.jpg)
 
 Season 1 will launch with a total of 4040 Bobots under fair launch. All whitelisted users will receive 2 Bobots.
 

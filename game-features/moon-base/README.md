@@ -4,7 +4,7 @@ description: Build your base!
 
 # 🌗 Moon Base
 
-The Moon Base will be the baseline of gameplay in the Bobots metaverse. In the Moon Base, players will be able to stake Bobots to farm for Core Points and $MAGIC. The resources gained from staking can then be used to craft and build more structures, thus increasing the returns a player can get over time!
+The Moon Base will be the baseline of gameplay in the Bobots metaverse. In the Moon Base, players will be able to stake Bobots to collect Core Points and $MAGIC. The resources gained from staking can then be used to craft and build more structures, thus increasing the returns a player can get over time!
 
 There are 3 core systems that make up the Moon Base:&#x20;
 
@@ -35,9 +35,3 @@ Players can obtain new Lands by crafting them through the Crafting Table. Each p
 Bobots level up while earning core points. Bobots level up once they have earned the maximum amount of core points for their current level, up to a max level determined by the collection that the Bobot originates from.&#x20;
 
 Features that use the Leveling System will be introduced in the future.&#x20;
-
-## Invasion
-
-Fight against a relentless hoard and defend your Moon Base!&#x20;
-
-Game mode still in development, more details will be released in the future.&#x20;
