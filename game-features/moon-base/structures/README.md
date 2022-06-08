@@ -1,6 +1,6 @@
 # Structures
 
-There are 4 categories of structures that players can build in their moon base:
+There are 4 categories of structures that players can build in the Moon Base:
 
 {% content-ref url="foundations.md" %}
 [foundations.md](foundations.md)
@@ -10,8 +10,8 @@ There are 4 categories of structures that players can build in their moon base:
 [crafting-table.md](crafting-table.md)
 {% endcontent-ref %}
 
-{% content-ref url="lands.md" %}
-[lands.md](lands.md)
+{% content-ref url="../../../nfts/land-nfts/" %}
+[land-nfts](../../../nfts/land-nfts/)
 {% endcontent-ref %}
 
 {% content-ref url="decorations.md" %}

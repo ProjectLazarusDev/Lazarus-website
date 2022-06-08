@@ -6,15 +6,9 @@
 
 Send Bobots out on missions at a chance to earn much more resources in a short period of time**.** Missions refresh every 24 hours.&#x20;
 
-If a mission fails, the $MAGIC spent will go to the Treasury. If a player unstakes a Bobot before the mission duration is completed, the mission will immediately fail.&#x20;
+If a mission fails, the $MAGIC spent will go to the Treasury. If a player unstakes a Bobot before the mission duration is completed, the mission will immediately fail and the player will not receive any rewards.&#x20;
 
-**Launch cost:** 10 $MAGIC
-
-![Rewards and mission durations for Nanobots](<../../.gitbook/assets/image (12).png>)
-
-![Rewards and mission durations for Genesis Bobots](<../../.gitbook/assets/image (3).png>)
-
-![Rewards and mission durations for Megabots](<../../.gitbook/assets/image (4).png>)
+**Mission Launch cost:** ~~10~~ 5 $MAGIC
 
 ### Tier Bronze
 

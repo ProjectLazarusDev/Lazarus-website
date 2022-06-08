@@ -2,7 +2,7 @@
 description: Minions go beep-boop
 ---
 
-# 🤪 Nanobots
+# Nanobots
 
 ## **Low Level Entry Point**
 

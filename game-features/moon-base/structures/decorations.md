@@ -1,3 +1,3 @@
 # Decorations
 
-Decorations are aesthetics that allow players to pimp up their Moon Base. More functionalities on expanding the decorations will be announced later.&#x20;
+Decorations are objects that allow players to pimp up their Moon Base. More details on decorations will be release at a later date!&#x20;

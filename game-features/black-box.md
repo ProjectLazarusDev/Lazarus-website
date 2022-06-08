@@ -1,9 +1,9 @@
-# 🏁 Black Box
+# Black Box
 
-_Contact established._ \
+_Friendly signal detected._ \
 _Initializing communication protocols..._ \
 _Communication lines active._ \
-_Welcome aboard the Monolift._&#x20;
+_Hello, partner._&#x20;
 
 The Black Box is where players can explore the lore and partners in the metaverse. Interact with any of the installations to zoom in and learn more!&#x20;
 

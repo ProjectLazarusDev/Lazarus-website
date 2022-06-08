@@ -1,8 +1,4 @@
----
-description: Mint!
----
-
-# 🔫 Boot-up Station
+# Boot-up Station
 
 _Requesting for new Bobot production from Nexus..._ \
 _Parts Assembled._ \

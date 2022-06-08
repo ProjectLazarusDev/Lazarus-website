@@ -1,4 +1,4 @@
-# 🏡 Central Hub
+# Central Hub
 
 _More Bobots._ \
 _More BBNauts._ \

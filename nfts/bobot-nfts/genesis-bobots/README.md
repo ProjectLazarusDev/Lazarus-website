@@ -1,8 +1,4 @@
----
-description: FREE MINT GRINDING!
----
-
-# 😁 Genesis Bobots
+# Genesis Bobots
 
 ![Bobots Genesis](../../../.gitbook/assets/banner.jpg)
 
