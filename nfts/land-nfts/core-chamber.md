@@ -1,10 +1,6 @@
----
-description: Leveling up Bobots!
----
-
 # 🔋 Core Chamber
 
-![Core Chamber on moon base - WIP](<../../.gitbook/assets/image (4) (1) (1).png>)
+![Core Chamber - WIP](<../../.gitbook/assets/image (4) (1) (1).png>)
 
 Earns core points and levels up staked Bobots over time, up to a limit. The tier of the Bobot will affect how fast the Bobot will take to level up, and the maximum amount of Core Points it can hold. If the player decides to unstake, the full stake cost will be returned to the player.
 
