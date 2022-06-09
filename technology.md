@@ -1,4 +1,4 @@
-# 💾 Tech Stack
+# 💾 Technology
 
 The Bobots Project utilizes a wide range of software and technology to it's full extent.
 
@@ -12,5 +12,4 @@ Such a stack would include:
 * C#
 * Solidity
 
-Bobots will have its own game app there is being hosted in our official website. Here users can find more information.
-
+Bobots is being hosted on our official website, [https://bobots.io/](https://bobots.io/)

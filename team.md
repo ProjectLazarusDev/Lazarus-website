@@ -1,4 +1,4 @@
-# 🤝 Team Members
+# 🤝 Team
 
 Bobots is created by the Project Lazarus Team.&#x20;
 
@@ -6,7 +6,7 @@ Bobots is created by the Project Lazarus Team.&#x20;
 
 The team consist of people from varying technical and artistic backgrounds. Forming close relationships over many years, the development team has a wide range of skills and experience from game development and custom 3D engines, to VFX and web development.&#x20;
 
-The team is specifically formed to complement our different skillsets to create something new for the blockchain community.
+The team is specifically formed to complement our different skillsets to create something new and exciting for the blockchain community.
 
 ## Team Lineup
 
@@ -15,6 +15,10 @@ The team is specifically formed to complement our different skillsets to create 
 * **Farzaana** - Blockchain / Smart Contracts
 * **Elston** - Marketing / Community
 * **Yien** - Multiplayer / Unity Developer
+* **Keff** -&#x20;
+* **Sherman** -&#x20;
+* **Qi Wen** -&#x20;
+* **Ryan** -&#x20;
 
 ## Edmund
 
