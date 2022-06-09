@@ -2,7 +2,7 @@
 
 These are the links in this section:
 
-**Website:**
+**Link to the game:**
 
 {% embed url="https://bobots.io" %}
 
