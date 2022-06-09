@@ -50,6 +50,9 @@ export async function GetBobotsAllURI() {
     }
 
     blockchain.CompletedTokenURI_Callback();
+    blockchain.CompletedTokenStakeStatus_Callback();
+    //TODO: calling this function will crash, dbl check w ylen
+    //blockchain.LoadingScreenToggle_Callback(0);
   }
 }
 
