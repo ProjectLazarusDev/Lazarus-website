@@ -6,7 +6,7 @@ _AI uploaded._ \
 _Functionalities tested._ \
 _Ready for deployment._&#x20;
 
-The Boot-up Station is the starting point for brand new Bobots. Here, players can mint their Bobots!&#x20;
+The Boot-up Station is the starting point for brand new Bobots. Here, players can mint their Bobots after being whitelisted.&#x20;
 
 ![\[IMAGE NEED TO UPDATE: NAME OF LOCATION AND UI IS OUTDATED\]](<../.gitbook/assets/image (6) (1).png>)
 
