@@ -7,9 +7,9 @@ _Welcome home._&#x20;
 
 Most of the gameplay elements in Bobots can be found in the Moon Base. Here, players can stake their Bobots to collect Core Points and $MAGIC. The resources gained from staking can then be used to craft and build more structures, thus increasing the returns a player can get over time!
 
-## **Core Points** <a href="#core-points" id="core-points"></a>
+### **Core Points** <a href="#core-points" id="core-points"></a>
 
-Core Points determine how many Lands and Decorations can be placed in the moon base at once. Different structures in the game will cost different amounts of Core Points to be placed, and these Core Points will be returned to the player when a structure is removed from the Moon Base.&#x20;
+Core Points determine how many Lands and Decorations can be placed in the moon base at once. Different structures in the game will cost different amounts of Core Points to be placed, and these Core Points will be returned to the player once a structure is removed from the Moon Base.&#x20;
 
 Core Points can be earned by staking Bobots in the Core Chamber and launching Bobots on missions through the Launch Pad. Each Bobot stores all the Core Points that they have earned individually, and level up as they gain Core Points. Each Bobot has a maximum amount of Core Points that they can accumulate.&#x20;
 
@@ -17,17 +17,17 @@ If a player loses possession of a Bobot, they will also lose all the Core Points
 
 ![Moon Base Prototype](../../.gitbook/assets/moonbase.jpg)
 
-## Staking System
+### Staking System
 
 Players can stake their Bobots on any of their lands placed in their Moon Base. Players can stake their Bobots to earn Core Points and $MAGIC. The rates of collecting these resources will differ for the different tiers of Bobots and the Lands they are staked on.
 
 \[IMAGE: STAKING UI PROTOTYPE]
 
-## Crafting System
+### Crafting System
 
 Players can obtain new Lands by crafting them through the Crafting Table. Each player owns 1 Crafting Table, and it must be placed in the Moon Base in order to craft Lands.&#x20;
 
-## Leveling System
+### Leveling System
 
 Bobots level up once they have earned the maximum amount of Core Points for their current level, up to a max level determined by the collection that the Bobot originates from.&#x20;
 
