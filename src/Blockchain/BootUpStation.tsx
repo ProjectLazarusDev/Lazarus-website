@@ -167,7 +167,7 @@ const mintGenesis = async (
   const proofGuardian: String[] = responseGuardians?.data?.proof === undefined ? [] : responseGuardians?.data?.proof;
   const proofLunar: String[] = responseLunar?.data?.proof === undefined ? [] : responseLunar?.data?.proof;
 
-  if (proofGuardian.length == 0 && proofLunar.length == 0) {
+  if (proofGuardian.length === 0 && proofLunar.length === 0) {
     console.log('You are not whitelisted to mint!');
   } else {
     try {
