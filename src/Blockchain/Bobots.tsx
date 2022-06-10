@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 
-import { contractAddress } from './ContractAddress';
+import { bobotGenesisAddress } from './ContractAddress';
 
 import BobotGenesisABI from '../ABI/BobotGenesis.json';
 
@@ -13,7 +13,7 @@ export async function GetBobotsAllURI() {
     var t: number[] = [];
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(contractAddress, BobotGenesisABI.abi, signer);
+    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
     console.log(contract);
 
     try {
@@ -37,7 +37,7 @@ export async function GetBobotsAllURI() {
     //get all tokenURI
     for (var index = 0; index < t.length; index++) {
       try {
-        const response = await contract.tokenURI(t[index]);
+        const response = await contract.getTokenURI(t[index]);
         console.log('response: ', response);
         blockchain.RecieveTokenURI_Callback(response as string);
         //send response back to game engine
@@ -50,6 +50,9 @@ export async function GetBobotsAllURI() {
     }
 
     blockchain.CompletedTokenURI_Callback();
+    blockchain.CompletedTokenStakeStatus_Callback();
+    //TODO: calling this function will crash, dbl check w ylen
+    //blockchain.LoadingScreenToggle_Callback(0);
   }
 }
 

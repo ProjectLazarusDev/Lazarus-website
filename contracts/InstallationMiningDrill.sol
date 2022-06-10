@@ -46,6 +46,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 //import Bobot genesis
 import "./BobotGenesis.sol";
+import "./BobotMegaBot.sol";
 
 contract MiningDrill is Ownable 
 {
@@ -56,6 +57,9 @@ contract MiningDrill is Ownable
 
     //bobots genesis contract
     BobotGenesis public bobotGenesis;
+
+    // bobots megabots contract 
+    BobotMegaBot public bobotMegabot;
 
     // For each token, this map stores the current block.number
     // if token is mapped to 0, it is currently unstaked.
@@ -135,15 +139,15 @@ contract MiningDrill is Ownable
     */
     /**************************************************************************/
     function stake(uint256 tokenId) public {
-        require(
-            ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
-            "You are not the owner of this token"
-        );
+    //     require(
+    //         ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
+    //         "You are not the owner of this token"
+    //     );
 
-        tokenToWhenStaked[tokenId] = block.number;
+    //     tokenToWhenStaked[tokenId] = block.number;
         
-        ERC721NES( address(bobotGenesis)).
-        stakeFromController(tokenId, msg.sender);
+    //     ERC721NES( address(bobotGenesis)).
+    //     stakeFromController(tokenId, msg.sender);
     }
 
     /**************************************************************************/
@@ -153,15 +157,15 @@ contract MiningDrill is Ownable
     /**************************************************************************/
 
     function unstake(uint256 tokenId) public {
-        require(
-            ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
-            "You are not the owner of this token"
-        );
+    //     require(
+    //         ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
+    //         "You are not the owner of this token"
+    //     );
 
-        tokenToTotalDurationStaked[tokenId] += getCurrentAdditionalBalance(
-            tokenId
-        );
-        ERC721NES( address(bobotGenesis)).unstakeFromController(tokenId, msg.sender);
+    //     tokenToTotalDurationStaked[tokenId] += getCurrentAdditionalBalance(
+    //         tokenId
+    //     );
+    //     ERC721NES( address(bobotGenesis)).unstakeFromController(tokenId, msg.sender);
     }
 
     //admin function

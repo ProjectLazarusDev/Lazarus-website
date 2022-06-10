@@ -51,11 +51,13 @@ import "@openzeppelin/contracts/utils/math/Math.sol";
 
 //other staking contracts
 import "./InstallationCoreChamber.sol";
+import "./ILandTier.sol";
 
 //$MAGIC transactions
 import "./Magic20.sol";
 
-contract BobotsLandItem is ERC721EnumerableUpgradeable, OwnableUpgradeable {
+contract BobotsLandItem is ERC721EnumerableUpgradeable, OwnableUpgradeable
+{
     using SafeERC20Upgradeable for IERC20Upgradeable;
     using AddressUpgradeable for address;
     using CountersUpgradeable for CountersUpgradeable.Counter;

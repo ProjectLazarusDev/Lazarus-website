@@ -41,132 +41,127 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 pragma solidity ^0.8.13;
-import "./ERC721NES.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-
 
 //import Bobot genesis
 import "./BobotGenesis.sol";
+import "./BobotMegaBot.sol";
+import "./interfaces/IBobot.sol";
 
-
-contract CoreChamber is Ownable 
+contract CoreChamber is OwnableUpgradeable
 {
+    uint256 public constant WEEK = 7 days;
 
-    // block number multiplier to determine the balance to accrue
-    // during the duration staked. Defaults to 1.
-    uint256 multiplier = 1;
+    uint256 public corePointsPerWeekGenesis;
+    uint256 public corePointsPerWeekMegabot;
 
     //bobots genesis contract
     BobotGenesis public bobotGenesis;
 
-    // For each token, this map stores the current block.number
-    // if token is mapped to 0, it is currently unstaked.
-    mapping(uint256 => uint256) public tokenToWhenStaked;
+    //bobots megabots contract 
+    BobotMegaBot public bobotMegabot;
+   
+    uint256 public totalCorePointsStored;
 
-    // For each token, this map stores the total duration staked
-    // measured by block.number
-    mapping(uint256 => uint256) public tokenToTotalDurationStaked;
+    uint256 public lastRewardTimestamp;
 
-    
-    /**************************************************************************/
-    /*!
-       \brief constructor
-    */
-    /**************************************************************************/
-    constructor( uint256 _multipler) 
-    {
-        multiplier = _multipler;
+    uint256 public genesisSupply;
+    uint256 public megabotSupply;
+
+    mapping(uint256 => uint256) public genesisTimestampJoined;
+    mapping(uint256 => uint256) public megabotTimestampJoined;
+
+    modifier atCoreChamberGenesis(uint256 _tokenId, bool atCore) {
+        require(isAtCoreChamberGenesis(_tokenId) == atCore, "Core chamber: wrong attendance");
+        _;
     }
-
-    /**************************************************************************/
-    /*!
-       \brief check if token is staked
-    */
-    /**************************************************************************/
-
-    function checkStakeStatus(uint256 tokenId) public view returns (uint256) {
-        return tokenToWhenStaked[tokenId];
+    function isAtCoreChamberGenesis(uint256 _tokenId) public view returns (bool) {
+        return genesisTimestampJoined[_tokenId] > 0;
     }
-
-    /**************************************************************************/
-    /*!
-       \brief returns the additional balance between when token was staked until now
-    */
-    /**************************************************************************/
-    function getCurrentAdditionalBalance(uint256 tokenId)
-        public
-        view
-        returns (uint256)
-    {
-        if (tokenToWhenStaked[tokenId] > 0) {
-            return block.number - tokenToWhenStaked[tokenId];
-        } else {
-            return 0;
+    modifier atCoreChamberMegabot(uint256 _tokenId, bool atCore) {
+        require(isAtCoreChamberMegabot(_tokenId) == atCore, "Core chamber: wrong attendance");
+        _;
+    }
+    function isAtCoreChamberMegabot(uint256 _tokenId) public view returns (bool) {
+        return megabotTimestampJoined[_tokenId] > 0;
+    }
+    modifier onlyGenesisOwner(uint256 _tokenId) {
+        require(bobotGenesis.ownerOf(_tokenId) == msg.sender, "Genesis: only owner can send to core chamber");
+        _;
+    }
+    modifier onlyMegabotOwner(uint256 _tokenId) {
+        require(bobotMegabot.ownerOf(_tokenId) == msg.sender, "Megabot: only megabot owner can send to core chamber");
+        _;
+    }
+    modifier updateTotalCorePoints(bool isJoining, IBobot.BobotType _bobotType) {
+        if (genesisSupply > 0) {
+            totalCorePointsStored = totalCorePoints();
         }
+        lastRewardTimestamp = block.timestamp;
+        if(_bobotType == IBobot.BobotType.BOBOT_GEN)
+            isJoining ? genesisSupply++ : genesisSupply--;
+        if(_bobotType == IBobot.BobotType.BOBOT_MEGA)
+            isJoining ? megabotSupply++ :  megabotSupply--;
+        _;
     }
 
-    /**************************************************************************/
-    /*!
-       \brief returns total duration the token has been staked.
-    */
-    /**************************************************************************/
-    function getCumulativeDurationStaked(uint256 tokenId)
-        public
-        view
-        returns (uint256)
+    function totalCorePoints() public view returns (uint256) {
+        uint256 timeDelta = block.timestamp - lastRewardTimestamp;
+        return totalCorePointsStored +
+         (genesisSupply * corePointsPerWeekGenesis * timeDelta / WEEK) + 
+         (megabotSupply * corePointsPerWeekMegabot * timeDelta / WEEK);
+    }
+
+
+    function corePointsEarnedGenesis(uint256 _tokenId) public view 
+    returns (uint256 points) 
     {
-        return
-            tokenToTotalDurationStaked[tokenId] +
-            getCurrentAdditionalBalance(tokenId);
+        if (genesisTimestampJoined[_tokenId] == 0) return 0;
+        uint256 timedelta = block.timestamp -  genesisTimestampJoined[_tokenId];
+        points = corePointsPerWeekGenesis * timedelta / WEEK;
     }
-
-    /**************************************************************************/
-    /*!
-       \brief Returns the amount of tokens rewarded up until this point.
-    */
-    /**************************************************************************/
-
-    function getStakingRewards(uint256 tokenId) public view returns (uint256) 
+    function corePointsEarnedMegabot(uint256 _tokenId) public view 
+    returns (uint256 points) 
     {
-        // allows for toke accumulation at ~ 10 per hour
-        return getCumulativeDurationStaked(tokenId) * multiplier; 
+        if (megabotTimestampJoined[_tokenId] == 0) return 0;
+        uint256 timedelta = block.timestamp -  megabotTimestampJoined[_tokenId];
+        points = corePointsPerWeekMegabot * timedelta / WEEK;
+    }
+    function stakeGenesis(uint256 _tokenId)  
+        external
+        onlyGenesisOwner(_tokenId)
+        atCoreChamberGenesis(_tokenId, false)
+        updateTotalCorePoints(true,IBobot.BobotType.BOBOT_GEN) {
+        genesisTimestampJoined[_tokenId] = block.timestamp;
     }
 
-    /**************************************************************************/
-    /*!
-       \brief Stakes a token and records the start block number or time stamp.
-    */
-    /**************************************************************************/
-    function stake(uint256 tokenId) public {
-        require(
-            ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
-            "You are not the owner of this token"
-        );
-
-        tokenToWhenStaked[tokenId] = block.number;
-        
-        ERC721NES( address(bobotGenesis)).
-        stakeFromController(tokenId, msg.sender);
+    function unstakeGenesis(uint256 _tokenId) 
+        external
+        onlyGenesisOwner(_tokenId)
+        atCoreChamberGenesis(_tokenId, true)
+        updateTotalCorePoints(false,IBobot.BobotType.BOBOT_GEN)
+        {
+        bobotGenesis.coreChamberCorePointUpdate(_tokenId, corePointsEarnedGenesis(_tokenId));
+        genesisTimestampJoined[_tokenId] = 0;
+    }
+    function stakeMegabot(uint256 _tokenId)  
+        external
+        onlyMegabotOwner(_tokenId)
+        atCoreChamberMegabot(_tokenId, false)
+        updateTotalCorePoints(true,IBobot.BobotType.BOBOT_MEGA) {
+        megabotTimestampJoined[_tokenId] = block.timestamp;
     }
 
-    /**************************************************************************/
-    /*!
-       \brief Unstakes a token and records the start block number or time stamp.
-    */
-    /**************************************************************************/
-
-    function unstake(uint256 tokenId) public {
-        require(
-            ERC721NES( address(bobotGenesis)).ownerOf(tokenId) == msg.sender,
-            "You are not the owner of this token"
-        );
-
-        tokenToTotalDurationStaked[tokenId] += getCurrentAdditionalBalance(
-            tokenId
-        );
-        ERC721NES( address(bobotGenesis)).unstakeFromController(tokenId, msg.sender);
+    function unstakeMegabot(uint256 _tokenId) 
+        external
+        onlyMegabotOwner(_tokenId)
+        atCoreChamberMegabot(_tokenId, true)
+        updateTotalCorePoints(false,IBobot.BobotType.BOBOT_MEGA)
+        {
+        bobotMegabot.coreChamberCorePointUpdate(_tokenId, corePointsEarnedMegabot(_tokenId));
+        megabotTimestampJoined[_tokenId] = 0;
     }
-
+  
     //admin function
 
     /**************************************************************************/
@@ -176,5 +171,17 @@ contract CoreChamber is Ownable
     /**************************************************************************/
     function setBobotGenesis(address _bobotGenesis) external onlyOwner {
         bobotGenesis = BobotGenesis(_bobotGenesis);
+    }
+
+   function setBobotMegabot(address _bobotMegabot) external onlyOwner {
+        bobotMegabot = BobotMegaBot(_bobotMegabot);
+    }
+
+    function setCorePointsPerWeekGenesis(uint256 _corePointsPerWeekGenesis) external onlyOwner {
+        corePointsPerWeekGenesis = _corePointsPerWeekGenesis;
+    }
+
+    function setCorePointsPerWeekMegabot(uint256 _corePointsPerWeekMegabot) external onlyOwner {
+        corePointsPerWeekMegabot = _corePointsPerWeekMegabot;
     }
 }

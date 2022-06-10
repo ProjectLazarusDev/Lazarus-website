@@ -1,8 +1,8 @@
 import {unityContext} from '../Context/UnityContext';
 import { ethers, BigNumber } from "ethers";
-import {coreChamberAddress,contractAddress } from './ContractAddress';
+import {installationCoreChamberAddress,bobotGenesisAddress } from './ContractAddress';
 import BobotGenesisABI from '../ABI/BobotGenesis.json'
-import BobotCoreChamberABI from '../ABI/CoreChamber.json'
+import installationCoreChamber from '../ABI/CoreChamber.json'
 //core chamber stake status callback
 function CoreChamberStakeStatusAccepted(status: number)
 {
@@ -29,7 +29,7 @@ async function CoreChamberGetBobotStakeStatus(tokenIDs: number)
 
         const provider = new ethers.providers.Web3Provider((window as any).ethereum);
         const signer = provider.getSigner();
-        const contract = new ethers.Contract(coreChamberAddress, BobotCoreChamberABI.abi, signer);
+        const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamber.output.abi, signer);
         console.log(contract);
         try
         {
@@ -62,7 +62,7 @@ async function CoreChamberStakeBobot(tokenIDs: number)
 
         const provider = new ethers.providers.Web3Provider((window as any).ethereum);
         const signer = provider.getSigner();
-        const contract = new ethers.Contract(coreChamberAddress, BobotCoreChamberABI.abi, signer);
+        const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamber.output.abi, signer);
         console.log(contract);
         try
         {
@@ -87,7 +87,7 @@ async function CoreChamberUnstakeBobot(tokenIDs: number)
 
         const provider = new ethers.providers.Web3Provider((window as any).ethereum);
         const signer = provider.getSigner();
-        const contract = new ethers.Contract(coreChamberAddress, BobotCoreChamberABI.abi, signer);
+        const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamber.output.abi, signer);
         console.log(contract);
         try
         {

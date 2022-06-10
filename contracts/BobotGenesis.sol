@@ -49,23 +49,18 @@ import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/utils/math/Math.sol";
 import "@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol";
+
 //other staking contracts
+import "./interfaces/IBobot.sol";
 import "./InstallationCoreChamber.sol";
+import "./interfaces/IStake.sol";
 
-//$MAGIC transactions
-import "./Magic20.sol";
-
-contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
+contract BobotGenesis is IBobot, ERC721EnumerableUpgradeable, OwnableUpgradeable 
+{
     using SafeERC20Upgradeable for IERC20Upgradeable;
     using AddressUpgradeable for address;
     using CountersUpgradeable for CountersUpgradeable.Counter;
     using StringsUpgradeable for uint256;
-
-    //magic contract
-    IERC20Upgradeable public magic;
-
-    uint256 currencyExchange = (10**9);
-    uint256 magicBalanceCost = 20;
 
     //revealed and unrevealed uri
     string public baseRevealedURI;
@@ -74,7 +69,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     string public baseExtention = ".json";
     uint256 public maxSupply = 4040;
     uint256 public maxMintAmount = 1;
-    uint256 public maxLevelAmount = 7;
+    uint256 public maxLevelAmount = 10;
     uint256 public currentLevelAmount = 0;
 
     //max bobots per account
@@ -93,7 +88,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     bytes32 public rootLunarsHash;
 
     //core chamber level update cost
-    uint256 public coreChamberLevelCost = 200;
+    uint256 public coreChamberLevelCost;
 
     //token id counter
     CountersUpgradeable.Counter private _tokenIdCounter;
@@ -115,6 +110,12 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     //is the contract running
     bool public paused = false;
 
+    function initialize(address _magicAddress) external initializer 
+    {
+        __ERC721Enumerable_init();
+        __Ownable_init();
+    }
+    
     //modifiers
     /**************************************************************************/
     /*!
@@ -136,7 +137,6 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     }
 
     // public
-
     /**************************************************************************/
     /*!
        \brief mint a bobot - multiple things to check 
@@ -149,11 +149,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     ) public payable {
         //is contract running?
         require(!paused);
-        require(
-            magic.balanceOf(msg.sender) / currencyExchange > magicBalanceCost,
-            "Not enough magic in wallet"
-        );
-
+       
         uint256 mintCount = 0;
         
         if (msg.sender != owner()) {
@@ -203,8 +199,6 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
                     mintCount = 2;
                     whitelistedAddressesLunarClaimed[msg.sender] = true;
                 }
-
-                
             }
         }
 
@@ -226,6 +220,18 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         uint256 nextTokenId = _getNextTokenId();
         _safeMint(msg.sender, nextTokenId);
     }
+
+    function getBobotType(uint256 _tokenID)
+        external
+        view
+        override
+        returns (BobotType)
+    {
+        return BobotType.BOBOT_GEN;
+    }
+
+
+
 
     /**************************************************************************/
     /*!
@@ -255,7 +261,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
        \brief return URI of a token - could be revealed or hidden
     */
     /**************************************************************************/
-    function tokenURI(uint256 tokenID)
+    function getTokenURI(uint256 tokenID)
         public
         view
         virtual
@@ -268,7 +274,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         );
 
         string memory currentBaseURI = _baseURI();
-        uint256 level = Math.min(
+        currentLevelAmount = Math.min(
             bobotCorePoints[tokenID] / coreChamberLevelCost,
             maxLevelAmount
         );
@@ -278,7 +284,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
                 baseRevealedURI,
                 tokenID.toString(),
                 "/",
-                level.toString(),
+                currentLevelAmount.toString(),
                 baseExtention
             )
         );
@@ -303,6 +309,23 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
 
     /**************************************************************************/
     /*!
+       \brief returns the bobots current level
+    */
+    /**************************************************************************/
+    function getCurrentBobotLevel(uint256 _tokenID) 
+        public 
+        view 
+        returns (uint256)
+    {
+
+        return  Math.min(
+            bobotCorePoints[_tokenID] / coreChamberLevelCost,
+            maxLevelAmount
+        );
+    }
+
+    /**************************************************************************/
+    /*!
        \brief earning core points logic
     */
     /**************************************************************************/
@@ -313,7 +336,7 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
         bobotCorePoints[_tokenId] += _coreEarned;
     }
 
-    //--------------- ADMIN FUNCTIONS ---------------------------------------------
+    //------------------------- ADMIN FUNCTIONS -----------------------------------
 
     function setRootGuardiansHash(bytes32 _rootHash) external onlyOwner {
         rootGuardiansHash = _rootHash;
@@ -375,15 +398,6 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
 
     /**************************************************************************/
     /*!
-       \brief set magic balance cost
-    */
-    /**************************************************************************/
-    function setMagicBalanceCost(uint256 _newAmount) public onlyOwner {
-        magicBalanceCost = _newAmount;
-    }
-
-    /**************************************************************************/
-    /*!
        \brief set base URI
     */
     /**************************************************************************/
@@ -398,15 +412,6 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     /**************************************************************************/
     function setBaseHiddenURI(string memory _newBaseURI) public onlyOwner {
         baseHiddenURI = _newBaseURI;
-    }
-
-    /**************************************************************************/
-    /*!
-       \brief set magic address
-    */
-    /**************************************************************************/
-    function setMagicAddress(address _address) public onlyOwner {
-        magic = IERC20Upgradeable(_address);
     }
 
     /**************************************************************************/
@@ -444,7 +449,6 @@ contract BobotGenesis is ERC721EnumerableUpgradeable, OwnableUpgradeable {
     {
         maxLevelAmount = _newLevelAmount;
     }
-
 
     /**************************************************************************/
     /*!
