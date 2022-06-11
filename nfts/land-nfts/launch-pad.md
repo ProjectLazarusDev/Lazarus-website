@@ -4,26 +4,28 @@
 
 ## **Launch Pad** <a href="#core-points" id="core-points"></a>
 
-Send Bobots out on missions at a chance to earn much more resources in a short period of time**.** Missions refresh every 24 hours.&#x20;
+Send Bobots out on missions and help them make **crucial decisions** during their encounters to earn resources, with a chance for them to even bring home nanobots!&#x20;
 
-If a mission fails, the $MAGIC spent will go to the Treasury. If a player unstakes a Bobot before the mission duration is completed, the mission will immediately fail and the player will not receive any rewards.&#x20;
+Before Bobots can be sent out on missions, the Launch Pad must be activated. Once activated, Bobots go on as many missions as the player desires, as long as the Launch Pad has enough activation time remaining for the selected mission! When activated, there is a chance that a Launch Pad will enter **Final Activation**: This Launch Pad can no longer be re-activated, and will break once the time runs out on this Launch Pad. Don't worry though, your Bobots will return safely before then!&#x20;
 
-**Mission Launch cost:** ~~10~~ 5 $MAGIC
+Removing your Bobot from its mission before it ends will result in no resources gained. Missions refresh every 12 hours.&#x20;
+
+**Activation cost:** 20 $MAGIC for 75hrs
 
 ### Tier Bronze
 
-**Break Immunity:** 4 missions&#x20;
+**Break Immunity:** 2 Activations&#x20;
 
-**Break Chance:** 15% chance of breaking after completing a mission after the 4th mission.&#x20;
+**Break Chance:** 15% chance of Final Activation after 2 Activations.&#x20;
 
 ### Tier Silver
 
-**Break Immunity:** 6 missions&#x20;
+**Break Immunity:** 3 Activations
 
-**Break Chance:** 12.5% chance of breaking after completing a mission after the 6th mission.
+**Break Chance:** 12.5% chance of Final Activation after 3 Activations.&#x20;
 
 ### Tier Gold
 
-**Break Immunity:** 8 missions&#x20;
+**Break Immunity:** 4 Activations
 
-**Break Chance:** 10% chance of breaking after completing a mission after the 8th mission.
+**Break Chance:** 10% chance of Final Activation after 4 Activations.&#x20;

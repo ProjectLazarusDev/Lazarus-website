@@ -12,6 +12,6 @@ There will be **multiple variants of Bobots**, each with their own tiers and ben
 [nanobots.md](nanobots.md)
 {% endcontent-ref %}
 
-{% content-ref url="genesis-bobots/" %}
-[genesis-bobots](genesis-bobots/)
+{% content-ref url="genesis-bobots.md" %}
+[genesis-bobots.md](genesis-bobots.md)
 {% endcontent-ref %}
