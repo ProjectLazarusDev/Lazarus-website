@@ -6,7 +6,7 @@ Earns Core Points and levels up staked Bobots over time, up to a limit. The tier
 
 **Stake cost:** 5 $MAGIC
 
-![](../../.gitbook/assets/CoreChamberTable.png)
+![](<../../.gitbook/assets/CoreChamberTable (2).png>)
 
 ### Tier Bronze
 
