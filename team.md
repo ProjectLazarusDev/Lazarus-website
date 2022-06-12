@@ -16,8 +16,8 @@ The team is specifically formed to complement our different skillsets to create 
 * **Elston** - Marketing / Community
 * **Yien** - Multiplayer / Unity Developer
 * **Keff** - Game Designer / Music and Sound Director
-* **Sherman** - Unity Developer
-* **Qi Wen** - Unity Developer
+* **Sherman** - Game Designer / Unity Developer
+* **Qi Wen** - Web Development / Unity Developer
 * **Ryan** - 3D Artist
 
 ### Edmund
@@ -46,11 +46,12 @@ Many years dabbling in both music and game design. Leading the game development 
 
 ### Sherman
 
-
+Unity developer and game designer that has worked on both commercial game engines and custom engines. Innovating and honing the Bobots experience.
 
 ### Qi Wen
 
-
+Software engineer assisting in web development and linking up of Smart Contracts with the Unity game. Likes bouldering in his free time.&#x20;
 
 ### Ryan
 
+3D Modeler with experience in game asset creation. Currently assisting with the construction of bobots.

@@ -1,4 +1,4 @@
-# 🛸 Launch Pad
+# Launch Pad
 
 ![Launch Pad Model - WIP](<../../.gitbook/assets/image (4) (1).png>)
 

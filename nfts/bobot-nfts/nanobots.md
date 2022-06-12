@@ -16,7 +16,7 @@ These little bots are the legacy models of Bobots. They can be mass-produced, an
 
 The following table is the amount of core points that players can earn:
 
-![](<../../.gitbook/assets/image (1).png>)
+![](<../../.gitbook/assets/Nanobot\_levels (1).png>)
 
 
 

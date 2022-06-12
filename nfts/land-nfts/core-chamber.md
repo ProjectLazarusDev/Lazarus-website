@@ -1,4 +1,4 @@
-# 🔋 Core Chamber
+# Core Chamber
 
 ![](<../../.gitbook/assets/image (4) (1) (1).png>)
 

@@ -1,4 +1,4 @@
-# 📟 Mining Drill
+# Mining Drill
 
 ![Drill Model - WIP](<../../.gitbook/assets/image (6) (1) (1).png>)
 

@@ -22,7 +22,7 @@ Along with the Bobot, new users will receive 1 bronze tier Mining Drill, 1 bronz
 
 The following table is the amount of core points that players can earn:
 
-![](<../../.gitbook/assets/image (8).png>)
+![](../../.gitbook/assets/GenBobot\_levels.png)
 
 ### Avatars
 
