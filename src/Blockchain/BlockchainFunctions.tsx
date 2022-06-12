@@ -20,11 +20,13 @@ export function BindToContext() {
   //mint
   unityContext.on('Mint_Request', bootUpStation.MintBobot);
 
+  //uri request
+  unityContext.on('GetAllTokenURIs_Request', bobots.GetBobotsAllURI);
+
   //stake
   unityContext.on('Stake_Request', bootUpStation.StakeBobot);
 
-  //uri request
-  unityContext.on('GetAllTokenURIs_Request', bobots.GetBobotsAllURI);
+  unityContext.on('GetAllTokenStakeStatus_Request', bobots.GetBobotsAllStakeStatus);
 
   //address and magic
   unityContext.on('GetUserData', user.GetUserData);
