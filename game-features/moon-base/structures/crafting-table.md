@@ -7,7 +7,7 @@ Every player owns 1 Crafting Table. After placing it down, a player can then sta
 
 Below is a table showing the drop rates for each structure and tier:&#x20;
 
-![](<../../../.gitbook/assets/image (9).png>)
+![](../../../.gitbook/assets/LandCraftingTable.png)
 
 More details on the Land NFTs:&#x20;
 

@@ -4,13 +4,13 @@ The Bobots Universe is made for casual gameplay interactions that everyone can b
 
 ### Bobot and Earn
 
-\[IMAGE: BASE BUILDING]
+![](.gitbook/assets/Bobots\_Moonbase\_Building.png)
 
 The core play-to-earn feature in Bobots can be accessed through the Lands in the [Moon Base](game-features/moon-base/). Place them down, and stake your Bobots there to allow them to gather valuable resources! Obtain higher quality Lands through crafting or trading with other players to increase the amount of rewards earned, and hoard Core Points to allow more Lands to be placed!&#x20;
 
 ### Bobot and Chill
 
-\[IMAGE: CHIT CHATTING]
+![](.gitbook/assets/Bobots\_CentralHub\_Mockup2.png)
 
 The more socially inclined can chill and chat with other players in the [Central Hub](game-features/central-hub.md) and [Black Box](game-features/black-box.md). Discuss about gameplay, lore, or anything at all!&#x20;
 

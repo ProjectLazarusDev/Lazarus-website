@@ -1,7 +1,5 @@
 # Nanobots
 
-\[IMAGE: NANOBOT (or many of them)]
-
 These little bots are the legacy models of Bobots. They can be mass-produced, and can do pretty much what a Genesis Bobot can at a lower efficiency. They may get destroyed and lost forever in dangerous situations, so be mindful of that! Players may stumble across nanobots floating around in space, or earn them through special events.&#x20;
 
 ## Specs

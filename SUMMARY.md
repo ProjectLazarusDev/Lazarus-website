@@ -20,12 +20,12 @@
     * [🔋 Core Chamber](nfts/land-nfts/core-chamber.md)
     * [📟 Mining Drill](nfts/land-nfts/mining-drill.md)
 * [Ecosystem](ecosystem/README.md)
-  * [💰 Bobots Treasury](ecosystem/treasuredao.md)
+  * [Bobots Treasury](ecosystem/treasuredao.md)
 * [Road Map](road-map.md)
-* [💾 Technology](technology.md)
-* [🤝 Team](team.md)
-* [🔗 Contact Us](contact-us.md)
+* [Technology](technology.md)
+* [Team](team.md)
+* [Contact Us](contact-us.md)
 
 ## Player Guides
 
-* [🚧 Arbitrum](player-guides/arbitrum.md)
+* [Arbitrum](player-guides/arbitrum.md)

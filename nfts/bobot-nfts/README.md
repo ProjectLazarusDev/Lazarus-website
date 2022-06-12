@@ -4,7 +4,7 @@ description: Different collections of Bobots, and more to come!
 
 # Bobot NFTs
 
-\[IMAGE: BOBOTS ]
+![](../../.gitbook/assets/ezgif-5-372ab5640b.gif)
 
 There will be **multiple variants of Bobots**, each with their own tiers and benefits that affects both gameplay and the ecosystem.&#x20;
 

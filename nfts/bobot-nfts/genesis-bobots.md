@@ -8,6 +8,22 @@ Lively, reliable, and pretty much indestructible, Genesis Bobots are humanity's 
 
 Along with the Bobot, new users will receive 1 bronze tier Mining Drill, 1 bronze tier Core Chamber, and 1 bronze tier Launchpad to kickstart their Moon Base journey!&#x20;
 
+### Specs
+
+**Minting Cost:** Free!
+
+**Supply:** 4040
+
+**Purchase Limit:** Unlimited
+
+**Max Level:** 10
+
+**Max Core Points:** 9600
+
+The following table is the amount of core points that players can earn:
+
+![](<../../.gitbook/assets/image (8).png>)
+
 ### Avatars
 
 Initially built for the L1 blockchain, all Bobots are carefully designed and have the following design guidelines:&#x20;
@@ -106,19 +122,3 @@ Asset pool is still being refined at this moment.
 For the metadata, the Bobots will be captured in jpg, gif and mp4 format.
 
 </details>
-
-### Specs
-
-**Minting Cost:** Free!
-
-**Supply:** 4040
-
-**Purchase Limit:** Unlimited
-
-**Max Level:** 10
-
-**Max Core Points:** 9600
-
-The following table is the amount of core points that players can earn:
-
-![](<../../.gitbook/assets/image (8).png>)

@@ -2,21 +2,21 @@
 description: Arbitrum L2 blockchain and the TreasureDAO ecosystem
 ---
 
-# 🚧 Arbitrum
+# Arbitrum
 
 ## L1 Project Origin
 
-Bobots is originally designed as an NFT Collection in the Ethereum L1 Blockchain. After seeing the potential in low cost gas fees. It is decided to expand the gameplay aspects of original game and integrate it into the TreasureDAO ecosystem.
+Bobots is originally designed as an NFT Collection in the Ethereum L1 Blockchain. After seeing the potential in low cost gas fees, we decided to expand the gameplay aspects of the original game and integrate it into the TreasureDAO ecosystem.
 
 ## **What is Arbitrum**
 
-****[**Arbitrum**](https://arbitrum.io/) **** is an Optimistic Rollup scaling solution that allows Ethereum smart contracts to scale by passing messages between the smart contract on the Ethereum main network and those on the Arbitrum second layer chain (L2). Most of the transaction processing is completed on the second layer and thus, drastically improving the speed and efficiency, and also lowering the gas fees.
+****[**Arbitrum**](https://arbitrum.io/) **** is an Optimistic Rollup scaling solution that allows Ethereum smart contracts to scale by passing messages between the smart contract on the Ethereum main network and those on the Arbitrum second layer chain (L2). Most of the transaction processing is completed on the second layer, which drastically improves speed and efficiency, while lowering gas fees.
 
 Why we have chosen **Arbitrum** is due to the following reasons:
 
-* **Lower gas fees**: Due to the much lower gas fee cost, we can focus on more game-based blockchain interaction.
+* **Lower gas fees**: Due to the much lower gas fee cost, we can focus on more game-based blockchain interactions.
 * **Widely adopted L2 blockchain**: L2 systems are gaining traction in recent times and Arbitrum is capable of sustaining high volumes.&#x20;
-* **Partnerships**: With multiple DeFi projects that are in the Arbitrum network, we realized that it is critical for us to go into Arbitrum to establish mutually beneficial partnerships
+* **Partnerships**: With multiple DeFi projects that are in the Arbitrum network, we realized that it is critical for us to go into Arbitrum to establish mutually beneficial partnerships.&#x20;
 * **Security:** Arbitrum has the right balance between speed and security.
 
 To learn more about Ethereum L2 and Arbritrum, these are the following resources for you to check out:&#x20;

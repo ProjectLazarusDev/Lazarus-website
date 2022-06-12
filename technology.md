@@ -1,8 +1,8 @@
-# 💾 Technology
+# Technology
 
-The Bobots Project utilizes a wide range of software and technology to it's full extent.
+The Bobots Project utilizes a wide range of software and technology to it's full extent.&#x20;
 
-Such a stack would include:
+Below is the list of softwares and languages used:
 
 * React
 * Html

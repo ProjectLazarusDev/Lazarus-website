@@ -22,14 +22,12 @@ _You are a BBNaut – uploaded aboard a Monolift Carrier with several others to 
 
 Bobots is a play-to-earn social base-building game on Arbitrium, where players can gather, craft, and customize their very own base in space! Every Bobot you own is 3D and fully animated, ready at your command to dive into the BBNet to start your adventure!&#x20;
 
-![\[THIS GIF HEIGHT SHOULD BE CROPPED BY ABOUT HALF\]](.gitbook/assets/ezgif-5-372ab5640b.gif)
-
 The game features a fully customizable base for players to create their dream virtual homes, and leverages on players staking their Bobots on their Lands to earn rewards and progress the game!&#x20;
 
 ## **Our Mission**
 
 The Bobots project aims to to allow communities to create their own cities while being able to interact with other people in the community and earn in the process. We believe that metaverse projects should be community-driven, and hope that the team can build various content alongside the community, such as lore, tooling, etc. and receive rewards in $MAGIC while doing so. Above everything else, we want our players to have fun!&#x20;
 
-\[IMAGE: multiple Bobots in a community chilling, could be in-game]
+![Early concept mockup](.gitbook/assets/Bobots\_CentralHub\_Mockup.png)
 
 _Disclaimer: As Bobots is a bleeding-edge game worked on by a small team, much of the information on this whitepaper may be subjected to change, based on various factors that may influence the decisions made by the team, including technical considerations, community feedback and production timeline._&#x20;
