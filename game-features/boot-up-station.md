@@ -8,7 +8,7 @@ _Ready for deployment._&#x20;
 
 The Boot-up Station is the starting point for brand new Bobots. Here, players can mint their Bobots!&#x20;
 
-![\[IMAGE NEED TO UPDATE: NAME OF LOCATION AND UI IS OUTDATED\]](<../.gitbook/assets/image (6) (1).png>)
+![](../.gitbook/assets/Bobots\_Mint.png)
 
 Once done, players can also view and rotate the Bobots they own. Congratulations!&#x20;
 

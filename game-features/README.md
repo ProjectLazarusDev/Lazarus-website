@@ -4,11 +4,9 @@ Bobots is structured to be a game that can be built upon as it grows and matures
 
 ### Bridge
 
-![](../.gitbook/assets/overview.jpg)
+![](../.gitbook/assets/Bobots\_Bridge.png)
 
-Players will be greeted by the Bridge when they first enter the game. Here, the player can access every other facility in the Monolift Carrier.&#x20;
-
-The following is a list of facilities that players can interact with:&#x20;
+BBNauts will be greeted by the Bridge when they first enter the game. Here, they can access every other facility in the Monolift Carrier.&#x20;
 
 ### Facilities
 

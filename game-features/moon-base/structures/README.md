@@ -1,6 +1,6 @@
 # Structures
 
-There are 4 categories of structures that players can build in the Moon Base:
+There are 4 categories of structures that BBNauts can build in the Moon Base:
 
 {% content-ref url="foundations.md" %}
 [foundations.md](foundations.md)
