@@ -4,7 +4,7 @@ These little bots are the legacy models of Bobots. They can be mass-produced, an
 
 ## Specs
 
-**Minting Cost:** 5 $MAGIC
+**Minting Cost:** TBC
 
 **Supply:** Unlimited
 
@@ -17,8 +17,3 @@ These little bots are the legacy models of Bobots. They can be mass-produced, an
 The following table is the amount of core points that BBNauts can earn:
 
 ![](<../../.gitbook/assets/Nanobot\_levels (1).png>)
-
-
-
-
-
