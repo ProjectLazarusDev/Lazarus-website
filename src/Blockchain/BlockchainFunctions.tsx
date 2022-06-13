@@ -43,7 +43,7 @@ export function Log_Callback(_message: string) {
   unityContext.send(blockchainManager, 'Log_Callback', _message);
 }
 
-export function LoadingScreenToggle_Callback(_b: any) {
+export function LoadingScreenToggle_Callback(_b: boolean) {
   unityContext.send(blockchainManager, 'LoadingScreenToggle_Callback', _b);
 }
 
