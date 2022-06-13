@@ -14,8 +14,8 @@ import { chainID } from '../Pages/Multiplayer';
 import { testChainID } from '../Pages/MultiplayerTest';
 
 // by right guardian should be able to mint 1 and lunar is 2
-const guardiansBaseCID: string = 'QmXMbZ9NhQHJsRvhctNftsGzGNiNP1k4urGVfJ5E6yv9Bt';
-const lunarsBaseCID: string = 'QmQyYtVApQur8mrUSKDNkKfxF4nPNvdj5xbjnXip56LjDp';
+const guardiansBaseCID: string = 'QmPo25VQeRpkLrxDRSCjpdsmg3hbA19FuiB1apwdShoE3F';
+const lunarsBaseCID: string = 'Qmbun7ZipghRT5DdyYBwf9rH6o1xzmJBToiFM7WBpt3TdS';
 
 const verifyNetwork = (response: ethers.providers.Network): boolean => {
   if (
