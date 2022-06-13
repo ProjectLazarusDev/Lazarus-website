@@ -1,4 +1,4 @@
-# 🛸 Launch Pad
+# Launch Pad
 
 ![Launch Pad Model - WIP](<../../.gitbook/assets/image (4) (1).png>)
 
@@ -6,7 +6,7 @@
 
 Send Bobots out on missions and help them make **crucial decisions** during their encounters to earn resources, with a chance for them to even bring home nanobots!&#x20;
 
-Before Bobots can be sent out on missions, the Launch Pad must be activated. Once activated, Bobots go on as many missions as the player desires, as long as the Launch Pad has enough activation time remaining for the selected mission! When activated, there is a chance that a Launch Pad will enter **Final Activation**: This Launch Pad can no longer be re-activated, and will break once the time runs out on this Launch Pad. Don't worry though, your Bobots will return safely before then!&#x20;
+Before Bobots can be sent out on missions, the Launch Pad must be activated. Once activated, Bobots go on as many missions as the BBNaut desires, as long as the Launch Pad has enough activation time remaining for the selected mission. When activated, there is a chance that a Launch Pad will enter **Final Activation**: This Launch Pad can no longer be re-activated, and will break once the time runs out on this Launch Pad. Don't worry though, your Bobots will return safely before then!&#x20;
 
 Removing your Bobot from its mission before it ends will result in no resources gained. Missions refresh every 12 hours.&#x20;
 

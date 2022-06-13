@@ -6,7 +6,7 @@ Lively, reliable, and pretty much indestructible, Genesis Bobots are humanity's 
 
 ### Welcome Package
 
-Along with the Bobot, new users will receive 1 bronze tier Mining Drill, 1 bronze tier Core Chamber, and 1 bronze tier Launchpad to kickstart their Moon Base journey!&#x20;
+Along with the Bobot, new BBNauts will receive 1 bronze tier Mining Drill, 1 bronze tier Core Chamber, and 1 bronze tier Launchpad to kickstart their Moon Base journey!&#x20;
 
 ### Specs
 
@@ -20,9 +20,9 @@ Along with the Bobot, new users will receive 1 bronze tier Mining Drill, 1 bronz
 
 **Max Core Points:** 9600
 
-The following table is the amount of core points that players can earn:
+The following table is the amount of core points that BBNauts can earn:
 
-![](<../../.gitbook/assets/image (8).png>)
+![](../../.gitbook/assets/GenBobot\_levels.png)
 
 ### Avatars
 

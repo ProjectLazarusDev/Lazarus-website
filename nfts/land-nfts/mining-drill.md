@@ -1,4 +1,4 @@
-# 📟 Mining Drill
+# Mining Drill
 
 ![Drill Model - WIP](<../../.gitbook/assets/image (6) (1) (1).png>)
 
@@ -18,13 +18,13 @@ Send Bobots out on long-term mining missions to earn $MAGIC, based on the initia
 
 ### Tier Bronze&#x20;
 
-**Break Chance:** 100% chance of breaking whenever the player unstakes a Bobot from the Drill.
+**Break Chance:** 100% chance of breaking whenever a Bobot is removed from the Drill.
 
 ### Tier Silver&#x20;
 
-**Break Chance:** 70% chance of breaking whenever the player unstakes a Bobot from the Drill.
+**Break Chance:** 70% chance of breaking whenever a Bobot is removed from the Drill.&#x20;
 
 ### Tier Gold&#x20;
 
-**Break Chance:** 40% chance of breaking whenever the player unstakes a Bobot from the Drill.
+**Break Chance:** 40% chance of breaking whenever a Bobot is removed from the Drill.&#x20;
 
