@@ -7,7 +7,7 @@ _Welcome home._&#x20;
 
 Most of the gameplay elements in Bobots can be found in the Moon Base. Here, BBNauts can stake their Bobots to collect Core Points and $MAGIC. The resources gained from staking can then be used to craft and build more structures, thus increasing the returns a BBNaut can get over time!
 
-![Moon Base Prototype](../../.gitbook/assets/moonbase.jpg)
+![Moon Base Prototype](../../.gitbook/assets/Bobots\_MoonBase.png)
 
 ### **Core Points (CP)** <a href="#core-points" id="core-points"></a>
 
