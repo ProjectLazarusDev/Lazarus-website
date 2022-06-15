@@ -26,6 +26,9 @@ import { onNetworkChange, isMetaMaskLocked, isMetaMaskInstalled } from '../index
 import { unityContext as unityContextSeason0 } from '../Context/UnityContext';
 import ErrorMessage from '../Components/Multiplayer/ErrorMessage';
 import SwitchNetworkButton from '../Components/Multiplayer/SwitchNetworkButton';
+import MobileMint from '../Components/Multiplayer/MobileMint';
+import { CardMedia } from '@mui/material';
+
 //abi import
 
 import { ethers } from 'ethers';
@@ -125,7 +128,8 @@ const MultiplayerTest: React.FC = () => {
   function render() {
     let currentRender;
     if (isMobile === true) {
-      currentRender = <ErrorMessage message="GAME IS NOT AVAILABLE IN MOBILE!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = <MobileMint message="mobile mint!" isLoaded={isLoaded}>
+      </MobileMint>;
     } else if (isMetaMaskInstalled() === false) {
       currentRender = <ErrorMessage message="PLEASE INSTALL METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isLocked === true) {
@@ -160,7 +164,9 @@ const MultiplayerTest: React.FC = () => {
             alignItems: ' center',
             justifyContent: ' center',
           }}
-        ></Card>
+        >
+</Card>
+
         <Card
           style={{
             boxShadow: 'none',
@@ -171,6 +177,7 @@ const MultiplayerTest: React.FC = () => {
             background: 'linear-gradient(to right bottom, #12121200, #05050500)',
           }}
         >
+        
           {render()}
         </Card>
       </div>
