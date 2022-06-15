@@ -7,6 +7,7 @@ import installationCoreChamberABI from '../ABI/CoreChamber.json';
 
 import { MetaMaskAccounts } from './MetaMaskLogin';
 import * as blockchain from './BlockchainFunctions';
+import * as blockchainSender from './BlockchainSender';
 
 export async function GetBobotsAllURI() {
   console.log('GetBobotsAllID: ');
@@ -32,7 +33,7 @@ export async function GetBobotsAllURI() {
       console.log('error: ', err);
 
       //callback to engine
-      blockchain.GetAllTokenURIs_Callback(blockchain.BlockchainError.NetworkBusy);
+      blockchainSender.GetAllTokenURIs_Callback(blockchain.BlockchainError.NetworkBusy);
     }
 
     //get all tokenURI
@@ -40,19 +41,19 @@ export async function GetBobotsAllURI() {
       try {
         const response = await contract.getTokenURI(t[index]);
         console.log('response: ', response);
-        blockchain.RecieveTokenURI_Callback(response as string);
+        blockchainSender.RecieveTokenURI_Callback(response as string);
         //send response back to game engine
       } catch (err) {
         console.log('error: ', err);
 
         //callback to engine
-        blockchain.GetAllTokenURIs_Callback(blockchain.BlockchainError.NetworkBusy);
+        blockchainSender.GetAllTokenURIs_Callback(blockchain.BlockchainError.NetworkBusy);
       }
     }
 
-    blockchain.CompletedTokenURI_Callback();
+    blockchainSender.CompletedTokenURI_Callback();
 
-    blockchain.LoadingScreenToggle_Callback(false);
+    blockchainSender.LoadingScreenToggle_Callback(false);
   }
 }
 
@@ -83,7 +84,7 @@ export async function GetBobotsAllStakeStatus() {
     } catch (err) {
       console.log('error: ', err);
       //callback to engine
-      blockchain.GetAllTokenStakeStatus_Callback(blockchain.BlockchainError.NetworkBusy);
+      blockchainSender.GetAllTokenStakeStatus_Callback(blockchain.BlockchainError.NetworkBusy);
     }
 
     for (var index = 0; index < t.length; index++) {
@@ -95,27 +96,27 @@ export async function GetBobotsAllStakeStatus() {
         const corePointsResponse = await installationCC_contract.corePointsEarnedGenesis(tokenID);
         const corePoints = BigNumber.from(corePointsResponse?._hex).toNumber();
         console.log(tokenID, stakeStatus, corePoints);
-        blockchain.ReceiveTokenStakeStatus_Callback(tokenID, stakeStatus, corePoints);
+        blockchainSender.ReceiveTokenStakeStatus_Callback(tokenID, stakeStatus, corePoints);
       } catch (err) {
         console.log(err);
-        blockchain.GetAllTokenStakeStatus_Callback(blockchain.BlockchainError.NetworkBusy);
+        blockchainSender.GetAllTokenStakeStatus_Callback(blockchain.BlockchainError.NetworkBusy);
       }
     }
 
-    blockchain.CompletedTokenStakeStatus_Callback();
-    blockchain.LoadingScreenToggle_Callback(false);
+    blockchainSender.CompletedTokenStakeStatus_Callback();
+    blockchainSender.LoadingScreenToggle_Callback(false);
   }
 }
 
 export function SendBobotsAllID(tokenIDs: number[]) {
-  blockchain.GetAllTokenURIs_Callback(blockchain.BlockchainError.NoError);
+  blockchainSender.GetAllTokenURIs_Callback(blockchain.BlockchainError.NoError);
 
   //send all tokenIDs to engine
   tokenIDs.forEach((element) => {
     console.log('Send: ', element);
 
     //change to uri next time
-    blockchain.RecieveTokenURI_Callback(element.toString());
+    blockchainSender.RecieveTokenURI_Callback(element.toString());
   });
-  blockchain.CompletedTokenURI_Callback();
+  blockchainSender.CompletedTokenURI_Callback();
 }
