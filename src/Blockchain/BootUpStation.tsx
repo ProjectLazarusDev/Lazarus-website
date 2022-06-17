@@ -169,7 +169,7 @@ const mintGenesis = async (
   const proofLunar: String[] = responseLunar?.data?.proof === undefined ? [] : responseLunar?.data?.proof;
 
   if (proofGuardian.length === 0 && proofLunar.length === 0) {
-    console.log('You are not whitelisted to mint!');
+    blockchainSender.Log_Callback('You are not whitelisted to mint!');
     blockchainSender.LoadingScreenToggle_Callback(false);
   } else {
     try {
@@ -192,8 +192,9 @@ const mintGenesis = async (
             });
         })
         .catch((error: any) => {
-          blockchainSender.LoadingScreenToggle_Callback(false);
           console.log(error);
+          blockchainSender.LoadingScreenToggle_Callback(false);
+          blockchainSender.Log_Callback(error?.data?.message);
         });
     } catch {
       //error detection
@@ -220,7 +221,7 @@ export async function MintBobot() {
           mintGenesis(contract, responseGuardians, responseLunar);
         } else {
           blockchainSender.LoadingScreenToggle_Callback(false);
-          console.log('Cannot mint due to incorrect network!');
+          blockchainSender.Log_Callback('Cannot mint due to incorrect network!');
         }
       })
       .catch((error) => {
