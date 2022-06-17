@@ -20,7 +20,7 @@
     * [Core Chamber](nfts/land-nfts/core-chamber.md)
     * [Mining Drill](nfts/land-nfts/mining-drill.md)
 * [Ecosystem](ecosystem/README.md)
-  * [Bobots Marketplace](ecosystem/bobots-marketplace.md)
+  * [TreasureDAO Integration](ecosystem/treasuredao-integration.md)
 * [Road Map](road-map.md)
 * [Technology](technology.md)
 * [Team](team.md)

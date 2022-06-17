@@ -1,6 +1,6 @@
-# Bobots Treasury
+# TreasureDAO Integration
 
-## TreasureDAO
+
 
 The TreasureDAO ecosystem is chosen to host our Bobot Universe due to the following reasons:&#x20;
 
