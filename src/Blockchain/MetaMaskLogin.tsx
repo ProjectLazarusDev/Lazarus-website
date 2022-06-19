@@ -1,4 +1,4 @@
-import * as blockchain from './BlockchainFunctions';
+import * as blockchainSender from './BlockchainSender';
 //sotres metamask accounts
 var MetaMaskAccounts: any;
 
@@ -9,7 +9,7 @@ async function MetaLogin() {
     console.log(MetaMaskAccounts[0]);
 
     //send connected address back to engine
-    blockchain.MetaMaskLogin_Callback(MetaMaskAccounts[0]);
+    blockchainSender.MetaMaskLogin_Callback(MetaMaskAccounts[0]);
   }
 }
 

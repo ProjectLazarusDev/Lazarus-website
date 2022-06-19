@@ -8,6 +8,7 @@ import { bobotGenesisAddress, installationCoreChamberAddress } from './ContractA
 import axios from 'axios';
 
 import * as blockchain from './BlockchainFunctions';
+import * as blockchainSender from './BlockchainSender';
 import { MetaMaskAccounts } from './MetaMaskLogin';
 
 import { chainID } from '../Pages/Multiplayer';
@@ -43,7 +44,7 @@ const stakeGenesis = async (contract: ethers.Contract, bobotID: any) => {
         .unstakeGenesis(tokenID)
         .then(async (response: any) => {
           console.log('unstake response:', response);
-          blockchain.ReceiveTokenStakeStatus_Callback(tokenID, true, corePoints);
+          blockchainSender.ReceiveTokenStakeStatus_Callback(tokenID, true, corePoints);
         })
         .catch((error: any) => {
           console.log(error);
@@ -53,7 +54,7 @@ const stakeGenesis = async (contract: ethers.Contract, bobotID: any) => {
         .stakeGenesis(tokenID)
         .then(async (response: any) => {
           console.log('stake response:', response);
-          blockchain.ReceiveTokenStakeStatus_Callback(bobotID, true, corePoints);
+          blockchainSender.ReceiveTokenStakeStatus_Callback(bobotID, true, corePoints);
         })
         .catch((error: any) => {
           console.log(error);
@@ -108,14 +109,14 @@ export async function MintBobotTest() {
           .wait()
           .then((waitResponse: any) => {
             if (waitResponse.status === 1) {
-              blockchain.Mint_Callback(blockchain.BlockchainError.NoError);
+              blockchainSender.Mint_Callback(blockchain.BlockchainError.NoError);
             }
           })
           .catch((error: any) => console.log(error));
       });
     } catch {
       //error detection
-      blockchain.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
+      blockchainSender.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
     }
   }
 }
@@ -168,7 +169,8 @@ const mintGenesis = async (
   const proofLunar: String[] = responseLunar?.data?.proof === undefined ? [] : responseLunar?.data?.proof;
 
   if (proofGuardian.length === 0 && proofLunar.length === 0) {
-    console.log('You are not whitelisted to mint!');
+    blockchainSender.Log_Callback('You are not whitelisted to mint!');
+    blockchainSender.LoadingScreenToggle_Callback(false);
   } else {
     try {
       contract
@@ -180,21 +182,30 @@ const mintGenesis = async (
             .wait()
             .then((waitResponse: any) => {
               if (waitResponse.status === 1) {
-                blockchain.Mint_Callback(blockchain.BlockchainError.NoError);
+                blockchainSender.Mint_Callback(blockchain.BlockchainError.NoError);
+                blockchainSender.LoadingScreenToggle_Callback(false);
               }
             })
-            .catch((error: any) => console.log(error));
+            .catch((error: any) => {
+              blockchainSender.LoadingScreenToggle_Callback(false);
+              console.log(error);
+            });
         })
-        .catch((error: any) => console.log(error));
+        .catch((error: any) => {
+          console.log(error);
+          blockchainSender.LoadingScreenToggle_Callback(false);
+          blockchainSender.Log_Callback(error?.data?.message);
+        });
     } catch {
       //error detection
-      blockchain.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
+      blockchainSender.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
     }
   }
 };
 
 //mint bobot
 export async function MintBobot() {
+  blockchainSender.LoadingScreenToggle_Callback(true);
   const [responseGuardians, responseLunar] = await generateMerkle();
 
   if ((window as any).ethereum) {
@@ -209,9 +220,13 @@ export async function MintBobot() {
         if (verifyNetwork(response) === true) {
           mintGenesis(contract, responseGuardians, responseLunar);
         } else {
-          console.log('Cannot mint due to incorrect network!');
+          blockchainSender.LoadingScreenToggle_Callback(false);
+          blockchainSender.Log_Callback('Cannot mint due to incorrect network!');
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        blockchainSender.LoadingScreenToggle_Callback(false);
+        console.log(error);
+      });
   }
 }
