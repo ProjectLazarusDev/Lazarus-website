@@ -11,12 +11,13 @@ import { CardMedia } from '@mui/material';
 import { MetaLogin } from '../../Blockchain/MetaMaskLogin';
 import * as bootUpStation from '../../Blockchain/BootUpStation';
 
-interface MobileMint {
+interface MobileMintProps 
+{
   message: string;
   isLoaded: boolean;
 }
 
-const MobileMint: React.FC<MobileMint> = (props) => {
+const MobileMint: React.FC<MobileMintProps> = (props) => {
   // log in manually first as we need to access the 
   // metamask account wallet for minting verification later on
   MetaLogin();

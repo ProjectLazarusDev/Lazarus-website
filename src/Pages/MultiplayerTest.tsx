@@ -27,7 +27,6 @@ import { unityContext as unityContextSeason0 } from '../Context/UnityContext';
 import ErrorMessage from '../Components/Multiplayer/ErrorMessage';
 import SwitchNetworkButton from '../Components/Multiplayer/SwitchNetworkButton';
 import MobileMint from '../Components/Multiplayer/MobileMint';
-import { CardMedia } from '@mui/material';
 
 //abi import
 
