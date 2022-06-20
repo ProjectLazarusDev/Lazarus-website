@@ -22,7 +22,7 @@ import GameScreen from '../Components/GameScreen';
 
 import * as blockchain from '../Blockchain/BlockchainFunctions';
 import { onNetworkChange, isMetaMaskLocked, isMetaMaskInstalled } from '../indexweb3.js';
-import { unityContextSeason0 } from '../Context/UnityContext';
+import { unityContext as unityContextSeason0 } from '../Context/UnityContext';
 import ErrorMessage from '../Components/Multiplayer/ErrorMessage';
 import SwitchNetworkButton from '../Components/Multiplayer/SwitchNetworkButton';
 //abi import
