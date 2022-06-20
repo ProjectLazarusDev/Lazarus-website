@@ -123,7 +123,7 @@ const Multiplayer: React.FC = () => {
   function render() {
     let currentRender;
     if (isMobile === true) {
-      currentRender = <ErrorMessage message="GAME IS NOT AVAILABLE IN MOBILE!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = <ErrorMessage message="MOBILE MINT ON 25 JUNE!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isMetaMaskInstalled() === false) {
       currentRender = <ErrorMessage message="PLEASE INSTALL METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isLocked === true) {
