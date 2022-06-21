@@ -94,7 +94,7 @@ export async function MintBobotTest() {
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
+    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.abi, signer);
     console.log(contract);
 
     // 1) call the mintBobotTest() inside the solidity contract
@@ -224,7 +224,7 @@ export async function MintBobot() {
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
+    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.abi, signer);
     console.log(contract);
 
     provider
