@@ -16,7 +16,7 @@ import { testChainID } from '../Pages/MultiplayerTest';
 
 // guardian should be able to mint 1 and lunar is 2
 const guardiansWhitelists: Array<String> = ['QmSRcVS6oTZkWk6AMyfdbAFy446A6mUVeQcPmN89WRaAmx', 'QmRGkigiHDzmU2KAirHzUicu7Xrjdb3kSthmFyGy4A9FXV']; //'QmVn9wwUb6aeEshc82DfV8c2VMK4fKk1picFBfDXeBYLiC';
-const lunarsWhitelist: string = 'QmSNjCb1rAXZjkwqqEx3eytc7Q2EgatRCyXM7pjhhu1wom'; //'Qme8KXJyc9rJV71X5PfzQR7qrmqdHZkBwB8bctaXRiJCjF';
+const lunarsWhitelist: string = 'QmTUCe8CP9R4344nA1q1pCoViiQv4RSxtjt7RYcRiwEQ62'; //'Qme8KXJyc9rJV71X5PfzQR7qrmqdHZkBwB8bctaXRiJCjF';
 
 const verifyNetwork = (response: ethers.providers.Network): boolean => {
   if (
