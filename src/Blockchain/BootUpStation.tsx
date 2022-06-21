@@ -14,9 +14,9 @@ import { MetaMaskAccounts } from './MetaMaskLogin';
 import { chainID } from '../Pages/Multiplayer';
 import { testChainID } from '../Pages/MultiplayerTest';
 
-// by right guardian should be able to mint 1 and lunar is 2
-const guardiansBaseCID: string = 'QmVn9wwUb6aeEshc82DfV8c2VMK4fKk1picFBfDXeBYLiC';
-const lunarsBaseCID: string = 'Qme8KXJyc9rJV71X5PfzQR7qrmqdHZkBwB8bctaXRiJCjF';
+// guardian should be able to mint 1 and lunar is 2
+const guardiansWhitelists: Array<String> = ['QmSRcVS6oTZkWk6AMyfdbAFy446A6mUVeQcPmN89WRaAmx', 'QmRGkigiHDzmU2KAirHzUicu7Xrjdb3kSthmFyGy4A9FXV']; //'QmVn9wwUb6aeEshc82DfV8c2VMK4fKk1picFBfDXeBYLiC';
+const lunarsWhitelist: string = 'QmSNjCb1rAXZjkwqqEx3eytc7Q2EgatRCyXM7pjhhu1wom'; //'Qme8KXJyc9rJV71X5PfzQR7qrmqdHZkBwB8bctaXRiJCjF';
 
 const verifyNetwork = (response: ethers.providers.Network): boolean => {
   if (
@@ -136,45 +136,46 @@ const generateMerkle = async () => {
   let responseLunar = {} as MerkleResponseProps;
   //merkle proof axios
   try {
-    const requestBodyGuardians = {
-      whitelist: 'https://gateway.pinata.cloud/ipfs/' + guardiansBaseCID,
-      leafToVerify: MetaMaskAccounts[0],
-    };
-    responseGuardians = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyGuardians);
-    console.log(responseGuardians);
-  } catch {
-    console.log('responseGuardians is not found!');
-  }
-
-  try {
     const requestBodyLunars = {
-      whitelist: 'https://gateway.pinata.cloud/ipfs/' + lunarsBaseCID,
+      whitelist: 'https://gateway.pinata.cloud/ipfs/' + lunarsWhitelist,
       leafToVerify: MetaMaskAccounts[0],
     };
     responseLunar = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyLunars);
     console.log(responseLunar);
+
+    return responseLunar;
   } catch {
     console.log('responseLunar is not found!');
   }
 
-  return [responseGuardians, responseLunar];
+  for (let i = 0; i < guardiansWhitelists.length; ++i) {
+    try {
+      const requestBodyGuardians = {
+        whitelist: 'https://gateway.pinata.cloud/ipfs/' + guardiansWhitelists[i],
+        leafToVerify: MetaMaskAccounts[0],
+      };
+      responseGuardians = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyGuardians);
+      console.log(responseGuardians);
+
+      return responseGuardians;
+    } catch {
+      console.log('responseGuardians is not found!');
+    }
+  }
+
+  return {} as MerkleResponseProps;
 };
 
-const mintGenesis = async (
-  contract: ethers.Contract,
-  responseGuardians: MerkleResponseProps,
-  responseLunar: MerkleResponseProps
-) => {
-  const proofGuardian: String[] = responseGuardians?.data?.proof === undefined ? [] : responseGuardians?.data?.proof;
-  const proofLunar: String[] = responseLunar?.data?.proof === undefined ? [] : responseLunar?.data?.proof;
+const mintGenesis = async (contract: ethers.Contract, responseMerkle: MerkleResponseProps) => {
+  const proofMerkle: String[] = responseMerkle?.data?.proof === undefined ? [] : responseMerkle?.data?.proof;
 
-  if (proofGuardian.length === 0 && proofLunar.length === 0) {
+  if (proofMerkle.length === 0) {
     blockchainSender.Log_Callback('You are not whitelisted to mint!');
     blockchainSender.LoadingScreenToggle_Callback(false);
   } else {
     try {
       contract
-        .mintBobot(proofGuardian, proofLunar)
+        .mintBobot(proofMerkle)
         .then((response: any) => {
           console.log('mint response: ', response);
 
@@ -206,7 +207,7 @@ const mintGenesis = async (
 //mint bobot
 export async function MintBobot() {
   blockchainSender.LoadingScreenToggle_Callback(true);
-  const [responseGuardians, responseLunar] = await generateMerkle();
+  const responseMerkle = await generateMerkle();
 
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
@@ -218,7 +219,7 @@ export async function MintBobot() {
       .getNetwork()
       .then((response) => {
         if (verifyNetwork(response) === true) {
-          mintGenesis(contract, responseGuardians, responseLunar);
+          mintGenesis(contract, responseMerkle);
         } else {
           blockchainSender.LoadingScreenToggle_Callback(false);
           blockchainSender.Log_Callback('Cannot mint due to incorrect network!');
