@@ -13,9 +13,13 @@ import { MetaMaskAccounts } from './MetaMaskLogin';
 
 import { chainID } from '../Pages/Multiplayer';
 import { testChainID } from '../Pages/MultiplayerTest';
+import { updateInterfaceDeclaration } from 'typescript';
 
 // guardian should be able to mint 1 and lunar is 2
-const guardiansWhitelists: Array<String> = ['QmYAHbU5mCgYzv3kqSraVTNEVShCmCjt6QteyRJsNAxKCi', 'QmZgEpatUuwZjzjTxgkiYiAAY3GFsxzaqcR9eWRbL6e2d6']; //'QmVn9wwUb6aeEshc82DfV8c2VMK4fKk1picFBfDXeBYLiC';
+const guardiansWhitelists: Array<String> = [
+  'QmYAHbU5mCgYzv3kqSraVTNEVShCmCjt6QteyRJsNAxKCi',
+  'QmZgEpatUuwZjzjTxgkiYiAAY3GFsxzaqcR9eWRbL6e2d6',
+]; //'QmVn9wwUb6aeEshc82DfV8c2VMK4fKk1picFBfDXeBYLiC';
 const lunarsWhitelist: string = 'Qme8KXJyc9rJV71X5PfzQR7qrmqdHZkBwB8bctaXRiJCjF';
 
 const verifyNetwork = (response: ethers.providers.Network): boolean => {
@@ -195,7 +199,11 @@ const mintGenesis = async (contract: ethers.Contract, responseMerkle: MerkleResp
         .catch((error: any) => {
           console.log(error);
           blockchainSender.LoadingScreenToggle_Callback(false);
-          blockchainSender.Log_Callback(error?.data?.message);
+
+          const errorMessage: String = error?.data?.message === undefined ? '' : error?.data?.message;
+          if (errorMessage !== '') {
+            blockchainSender.Log_Callback(error?.data?.message);
+          }
         });
     } catch {
       //error detection
