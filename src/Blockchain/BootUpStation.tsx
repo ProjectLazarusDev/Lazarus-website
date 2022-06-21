@@ -135,7 +135,6 @@ interface MerkleResponseProps {
 
 // refer to https://www.merkleme.io/documentation
 const generateMerkle = async () => {
-  let responseGuardians = {} as MerkleResponseProps;
   let responseLunar = {} as MerkleResponseProps;
   //merkle proof axios
   try {
@@ -146,12 +145,16 @@ const generateMerkle = async () => {
     responseLunar = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyLunars);
     console.log(responseLunar);
 
-    return responseLunar;
+    if (responseLunar?.data?.proof !== undefined) {
+      return responseLunar;
+    }
   } catch {
     console.log('responseLunar is not found!');
   }
 
   for (let i = 0; i < guardiansWhitelists.length; ++i) {
+    let responseGuardians = {} as MerkleResponseProps;
+    
     try {
       const requestBodyGuardians = {
         whitelist: 'https://gateway.pinata.cloud/ipfs/' + guardiansWhitelists[i],
@@ -160,9 +163,11 @@ const generateMerkle = async () => {
       responseGuardians = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyGuardians);
       console.log(responseGuardians);
 
-      return responseGuardians;
+      if (responseGuardians?.data?.proof !== undefined) {
+        return responseGuardians;
+      }
     } catch {
-      console.log('responseGuardians is not found!');
+      console.log('responseGuardians is not found!', i + 1);
     }
   }
 
