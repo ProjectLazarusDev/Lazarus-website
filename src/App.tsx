@@ -35,7 +35,7 @@ const App: React.FC = () => {
           <Route
             path="/blackpaper"
             component={() => {
-              window.location.href = 'https://projectlazarus.gitbook.io/bobots-blackpaper/player-goals';
+              window.location.href = 'https://projectlazarus.gitbook.io/bobots-blackpaper/';
               return null;
             }}
           />
