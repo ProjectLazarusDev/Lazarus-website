@@ -50,7 +50,22 @@ const Header: React.FC = () => {
     window.open('https://twitter.com/BobotsNFT');
   }
   function handleBlackpaper() {
-    history.push('/blackpaper');
+    // game page
+    if (window.location.pathname === '/play') {
+      unityUnload()
+        .then(() => {
+          history.push('/blackpaper');
+        })
+        .catch(console.error);
+    }
+    // home page
+    else {
+      unityHomeUnload()
+        .then(() => {
+          history.push('/blackpaper');
+        })
+        .catch(console.error);
+    }
   }
 
   async function handlePlay() {
