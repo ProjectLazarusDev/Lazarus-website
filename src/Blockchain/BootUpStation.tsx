@@ -186,8 +186,8 @@ const generateMerkle = async () => {
   return {} as MerkleResponseProps;
 };
 
-const mintGenesis = async (contract: ethers.Contract, responseMerkle: MerkleResponseProps) => {
-  const proofMerkle: String[] = responseMerkle?.data?.proof === undefined ? [] : responseMerkle?.data?.proof;
+const mintGenesis = async (contract: ethers.Contract) => {
+  //const proofMerkle: String[] = responseMerkle?.data?.proof === undefined ? [] : responseMerkle?.data?.proof;
 // setting the merkle
 
   const whitelistAddresses = MerkleWallets.wallets;
@@ -197,14 +197,8 @@ const mintGenesis = async (contract: ethers.Contract, responseMerkle: MerkleResp
   const merkleProof = merkleTree.getHexProof(keccak256(addrUserLogged))
   merkleProof.map((addr: any) => proofTobeSended.push(addr));
 
+  console.log(MetaMaskAccounts[0]);
 
-
-
-
-  if (proofMerkle.length === 0) {
-    blockchainSender.Log_Callback('You are not whitelisted to mint!');
-    blockchainSender.LoadingScreenToggle_Callback(false);
-  } else {
     try {
       contract
         .mintBobot(proofTobeSended)
@@ -237,13 +231,13 @@ const mintGenesis = async (contract: ethers.Contract, responseMerkle: MerkleResp
       //error detection
       blockchainSender.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
     }
-  }
+  
 };
 
 //mint bobot
 export async function MintBobot() {
   blockchainSender.LoadingScreenToggle_Callback(true);
-  const responseMerkle = await generateMerkle();
+  //const responseMerkle = await generateMerkle();
 
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
@@ -255,7 +249,7 @@ export async function MintBobot() {
       .getNetwork()
       .then((response) => {
         if (verifyNetwork(response) === true) {
-          mintGenesis(contract, responseMerkle);
+          mintGenesis(contract);
         } else {
           blockchainSender.LoadingScreenToggle_Callback(false);
           blockchainSender.Log_Callback('Cannot mint due to incorrect network!');
