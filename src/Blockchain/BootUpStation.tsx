@@ -14,12 +14,24 @@ import { MetaMaskAccounts } from './MetaMaskLogin';
 import { chainID } from '../Pages/Multiplayer';
 import { testChainID } from '../Pages/MultiplayerTest';
 
+import MerkleWallets from "../merkleWallets.json";
+
+const { MerkleTree } = require('merkletreejs');
+const keccak256 = require('keccak256');
+
+var proofTobeSended = Array();
+
+
+
 // guardian should be able to mint 1 and lunar is 2
 const guardiansWhitelists: Array<String> = [
   'QmYAHbU5mCgYzv3kqSraVTNEVShCmCjt6QteyRJsNAxKCi',
   'Qmf7Rc52MZxFD55h3Fcs7pHQ8rbgsHfEdYDJJ1xmZKD5od',
 ];
 const lunarsWhitelist: string = 'Qme8KXJyc9rJV71X5PfzQR7qrmqdHZkBwB8bctaXRiJCjF';
+
+
+
 
 const verifyNetwork = (response: ethers.providers.Network): boolean => {
   if (
@@ -176,6 +188,18 @@ const generateMerkle = async () => {
 
 const mintGenesis = async (contract: ethers.Contract, responseMerkle: MerkleResponseProps) => {
   const proofMerkle: String[] = responseMerkle?.data?.proof === undefined ? [] : responseMerkle?.data?.proof;
+// setting the merkle
+
+  const whitelistAddresses = MerkleWallets.wallets;
+  const addrUserLogged = MetaMaskAccounts[0];
+  const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
+  const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+  const merkleProof = merkleTree.getHexProof(keccak256(addrUserLogged))
+  merkleProof.map((addr: any) => proofTobeSended.push(addr));
+
+
+
+
 
   if (proofMerkle.length === 0) {
     blockchainSender.Log_Callback('You are not whitelisted to mint!');
@@ -183,7 +207,7 @@ const mintGenesis = async (contract: ethers.Contract, responseMerkle: MerkleResp
   } else {
     try {
       contract
-        .mintBobot(proofMerkle)
+        .mintBobot(proofTobeSended)
         .then((response: any) => {
           console.log('mint response: ', response);
 
