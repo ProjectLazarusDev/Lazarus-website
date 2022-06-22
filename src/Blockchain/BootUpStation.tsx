@@ -124,7 +124,6 @@ export async function MintBobotTest() {
 }
 
 
-
 const mintGenesis = async (contract: ethers.Contract) => {
 
   const whitelistAddresses = MerkleWallets.wallets;
@@ -157,15 +156,20 @@ const mintGenesis = async (contract: ethers.Contract) => {
             });
         })
         .catch((error: any) => {
-          console.log(error);
           blockchainSender.LoadingScreenToggle_Callback(false);
 
           const errorMessage: String = error?.data?.message === undefined ? '' : error?.data?.message;
           if (errorMessage !== '') {
             blockchainSender.Log_Callback(error?.data?.message);
+          }else{
+            blockchainSender.Log_Callback("Mint Denied - Already minted or not whitelisted");
           }
         });
     } catch {
+    
+ 
+        blockchainSender.Log_Callback("Mint Denied - Already minted or not whitelisted");
+      
       //error detection
       blockchainSender.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
     }
