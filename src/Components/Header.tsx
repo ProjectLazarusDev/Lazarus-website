@@ -4,7 +4,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 
-import { FaDiscord, FaTwitter, FaHome, FaPlay } from 'react-icons/fa';
+import { FaDiscord, FaTwitter, FaNewspaper, FaHome, FaPlay } from 'react-icons/fa';
 import { Button } from '@mui/material';
 import { isMobile } from 'react-device-detect';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -49,6 +49,9 @@ const Header: React.FC = () => {
   function handleTwitter() {
     window.open('https://twitter.com/BobotsNFT');
   }
+  function handleBlackpaper() {
+    history.push('/blackpaper');
+  }
 
   async function handlePlay() {
     unityHomeUnload()
@@ -92,7 +95,22 @@ const Header: React.FC = () => {
       >
         <FaTwitter />
       </Button>
-
+      <Button
+        onClick={handleBlackpaper}
+        variant="contained"
+        style={{
+          height: '40px',
+          width: '40px',
+          fontFamily: 'Dongle',
+          fontSize: '1.5rem',
+          backgroundColor: '#00000055',
+          borderRadius: '20px',
+          boxShadow: 'none',
+          margin: '5px',
+        }}
+      >
+        <FaNewspaper />
+      </Button>
       <Button
         onClick={handleHome}
         variant="contained"
@@ -164,7 +182,22 @@ const Header: React.FC = () => {
       >
         <FaTwitter />
       </Button>
-
+      <Button
+        onClick={handleBlackpaper}
+        variant="contained"
+        style={{
+          height: '40px',
+          width: '40px',
+          fontFamily: 'Dongle',
+          fontSize: '1.5rem',
+          backgroundColor: '#00000055',
+          borderRadius: '20px',
+          boxShadow: 'none',
+          margin: '5px',
+        }}
+      >
+        <FaNewspaper />
+      </Button>
       <Button
         onClick={handleHome}
         variant="contained"
