@@ -14,9 +14,12 @@ import { MetaMaskAccounts } from './MetaMaskLogin';
 import { chainID } from '../Pages/Multiplayer';
 import { testChainID } from '../Pages/MultiplayerTest';
 
-// by right guardian should be able to mint 1 and lunar is 2
-const guardiansBaseCID: string = 'QmSwwrcyZshaSuHtTMGWx6SKKUwJJDpKMqkXESZPyBHupg';
-const lunarsBaseCID: string = 'QmVT2SvRjyszXB47XbziA3C8LhaR2fUhdJK82Eh9X9bRqo';
+// guardian should be able to mint 1 and lunar is 2
+const guardiansWhitelists: Array<String> = [
+  'QmYAHbU5mCgYzv3kqSraVTNEVShCmCjt6QteyRJsNAxKCi',
+  'Qmf7Rc52MZxFD55h3Fcs7pHQ8rbgsHfEdYDJJ1xmZKD5od',
+];
+const lunarsWhitelist: string = 'Qme8KXJyc9rJV71X5PfzQR7qrmqdHZkBwB8bctaXRiJCjF';
 
 const verifyNetwork = (response: ethers.providers.Network): boolean => {
   if (
@@ -91,7 +94,7 @@ export async function MintBobotTest() {
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
+    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.abi, signer);
     console.log(contract);
 
     // 1) call the mintBobotTest() inside the solidity contract
@@ -132,49 +135,55 @@ interface MerkleResponseProps {
 
 // refer to https://www.merkleme.io/documentation
 const generateMerkle = async () => {
-  let responseGuardians = {} as MerkleResponseProps;
   let responseLunar = {} as MerkleResponseProps;
   //merkle proof axios
   try {
-    const requestBodyGuardians = {
-      whitelist: 'https://gateway.pinata.cloud/ipfs/' + guardiansBaseCID,
-      leafToVerify: MetaMaskAccounts[0],
-    };
-    responseGuardians = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyGuardians);
-    console.log(responseGuardians);
-  } catch {
-    console.log('responseGuardians is not found!');
-  }
-
-  try {
     const requestBodyLunars = {
-      whitelist: 'https://gateway.pinata.cloud/ipfs/' + lunarsBaseCID,
+      whitelist: 'https://gateway.pinata.cloud/ipfs/' + lunarsWhitelist,
       leafToVerify: MetaMaskAccounts[0],
     };
     responseLunar = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyLunars);
     console.log(responseLunar);
+
+    if (responseLunar?.data?.proof !== undefined) {
+      return responseLunar;
+    }
   } catch {
     console.log('responseLunar is not found!');
   }
 
-  return [responseGuardians, responseLunar];
+  for (let i = 0; i < guardiansWhitelists.length; ++i) {
+    let responseGuardians = {} as MerkleResponseProps;
+    
+    try {
+      const requestBodyGuardians = {
+        whitelist: 'https://gateway.pinata.cloud/ipfs/' + guardiansWhitelists[i],
+        leafToVerify: MetaMaskAccounts[0],
+      };
+      responseGuardians = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyGuardians);
+      console.log(responseGuardians);
+
+      if (responseGuardians?.data?.proof !== undefined) {
+        return responseGuardians;
+      }
+    } catch {
+      console.log('responseGuardians is not found!', i + 1);
+    }
+  }
+
+  return {} as MerkleResponseProps;
 };
 
-const mintGenesis = async (
-  contract: ethers.Contract,
-  responseGuardians: MerkleResponseProps,
-  responseLunar: MerkleResponseProps
-) => {
-  const proofGuardian: String[] = responseGuardians?.data?.proof === undefined ? [] : responseGuardians?.data?.proof;
-  const proofLunar: String[] = responseLunar?.data?.proof === undefined ? [] : responseLunar?.data?.proof;
+const mintGenesis = async (contract: ethers.Contract, responseMerkle: MerkleResponseProps) => {
+  const proofMerkle: String[] = responseMerkle?.data?.proof === undefined ? [] : responseMerkle?.data?.proof;
 
-  if (proofGuardian.length === 0 && proofLunar.length === 0) {
+  if (proofMerkle.length === 0) {
     blockchainSender.Log_Callback('You are not whitelisted to mint!');
     blockchainSender.LoadingScreenToggle_Callback(false);
   } else {
     try {
       contract
-        .mintBobot(proofGuardian, proofLunar)
+        .mintBobot(proofMerkle)
         .then((response: any) => {
           console.log('mint response: ', response);
 
@@ -194,7 +203,11 @@ const mintGenesis = async (
         .catch((error: any) => {
           console.log(error);
           blockchainSender.LoadingScreenToggle_Callback(false);
-          blockchainSender.Log_Callback(error?.data?.message);
+
+          const errorMessage: String = error?.data?.message === undefined ? '' : error?.data?.message;
+          if (errorMessage !== '') {
+            blockchainSender.Log_Callback(error?.data?.message);
+          }
         });
     } catch {
       //error detection
@@ -206,19 +219,19 @@ const mintGenesis = async (
 //mint bobot
 export async function MintBobot() {
   blockchainSender.LoadingScreenToggle_Callback(true);
-  const [responseGuardians, responseLunar] = await generateMerkle();
+  const responseMerkle = await generateMerkle();
 
   if ((window as any).ethereum) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.output.abi, signer);
+    const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.abi, signer);
     console.log(contract);
 
     provider
       .getNetwork()
       .then((response) => {
         if (verifyNetwork(response) === true) {
-          mintGenesis(contract, responseGuardians, responseLunar);
+          mintGenesis(contract, responseMerkle);
         } else {
           blockchainSender.LoadingScreenToggle_Callback(false);
           blockchainSender.Log_Callback('Cannot mint due to incorrect network!');

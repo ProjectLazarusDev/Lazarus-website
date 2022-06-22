@@ -32,6 +32,13 @@ const App: React.FC = () => {
               return null;
             }}
           />
+          <Route
+            path="/blackpaper"
+            component={() => {
+              window.location.href = 'https://projectlazarus.gitbook.io/bobots-blackpaper/';
+              return null;
+            }}
+          />
         </Switch>
       </Router>
     </div>
