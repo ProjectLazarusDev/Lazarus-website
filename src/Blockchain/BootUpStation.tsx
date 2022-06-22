@@ -5,8 +5,6 @@ import BobotGenesisABI from '../ABI/BobotGenesis.json';
 
 import { bobotGenesisAddress, installationCoreChamberAddress } from './ContractAddress';
 
-import axios from 'axios';
-
 import * as blockchain from './BlockchainFunctions';
 import * as blockchainSender from './BlockchainSender';
 import { MetaMaskAccounts } from './MetaMaskLogin';
@@ -19,18 +17,7 @@ import MerkleWallets from "../merkleWallets.json";
 const { MerkleTree } = require('merkletreejs');
 const keccak256 = require('keccak256');
 
-var proofTobeSended = Array();
-
-
-
-// guardian should be able to mint 1 and lunar is 2
-const guardiansWhitelists: Array<String> = [
-  'QmYAHbU5mCgYzv3kqSraVTNEVShCmCjt6QteyRJsNAxKCi',
-  'Qmf7Rc52MZxFD55h3Fcs7pHQ8rbgsHfEdYDJJ1xmZKD5od',
-];
-const lunarsWhitelist: string = 'Qme8KXJyc9rJV71X5PfzQR7qrmqdHZkBwB8bctaXRiJCjF';
-
-
+var proofTobeSended:any = [];
 
 
 const verifyNetwork = (response: ethers.providers.Network): boolean => {
@@ -136,59 +123,9 @@ export async function MintBobotTest() {
   }
 }
 
-interface MerkleResponseProps {
-  data: {
-    leafValue: String;
-    leafHex: String;
-    leafHash: String;
-    proof: Array<String>;
-  };
-}
 
-// refer to https://www.merkleme.io/documentation
-const generateMerkle = async () => {
-  let responseLunar = {} as MerkleResponseProps;
-  //merkle proof axios
-  try {
-    const requestBodyLunars = {
-      whitelist: 'https://gateway.pinata.cloud/ipfs/' + lunarsWhitelist,
-      leafToVerify: MetaMaskAccounts[0],
-    };
-    responseLunar = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyLunars);
-    console.log(responseLunar);
-
-    if (responseLunar?.data?.proof !== undefined) {
-      return responseLunar;
-    }
-  } catch {
-    console.log('responseLunar is not found!');
-  }
-
-  for (let i = 0; i < guardiansWhitelists.length; ++i) {
-    let responseGuardians = {} as MerkleResponseProps;
-    
-    try {
-      const requestBodyGuardians = {
-        whitelist: 'https://gateway.pinata.cloud/ipfs/' + guardiansWhitelists[i],
-        leafToVerify: MetaMaskAccounts[0],
-      };
-      responseGuardians = await axios.post('https://merklemeapi.vincanger.repl.co/verify/proof', requestBodyGuardians);
-      console.log(responseGuardians);
-
-      if (responseGuardians?.data?.proof !== undefined) {
-        return responseGuardians;
-      }
-    } catch {
-      console.log('responseGuardians is not found!', i + 1);
-    }
-  }
-
-  return {} as MerkleResponseProps;
-};
 
 const mintGenesis = async (contract: ethers.Contract) => {
-  //const proofMerkle: String[] = responseMerkle?.data?.proof === undefined ? [] : responseMerkle?.data?.proof;
-// setting the merkle
 
   const whitelistAddresses = MerkleWallets.wallets;
   const addrUserLogged = MetaMaskAccounts[0];
@@ -198,6 +135,7 @@ const mintGenesis = async (contract: ethers.Contract) => {
   merkleProof.map((addr: any) => proofTobeSended.push(addr));
 
   console.log(MetaMaskAccounts[0]);
+  console.log(proofTobeSended);
 
     try {
       contract

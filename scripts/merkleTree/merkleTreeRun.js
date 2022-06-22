@@ -17,7 +17,7 @@ const rootHash = merkleTree.getRoot();
 const rootHash2 = merkleTree2.getRoot();
 
 const rootHashBytes32 = '0x' + merkleTree.getRoot().toString('hex');
-const rootHashBytes322 = '0x' + merkleTree.getRoot().toString('hex');
+const rootHashBytes322 = '0x' + merkleTree2.getRoot().toString('hex');
 
 console.log("First Root Hash32 for the contract: ", rootHashBytes32);
 console.log("Second Root Hash32 for the contract: ", rootHashBytes322);
@@ -25,11 +25,11 @@ console.log("Second Root Hash32 for the contract: ", rootHashBytes322);
 
 //after here is just to get a proof to test, change the wallet bellow to get the proof from =)
 
-const claimingAddress = keccak256("0x5bBBBed03E7b05ECD43eb2f8079aAB51662604f1");
-const claimingAddress2 = keccak256("0x5bBBBed03E7b05ECD43eb2f8079aAB51662604f1");
+const claimingAddress = keccak256("0xb19002E58C61361c3dFbff19891462803A4780f7");
+const claimingAddress2 = keccak256("0xb19002E58C61361c3dFbff19891462803A4780f7");
 
 const hexProof = merkleTree.getHexProof(claimingAddress);
-const hexProof2 = merkleTree.getHexProof(claimingAddress2);
+const hexProof2 = merkleTree2.getHexProof(claimingAddress2);
 
 console.log("First HexProof for Remix: ", hexProof);
 console.log("First HexProof for EtherScan: ", hexProof.toString('hex'));
