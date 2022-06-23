@@ -11,12 +11,10 @@ import { CardMedia } from '@mui/material';
 import { MetaLogin } from '../../Blockchain/MetaMaskLogin';
 import * as bootUpStation from '../../Blockchain/BootUpStation';
 import { ethers } from 'ethers';
-import * as blockchainSender from '../../Blockchain/BlockchainSender';
 import { bobotGenesisAddress } from '../../Blockchain/ContractAddress';
 import BobotGenesisABI from '../../ABI/BobotGenesis.json';
 import MerkleWallets from '../../merkleWallets.json';
 import { MetaMaskAccounts } from '../../Blockchain/MetaMaskLogin';
-import * as blockchain from '../../Blockchain/BlockchainFunctions';
 const { MerkleTree } = require('merkletreejs');
 const keccak256 = require('keccak256');
 
@@ -68,18 +66,14 @@ const MobileMint: React.FC<MobileMintProps> = (props) => {
                     .wait()
                     .then((waitResponse: any) => {
                       if (waitResponse.status === 1) {
-                        blockchainSender.Mint_Callback(blockchain.BlockchainError.NoError);
-                        blockchainSender.LoadingScreenToggle_Callback(false);
+                        setErrorMessage('Minting successful!');
                       }
                     })
                     .catch((error: any) => {
-                      blockchainSender.LoadingScreenToggle_Callback(false);
                       console.log(error);
                     });
                 })
                 .catch((error: any) => {
-                  blockchainSender.LoadingScreenToggle_Callback(false);
-
                   const errorMessage: string =
                     error?.error?.data?.message === undefined ? '' : error?.error?.data?.message;
                   if (errorMessage !== '') {
@@ -90,18 +84,12 @@ const MobileMint: React.FC<MobileMintProps> = (props) => {
                 });
             } catch {
               setErrorMessage('Mint call not executed!');
-
-              //error detection
-              blockchainSender.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
             }
           } else {
-            blockchainSender.LoadingScreenToggle_Callback(false);
-            setErrorMessage('Cannot mint due to incorrect network!');
             setErrorMessage('Cannot mint due to incorrect network!');
           }
         })
         .catch((error) => {
-          blockchainSender.LoadingScreenToggle_Callback(false);
           console.log(error);
         });
     }
