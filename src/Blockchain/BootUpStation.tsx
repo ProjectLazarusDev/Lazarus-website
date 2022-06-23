@@ -12,13 +12,12 @@ import { MetaMaskAccounts } from './MetaMaskLogin';
 import { chainID } from '../Pages/Multiplayer';
 import { testChainID } from '../Pages/MultiplayerTest';
 
-import MerkleWallets from '../merkleWallets.json';
+import MerkleWallets from "../merkleWallets.json";
+
 const { MerkleTree } = require('merkletreejs');
 const keccak256 = require('keccak256');
 
-export var mintMessageString: String = '';
-
-const verifyNetwork = (response: ethers.providers.Network): boolean => {
+export const verifyNetwork = (response: ethers.providers.Network): boolean => {
   if (
     (response.chainId === chainID && window.location.pathname === '/play') ||
     (response.chainId === testChainID && window.location.pathname === '/operationdarkarts')
@@ -121,7 +120,9 @@ export async function MintBobotTest() {
   }
 }
 
+
 const mintGenesis = async (contract: ethers.Contract) => {
+
   //const whitelistAddresses = MerkleWallets.wallets;
   //const addrUserLogged = MetaMaskAccounts[4];
   //const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
@@ -130,60 +131,60 @@ const mintGenesis = async (contract: ethers.Contract) => {
   //merkleProof.map((addr: any) => proofTobeSended.push(addr));
 
   const whitelistAddresses = MerkleWallets.wallets;
-  const leafNodes = whitelistAddresses.map((addr) => keccak256(addr));
-  const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+  const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
+  const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true});
   //const rootHash = merkleTree.getRoot();
   //const rootHashBytes32 = '0x' + merkleTree.getRoot().toString('hex');
-
+  
   //console.log("First Root Hash32 for the contract: ", rootHashBytes32);
-
+  
   //after here is just to get a proof to test, change the wallet bellow to get the proof from =)
-
+  
   //const claimingAddress = keccak256(MetaMaskAccounts[0]);
   const claimingAddress = keccak256(MetaMaskAccounts[0]);
 
   const hexProof = merkleTree.getHexProof(claimingAddress);
 
-  if (hexProof.length > 0) blockchainSender.Log_Callback('Your address is whitelisted!');
-  try {
-    contract
-      .mintBobot(hexProof)
-      .then((response: any) => {
-        console.log('mint response: ', response);
+  if(hexProof.length > 0)
+    blockchainSender.Log_Callback("Your address is whitelisted!");
 
-        response
-          .wait()
-          .then((waitResponse: any) => {
-            if (waitResponse.status === 1) {
-              blockchainSender.Mint_Callback(blockchain.BlockchainError.NoError);
+    try {
+      contract
+        .mintBobot(hexProof)
+        .then((response: any) => {
+          console.log('mint response: ', response);
+
+          response
+            .wait()
+            .then((waitResponse: any) => {
+              if (waitResponse.status === 1) {
+                blockchainSender.Mint_Callback(blockchain.BlockchainError.NoError);
+                blockchainSender.LoadingScreenToggle_Callback(false);
+              }
+            })
+            .catch((error: any) => {
               blockchainSender.LoadingScreenToggle_Callback(false);
-              mintMessageString = 'Minting success!'
-            }
-          })
-          .catch((error: any) => {
-            blockchainSender.LoadingScreenToggle_Callback(false);
-            console.log(error);
-          });
-      })
-      .catch((error: any) => {
-        blockchainSender.LoadingScreenToggle_Callback(false);
+              console.log(error);
+            });
+        })
+        .catch((error: any) => {
+          blockchainSender.LoadingScreenToggle_Callback(false);
 
-        const errorMessage: string = error?.error?.data?.message === undefined ? '' : error?.error?.data?.message;
-        if (errorMessage !== '') {
-          mintMessageString = errorMessage;
-          blockchainSender.Log_Callback(mintMessageString.toString());
-        } else {
-          mintMessageString = 'Mint call not executed!';
-          blockchainSender.Log_Callback(mintMessageString.toString());
-        }
-      });
-  } catch {
-    mintMessageString = 'Mint call not executed!';
-    blockchainSender.Log_Callback(mintMessageString.toString());
+          const errorMessage: String = error?.data?.message === undefined ? '' : error?.data?.message;
+          if (errorMessage !== '') {
+            blockchainSender.Log_Callback(error?.data?.message);
+          }else{
+            blockchainSender.Log_Callback("Mint call not executed!");
+          }
+        });
+    } catch {
+  
+      blockchainSender.Log_Callback("Mint call not executed!");
 
-    //error detection
-    blockchainSender.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
-  }
+      //error detection
+      blockchainSender.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
+    }
+  
 };
 
 //mint bobot
@@ -205,7 +206,6 @@ export async function MintBobot() {
         } else {
           blockchainSender.LoadingScreenToggle_Callback(false);
           blockchainSender.Log_Callback('Cannot mint due to incorrect network!');
-          mintMessageString = 'Cannot mint due to incorrect network!';
         }
       })
       .catch((error) => {

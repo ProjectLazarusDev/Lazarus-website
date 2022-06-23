@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import '../../Theme/Theme';
 import '../../Pages/Home.css';
@@ -10,7 +10,15 @@ import { Button } from '@mui/material';
 import { CardMedia } from '@mui/material';
 import { MetaLogin } from '../../Blockchain/MetaMaskLogin';
 import * as bootUpStation from '../../Blockchain/BootUpStation';
-import { mintMessageString } from '../../Blockchain/BootUpStation';
+import { ethers } from 'ethers';
+import * as blockchainSender from '../../Blockchain/BlockchainSender';
+import { bobotGenesisAddress } from '../../Blockchain/ContractAddress';
+import BobotGenesisABI from '../../ABI/BobotGenesis.json';
+import MerkleWallets from '../../merkleWallets.json';
+import { MetaMaskAccounts } from '../../Blockchain/MetaMaskLogin';
+import * as blockchain from '../../Blockchain/BlockchainFunctions';
+const { MerkleTree } = require('merkletreejs');
+const keccak256 = require('keccak256');
 
 interface MobileMintProps {
   message: string;
@@ -25,15 +33,79 @@ const MobileMint: React.FC<MobileMintProps> = (props) => {
     // prevent user from spamming the mint button
     if (isPressed === false) {
       setIsPressed(true);
-      await bootUpStation.MintBobot();
-      setErrorMessage(mintMessageString);
+      mintBobotMobile();
       setIsPressed(false);
     }
   };
 
-  useEffect(() => {
-    setErrorMessage(mintMessageString);
-  }, [mintMessageString]);
+  function mintBobotMobile() {
+    if ((window as any).ethereum) {
+      const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.abi, signer);
+      console.log(contract);
+
+      provider
+        .getNetwork()
+        .then((response) => {
+          if (bootUpStation.verifyNetwork(response) === true) {
+            const whitelistAddresses = MerkleWallets.wallets;
+            const leafNodes = whitelistAddresses.map((addr) => keccak256(addr));
+            const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+
+            const claimingAddress = keccak256(MetaMaskAccounts[0]);
+
+            const hexProof = merkleTree.getHexProof(claimingAddress);
+
+            if (hexProof.length > 0) setErrorMessage('Your address is whitelisted!');
+            try {
+              contract
+                .mintBobot(hexProof)
+                .then((response: any) => {
+                  console.log('mint response: ', response);
+
+                  response
+                    .wait()
+                    .then((waitResponse: any) => {
+                      if (waitResponse.status === 1) {
+                        blockchainSender.Mint_Callback(blockchain.BlockchainError.NoError);
+                        blockchainSender.LoadingScreenToggle_Callback(false);
+                      }
+                    })
+                    .catch((error: any) => {
+                      blockchainSender.LoadingScreenToggle_Callback(false);
+                      console.log(error);
+                    });
+                })
+                .catch((error: any) => {
+                  blockchainSender.LoadingScreenToggle_Callback(false);
+
+                  const errorMessage: string =
+                    error?.error?.data?.message === undefined ? '' : error?.error?.data?.message;
+                  if (errorMessage !== '') {
+                    setErrorMessage(errorMessage);
+                  } else {
+                    setErrorMessage('Mint call not executed!');
+                  }
+                });
+            } catch {
+              setErrorMessage('Mint call not executed!');
+
+              //error detection
+              blockchainSender.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
+            }
+          } else {
+            blockchainSender.LoadingScreenToggle_Callback(false);
+            setErrorMessage('Cannot mint due to incorrect network!');
+            setErrorMessage('Cannot mint due to incorrect network!');
+          }
+        })
+        .catch((error) => {
+          blockchainSender.LoadingScreenToggle_Callback(false);
+          console.log(error);
+        });
+    }
+  }
 
   // log in manually first as we need to access the
   // metamask account wallet for minting verification later on
