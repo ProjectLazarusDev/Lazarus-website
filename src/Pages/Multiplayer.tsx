@@ -25,6 +25,7 @@ import { onNetworkChange, isMetaMaskLocked, isMetaMaskInstalled } from '../index
 import { unityContext as unityContextSeason0 } from '../Context/UnityContext';
 import ErrorMessage from '../Components/Multiplayer/ErrorMessage';
 import SwitchNetworkButton from '../Components/Multiplayer/SwitchNetworkButton';
+import MobileMint from '../Components/Multiplayer/MobileMint';
 //abi import
 
 import { ethers } from 'ethers';
@@ -123,7 +124,7 @@ const Multiplayer: React.FC = () => {
   function render() {
     let currentRender;
     if (isMobile === true) {
-      currentRender = <ErrorMessage message="MOBILE MINT ON 25 JUNE!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = <MobileMint message="mobile mint!" isLoaded={isLoaded}></MobileMint>;
     } else if (isMetaMaskInstalled() === false) {
       currentRender = <ErrorMessage message="PLEASE INSTALL METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isLocked === true) {

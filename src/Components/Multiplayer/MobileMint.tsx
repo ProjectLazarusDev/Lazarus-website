@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import '../../Theme/Theme';
 import '../../Pages/Home.css';
@@ -8,17 +8,31 @@ import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { Button } from '@mui/material';
 import { CardMedia } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import { MetaLogin } from '../../Blockchain/MetaMaskLogin';
 import * as bootUpStation from '../../Blockchain/BootUpStation';
+import { mintMessageString } from '../../Blockchain/BootUpStation';
 
-interface MobileMintProps 
-{
+interface MobileMintProps {
   message: string;
   isLoaded: boolean;
 }
 
 const MobileMint: React.FC<MobileMintProps> = (props) => {
-  // log in manually first as we need to access the 
+  const [errorMessage, setErrorMessage] = useState<String>();
+  const [isPressed, setIsPressed] = useState<Boolean>(false);
+
+  const handleClick = async () => {
+    // prevent user from spamming the mint button
+    if (isPressed === false) {
+      setIsPressed(true);
+      await bootUpStation.MintBobot();
+      setErrorMessage(mintMessageString);
+      setIsPressed(false);
+    }
+  };
+
+  // log in manually first as we need to access the
   // metamask account wallet for minting verification later on
   MetaLogin();
 
@@ -37,6 +51,19 @@ const MobileMint: React.FC<MobileMintProps> = (props) => {
       }}
     >
       <div className="mint" style={{ zIndex: 21 }}>
+        <Typography
+          paddingBottom={'50px'}
+          paddingTop={'25px'}
+          fontFamily="Dongle"
+          letterSpacing={'1px'}
+          lineHeight={0}
+          color="#ffffffff"
+          fontWeight="bold"
+          variant="subtitle1"
+          fontSize="1.25rem"
+        >
+          {errorMessage}
+        </Typography>
         <Grid
           container
           spacing={0}
@@ -77,8 +104,9 @@ const MobileMint: React.FC<MobileMintProps> = (props) => {
         >
           BOBOTS GENESIS
         </Typography>
+        {/* {isPressed === true && <CircularProgress />} */}
         <Button
-          onClick={bootUpStation.MintBobot}
+          onClick={handleClick}
           variant="contained"
           style={{
             height: '40px',
