@@ -25,8 +25,8 @@ console.log("Second Root Hash32 for the contract: ", rootHashBytes322);
 
 //after here is just to get a proof to test, change the wallet bellow to get the proof from =)
 
-const claimingAddress = keccak256("0xb19002E58C61361c3dFbff19891462803A4780f7");
-const claimingAddress2 = keccak256("0xb19002E58C61361c3dFbff19891462803A4780f7");
+const claimingAddress = keccak256("0xE22ebac31041D5582d55DDE1eDd231547D6Ac88f");
+const claimingAddress2 = keccak256("0xE22ebac31041D5582d55DDE1eDd231547D6Ac88f");
 
 const hexProof = merkleTree.getHexProof(claimingAddress);
 const hexProof2 = merkleTree2.getHexProof(claimingAddress2);

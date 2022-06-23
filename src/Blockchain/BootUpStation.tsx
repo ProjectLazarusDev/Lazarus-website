@@ -126,19 +126,34 @@ export async function MintBobotTest() {
 
 const mintGenesis = async (contract: ethers.Contract) => {
 
-  const whitelistAddresses = MerkleWallets.wallets;
-  const addrUserLogged = MetaMaskAccounts[0];
-  const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
-  const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
-  const merkleProof = merkleTree.getHexProof(keccak256(addrUserLogged))
-  merkleProof.map((addr: any) => proofTobeSended.push(addr));
+  //const whitelistAddresses = MerkleWallets.wallets;
+  //const addrUserLogged = MetaMaskAccounts[4];
+  //const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
+  //const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+  //const merkleProof = merkleTree.getHexProof(keccak256(addrUserLogged))
+  //merkleProof.map((addr: any) => proofTobeSended.push(addr));
 
-  console.log(MetaMaskAccounts[0]);
-  console.log(proofTobeSended);
+  const whitelistAddresses = MerkleWallets.wallets;
+  const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
+  const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true});
+  //const rootHash = merkleTree.getRoot();
+  //const rootHashBytes32 = '0x' + merkleTree.getRoot().toString('hex');
+  
+  //console.log("First Root Hash32 for the contract: ", rootHashBytes32);
+  
+  //after here is just to get a proof to test, change the wallet bellow to get the proof from =)
+  
+  //const claimingAddress = keccak256(MetaMaskAccounts[0]);
+  const claimingAddress = keccak256(MetaMaskAccounts[0]);
+
+  const hexProof = merkleTree.getHexProof(claimingAddress);
+
+  if(hexProof.length > 0)
+    blockchainSender.Log_Callback("Your address is whitelisted!");
 
     try {
       contract
-        .mintBobot(proofTobeSended)
+        .mintBobot(hexProof)
         .then((response: any) => {
           console.log('mint response: ', response);
 
@@ -162,13 +177,12 @@ const mintGenesis = async (contract: ethers.Contract) => {
           if (errorMessage !== '') {
             blockchainSender.Log_Callback(error?.data?.message);
           }else{
-            blockchainSender.Log_Callback("Mint Denied - Already minted or not whitelisted");
+            blockchainSender.Log_Callback("Mint call did not go through");
           }
         });
     } catch {
-    
- 
-        blockchainSender.Log_Callback("Mint Denied - Already minted or not whitelisted");
+  
+      blockchainSender.Log_Callback("Mint call did not go through");
       
       //error detection
       blockchainSender.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
