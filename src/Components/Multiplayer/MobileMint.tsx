@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import '../../Theme/Theme';
 import '../../Pages/Home.css';
@@ -30,6 +30,10 @@ const MobileMint: React.FC<MobileMintProps> = (props) => {
       setIsPressed(false);
     }
   };
+
+  useEffect(() => {
+    setErrorMessage(mintMessageString);
+  }, [mintMessageString]);
 
   // log in manually first as we need to access the
   // metamask account wallet for minting verification later on

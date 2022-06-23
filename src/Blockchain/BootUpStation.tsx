@@ -16,7 +16,7 @@ import MerkleWallets from '../merkleWallets.json';
 const { MerkleTree } = require('merkletreejs');
 const keccak256 = require('keccak256');
 
-export var mintMessageString: string = '';
+export var mintMessageString: String = '';
 
 const verifyNetwork = (response: ethers.providers.Network): boolean => {
   if (
@@ -171,15 +171,15 @@ const mintGenesis = async (contract: ethers.Contract) => {
         const errorMessage: string = error?.error?.data?.message === undefined ? '' : error?.error?.data?.message;
         if (errorMessage !== '') {
           mintMessageString = errorMessage;
-          blockchainSender.Log_Callback(mintMessageString);
+          blockchainSender.Log_Callback(mintMessageString.toString());
         } else {
           mintMessageString = 'Mint call not executed!';
-          blockchainSender.Log_Callback(mintMessageString);
+          blockchainSender.Log_Callback(mintMessageString.toString());
         }
       });
   } catch {
     mintMessageString = 'Mint call not executed!';
-    blockchainSender.Log_Callback(mintMessageString);
+    blockchainSender.Log_Callback(mintMessageString.toString());
 
     //error detection
     blockchainSender.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
@@ -205,6 +205,7 @@ export async function MintBobot() {
         } else {
           blockchainSender.LoadingScreenToggle_Callback(false);
           blockchainSender.Log_Callback('Cannot mint due to incorrect network!');
+          mintMessageString = 'Cannot mint due to incorrect network!';
         }
       })
       .catch((error) => {
