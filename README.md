@@ -1,6 +1,6 @@
 ---
 description: Official blackpaper for Bobots - v1.0.0, last updated June 2022
-cover: .gitbook/assets/Bobots_Splash1.png
+cover: .gitbook/assets/banner.jpg
 coverY: 0
 ---
 

@@ -1,6 +1,6 @@
 # Genesis Bobots
 
-![](../../.gitbook/assets/banner.jpg)
+![](<../../.gitbook/assets/banner (1).jpg>)
 
 Lively, reliable, and pretty much indestructible, Genesis Bobots are humanity's pride and joy. They are sturdy workers that can really put in work! Due to the rarity of the resources required to create the Genesis Bobots, they are limited in quantity.&#x20;
 
