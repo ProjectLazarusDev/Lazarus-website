@@ -17,9 +17,6 @@ import MerkleWallets from "../merkleWallets.json";
 const { MerkleTree } = require('merkletreejs');
 const keccak256 = require('keccak256');
 
-var proofTobeSended:any = [];
-
-
 const verifyNetwork = (response: ethers.providers.Network): boolean => {
   if (
     (response.chainId === chainID && window.location.pathname === '/play') ||
