@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import '../../Theme/Theme';
 import '../../Pages/Home.css';
@@ -8,7 +8,6 @@ import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
 import { Button } from '@mui/material';
 import { CardMedia } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
 import { MetaLogin } from '../../Blockchain/MetaMaskLogin';
 import * as bootUpStation from '../../Blockchain/BootUpStation';
 import { mintMessageString } from '../../Blockchain/BootUpStation';
@@ -104,7 +103,6 @@ const MobileMint: React.FC<MobileMintProps> = (props) => {
         >
           BOBOTS GENESIS
         </Typography>
-        {/* {isPressed === true && <CircularProgress />} */}
         <Button
           onClick={handleClick}
           variant="contained"
