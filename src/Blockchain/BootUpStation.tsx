@@ -177,13 +177,13 @@ const mintGenesis = async (contract: ethers.Contract) => {
           if (errorMessage !== '') {
             blockchainSender.Log_Callback(error?.data?.message);
           }else{
-            blockchainSender.Log_Callback("Mint call did not go through");
+            blockchainSender.Log_Callback("Mint call not executed!");
           }
         });
     } catch {
   
-      blockchainSender.Log_Callback("Mint call did not go through");
-      
+      blockchainSender.Log_Callback("Mint call not executed!");
+
       //error detection
       blockchainSender.Mint_Callback(blockchain.BlockchainError.NetworkBusy);
     }
