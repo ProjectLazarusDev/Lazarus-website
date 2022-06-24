@@ -19,7 +19,7 @@ const keccak256 = require('keccak256');
 
 export const verifyNetwork = (response: ethers.providers.Network): boolean => {
   if (
-    (response.chainId === chainID && (window.location.pathname === '/play' || window.location.pathname === '/mintpage')) ||
+    (response.chainId === chainID && (window.location.pathname === '/play' || window.location.pathname === '/mintgenesis')) ||
     (response.chainId === testChainID && window.location.pathname === '/operationdarkarts')
   ) {
     return true;

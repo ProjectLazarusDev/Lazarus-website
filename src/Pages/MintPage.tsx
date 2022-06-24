@@ -19,7 +19,7 @@ import { ethers } from 'ethers';
 
 // using Abitrium One network as default
 const chainID = 42161;
-const MintPage: React.FC = () => {
+const MintGenesis: React.FC = () => {
   //react hooks
   // check to see if meta mask account is locked
   const [isLocked, setIsLocked] = React.useState<boolean>(true);
@@ -105,7 +105,7 @@ const MintPage: React.FC = () => {
   );
 };
 
-export default MintPage;
+export default MintGenesis;
 
 // const MintPage: React.FC = () => {
 //   function MintNumber() {}
