@@ -127,7 +127,7 @@ const MultiplayerTest: React.FC = () => {
   function render() {
     let currentRender;
     if (isMobile === true) {
-      currentRender = <MobileMint message="mobile mint!" isLoaded={isLoaded}></MobileMint>;
+      currentRender = <MobileMint></MobileMint>;
     } else if (isMetaMaskInstalled() === false) {
       currentRender = <ErrorMessage message="PLEASE INSTALL METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isLocked === true) {

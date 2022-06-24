@@ -65,7 +65,7 @@ const MintPage: React.FC = () => {
     } else if (isCorrectNetwork === false) {
       currentRender = <SwitchNetworkButtonSmall chainID={chainID}></SwitchNetworkButtonSmall>;
     } else {
-      currentRender = <MobileMint message="mobile mint!" isLoaded={false}></MobileMint>;
+      currentRender = <MobileMint></MobileMint>;
     }
     return currentRender;
   }

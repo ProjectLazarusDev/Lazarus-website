@@ -18,12 +18,7 @@ import { MetaMaskAccounts } from '../../Blockchain/MetaMaskLogin';
 const { MerkleTree } = require('merkletreejs');
 const keccak256 = require('keccak256');
 
-interface MobileMintProps {
-  message: string;
-  isLoaded: boolean;
-}
-
-const MobileMint: React.FC<MobileMintProps> = (props) => {
+const MobileMint: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<String>();
   const [isPressed, setIsPressed] = useState<Boolean>(false);
 
