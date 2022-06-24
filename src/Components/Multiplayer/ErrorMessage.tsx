@@ -32,7 +32,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = (props) => {
           paddingBottom={'50px'}
           paddingTop={'25px'}
           fontFamily="Dongle"
-          letterSpacing={'5px'}
+          letterSpacing={'3px'}
           lineHeight={0}
           color="#ffffffff"
           fontWeight="bold"

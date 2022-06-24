@@ -126,21 +126,22 @@ const MultiplayerTest: React.FC = () => {
 
   function render() {
     let currentRender;
-    if (isMobile === true) {
-      currentRender = <MobileMint message="mobile mint!" isLoaded={isLoaded}>
-      </MobileMint>;
-    } else if (isMetaMaskInstalled() === false) {
+    if (isMetaMaskInstalled() === false) {
       currentRender = <ErrorMessage message="PLEASE INSTALL METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isLocked === true) {
       currentRender = <ErrorMessage message="PLEASE LOGIN TO METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isCorrectNetwork === false) {
       currentRender = <SwitchNetworkButton chainID={testChainID}></SwitchNetworkButton>;
     } else {
-      currentRender = (
-        <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
-          {' '}
-        </GameScreen>
-      );
+      if (isMobile === true) {
+        currentRender = <MobileMint message="mobile mint!" isLoaded={isLoaded}></MobileMint>;
+      } else {
+        currentRender = (
+          <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
+            {' '}
+          </GameScreen>
+        );
+      }
     }
 
     return currentRender;
@@ -163,8 +164,7 @@ const MultiplayerTest: React.FC = () => {
             alignItems: ' center',
             justifyContent: ' center',
           }}
-        >
-</Card>
+        ></Card>
 
         <Card
           style={{
@@ -176,7 +176,6 @@ const MultiplayerTest: React.FC = () => {
             background: 'linear-gradient(to right bottom, #12121200, #05050500)',
           }}
         >
-        
           {render()}
         </Card>
       </div>
