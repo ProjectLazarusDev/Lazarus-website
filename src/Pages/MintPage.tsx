@@ -21,8 +21,6 @@ import { ethers } from 'ethers';
 const chainID = 42161;
 const MintPage: React.FC = () => {
   //react hooks
-  // check on whether unity game has beend loaded
-  const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
   // check to see if meta mask account is locked
   const [isLocked, setIsLocked] = React.useState<boolean>(true);
   // check on whether the correct network is used
@@ -61,13 +59,13 @@ const MintPage: React.FC = () => {
   function render() {
     let currentRender;
     if (isMetaMaskInstalled() === false) {
-      currentRender = <ErrorMessage message="PLEASE INSTALL METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = <ErrorMessage message="PLEASE INSTALL METAMASK FIRST!" isLoaded={false}></ErrorMessage>;
     } else if (isLocked === true) {
-      currentRender = <ErrorMessage message="PLEASE LOGIN TO METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = <ErrorMessage message="PLEASE LOGIN TO METAMASK FIRST!" isLoaded={false}></ErrorMessage>;
     } else if (isCorrectNetwork === false) {
       currentRender = <SwitchNetworkButtonSmall chainID={chainID}></SwitchNetworkButtonSmall>;
     } else {
-      currentRender = <MobileMint message="mobile mint!" isLoaded={isLoaded}></MobileMint>;
+      currentRender = <MobileMint message="mobile mint!" isLoaded={false}></MobileMint>;
     }
     return currentRender;
   }
@@ -80,7 +78,7 @@ const MintPage: React.FC = () => {
 
         <Card
           style={{
-            zIndex: isLoaded ? -2 : 20,
+            zIndex: 20,
             position: 'fixed',
             width: '100vw',
             height: '100vh',
