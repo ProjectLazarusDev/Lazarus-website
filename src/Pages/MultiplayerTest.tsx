@@ -126,22 +126,20 @@ const MultiplayerTest: React.FC = () => {
 
   function render() {
     let currentRender;
-    if (isMetaMaskInstalled() === false) {
+    if (isMobile === true) {
+      currentRender = <MobileMint message="mobile mint!" isLoaded={isLoaded}></MobileMint>;
+    } else if (isMetaMaskInstalled() === false) {
       currentRender = <ErrorMessage message="PLEASE INSTALL METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isLocked === true) {
       currentRender = <ErrorMessage message="PLEASE LOGIN TO METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isCorrectNetwork === false) {
       currentRender = <SwitchNetworkButton chainID={testChainID}></SwitchNetworkButton>;
     } else {
-      if (isMobile === true) {
-        currentRender = <MobileMint message="mobile mint!" isLoaded={isLoaded}></MobileMint>;
-      } else {
-        currentRender = (
-          <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
-            {' '}
-          </GameScreen>
-        );
-      }
+      currentRender = (
+        <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
+          {' '}
+        </GameScreen>
+      );
     }
 
     return currentRender;
