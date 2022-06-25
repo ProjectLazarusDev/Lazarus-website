@@ -4,6 +4,9 @@ const keccak256 = require('keccak256');
 const MerkleWallets = require("../../src/merkleWallets.json");
 const MerkleWallets2 = require("../../src/merkleWallet2.json");
 
+//check address
+var addr = "0xE60B0c75D0Ed2589D3402425Bdfd02c5bCAaeBF6";
+
 const whitelistAddresses = MerkleWallets.wallets;
 const whitelistAddresses2 = MerkleWallets2.wallets;
 
@@ -24,9 +27,8 @@ console.log("Second Root Hash32 for the contract: ", rootHashBytes322);
 
 
 //after here is just to get a proof to test, change the wallet bellow to get the proof from =)
-
-const claimingAddress = keccak256("0x9250a1C5006F44aEd3C3BA5FB7A61415cDc52dCA");
-const claimingAddress2 = keccak256("0x9250a1C5006F44aEd3C3BA5FB7A61415cDc52dCA");
+const claimingAddress = keccak256(addr);
+const claimingAddress2 = keccak256(addr);
 
 const hexProof = merkleTree.getHexProof(claimingAddress);
 const hexProof2 = merkleTree2.getHexProof(claimingAddress2);
