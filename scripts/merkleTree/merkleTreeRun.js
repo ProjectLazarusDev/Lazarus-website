@@ -5,7 +5,7 @@ const MerkleWallets = require("../../src/merkleWallets.json");
 const MerkleWallets2 = require("../../src/merkleWallet2.json");
 
 //check address
-var addr = "0xE60B0c75D0Ed2589D3402425Bdfd02c5bCAaeBF6";
+var addr = "0xE476ed67b1d063e807ac09456cDEeF44E4D30D03";
 
 const whitelistAddresses = MerkleWallets.wallets;
 const whitelistAddresses2 = MerkleWallets2.wallets;
