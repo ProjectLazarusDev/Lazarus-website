@@ -20,7 +20,7 @@ _You are a BBNaut – uploaded aboard a Monolift Carrier with several others to 
 
 **Build your home in space! explore, collect, and have fun interacting with your Bobots, all on your browser! No minting fee for whitelisted players!**&#x20;
 
-Bobots is a play-to-earn social base-building game on Arbitrium, where players can gather, craft, and customize their very own base in space! Every Bobot you own is 3D and fully animated, ready at your command to dive into the BBNet to start your adventure!&#x20;
+Bobots is a play-to-earn social base-building game on Arbitrum, where players can gather, craft, and customize their very own base in space! Every Bobot you own is 3D and fully animated, ready at your command to dive into the BBNet to start your adventure!&#x20;
 
 The game features a fully customizable base for players to create their dream virtual homes, and leverages on players staking their Bobots on their Lands to earn rewards and progress the game!&#x20;
 
