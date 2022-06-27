@@ -30,4 +30,4 @@ The Bobots project aims to to allow communities to create their own cities while
 
 ![Early concept mockup](.gitbook/assets/Bobots\_CentralHub\_Mockup.png)
 
-_Disclaimer: As Bobots is a bleeding-edge game worked on by a small team, much of the information on this whitepaper may be subjected to change, based on various factors that may influence the decisions made by the team, including technical considerations, community feedback and production timeline._&#x20;
+_Disclaimer: As Bobots is a bleeding-edge game worked on by a small team, much of the information on this blackpaper may be subjected to change, based on various factors that may influence the decisions made by the team, including technical considerations, community feedback and production timeline._&#x20;
