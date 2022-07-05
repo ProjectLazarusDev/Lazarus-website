@@ -90,12 +90,12 @@ export async function GetBobotsAllStakeStatus() {
     for (var index = 0; index < t.length; index++) {
       try {
         const tokenID = t[index];
-        console.log('tokenID', tokenID);
+        //console.log('tokenID', tokenID);
         const stakeStatus = await installationCC_contract.isAtCoreChamberGenesis(tokenID);
         // get core points value and convert from big number to number
         const corePointsResponse = await installationCC_contract.corePointsEarnedGenesis(tokenID);
         const corePoints = BigNumber.from(corePointsResponse?._hex).toNumber();
-        console.log(tokenID, stakeStatus, corePoints);
+        //console.log(tokenID, stakeStatus, corePoints);
         blockchainSender.ReceiveTokenStakeStatus_Callback(tokenID, stakeStatus, corePoints);
       } catch (err) {
         console.log(err);
