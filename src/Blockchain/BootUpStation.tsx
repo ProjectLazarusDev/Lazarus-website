@@ -44,9 +44,11 @@ const stakeGenesis = async (contract: ethers.Contract, bobotID: any) => {
         .then(async (response: any) => {
           console.log('unstake response:', response);
           blockchainSender.ReceiveTokenStakeStatus_Callback(tokenID, true, corePoints);
+          blockchainSender.Log_Callback(`Bobot ${tokenID} is now being unstaked!`);
         })
         .catch((error: any) => {
           console.log(error);
+          blockchainSender.Log_Callback(`An error has occured when staking!`);
         });
     } else {
       await contract
@@ -54,13 +56,16 @@ const stakeGenesis = async (contract: ethers.Contract, bobotID: any) => {
         .then(async (response: any) => {
           console.log('stake response:', response);
           blockchainSender.ReceiveTokenStakeStatus_Callback(bobotID, true, corePoints);
+          blockchainSender.Log_Callback(`Bobot ${tokenID} is now staked!`);
         })
         .catch((error: any) => {
           console.log(error);
+          blockchainSender.Log_Callback(`An error has occured when staking!`);
         });
     }
   } catch {
     console.log('An error has occured when staking!');
+    blockchainSender.Log_Callback(`An error has occured when staking!`);
   }
 };
 
