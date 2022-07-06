@@ -20,7 +20,7 @@ export async function GetBobotsAllURI() {
 
     try {
       const response = await contract.getTokenIds(MetaMaskAccounts[0]);
-      console.log('response: ', response);
+      //console.log('response: ', response);
 
       for (var _i = 0; _i < response.length; _i++) {
         t.push(response[_i].toNumber());
@@ -40,7 +40,7 @@ export async function GetBobotsAllURI() {
     for (var index = 0; index < t.length; index++) {
       try {
         const response = await contract.getTokenURI(t[index]);
-        console.log('response: ', response);
+        //console.log('response: ', response);
         blockchainSender.RecieveTokenURI_Callback(response as string);
         //send response back to game engine
       } catch (err) {
@@ -72,7 +72,7 @@ export async function GetBobotsAllStakeStatus() {
 
     try {
       const response = await bobotGenesis_contract.getTokenIds(MetaMaskAccounts[0]);
-      console.log('response: ', response);
+      //console.log('response: ', response);
 
       for (var _i = 0; _i < response.length; _i++) {
         t.push(response[_i].toNumber());
@@ -90,12 +90,12 @@ export async function GetBobotsAllStakeStatus() {
     for (var index = 0; index < t.length; index++) {
       try {
         const tokenID = t[index];
-        console.log('tokenID', tokenID);
+        //console.log('tokenID', tokenID);
         const stakeStatus = await installationCC_contract.isAtCoreChamberGenesis(tokenID);
         // get core points value and convert from big number to number
         const corePointsResponse = await installationCC_contract.corePointsEarnedGenesis(tokenID);
         const corePoints = BigNumber.from(corePointsResponse?._hex).toNumber();
-        console.log(tokenID, stakeStatus, corePoints);
+        //console.log(tokenID, stakeStatus, corePoints);
         blockchainSender.ReceiveTokenStakeStatus_Callback(tokenID, stakeStatus, corePoints);
       } catch (err) {
         console.log(err);
