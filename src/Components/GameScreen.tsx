@@ -35,35 +35,6 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
     props.currUnityContext.setFullscreen(toggle);
   }
 
-  function RenderFullScreenButton() {
-    return (
-      <>
-        <Button
-          sx={{
-            opacity: [0.75, 0.75, 0.75],
-          }}
-          style={{
-            color: 'white',
-            fontFamily: 'Dongle',
-            letterSpacing: '1px',
-            fontSize: '2rem',
-            backgroundColor: '#000000ff',
-            height: '100vh',
-            width: '100vw',
-            paddingTop: '40%',
-          }}
-          onClick={() => {
-            ToggleFullScreen(true);
-          }}
-        >
-          <FaHandPointUp />
-          Click on screen to enter game
-          <FaHandPointUp />
-        </Button>
-      </>
-    );
-  }
-
   if(isMobile === true){
     MetaLogin();
   }
