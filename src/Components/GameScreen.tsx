@@ -5,10 +5,8 @@ import Unity, { UnityContext } from 'react-unity-webgl';
 import '../Pages/Home.css';
 import '../Pages/Page.css';
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
 import { isMobile } from 'react-device-detect';
 import '../indexweb3.js';
-import { FaHandPointUp } from 'react-icons/fa';
 import { MetaLogin } from '../Blockchain/MetaMaskLogin';
 
 interface GameScreenProps {
@@ -28,12 +26,6 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
 
     return 'DOWNLOADED...LOADING GAME';
   };
-
-  //toggle full-screen control
-  function ToggleFullScreen(toggle: boolean) {
-   
-    props.currUnityContext.setFullscreen(toggle);
-  }
 
   if(isMobile === true){
     MetaLogin();
