@@ -9,6 +9,7 @@ import { Button } from '@mui/material';
 import { isMobile } from 'react-device-detect';
 import '../indexweb3.js';
 import { FaHandPointUp } from 'react-icons/fa';
+import { MetaLogin } from '../Blockchain/MetaMaskLogin';
 
 interface GameScreenProps {
   isLoaded: boolean;
@@ -61,6 +62,10 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
         </Button>
       </>
     );
+  }
+
+  if(isMobile === true){
+    MetaLogin();
   }
 
   return (

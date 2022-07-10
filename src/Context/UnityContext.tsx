@@ -16,12 +16,8 @@ export const unityContextSeason0 = new UnityContext({
 
 const unityContextMobileString = 'dev_bootup_mobile';
 export const unityContextMobile = new UnityContext({
-//   loaderUrl: `${unityContextMobileString}/${unityContextMobileString}.loader.js`,
-//   dataUrl: `${unityContextMobileString}/${unityContextMobileString}.data`,
-//   frameworkUrl: `${unityContextMobileString}/${unityContextMobileString}.framework.js`,
-//   codeUrl: `${unityContextMobileString}/${unityContextMobileString}.wasm`,
-loaderUrl: 'dev_bootup_mobile/dev_bootup_mobile.loader.js',
-dataUrl: 'dev_bootup_mobile/dev_bootup_mobile.data',
-frameworkUrl: 'dev_bootup_mobile/dev_bootup_mobile.framework.js',
-codeUrl: 'dev_bootup_mobile/dev_bootup_mobile.wasm',
+  loaderUrl: `${unityContextMobileString}/${unityContextMobileString}.loader.js`,
+  dataUrl: `${unityContextMobileString}/${unityContextMobileString}.data`,
+  frameworkUrl: `${unityContextMobileString}/${unityContextMobileString}.framework.js`,
+  codeUrl: `${unityContextMobileString}/${unityContextMobileString}.wasm`,
 });
