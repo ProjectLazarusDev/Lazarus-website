@@ -65,7 +65,15 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
 
   return (
     <>
-
+      {
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          style={{pointerEvents:'none', borderRadius: '0px',  height: props.isLoaded === true ?'0vh': '100vh', boxShadow: 'none' }}
+        >
           <div className="progress-bar" style={{ zIndex: props.isLoaded ? -2 : 21 }}>
             <div className="progress-bar-title">
               <Typography
@@ -89,7 +97,8 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
             </div>
           )}
          
-        
+         </Grid>
+      }
             <Unity
               className="unityWindow"
               unityContext={props.currUnityContext}
