@@ -136,7 +136,7 @@ const Multiplayer: React.FC = () => {
       currentRender = <SwitchNetworkButton chainID={chainID}></SwitchNetworkButton>;
     } else {
       currentRender = (
-        <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextMobile}>
+        <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
           {' '}
         </GameScreen>
       );
