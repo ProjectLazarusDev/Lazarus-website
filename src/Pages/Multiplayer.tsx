@@ -164,7 +164,7 @@ const Multiplayer: React.FC = () => {
             boxShadow: 'none',
             zIndex: -2,
             width: '100vw',
-            height: '90vh',
+            height: '100vh',
             borderRadius: '0px',
             background: 'linear-gradient(to right bottom, #12121200, #05050500)',
           }}
