@@ -44,7 +44,7 @@ const stakeGenesis = async (contract: ethers.Contract, bobotID: any) => {
         .then(async (response: any) => {
           console.log('unstake response:', response);
           blockchainSender.ReceiveTokenStakeStatus_Callback(tokenID, false, corePoints);
-          blockchainSender.Log_Callback(`Bobot ${tokenID} is now being unstaked!`);
+          blockchainSender.Log_Callback(`Bobot #${tokenID} is now unstaked!`);
         })
         .catch((error: any) => {
           console.log(error);
@@ -56,7 +56,7 @@ const stakeGenesis = async (contract: ethers.Contract, bobotID: any) => {
         .then(async (response: any) => {
           console.log('stake response:', response);
           blockchainSender.ReceiveTokenStakeStatus_Callback(bobotID, true, corePoints);
-          blockchainSender.Log_Callback(`Bobot ${tokenID} is now staked!`);
+          blockchainSender.Log_Callback(`Bobot #${tokenID} is now staked!`);
         })
         .catch((error: any) => {
           console.log(error);
