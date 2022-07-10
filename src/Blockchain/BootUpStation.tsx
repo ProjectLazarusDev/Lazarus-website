@@ -43,7 +43,7 @@ const stakeGenesis = async (contract: ethers.Contract, bobotID: any) => {
         .unstakeGenesis(tokenID)
         .then(async (response: any) => {
           console.log('unstake response:', response);
-          blockchainSender.ReceiveTokenStakeStatus_Callback(tokenID, true, corePoints);
+          blockchainSender.ReceiveTokenStakeStatus_Callback(tokenID, false, corePoints);
           blockchainSender.Log_Callback(`Bobot ${tokenID} is now being unstaked!`);
         })
         .catch((error: any) => {
