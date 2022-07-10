@@ -22,7 +22,7 @@ import GameScreen from '../Components/GameScreen';
 
 import * as blockchain from '../Blockchain/BlockchainFunctions';
 import { onNetworkChange, isMetaMaskLocked, isMetaMaskInstalled } from '../indexweb3.js';
-import { unityContext as unityContextSeason0 } from '../Context/UnityContext';
+import { unityContext as unityContextSeason0, unityContextMobile } from '../Context/UnityContext';
 import ErrorMessage from '../Components/Multiplayer/ErrorMessage';
 import SwitchNetworkButton from '../Components/Multiplayer/SwitchNetworkButton';
 //abi import
@@ -123,7 +123,11 @@ const Multiplayer: React.FC = () => {
   function render() {
     let currentRender;
     if (isMobile === true) {
-      currentRender = <ErrorMessage message="MOBILE MINT ON 25 JUNE!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = (
+        <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextMobile}>
+          {' '}
+        </GameScreen>
+      );
     } else if (isMetaMaskInstalled() === false) {
       currentRender = <ErrorMessage message="PLEASE INSTALL METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isLocked === true) {
@@ -132,7 +136,7 @@ const Multiplayer: React.FC = () => {
       currentRender = <SwitchNetworkButton chainID={chainID}></SwitchNetworkButton>;
     } else {
       currentRender = (
-        <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
+        <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextMobile}>
           {' '}
         </GameScreen>
       );
