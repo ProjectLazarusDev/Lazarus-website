@@ -15,8 +15,6 @@ import './Home.css';
 import './Page.css';
 import Header from '../Components/Header';
 
-import 'motion-pointer/dist/index.css';
-import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
 import GameScreen from '../Components/GameScreen';
 
@@ -105,6 +103,8 @@ const MultiplayerTest: React.FC = () => {
     setIsLoaded(true);
     setScrollValue(-document.body.getBoundingClientRect().top / document.body.getBoundingClientRect().height);
     unityContextSeason0.setFullscreen(true);
+    unityContextSeason0.requestPointerLock();
+
   }
 
   const updateDimensions = () => {};
@@ -118,9 +118,12 @@ const MultiplayerTest: React.FC = () => {
   // When the component is mounted, we'll register some event listener.
   React.useEffect(() => {
     blockchain.BindToContext();
+    unityContextSeason0.requestPointerLock();
+    unityContextSeason0.htmlCanvasElement?.setPointerCapture(0);
     return function () {
       // handleOnClickUnMountUnity();
       unityContextSeason0.removeAllEventListeners();
+     
     };
   }, []);
 

@@ -6,8 +6,6 @@ import '../Pages/Home.css';
 import '../Pages/Page.css';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
-import 'motion-pointer/dist/index.css';
-import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
 import '../indexweb3.js';
 import { FaHandPointUp } from 'react-icons/fa';
@@ -19,6 +17,9 @@ interface GameScreenProps {
 }
 
 const GameScreen: React.FC<GameScreenProps> = (props) => {
+
+
+
   const GetLoadingString = (load: Number) => {
     if (load < 0.5) return 'CHARGING UP...';
 
@@ -29,6 +30,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
 
   //toggle full-screen control
   function ToggleFullScreen(toggle: boolean) {
+   
     props.currUnityContext.setFullscreen(toggle);
   }
 
@@ -63,15 +65,7 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
 
   return (
     <>
-      {
-        <Grid
-          container
-          spacing={0}
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-          style={{ borderRadius: '0px', height: '100vh', boxShadow: 'none' }}
-        >
+
           <div className="progress-bar" style={{ zIndex: props.isLoaded ? -2 : 21 }}>
             <div className="progress-bar-title">
               <Typography
@@ -94,7 +88,8 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
               <div className="progress-bar-fill" style={{ width: props.progression * 100 + '%' }} />
             </div>
           )}
-          <div className="pageUnity">
+         
+        
             <Unity
               className="unityWindow"
               unityContext={props.currUnityContext}
@@ -105,10 +100,8 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
                 height: '101vh',
               }}
             />
-          </div>
-          <div className="pageFullScreen">{RenderFullScreenButton()}</div>
-        </Grid>
-      }
+       
+        
     </>
   );
 };

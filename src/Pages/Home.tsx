@@ -25,8 +25,6 @@ import BuildingNft from '../Components/BuildingNft';
 import FAQ from '../Components/FAQ';
 import Teams from '../Components/Teams';
 import Seasons from '../Components/Seasons';
-import 'motion-pointer/dist/index.css';
-import 'motion-pointer/dist/index.js';
 import { CardMedia } from '@mui/material';
 import { isMobile } from 'react-device-detect';
 

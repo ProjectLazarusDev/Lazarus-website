@@ -44,20 +44,13 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
   <script>
-    document.addEventListener('wheel', onScroll, true);
+    document.addEventListener('wheel', onScroll, false);
     document.addEventListener('mousemove', onMouse, false);
     document.addEventListener('touchstart', onTouchStart, false);
     document.addEventListener('touchmove', onTouchMove, false);
 
     var content = document.getElementsByClassName("unityWindow");
-    function onMouse() { 
-      if(content.length>0)
-      content[0].style['pointer-events'] = 'none'; 
-    }
-    function onScroll() {  if(content.length>0)content[0].style['pointer-events'] = 'none'; }
-    function onTouchStart() {  if(content.length>0)content[0].style['pointer-events'] = 'none'; }
-    function onTouchMove() {  if(content.length>0)content[0].style['pointer-events'] = 'none'; }
-
+    
   </script>
   <!--
       This HTML file is a template.
