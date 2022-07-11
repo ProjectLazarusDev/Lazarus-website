@@ -46,6 +46,7 @@ const MultiplayerTest: React.FC = () => {
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
 
   const unityLoad = () => {
+    if (isMobile) unityContextSeason0.send('GameManager', 'setMobile');
     unityContextSeason0.on('progress', handleOnUnityProgress);
     unityContextSeason0.on('loaded', handleOnUnityLoaded);
     unityContextSeason0.on('quitted', function () {});
