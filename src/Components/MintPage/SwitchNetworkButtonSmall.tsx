@@ -3,8 +3,6 @@ import { Button } from '@mui/material';
 import '../../Theme/Theme';
 import '../../Pages/Home.css';
 import '../../Pages/Page.css';
-import 'motion-pointer/dist/index.css';
-import 'motion-pointer/dist/index.js';
 import { switchNetwork } from '../../indexweb3.js';
 import { Grid } from '@mui/material';
 

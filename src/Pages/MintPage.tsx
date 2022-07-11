@@ -6,9 +6,6 @@ import './Home.css';
 import './Page.css';
 import Header from '../Components/Header';
 
-import 'motion-pointer/dist/index.css';
-import 'motion-pointer/dist/index.js';
-
 import { onNetworkChange, isMetaMaskLocked, isMetaMaskInstalled } from '../indexweb3.js';
 import ErrorMessage from '../Components/Multiplayer/ErrorMessage';
 import SwitchNetworkButtonSmall from '../Components/MintPage/SwitchNetworkButtonSmall';

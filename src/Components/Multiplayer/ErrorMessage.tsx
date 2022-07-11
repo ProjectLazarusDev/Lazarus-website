@@ -4,8 +4,6 @@ import '../../Theme/Theme';
 import '../../Pages/Home.css';
 import '../../Pages/Page.css';
 import Typography from '@mui/material/Typography';
-import 'motion-pointer/dist/index.css';
-import 'motion-pointer/dist/index.js';
 import '../../indexweb3.js';
 
 interface ErrorMessageProps {

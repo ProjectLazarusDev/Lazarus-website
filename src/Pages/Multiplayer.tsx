@@ -13,7 +13,6 @@ import '../Theme/Theme';
 
 import './Home.css';
 import './Page.css';
-import Header from '../Components/Header';
 
 import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
@@ -44,6 +43,7 @@ const Multiplayer: React.FC = () => {
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
 
   const unityLoad = () => {
+    if (isMobile) unityContextSeason0.send('GameManager', 'SetMobile');
     unityContextSeason0.on('progress', handleOnUnityProgress);
     unityContextSeason0.on('loaded', handleOnUnityLoaded);
     unityContextSeason0.on('quitted', function () {});
@@ -119,11 +119,14 @@ const Multiplayer: React.FC = () => {
       unityContextSeason0.removeAllEventListeners();
     };
   }, []);
-
   function render() {
     let currentRender;
     if (isMobile === true) {
-      currentRender = <ErrorMessage message="MOBILE MINT ON 25 JUNE!" isLoaded={isLoaded}></ErrorMessage>;
+      currentRender = (
+        <GameScreen isLoaded={isLoaded} progression={progression} currUnityContext={unityContextSeason0}>
+          {' '}
+        </GameScreen>
+      );
     } else if (isMetaMaskInstalled() === false) {
       currentRender = <ErrorMessage message="PLEASE INSTALL METAMASK FIRST!" isLoaded={isLoaded}></ErrorMessage>;
     } else if (isLocked === true) {
@@ -145,8 +148,6 @@ const Multiplayer: React.FC = () => {
     <>
       <script src="../indexweb3.js"> </script>
       <div className="pageGlobal">
-        <Header></Header>
-
         <Card
           style={{
             zIndex: isLoaded ? -2 : 20,
@@ -164,7 +165,7 @@ const Multiplayer: React.FC = () => {
             boxShadow: 'none',
             zIndex: -2,
             width: '100vw',
-            height: '90vh',
+            height: '100vh',
             borderRadius: '0px',
             background: 'linear-gradient(to right bottom, #12121200, #05050500)',
           }}
