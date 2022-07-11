@@ -13,7 +13,6 @@ import '../Theme/Theme';
 
 import './Home.css';
 import './Page.css';
-import Header from '../Components/Header';
 
 import 'motion-pointer/dist/index.css';
 import 'motion-pointer/dist/index.js';
@@ -149,8 +148,6 @@ const Multiplayer: React.FC = () => {
     <>
       <script src="../indexweb3.js"> </script>
       <div className="pageGlobal">
-        <Header></Header>
-
         <Card
           style={{
             zIndex: isLoaded ? -2 : 20,
