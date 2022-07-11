@@ -44,7 +44,7 @@ const Multiplayer: React.FC = () => {
   const [scrollValue, setScrollValue] = React.useState<number>(0.0);
 
   const unityLoad = () => {
-    if (isMobile) unityContextSeason0.send('GameManager', 'setMobile');
+    if (isMobile) unityContextSeason0.send('GameManager', 'SetMobile');
     unityContextSeason0.on('progress', handleOnUnityProgress);
     unityContextSeason0.on('loaded', handleOnUnityLoaded);
     unityContextSeason0.on('quitted', function () {});
@@ -120,7 +120,6 @@ const Multiplayer: React.FC = () => {
       unityContextSeason0.removeAllEventListeners();
     };
   }, []);
-
   function render() {
     let currentRender;
     if (isMobile === true) {
