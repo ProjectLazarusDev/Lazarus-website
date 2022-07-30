@@ -14,10 +14,3 @@ export const unityContextSeason0 = new UnityContext({
   codeUrl: 'dev_season0/dev_season0.wasm',
 });
 
-const unityContextMobileString = 'dev_bootup_mobile';
-export const unityContextMobile = new UnityContext({
-  loaderUrl: `${unityContextMobileString}/${unityContextMobileString}.loader.js`,
-  dataUrl: `${unityContextMobileString}/${unityContextMobileString}.data`,
-  frameworkUrl: `${unityContextMobileString}/${unityContextMobileString}.framework.js`,
-  codeUrl: `${unityContextMobileString}/${unityContextMobileString}.wasm`,
-});
