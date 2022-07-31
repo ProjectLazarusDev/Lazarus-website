@@ -13,3 +13,4 @@ export const unityContextSeason0 = new UnityContext({
   frameworkUrl: 'dev_season0/dev_season0.framework.js',
   codeUrl: 'dev_season0/dev_season0.wasm',
 });
+
