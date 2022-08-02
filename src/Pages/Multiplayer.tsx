@@ -14,8 +14,6 @@ import '../Theme/Theme';
 import './Home.css';
 import './Page.css';
 
-import 'motion-pointer/dist/index.css';
-import 'motion-pointer/dist/index.js';
 import { isMobile } from 'react-device-detect';
 import GameScreen from '../Components/GameScreen';
 
