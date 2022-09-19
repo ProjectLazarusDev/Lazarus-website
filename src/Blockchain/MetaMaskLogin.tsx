@@ -19,14 +19,14 @@ async function MetaLogin() {
       .then((response) => {
         let nonce = response;
         console.log('nonce', nonce, response);
-      })
-      .catch((error) => console.log(error));
 
-    // jwt authentication to get access token with backend server
-    axios
-      .post(`${process.env.NEXT_PUBLIC_LOGIN_ENDPOINT}`, { metamaskAddress: MetaMaskAccounts[0] })
-      .then((response) => {
-        console.log('response', response);
+        // jwt authentication to get access token with backend server
+        axios
+          .post(`${process.env.NEXT_PUBLIC_LOGIN_ENDPOINT}`, { metamaskAddress: MetaMaskAccounts[0] })
+          .then((response) => {
+            console.log('log in successful!', response);
+          })
+          .catch((error) => console.log(error));
       })
       .catch((error) => console.log(error));
   }
