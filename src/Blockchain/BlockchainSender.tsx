@@ -1,6 +1,4 @@
-
 import { unityContext } from '../Context/UnityContext';
-
 
 const blockchainManager: string = 'BlockchainManager';
 
@@ -57,4 +55,8 @@ export function ReceiveTokenStakeStatus_Callback(tokenId: number, stakeStatus: b
 
 export function CompletedTokenStakeStatus_Callback() {
   unityContext.send(blockchainManager, 'CompletedTokenStakeStatus_Callback');
+}
+
+export function GetCookieHeader_Callback(cookieData: string) {
+  unityContext.send(blockchainManager, 'GetCookieHeader_Callback', cookieData);
 }
