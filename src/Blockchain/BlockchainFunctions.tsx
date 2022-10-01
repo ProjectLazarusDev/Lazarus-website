@@ -2,8 +2,10 @@ import { unityContext } from '../Context/UnityContext';
 
 import * as metaLogin from './MetaMaskLogin';
 import * as bootUpStation from './BootUpStation';
+import * as coreChamber from './CoreChamber';
 import * as bobots from './Bobots';
 import * as user from './User';
+
 
 export enum BlockchainError {
   NoError = 0,
@@ -24,7 +26,12 @@ export function BindToContext() {
   //stake
   unityContext.on('Stake_Request', bootUpStation.StakeBobot);
 
+  //token status
   unityContext.on('GetAllTokenStakeStatus_Request', bobots.GetBobotsAllStakeStatus);
+
+  //get bobots all levels
+  unityContext.on('GetAllLevels_Request', coreChamber.CoreChamberGetAllBobotPoints);
+
 
   //address and magic
   unityContext.on('GetUserData', user.GetUserData);

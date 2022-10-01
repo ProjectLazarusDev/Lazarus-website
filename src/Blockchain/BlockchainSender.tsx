@@ -40,8 +40,12 @@ export function CompletedTokenURI_Callback() {
   unityContext.send(blockchainManager, 'CompletedTokenURI_Callback');
 }
 
-export function GetAllTokenStakeStatus_Callback(_errorCode: number) {
-  unityContext.send(blockchainManager, 'GetAllTokenStakeStatus_Callback', _errorCode);
+export function GetAllTokenStakeStatus_Callback(_levels: number) {
+  unityContext.send(blockchainManager, 'GetAllTokenStakeStatus_Callback',_levels);
+}
+
+export function GetAllLevels_Callback(_levels: number) {
+  unityContext.send(blockchainManager, 'GetAllLevels_Callback', _levels);
 }
 
 export function ReceiveTokenStakeStatus_Callback(tokenId: number, stakeStatus: boolean, currentCorePoints: number) {

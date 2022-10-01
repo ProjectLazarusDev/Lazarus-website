@@ -276,9 +276,7 @@ const Home: React.FC = () => {
                               <CardMedia
                                 component="video"
                                 muted={true}
-                                image={'meta/video_37.mp4'}
-                                autoPlay
-                                loop
+                                image={'bg.jpeg'}
                                 style={{
                                   margin: '5px',
                                   display: 'fixed',

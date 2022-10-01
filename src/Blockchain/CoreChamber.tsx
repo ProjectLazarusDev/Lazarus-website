@@ -3,44 +3,36 @@ import { ethers, BigNumber } from "ethers";
 import {installationCoreChamberAddress,bobotGenesisAddress } from './ContractAddress';
 import BobotGenesisABI from '../ABI/BobotGenesis.json'
 import installationCoreChamber from '../ABI/CoreChamber.json'
-//core chamber stake status callback
-function CoreChamberStakeStatusAccepted(status: number)
-{
-    unityContext.send("BlockchainManager", "CoreChamberStakeStatus", status);
-}
+import { MetaMaskAccounts } from './MetaMaskLogin';
+import * as blockchainSender from './BlockchainSender';
 
-//core chamber stake callback
-function CoreChamberStakeAccepted(id: number)
+export async function CoreChamberGetAllBobotPoints(tokenIDs: number)
 {
-    unityContext.send("BlockchainManager", "CoreChamberStake", id);
-}
-//core chamber unstake callback
-function CoreChamberUnstakeAccepted(id: number)
-{
-    unityContext.send("BlockchainManager", "CoreChamberUnstake", id);
-}
+    var allLevels = 0;
 
-
-async function CoreChamberGetBobotStakeStatus(tokenIDs: number)
-{
-    console.log("received: ");
+    console.log("GetAllPoints: ");
     if ((window as any).ethereum)
     {
 
         const provider = new ethers.providers.Web3Provider((window as any).ethereum);
         const signer = provider.getSigner();
-        const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamber.output.abi, signer);
+        const contract = new ethers.Contract(bobotGenesisAddress, BobotGenesisABI.abi, signer);
         console.log(contract);
+        
         try
         {
             console.log("await contract");
-            const response = await contract.checkStakeStatus(tokenIDs);
-            console.log("response: ", response);
-
-            //0 if unstaked
-            var res = response[0].toNumber();
-            //send response back to game engine
-            CoreChamberStakeStatusAccepted(res);
+            const allIDs = await contract.getTokenIds(MetaMaskAccounts[0]);
+            
+            for (var i = 0;i < allIDs.length;++i)
+            {
+                const level = await contract.getCurrentBobotLevel(allIDs[i]);
+                console.log("level: ", level);
+                allLevels += level;
+            }
+           
+            blockchainSender.GetAllLevels_Callback(allLevels);
+          
         }
         catch {
             //error detection
@@ -48,62 +40,4 @@ async function CoreChamberGetBobotStakeStatus(tokenIDs: number)
     }
 }
 
-async function CoreChamberGetBobotLevel(tokenIDs: number)
-{
-
-}
-
-
-async function CoreChamberStakeBobot(tokenIDs: number)
-{
-    console.log("received: ");
-    if ((window as any).ethereum)
-    {
-
-        const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamber.output.abi, signer);
-        console.log(contract);
-        try
-        {
-            console.log("await contract");
-            const response = await contract.stake(tokenIDs);
-            console.log("response: ", response);
-
-            //send response back to game engine
-            // MintComfirmed(1);
-        }
-        catch {
-            //error detection
-        }
-    }
-}
-
-async function CoreChamberUnstakeBobot(tokenIDs: number)
-{
-    console.log("received: ");
-    if ((window as any).ethereum)
-    {
-
-        const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(installationCoreChamberAddress, installationCoreChamber.output.abi, signer);
-        console.log(contract);
-        try
-        {
-            console.log("await contract");
-            const response = await contract.unstake(tokenIDs);
-            console.log("response: ", response);
-
-            //send response back to game engine
-            // MintComfirmed(1);
-        }
-        catch {
-            //error detection
-        }
-    }
-}
-
-
-export { };
 
