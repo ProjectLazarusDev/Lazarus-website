@@ -2,6 +2,7 @@ import { unityContext } from '../Context/UnityContext';
 
 import * as metaLogin from './MetaMaskLogin';
 import * as bootUpStation from './BootUpStation';
+import * as moonbaseStation from './MoonBaseStation';
 import * as bobots from './Bobots';
 import * as user from './User';
 
@@ -25,6 +26,9 @@ export function BindToContext() {
   unityContext.on('Stake_Request', bootUpStation.StakeBobot);
 
   unityContext.on('GetAllTokenStakeStatus_Request', bobots.GetBobotsAllStakeStatus);
+
+  //save moonbase data in json format to backend database
+  unityContext.on('SaveMoonbase_Request', moonbaseStation.SaveMoonbase);
 
   //address and magic
   unityContext.on('GetUserData', user.GetUserData);
