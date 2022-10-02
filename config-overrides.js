@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-//const Dotenv = require('dotenv-webpack');
+
 
 
 module.exports = function override(config, env) {
@@ -20,7 +20,6 @@ module.exports = function override(config, env) {
             process: 'process/browser',
             Buffer: ['buffer', 'Buffer'],
         }),
-        //new Dotenv()
     );
 
     return config;

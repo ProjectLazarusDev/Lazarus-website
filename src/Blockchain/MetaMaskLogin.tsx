@@ -13,10 +13,15 @@ async function MetaLogin() {
     // send connected address back to engine
     blockchainSender.MetaMaskLogin_Callback(MetaMaskAccounts[0]);
 
-    console.log('process.env.NEXT_PUBLIC_NONCE_ENDPOINT', process.env.NEXT_PUBLIC_NONCE_ENDPOINT, MetaMaskAccounts[0]);
+    console.log(
+      'process.env.REACT_APP_PUBLIC_NONCE_ENDPOINT',
+      process.env.REACT_APP_PUBLIC_NONCE_ENDPOINT,
+      process.env.REACT_APP_PUBLIC_LOGIN_ENDPOINT,
+      MetaMaskAccounts[0]
+    );
     // nonce retrieval
     axios
-      .get(`${process.env.NEXT_PUBLIC_NONCE_ENDPOINT}`, {
+      .get(`${process.env.REACT_APP_PUBLIC_NONCE_ENDPOINT}`, {
         params: { metamaskAddress: MetaMaskAccounts[0] },
         withCredentials: true,
       })
@@ -26,7 +31,7 @@ async function MetaLogin() {
         // jwt authentication to get access token with backend server
         axios
           .post(
-            `${process.env.NEXT_PUBLIC_LOGIN_ENDPOINT}`,
+            `${process.env.REACT_APP_PUBLIC_LOGIN_ENDPOINT}`,
             {
               metamaskAddress: MetaMaskAccounts[0],
             },
